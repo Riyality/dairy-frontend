@@ -1,0 +1,62 @@
+.main-content {
+	background: #f6f6f6;
+}
+
+.main-sidebar-header, .app-sidebar, .app-header {
+	background: #001d4e !important;
+}
+
+.side-menu__label, .side-menu__item, .side-menu__icon, .category-name,
+	.side-menu__angle, .category-name, .header-link-icon {
+	color: #fff !important;
+}
+
+.dairy-form-input, .dairy-textarea, .input-group-text {
+	border-color: #000 !important;
+	border-radius: 0px !important;
+}
+
+.dairy-card-header {
+	border-bottom: 1px solid #ccc !important;
+}
+
+.dairy-table-border {
+	border: 1px solid #000 !important;
+}
+
+.dairy-table-head th{
+	background: #d6d6d6;
+}
+
+.custom-card{
+	box-shadow: 0 0 16px 2px #ccc !important;
+}
+
+.avatar-title {
+    align-items: center;
+    background-color: linear-gradient(90deg, #a9ffc6 0%, #8ecfff 100%);
+    ;
+    color: #fff;
+    display: flex;
+    font-weight: 500;
+    height: 30px;
+    width: 30px;
+    border-radius: 50px;
+    justify-content: center;
+    border: 1px solid #8ecfff;
+    margin-right: 15px;
+    text-transform: capitalize;
+    background: linear-gradient(90deg, #a9ffc6 0%, #8ecfff 100%);
+  }
+
+  .userName a {
+    font-size: 0.9rem;
+    font-width: 600;
+    color: #333;
+  }
+
+  .userName p {
+    font-size: 0.8rem;
+    font-width: 500;
+    color: #666;
+  }
