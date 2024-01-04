@@ -26,24 +26,26 @@
 		                  <th>Branch</th>
 		                  <th>Account No.</th>
 		                  <th>IFSC Code</th>
+		                  <th>UPIId</th>
 		                  <th>Address</th>
 		                  <th>Action</th>
 		                  </tr>
 		              </thead>
 		              <tbody>
 		              
-		                <c:forEach items="${branches}" var="branch">
+		                <c:forEach items="${suppliers}" var="supplier">
                           <tr class="gridjs-tr">
-                            <td>Ram</td>
-                            <td>23/12/2023</td>
-                            <td>9887878678</td>
-                            <td>Union</td>
-                            <td>Sangola</td>
-                            <td>2349887878678</td>
-                            <td>ASED34322</td>
-                            <td>Thombarewadi</td>
+                            <td>${supplier.name}</td>
+                            <td>${supplier.dateOfRegistration}</td>
+                            <td>${supplier.contact}</td>
+                            <td>${supplier.bankName}</td>
+                            <td>${supplier.bankBranchName}</td>
+                            <td>${supplier.accountNumber}</td>
+                            <td>${supplier.ifscCode}</td>
+                            <td>${supplier.upiId}</td>
+                             <td>${supplier.address}</td>
                             <td>
-                              <a href="http://localhost:6161/branches/${branch.id }">
+                              <a href="http://localhost:6161/suppliers/${supplier.id }">
                                 <i class="ti ti-color-picker" style="font-size: 14px"></i>
                               </a>
                             </td>

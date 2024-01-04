@@ -483,10 +483,10 @@
                                     <a href="javascript:void(0);">Supplier </a>
                                 </li>
                                 <li class="slide">
-                                    <a href="/branches/add-branch-page" class="side-menu__item">Add Supplier </a>
+                                    <a href="/suppliers/add-supplier-page" class="side-menu__item">Add Supplier </a>
                                 </li>
                                  <li class="slide">
-                                    <a href="/branches" class="side-menu__item">All Supplier</a>
+                                    <a href="/suppliers" class="side-menu__item">All Supplier</a>
                                 </li>
                                 
                             </ul>
