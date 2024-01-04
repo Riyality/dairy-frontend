@@ -44,11 +44,16 @@
 <!-- CHOICES CSS -->
 <link rel="stylesheet" href="<c:url value="/resources/assets/libs/choices.js/public/assets/styles/choices.min.css"/>">
 
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
 <!-- CHOICES JS -->
 <script src="<c:url value="/resources/assets/libs/choices.js/public/assets/scripts/choices.min.js"/>"></script>
 
 <!-- MAIN JS -->
 <script src="<c:url value="/resources/assets/main.js"/>"></script>
+
+<!-- CUSTOM JS -->
+<script src="<c:url value="/resources/assets/js/custom.js"/>"></script>
 
 <link rel="stylesheet" href="<c:url value="/resources/assets/css/custom.css"/>" />
 
@@ -561,6 +566,52 @@
                             </ul>
                         </li>
                         <!-- End Farmer slide -->
+                        
+                          <!-- Start Feed to Farmer slide -->
+                        
+                        <li class="slide has-sub">
+                            <a href="javascript:void(0);" class="side-menu__item">
+                                <i class="bx bx-file-blank side-menu__icon"></i>
+                                <span class="side-menu__label">Feed to Farmer </span>
+                                <i class="fe fe-chevron-right side-menu__angle"></i>
+                            </a>
+                            <ul class="slide-menu child1">
+                                <li class="slide side-menu__label1">
+                                    <a href="javascript:void(0);">Feed to Farmer </a>
+                                </li>
+                                <li class="slide">
+                                    <a href="/branches/add-branch-page" class="side-menu__item">Add Feed to Farmer </a>
+                                </li>
+                                 <li class="slide">
+                                    <a href="/branches" class="side-menu__item">All Feed to Farmer</a>
+                                </li>
+                                
+                            </ul>
+                        </li>
+                        <!-- End Feed to Farmer slide -->
+                        
+                        <!-- Start Advance to Farmer slide -->
+                        
+                        <li class="slide has-sub">
+                            <a href="javascript:void(0);" class="side-menu__item">
+                                <i class="bx bx-file-blank side-menu__icon"></i>
+                                <span class="side-menu__label">Advance to Farmer </span>
+                                <i class="fe fe-chevron-right side-menu__angle"></i>
+                            </a>
+                            <ul class="slide-menu child1">
+                                <li class="slide side-menu__label1">
+                                    <a href="javascript:void(0);">Advance to Farmer </a>
+                                </li>
+                                <li class="slide">
+                                    <a href="/branches/add-branch-page" class="side-menu__item">Add Advance to Farmer </a>
+                                </li>
+                                 <li class="slide">
+                                    <a href="/branches" class="side-menu__item">All Advance to Farmer</a>
+                                </li>
+                                
+                            </ul>
+                        </li>
+                        <!-- End Advance to Farmer slide -->
                         
                     </ul>
                     <div class="slide-right" id="slide-right">

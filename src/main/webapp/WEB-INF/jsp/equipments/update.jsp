@@ -13,33 +13,33 @@
 							<div class="card-title">Update Equipment</div>
 						</div>
 						<div class="card-body">
-							<form class="row g-3 needs-validation" action="/equipments"
+							<form class="row g-3 needs-validation" action="/equipments/update"
 								method="post" novalidate>
 								
 								<div class="col-md-6">
 									<label class="form-label dairy-input-label">Equipment Name</label>
-									<input type="hidden" class="form-control dairy-form-input"id="" name="id" value="${equipment.id }">
-									<input type="text" class="form-control dairy-form-input" placeholder="Enter Equipment Name" id="" name="name" value="${equipment.name }">
+									<input type="hidden" class="form-control dairy-form-input" id="equipmentId" name="id" value="${equipment.id }">
+									<input type="text" class="form-control dairy-form-input" placeholder="Enter Equipment Name" id="equipmentName" name="name" value="${equipment.name }">
 								</div>
 								
 								<div class="col-md-6">
 									<label class="form-label dairy-input-label">Date of Purchase</label> 
-									<input type="datetime-local" class="form-control dairy-form-input" id="" name="dateOfPurchase">
+									<input type="datetime-local" class="form-control dairy-form-input" id="equipmentDateOfPurchase" name="dateOfPurchase" value="${equipment.dateOfPurchase }">
 								</div>
 								
 								<div class="col-md-6">
 									<label class="form-label dairy-input-label">Quantity</label> 
-									<input type="text" class="form-control dairy-form-input" placeholder="Enter Quantity"  id="quantity" name="quantity"  value="${equipment.dateOfPurchase }" required>
+									<input type="text" class="form-control dairy-form-input" placeholder="Enter Quantity"  id="equipmentQuantity" name="quantity"  value="${equipment.quantity }" required>
 								</div>
 								
 								<div class="col-md-6">
 									<label class="form-label dairy-input-label">Price</label> 
-									<input type="text" class="form-control dairy-form-input" placeholder="Enter Price per Unit"  id="price" name="price" value="${equipment.quantity }" required>
+									<input type="text" class="form-control dairy-form-input" placeholder="Enters Price per Unit"  id="equipmentPrice" name="price" value="${equipment.price }" required>
 								</div>
 								
 								<div class="col-md-6">
 									<label class="form-label dairy-input-label">Total Amount</label> 
-									<input type="text" class="form-control dairy-form-input" placeholder="Total Amount"  id="totalAmount" name="totalAmount" value="${equipment.totalAmount }" required>
+									<input type="text" class="form-control dairy-form-input" placeholder="Total Amount"  id="equipmentTotalAmount" name="totalAmount" value="${equipment.totalAmount }" required>
 								</div>
 								
 								<div class="col-12">
