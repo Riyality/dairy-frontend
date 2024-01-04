@@ -19,6 +19,11 @@ public class MessageConstants {
 	public static final String ADD_EMPLOYEE_ERROR_MSG = "Unable to add employee";
 	public static final String UPDATE_EMPLOYEE_SUCCESS_MESSAGE = "Employee updated successfully";
 	public static final String UPDATE_EMPLOYEE_ERROR_MSG = "Unable to update employee";
+    
+	public static final String ADD_SUPPLIER_SUCCESS_MESSAGE = "Supplier added";
+	public static final String ADD_SUPPLIER_ERROR_MSG = "Unable to add Supplier";
+	public static final String UPDATE_SUPPLIER_SUCCESS_MESSAGE = "Update Supplier ";
+	public static final String UPDATE_SUPPLIER_ERROR_MSG = "Unable to update";
 
 
 }
