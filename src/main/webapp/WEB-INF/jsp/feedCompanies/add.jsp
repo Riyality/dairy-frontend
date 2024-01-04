@@ -15,7 +15,7 @@
 							<div class="card-title">Add Feed Company</div>
 						</div>
 						<div class="card-body">
-							<form class="row g-3 needs-validation" action="/branches"
+							<form class="row g-3 needs-validation" action="/feedcompany"
 								method="post" novalidate>
 								
 								<div class="col-md-6">

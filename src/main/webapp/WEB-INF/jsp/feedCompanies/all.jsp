@@ -25,13 +25,13 @@
 		              </thead>
 		              <tbody>
 		              
-		                <c:forEach items="${branches}" var="branch">
+		                <c:forEach items="${feedCompany}" var="fc">
                           <tr class="gridjs-tr">
-                            <td>${branch.name}</td>
-                            <td>
-                              <a href="http://localhost:6161/branches/${branch.id }">
-                                <i class="ti ti-color-picker" style="font-size: 14px"></i>
-                              </a>
+                            <td>${fc.name}</td>
+                              <td>
+                                 <a href="http://localhost:6161/branches/${fc.id }">
+                                   <i class="ti ti-color-picker" style="font-size: 14px"></i>
+                                 </a>
                             </td>
                           </tr>
                         </c:forEach>

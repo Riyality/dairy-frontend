@@ -406,7 +406,7 @@
                         </li>
                         <!-- End Equipment slide -->
                         
-                        <!-- Start Feed Company slide -->
+                       <!-- Start Feed Company slide -->
                                            
                         <li class="slide has-sub">
                             <a href="javascript:void(0);" class="side-menu__item">
@@ -419,10 +419,10 @@
                                     <a href="javascript:void(0);">Feed Company</a>
                                 </li>
                                 <li class="slide">
-                                    <a href="/branches/add-branch-page" class="side-menu__item">Add Feed Company</a>
+                                    <a href="/feedCompanies/add-feed-company" class="side-menu__item">Add Feed Company</a>
                                 </li>
                                  <li class="slide">
-                                    <a href="/branches" class="side-menu__item">All Feed Companies</a>
+                                    <a href="/feedCompanies" class="side-menu__item">All Feed Companies</a>
                                 </li>
                                 
                             </ul>
@@ -442,10 +442,10 @@
                                     <a href="javascript:void(0);">Feed Type </a>
                                 </li>
                                 <li class="slide">
-                                    <a href="/branches/add-branch-page" class="side-menu__item">Add Feed Type </a>
+                                    <a href="/feedTypes/add-feed-type" class="side-menu__item">Add Feed Type </a>
                                 </li>
                                  <li class="slide">
-                                    <a href="/branches" class="side-menu__item">All Feed Types</a>
+                                    <a href="/feedTypes" class="side-menu__item">All Feed Types</a>
                                 </li>
                                 
                             </ul>
