@@ -406,6 +406,29 @@
                         </li>
                         <!-- End Equipment slide -->
                         
+                         <!-- Start Feed Distribution slide -->
+                                           
+                        <li class="slide has-sub">
+                            <a href="javascript:void(0);" class="side-menu__item">
+                                <i class="bx bx-file-blank side-menu__icon"></i>
+                                <span class="side-menu__label">Feed Distribution</span>
+                                <i class="fe fe-chevron-right side-menu__angle"></i>
+                            </a>
+                            <ul class="slide-menu child1">
+                                <li class="slide side-menu__label1">
+                                    <a href="javascript:void(0);">Feed Distribution</a>
+                                </li>
+                                <li class="slide">
+                                    <a href="/feedCompanies/add-feed-company" class="side-menu__item">Add Feed Distribution</a>
+                                </li>
+                                 <li class="slide">
+                                    <a href="/feedCompanies" class="side-menu__item">All Feed Distribution</a>
+                                </li>
+                                
+                            </ul>
+                        </li>
+                        <!-- End Feed Distribution slide -->
+                        
                        <!-- Start Feed Company slide -->
                                            
                         <li class="slide has-sub">
