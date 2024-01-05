@@ -1,7 +1,7 @@
 
 <jsp:include page="../modules/header.jsp" />
 
-
+ <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <body>
 
 	<div class="main-content app-content p-4">
@@ -15,21 +15,30 @@
 							<div class="card-title">Add Feed Type</div>
 						</div>
 						<div class="card-body">
-							<form class="row g-3 needs-validation" action="/branches"
+							<form class="row g-3 needs-validation" action="/feedType"
 								method="post" novalidate>
 
 								<div class="col-md-6">
-									<label class="form-label dairy-input-label">Feed Company Name</label> 
-									<select class="form-select dairy-form-input" name="" id="">
-										<option value="" selected="selected" disabled="disabled">Select Feed Company</option>
-										<option value="1">Hindusthan</option> 
+									<label class="form-label dairy-input-label">Feed
+										Company Name</label> 
+										
+										
+
+								 <select  class="form-select dairy-form-input"
+										id="" name="feedCompanyId">
+										<option value="" selected="selected" disabled="disabled">Select
+											Feed Company</option>
+										<c:forEach items="${feedCompany}" var="fc">
+											<option value="${fc.id}">${fc.name}</option>
+										</c:forEach>
 									</select>
 								</div>
 
 								<div class="col-md-6">
-									<label class="form-label dairy-input-label">Feed Feed Type Name</label> 
-										<input type="text" class="form-control dairy-form-input"
-										placeholder="Enter Feed Type Name" id="" name="name">
+									<label class="form-label dairy-input-label">Feed Feed
+										Type Name</label> <input type="text"
+										class="form-control dairy-form-input"
+										placeholder="Enter Feed Type Name" id="" name="type">
 								</div>
 
 								<div class="col-12">

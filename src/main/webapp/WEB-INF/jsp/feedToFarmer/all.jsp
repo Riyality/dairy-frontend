@@ -9,7 +9,16 @@
 		  <div class="col-11 mx-auto mt-4">
 		    <div class="card custom-card">
 		      <div class="card-header dairy-card-header">
-		        <div class="card-title">All Feed Types</div>
+		        <div class="card-title">Route-wise Farmers</div>
+		        
+		             <div class="col-md-3 ms-auto">
+			             <select class="form-select dairy-form-input" name="" id="">
+							<option value="" selected="selected" disabled="disabled">Set Route</option>
+							<option value="1">Achakadani</option> 
+							<option value="1">Thombarewadi</option> 
+						 </select>
+					 </div>
+					 
 		      </div>
 		      <div class="card-body">
 		        <div class="table-responsive">
@@ -19,20 +28,18 @@
 		            <table id="file-export" class="table table-bordered dataTable no-footer dairy-table-border">
 		              <thead>
 		                <tr class="dairy-table-head">
-		                  <th>Feed Types</th>
-		                  <th>Company Name</th>
-		                  <th>Action</th>
+		                      <th>Farmer Name</th>
+			                  <th>Action</th>
 		                  </tr>
 		              </thead>
 		              <tbody>
 		              
-		                <c:forEach items="${feedType}" var="feed">
+		                <c:forEach items="${branches}" var="branch">
                           <tr class="gridjs-tr">
-                          <td>${feed.type}</td>
-                            <td>${feed.feedCompanyName }</td> 
+                            <td>Chandu Chavan</td>
                             <td>
-                              <a href="http://localhost:6161/feedType/${feed.id }">
-                                <em class="ti ti-color-picker" style="font-size: 14px"></em>
+                              <a href="http://localhost:6161/branches/${branch.id }">
+                                   <button class="btn btn-sm btn-primary dairy-form-btn">Check Feed Data</button>
                               </a>
                             </td>
                           </tr>
