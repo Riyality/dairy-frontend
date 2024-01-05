@@ -24,6 +24,9 @@ public class MessageConstants {
 	public static final String ADD_SUPPLIER_ERROR_MSG = "Unable to add Supplier";
 	public static final String UPDATE_SUPPLIER_SUCCESS_MESSAGE = "Update Supplier ";
 	public static final String UPDATE_SUPPLIER_ERROR_MSG = "Unable to update";
+	
+	public static final String  UPDATE_FEEDSTOCK_SUCCESS_MESSAGE = "FeedStock Updated";
+	public static final String UPDATE_FEEDSTOCK_ERROR_MSG = "Unable to update";
 
 
 }

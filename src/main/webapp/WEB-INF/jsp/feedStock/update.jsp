@@ -15,13 +15,14 @@
 							<div class="card-title">Add Feed Stock</div>
 						</div>
 						<div class="card-body dairy-card-body">
-							<form class="row g-3 needs-validation" action="/feedStock"
+							<form class="row g-3 needs-validation" action="/feedStock/update"
 								method="post" novalidate>
 
 								<div class="col-md-6">
-									<label class="form-label dairy-input-label">Supplier
-										Name</label> <select class="form-select dairy-form-input" id=""
-										name="supplierId">
+									<input type="hidden" class="form-control dairy-form-input"
+										id="" name="id" value="${feedstock.id }"> <label
+										class="form-label dairy-input-label">Supplier Name</label> <select
+										class="form-select dairy-form-input" id="" name="supplierId">
 										<option value="" selected="selected" disabled="disabled">Select
 											Supplier Company</option>
 										<c:forEach items="${FeedStocks}" var="feedstock">
@@ -34,8 +35,9 @@
 
 								<div class="col-md-6">
 									<label class="form-label dairy-input-label">Purchase
-										Date</label> <input type="datetime-local" class="form-control dairy-form-input"
-										id="" name="dateOfPurchase">
+										Date</label> <input type="datetime-local"
+										class="form-control dairy-form-input" id=""
+										name="dateOfPurchase" value="${feedstock.dateOfPurchase}">
 								</div>
 
 								<div class="col-md-6">
@@ -69,21 +71,23 @@
 										(1 unit)</label> <input type="text"
 										class="form-control dairy-form-input"
 										placeholder="Enter Feed Cost pre Unit" id=""
-										name="feedCostPerUnit">
+										name="feedCostPerUnit" value="${feedstock.feedCostPerUnit}">
 								</div>
 
 								<div class="col-md-6">
 									<label class="form-label dairy-input-label">Total
 										Quantity</label> <input type="text"
 										class="form-control dairy-form-input"
-										placeholder="Enter Total Quantity" id="" name="quantity">
+										placeholder="Enter Total Quantity" id="" name="quantity"
+										value="${feedstock.quantity}">
 								</div>
 
 								<div class="col-md-6">
 									<label class="form-label dairy-input-label">Total
 										Amount</label> <input type="text"
 										class="form-control dairy-form-input"
-										placeholder="Total Amount" id="" name="totalAmount">
+										placeholder="Total Amount" id="" name="totalAmount"
+										value="${feedstock.totalAmount}">
 								</div>
 
 								<div class="col-12">
