@@ -406,6 +406,29 @@
                         </li>
                         <!-- End Equipment slide -->
                         
+                         <!-- Start Manager Credit and Debit slide -->
+                                           
+                        <li class="slide has-sub">
+                            <a href="javascript:void(0);" class="side-menu__item">
+                                <i class="bx bx-file-blank side-menu__icon"></i>
+                                <span class="side-menu__label"> Manager Credit and Debit </span>
+                                <i class="fe fe-chevron-right side-menu__angle"></i>
+                            </a>
+                            <ul class="slide-menu child1">
+                                <li class="slide side-menu__label1">
+                                    <a href="javascript:void(0);"> Manager Credit and Debit </a>
+                                </li>
+                                <li class="slide">
+                                    <a href="/feedCompanies/add-feed-company" class="side-menu__item">Add  Manager Credit and Debit </a>
+                                </li>
+                                 <li class="slide">
+                                    <a href="/feedCompanies" class="side-menu__item">All  Manager Credit and Debit </a>
+                                </li>
+                                
+                            </ul>
+                        </li>
+                        <!-- End Manager Credit and Debit slide -->
+                        
                          <!-- Start Feed Distribution slide -->
                                            
                         <li class="slide has-sub">
