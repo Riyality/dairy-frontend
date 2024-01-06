@@ -25,7 +25,7 @@
 								
 								<div class="col-md-6">
 									<label class="form-label dairy-input-label">Date of Joing</label> 
-									<input type="datetime-local" class="form-control dairy-form-input" id="" name="dateOfJoining" ${employee.dateOfJoining }>
+									<input type="datetime-local" class="form-control dairy-form-input" id="" name="dateOfJoining" value=" ${employee.dateOfJoining }">
 								</div>
 
 								<div class="col-md-6">

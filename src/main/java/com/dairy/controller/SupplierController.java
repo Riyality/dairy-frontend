@@ -24,7 +24,7 @@ public class SupplierController {
 	SupplierService supplierService;
 
 	@GetMapping("/add-supplier-page")
-	public String addBranchPage() {
+	public String addSupplierPage() {
 		return "suppliers/add";
 	}
 
