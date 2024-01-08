@@ -24,11 +24,17 @@ public class MessageConstants {
 	public static final String ADD_SUPPLIER_ERROR_MSG = "Unable to add Supplier";
 	public static final String UPDATE_SUPPLIER_SUCCESS_MESSAGE = "Update Supplier ";
 	public static final String UPDATE_SUPPLIER_ERROR_MSG = "Unable to update";
+	
+	public static final String  UPDATE_FEEDSTOCK_SUCCESS_MESSAGE = "FeedStock Updated";
+	public static final String UPDATE_FEEDSTOCK_ERROR_MSG = "Unable to update";
 
 	public static final String ADD_FEEDCOMPANY_SUCCESS_MESSAGE = "FeedCompany added Successfully";
 	public static final String ADD_FEEDCOMPANY_ERROR_MSG = "Unable to add FeedCompany";
 	public static final String ADD_FEEDTYPE_SUCCESS_MESSAGE = "FeedType added successfully";
 	public static final String ADD_FEEDTYPE_ERROR_MSG = "Unable to add Feedtype";
-
+	
+	public static final String ADD_FEEDSTOCK_SUCCESS_MESSAGE = "FeedStock added successfully";
+	public static final String ADD_FEEDSTOCK_ERROR_MSG = "Unable to add FeedStock";
+ 
 
 }

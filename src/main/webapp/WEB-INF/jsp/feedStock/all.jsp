@@ -31,17 +31,17 @@
 		              </thead>
 		              <tbody>
 		              
-		                <c:forEach items="${branches}" var="branch">
+		                <c:forEach items="${FeedStocks}" var="feedstock">
                           <tr class="gridjs-tr">
-                            <td>Ram</td>
-                            <td>23/12/2023</td>
-                            <td>Hindusthan</td>
-                            <td>Indraneel</td>
-                            <td>1125</td>
-                            <td>100</td>
-                            <td>112500</td>
+                            <td>${feedstock.supplierName}</td>
+                            <td>${feedstock.dateOfPurchase}</td>
+                             <td>${feedstock.feedCompanyName}</td>
+                            <td>${feedstock.feedTypeName}</td>
+                            <td>${feedstock.feedCostPerUnit}</td>
+                            <td>${feedstock.quantity}</td>
+                            <td>${feedstock.totalAmount}</td>
                             <td>
-                              <a href="http://localhost:6161/branches/${branch.id }">
+                              <a href="http://localhost:6161/feedStock/${feedstock.id}">
                                 <i class="ti ti-color-picker" style="font-size: 14px"></i>
                               </a>
                             </td>

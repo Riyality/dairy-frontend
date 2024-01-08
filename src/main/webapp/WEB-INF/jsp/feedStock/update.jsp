@@ -12,37 +12,36 @@
 				<div class="col-10 m-auto">
 					<div class="card custom-card">
 						<div class="card-header justify-content-between dairy-card-header">
-							<div class="card-title">Add Feed Stock</div>
+							<div class="card-title">Update Feed Stock</div>
 						</div>
 						<div class="card-body dairy-card-body">
 							<form class="row g-3 needs-validation" action="/feedStock"
 								method="post" novalidate>
-
+								
+                          <input type="hidden" class="form-control dairy-form-input" id="" name="id" value="${feedstock.id }"> 
 								<div class="col-md-6">
 									<label class="form-label dairy-input-label">Supplier
 										Name</label> <select class="form-select dairy-form-input" id=""
 										name="supplierId">
-										<option value="" selected="selected" disabled="disabled">Select Supplier</option>
+										<option value="${feedstock.supplierId}" selected="selected" >${feedstock.supplierName}</option>
 										<c:forEach items="${suppliers}" var="supplier">
 											<option value="${supplier.id}">${supplier.name}</option>
 										</c:forEach>
 									</select>
-
 
 								</div>
 
 								<div class="col-md-6">
 									<label class="form-label dairy-input-label">Purchase
 										Date</label> <input type="datetime-local" class="form-control dairy-form-input"
-										id="" name="dateOfPurchase">
+										id="" name="dateOfPurchase" value="${feedstock.dateOfPurchase}">
 								</div>
 
 								<div class="col-md-6">
 									<label class="form-label dairy-input-label">Feed
-										Company</label> <select class="form-select dairy-form-input" id="feedCompanyList"
+										Company</label> <select class="form-select dairy-form-input" id=""
 										name="feedCompanyId">
-										<option value="" selected="selected" disabled="disabled">Select
-											Feed Company</option>
+										<option value="${feedstock.feedCompanyId}" selected="selected" disabled="disabled">${feedstock.feedCompanyName}</option>
 										<c:forEach items="${feedCompany}" var="fc">
 											<option value="${fc.id}">${fc.name}</option>
 										</c:forEach>
@@ -55,10 +54,9 @@
 									<label class="form-label dairy-input-label">Feed
 										Company Type</label> <select class="form-select dairy-form-input"
 										id="" name="feedTypeId">
-										<option value="" selected="selected" disabled="disabled">Select
-											Feed Type</option>
+										<option value="${feedstock.feedTypeId}" disabled="disabled">${feedstock.feedTypeName}</option>
 										<c:forEach items="${feedType}" var="feed">
-											<option value="${feed.id}">${feed.type}</option>
+											<option selected="selected" value="${feed.id}">${feed.type}</option>
 										</c:forEach>
 									</select>
 								</div>
@@ -68,21 +66,21 @@
 										(1 unit)</label> <input type="text"
 										class="form-control dairy-form-input"
 										placeholder="Enter Feed Cost pre Unit" id="equipmentPrice"
-										name="feedCostPerUnit">
+										name="feedCostPerUnit" value="${feedstock.feedCostPerUnit}">
 								</div>
 
 								<div class="col-md-6">
 									<label class="form-label dairy-input-label">Total
 										Quantity</label> <input type="text"
 										class="form-control dairy-form-input"
-										placeholder="Enter Total Quantity" id="equipmentQuantity" name="quantity">
+										placeholder="Enter Total Quantity" id="equipmentQuantity" name="quantity" value="${feedstock.quantity}">
 								</div>
 
 								<div class="col-md-6">
 									<label class="form-label dairy-input-label">Total
 										Amount</label> <input type="text"
 										class="form-control dairy-form-input"
-										placeholder="Total Amount" id="equipmentTotalAmount" name="totalAmount">
+										placeholder="Total Amount" id="equipmentTotalAmount" name="totalAmount"  value="${feedstock.totalAmount}">
 								</div>
 
 								<div class="col-12">

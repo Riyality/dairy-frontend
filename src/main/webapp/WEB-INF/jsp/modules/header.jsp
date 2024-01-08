@@ -534,10 +534,10 @@
                                     <a href="javascript:void(0);">Feed Stock </a>
                                 </li>
                                 <li class="slide">
-                                    <a href="/branches/add-branch-page" class="side-menu__item">Add Feed Stock </a>
+                                    <a href="/feedStock/add-feedStock-page" class="side-menu__item">Add Feed Stock </a>
                                 </li>
                                  <li class="slide">
-                                    <a href="/branches" class="side-menu__item">All Feed Stock</a>
+                                    <a href="/feedStock" class="side-menu__item">All Feed Stock</a>
                                 </li>
                                 
                             </ul>

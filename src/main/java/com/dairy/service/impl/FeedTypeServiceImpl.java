@@ -58,4 +58,25 @@ public class FeedTypeServiceImpl implements FeedTypeService {
 		return null;
 	}
 
+	@Override
+	public List<FeedTypeResponseDto> getFeedTypeByFeedCompanyId(int id) {
+		RestTemplate template = new RestTemplate();
+		String url = "http://localhost:6262/feedtype";
+		
+		HttpHeaders headers = new HttpHeaders();
+		HttpEntity<String> entity = new HttpEntity<>( "body", headers );
+		
+		try {
+			ParameterizedTypeReference<List<FeedTypeResponseDto>> responseType = new ParameterizedTypeReference<List<FeedTypeResponseDto>>() {
+			};
+			ResponseEntity<List<FeedTypeResponseDto>> res = template.exchange( url, HttpMethod.GET, entity, responseType );
+			return res.getBody();
+
+		} catch ( Exception e ) {
+			log.error( e.getMessage(), e );
+		}
+		
+		return null;
+	}
+
 }

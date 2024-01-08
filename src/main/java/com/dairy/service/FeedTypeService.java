@@ -12,5 +12,7 @@ public interface FeedTypeService {
 
 	public List<FeedTypeResponseDto> getAllFeedTypes();
 
+	public List<FeedTypeResponseDto> getFeedTypeByFeedCompanyId(int id);
+
 
 }
