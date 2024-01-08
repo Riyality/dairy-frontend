@@ -557,10 +557,10 @@
                                     <a href="javascript:void(0);">Milk Collection </a>
                                 </li>
                                 <li class="slide">
-                                    <a href="/branches/add-branch-page" class="side-menu__item">Add Milk Collection </a>
+                                    <a href="/milkCollection/add-milkCollection-page" class="side-menu__item">Add Milk Collection </a>
                                 </li>
                                  <li class="slide">
-                                    <a href="/branches" class="side-menu__item">All Milk Collection</a>
+                                    <a href="/milkCollection" class="side-menu__item">All Milk Collection</a>
                                 </li>
                                 
                             </ul>

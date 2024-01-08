@@ -32,6 +32,11 @@ public class MessageConstants {
 	public static final String ADD_FEEDCOMPANY_ERROR_MSG = "Unable to add FeedCompany";
 	public static final String ADD_FEEDTYPE_SUCCESS_MESSAGE = "FeedType added successfully";
 	public static final String ADD_FEEDTYPE_ERROR_MSG = "Unable to add Feedtype";
+
+	public static final String ADD_MILK_COLLECTION_SUCCESS_MESSAGE = "Milk Collection added Successfully";
+	public static final String ADD_MILK_COLLECTION_ERROR_MSG = "Unable to add Milk Collection";
+	public static final String UPDATE_MILK_COLLECTION_MESSAGE = "Update Milk Collection ";
+	public static final String UPDATE_MILK_COLLECTION_ERROR_MSG = "Unable to update";
 	
 	public static final String ADD_FEEDSTOCK_SUCCESS_MESSAGE = "FeedStock added successfully";
 	public static final String ADD_FEEDSTOCK_ERROR_MSG = "Unable to add FeedStock";
