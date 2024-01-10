@@ -9,7 +9,7 @@
 		  <div class="col-11 mx-auto mt-4">
 		    <div class="card custom-card">
 		      <div class="card-header dairy-card-header">
-		        <div class="card-title">All Equipments</div>
+		        <div class="card-title">All AdvanceDetails</div>
 		      </div>
 		      <div class="card-body">
 		        <div class="table-responsive">
@@ -21,21 +21,23 @@
 		                <tr class="dairy-table-head">
 		                  <th>Farmer Name</th>
 		                  <th>Advance Amount</th>
+		                  <th>Deduction</th>
+		                  <th>Remaining Amount</th>
 		                  <th>Date</th>
-		                  <th>Remark</th>
 		                  <th>Action</th>
 		                  </tr>
 		              </thead>
 		              <tbody>
 		              
-		                <c:forEach items="${branches}" var="branch">
+		                <c:forEach items="${advances}" var="advanceTofarmer">
                           <tr class="gridjs-tr">
-                            <td>${branch.name}</td>
-                            <td>${branch.owner}</td>
-                            <td>${branch.startDate}</td>
-                            <td>${branch.address}</td>
+                            <td>${advanceTofarmer.farmerName}</td>
+                            <td>${advanceTofarmer.amount}</td>
+                             <td>${advanceTofarmer.deduction}</td>
+                              <td>${advanceTofarmer.remainingAmount}</td>
+                            <td>${advanceTofarmer.dateOfAdvance}</td>
                             <td>
-                              <a href="http://localhost:6161/branches/${branch.id }">
+                              <a href="http://localhost:6161/advanceToFarmer/${advanceToFarmer.id }">
                                 <i class="ti ti-color-picker" style="font-size: 14px"></i>
                               </a>
                             </td>

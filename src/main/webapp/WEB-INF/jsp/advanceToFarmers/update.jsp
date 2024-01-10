@@ -13,7 +13,7 @@
 				<div class="col-10 m-auto">
 					<div class="card custom-card">
 						<div class="card-header justify-content-between dairy-card-header">
-							<div class="card-title">Add Advance Amount to Farmers</div>
+							<div class="card-title">Update Advance Amount to Farmers</div>
 						</div>
 						<div class="card-body dairy-card-body">
 							<form class="row g-3 needs-validation" action="/advanceToFarmer"
@@ -23,10 +23,10 @@
 									<label class="form-label dairy-input-label">Farmer Name</label> 
 					
 									<select class="form-select dairy-form-input" id=""
-										name="farmerId">
-										<option value="" selected="selected" disabled="disabled">Select Farmer</option>
+										name="farmerId" value="${advance.farmerId }">
+										<option  selected="selected" value="${advance.farmerId}">${advance.farmerName}</option>
 										<c:forEach items="${list}" var="farmer">
-											<option value="${farmer.id}">${farmer.name}</option>
+											<option  selected="selected" value="${farmer.id}">${farmer.name}</option>
 										</c:forEach>
 									</select>
 									
@@ -34,21 +34,21 @@
 								
 								<div class="col-md-6">
 									<label class="form-label dairy-input-label">Date of Advance</label> 
-									<input type="datetime-local" class="form-control dairy-form-input" id="" name="dateOfAdvance">
+									<input type="datetime-local" class="form-control dairy-form-input" id="" name="dateOfAdvance" value="${advance.dateOfAdvance }">
 								</div>
 								
 								<div class="col-md-6">
 									<label class="form-label dairy-input-label">Advance Amount</label> 
-									<input type="text" class="form-control dairy-form-input" placeholder="Enter Advance Amount" id="AdvanceAmount" name="amount" required>
+									<input type="text" class="form-control dairy-form-input" placeholder="Enter Advance Amount" id="AdvanceAmount" name="amount" value="${advance.amount }" required>
 								</div>
 								
 								<div class="col-md-6">
 									<label class="form-label dairy-input-label"> Deduction </label> 
-									<input type="text" class="form-control dairy-form-input" placeholder="Enter Advance Amount" id="deduction" name="deduction" required>
+									<input type="text" class="form-control dairy-form-input" placeholder="Enter Advance Amount" id="deduction" name="deduction" value="${advance.deduction }" required>
 								</div>
 								<div class="col-md-6">
 									<label class="form-label dairy-input-label">Remaining Amount</label> 
-									<input type="text" class="form-control dairy-form-input" placeholder="Enter Advance Amount" id="remeninigAmount" name="remainingAmount" required>
+									<input type="text" class="form-control dairy-form-input" placeholder="Enter Advance Amount" id="remeninigAmount" name="remainingAmount" value="${advance.remainingAmount }" required>
 								</div>
 								<div class="col-12">
 									<label class="form-label dairy-input-label">Remark</label>
@@ -65,6 +65,5 @@
 		</div>
 	</div>
 	<jsp:include page="../modules/footer.jsp" />    
-	
 	
 	

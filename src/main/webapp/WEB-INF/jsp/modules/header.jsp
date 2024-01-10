@@ -649,10 +649,10 @@
                                     <a href="javascript:void(0);">Advance to Farmer </a>
                                 </li>
                                 <li class="slide">
-                                    <a href="/branches/add-branch-page" class="side-menu__item">Add Advance to Farmer </a>
+                                    <a href="/advanceToFarmer/advanceToFarmer-add-page" class="side-menu__item">Add Advance to Farmer </a>
                                 </li>
                                  <li class="slide">
-                                    <a href="/branches" class="side-menu__item">All Advance to Farmer</a>
+                                    <a href="/advanceToFarmer" class="side-menu__item">All Advance to Farmer</a>
                                 </li>
                                 
                             </ul>
