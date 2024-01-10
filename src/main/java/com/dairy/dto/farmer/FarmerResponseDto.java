@@ -2,7 +2,7 @@ package com.dairy.dto.farmer;
 
 import java.time.LocalDateTime;
 
-import com.dairy.dto.bankdetails.BankResponseDto;
+import com.dairy.dto.branch.BranchResponseDto;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -19,6 +19,6 @@ public class FarmerResponseDto {
 	private String address;
 	private String status;
 	private int branchId;
-	private BankResponseDto bank;
+	private BranchResponseDto bank;
 
 }

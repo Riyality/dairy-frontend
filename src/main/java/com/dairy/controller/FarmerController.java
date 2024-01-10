@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.dairy.constants.MessageConstants;
 import com.dairy.dto.farmer.FarmerRequestDto;
 import com.dairy.dto.farmer.FarmerResponseDto;
 import com.dairy.service.FarmerService;
@@ -34,10 +33,7 @@ public class FarmerController {
 		int branchId = ( int ) session.getAttribute( "branchId" );
 		dto.setBranchId( branchId );
 		String result = farmerService.add( dto );
-		if ( result.equals( MessageConstants.ADD_FARMER_SUCCESS_MESSAGE ) )
-			return "redirect:/farmers";
-		else
-			return "farmers/add";
+		return "farmers/add";
 	}
 
 	@GetMapping
