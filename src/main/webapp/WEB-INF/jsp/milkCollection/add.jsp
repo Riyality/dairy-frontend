@@ -21,12 +21,12 @@
 								
 								<div class="col-md-6">
 									<label class="form-label dairy-input-label">Farmer Id</label>
-									<input type="text" class="form-control dairy-form-input" placeholder="Enter Farmer Id" name="farmerId" id="farmerId" >
+									<input type="text" class="form-control dairy-form-input" placeholder="Enter Farmer Id" name="farmerId" value="${farmerId}" id="farmerId" disabled="disabled">
 								</div>
 								
 								<div class="col-md-6">
 									<label class="form-label dairy-input-label">Farmer Name</label>
-									<input type="text" class="form-control dairy-form-input" placeholder="Enter  Farmer Name" name="farmerName" id="farmerName">
+									<input type="text" class="form-control dairy-form-input" placeholder="Enter  Farmer Name" name="farmerName" id="farmerName" value="${farmerName}" disabled="disabled">
 								</div>
 								
 								<div class="col-md-4">

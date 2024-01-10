@@ -9,17 +9,8 @@
 		  <div class="col-11 mx-auto mt-4">
 		    <div class="card custom-card">
 		      <div class="card-header dairy-card-header">
-		        <div class="card-title">Route-wise Farmers</div>
+		        <div class="card-title">Routes</div>
 		        
-		             <div class="col-md-3 ms-auto">
-			             <select class="form-select dairy-form-input" name="" id="">
-							<option value="" selected="selected" disabled="disabled">Set Route</option>
-							    <c:forEach items="${routes}" var="route">
-								  <option value="${route.id}">${route.name}</option> 
-								</c:forEach>
-						 </select>
-					 </div>
-					 
 		      </div>
 		      <div class="card-body">
 		        <div class="table-responsive">
@@ -29,20 +20,20 @@
 		            <table id="file-export" class="table table-bordered dataTable no-footer dairy-table-border">
 		              <thead>
 		                <tr class="dairy-table-head">
-		                      <th>Farmer Name</th>
+		                      <th>Route Name</th>
+		                      <th>Remark</th>
 			                  <th>Action</th>
 		                  </tr>
 		              </thead>
 		              <tbody>
-		                <c:forEach items="${list}" var="farmer">
+		              
+		                <c:forEach items="${routes}" var="route">
                           <tr class="gridjs-tr">
-                            <td>${farmer.name }</td>
+                            <td>${route.name }</td>
+                            <td>${route.remark }</td>
                             <td>
-                              <a href="http://localhost:6161/milkCollection/add-milkCollection-page/${farmer.id }/${farmer.name }">
-                                   <button class="btn btn-sm btn-primary dairy-form-btn">Collect Milk</button>
-                              </a>
-                              <a href="http://localhost:6161/milkCollection/${farmer.id }">
-                                   <button class="btn btn-sm btn-danger dairy-form-btn">Distribute Feed</button>
+                              <a href="http://localhost:6161/routes/${route.id }">
+                                   <button class="btn btn-sm btn-primary dairy-form-btn">Edit</button>
                               </a>
                             </td>
                           </tr>

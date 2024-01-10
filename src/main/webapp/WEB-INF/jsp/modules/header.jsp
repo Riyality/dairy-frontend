@@ -382,6 +382,29 @@
                             </ul>
                         </li>
                         <!-- End Branch slide -->
+
+                        <!-- Start routes slide -->
+                        
+                        <li class="slide has-sub">
+                            <a href="javascript:void(0);" class="side-menu__item">
+                                <i class="bx bx-file-blank side-menu__icon"></i>
+                                <span class="side-menu__label">Routes</span>
+                                <i class="fe fe-chevron-right side-menu__angle"></i>
+                            </a>
+                            <ul class="slide-menu child1">
+                                <li class="slide side-menu__label1">
+                                    <a href="javascript:void(0);">Routes</a>
+                                </li>
+                                <li class="slide">
+                                    <a href="/routes/add-route-page" class="side-menu__item">Add Routes</a>
+                                </li>
+                                 <li class="slide">
+                                    <a href="/routes" class="side-menu__item">All Routes</a>
+                                </li>
+                                
+                            </ul>
+                        </li>
+                        <!-- End routes slide -->
                         
                         <!-- Start Equipment slide -->
                         
@@ -557,7 +580,7 @@
                                     <a href="javascript:void(0);">Milk Collection </a>
                                 </li>
                                 <li class="slide">
-                                    <a href="/milkCollection/add-milkCollection-page" class="side-menu__item">Add Milk Collection </a>
+                                    <a href="/milkCollection/get-farmer-list-page" class="side-menu__item">Add Milk Collection </a>
                                 </li>
                                  <li class="slide">
                                     <a href="/milkCollection" class="side-menu__item">All Milk Collection</a>
