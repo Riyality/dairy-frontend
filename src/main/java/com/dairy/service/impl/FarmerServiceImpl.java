@@ -29,8 +29,6 @@ public class FarmerServiceImpl implements FarmerService {
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType( MediaType.APPLICATION_JSON );
 
-		dto.setStatus( "Active" );
-
 		HttpEntity<FarmerRequestDto> request = new HttpEntity<>( dto, headers );
 		try {
 			ResponseEntity<String> result = template.postForEntity( url, request, String.class );

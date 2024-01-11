@@ -16,22 +16,22 @@
 							<button class="btn btn-primary dairy-form-btn" data-bs-toggle="modal" data-bs-target="#previousMilkList">Check Previous Milk </button>
 						</div>
 						<div class="card-body dairy-card-body">
-							<form class="row g-3 needs-validation" action="/branches"
+							<form class="row g-3 needs-validation" action="/milkCollection"
 								method="post" novalidate>
 								
 								<div class="col-md-6">
 									<label class="form-label dairy-input-label">Farmer Id</label>
-									<input type="text" class="form-control dairy-form-input" placeholder="Enter Farmer Id" id="" name="name">
+									<input type="text" class="form-control dairy-form-input" placeholder="Enter Farmer Id" name="farmerId" value="${farmerId}" id="farmerId" disabled="disabled">
 								</div>
 								
 								<div class="col-md-6">
 									<label class="form-label dairy-input-label">Farmer Name</label>
-									<input type="text" class="form-control dairy-form-input" placeholder="Enter  Farmer Name" id="" name="name">
+									<input type="text" class="form-control dairy-form-input" placeholder="Enter  Farmer Name" name="farmerName" id="farmerName" value="${farmerName}" disabled="disabled">
 								</div>
 								
 								<div class="col-md-4">
 									<label class="form-label dairy-input-label">Date</label> 
-									<input type="datetime-local" class="form-control dairy-form-input" id="" name="startDate">
+									<input type="datetime-local" class="form-control dairy-form-input" name="dateOfMilkCollection" id="dateOfMilkCollection">
 								</div>
 								
 								<div class="col-md-3 offset-md-1 mt-4" > 
@@ -41,7 +41,7 @@
 								             <div class="form-check"> 
 								                   
 								                   <label class="form-check-label">
-								                      <input class="form-check-input" type="radio" name="animalType" id="animalType" checked=""> 
+								                      <input class="form-check-input" type="radio" name="animalType" id="animalType_1" checked="" value="cow"> 
 								                      Cow 
 								                   </label> 
 								                   
@@ -51,7 +51,7 @@
 								               <div class="form-check"> 
 								                   
 								                   <label class="form-check-label">
-								                      <input class="form-check-input" type="radio" name="animalType" id="animalType"> 
+								                      <input class="form-check-input" type="radio" name="animalType" id="animalType_2" value="buffalo"> 
 								                      Buffalo 
 								                   </label> 
 								                   
@@ -67,7 +67,7 @@
 								             <div class="form-check"> 
 								                   
 								                   <label class="form-check-label">
-								                      <input class="form-check-input" type="radio" name="shift" id="milkShift" checked=""> 
+								                      <input class="form-check-input" type="radio" name="milkCollectionShift" id="milkShift_1" checked="" value="morning"> 
 								                      Morning 
 								                   </label> 
 								                   
@@ -77,7 +77,7 @@
 								               <div class="form-check"> 
 								                   
 								                   <label class="form-check-label">
-								                      <input class="form-check-input" type="radio" name="shift" id="milkShift"> 
+								                      <input class="form-check-input" type="radio" name="milkCollectionShift" id="milkShift_2" value="evening"> 
 								                      Evening 
 								                   </label> 
 								                   
@@ -88,42 +88,32 @@
 								
 								<div class="col-md-4">
 									<label class="form-label dairy-input-label">Milk Quantity </label> 
-									<input type="text" class="form-control dairy-form-input" placeholder="Enter Quantity in liter" id="" name="" required>
+									<input type="text" class="form-control dairy-form-input" placeholder="Enter Quantity in liter" id="milkQuantity" name="milkQuantity" required>
 								</div>
 								
 								<div class="col-md-4">
 									<label class="form-label dairy-input-label">Fat </label> 
-									<input type="text" class="form-control dairy-form-input" placeholder="Enter Fat" id="" name="" required>
+									<input type="text" class="form-control dairy-form-input" placeholder="Enter Fat" id="milkFat" name="milkFat" required>
 								</div>
 								
 								<div class="col-md-4">
 									<label class="form-label dairy-input-label">SNF </label> 
-									<input type="text" class="form-control dairy-form-input" placeholder="Enter SNF" id="" name="" required>
+									<input type="text" class="form-control dairy-form-input" placeholder="Enter SNF" id="milkSNF" name="milkSNF" required>
 								</div>
 								
 								<div class="col-md-6">
 									<label class="form-label dairy-input-label">Milk Rate</label>
-									<input type="text" class="form-control dairy-form-input" placeholder="Milk Rate" id="" name="name">
+									<input type="text" class="form-control dairy-form-input" placeholder="Milk Rate" id="milkRate" name="milkRate">
 								</div>
 								
 								<div class="col-md-6">
 									<label class="form-label dairy-input-label">Total Amount</label>
-									<input type="text" class="form-control dairy-form-input" placeholder="Enter Total Amount" id="" name="name">
-								</div>
-								
-								<div class="col-md-6">
-									<label class="form-label dairy-input-label">Deduction</label>
-									<input type="text" class="form-control dairy-form-input" placeholder="Enter Deduction Amount" id="" name="name">
-								</div>
-								
-								<div class="col-md-6">
-									<label class="form-label dairy-input-label">Total Amount after deduction</label>
-									<input type="text" class="form-control dairy-form-input" placeholder="Total Amount after deduction" id="" name="name">
+									<input type="text" class="form-control dairy-form-input" placeholder="Enter Total Amount" id="totalMilkAmount" name="totalMilkAmount">
 								</div>
 								
 								<div class="col-md-12">
 									<label class="form-label dairy-input-label">Remark</label>
-									<textarea class="col-md-12 form-control dairy-textarea" rows="4" name="address" placeholder="Enter Remark Here"></textarea> 
+									<textarea class="col-md-12 form-control dairy-textarea" rows="4" name="remark" placeholder="Enter Remark Here"></textarea> 
 								</div>
 								<div class="col-12">
 									<button class="btn btn-primary dairy-form-btn" type="submit">Submit </button>
