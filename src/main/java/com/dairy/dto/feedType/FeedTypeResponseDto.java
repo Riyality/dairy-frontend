@@ -1,5 +1,7 @@
 package com.dairy.dto.feedType;
 
+import javax.validation.constraints.NotBlank;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,6 +13,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class FeedTypeResponseDto {
 	private Long id;
+	@NotBlank(message = "feed type cannot be blank")
 	private String type;
 	private Long feedCompanyId;
 }
