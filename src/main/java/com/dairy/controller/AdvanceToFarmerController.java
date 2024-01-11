@@ -49,7 +49,7 @@ public class AdvanceToFarmerController {
 			ra.addFlashAttribute("successMessage", response);
 			return "redirect:/advanceToFarmer";
 		}
-		ra.addFlashAttribute("errorMessage", MessageConstants.ADD_ADADVANCETOFARMER_ERROR_MSG);
+		ra.addFlashAttribute("errorMessage", MessageConstants.ADD_ADVANCETOFARMER_ERROR_MSG);
 		return "advanceToFarmers/add";
 
 	}
@@ -63,8 +63,8 @@ public class AdvanceToFarmerController {
 
 	@GetMapping("/{id}")
 	public String findById(@PathVariable Long id, Model model, HttpSession session) {
-		AdvanceToFarmerResponseDto res = advanceToFarmerService.findByIdAdvance(id);
-		model.addAttribute("advance", res);
+		AdvanceToFarmerResponseDto response = advanceToFarmerService.findByIdAdvance(id);
+		model.addAttribute("advance", response);
 
 		int branchId = (int) session.getAttribute("branchId");
 		List<FarmerResponseDto> list = farmerService.findAllActiveFarmers(branchId);
@@ -77,11 +77,11 @@ public class AdvanceToFarmerController {
 	@PostMapping("/update")
 	public String updateAdvance(@ModelAttribute AdvanceToFarmerRequestDto advanceRequestDto, RedirectAttributes ra) {
 		String response = advanceToFarmerService.updateAdvance(advanceRequestDto);
-		if (response != null && response.equals(MessageConstants.UPDATE_ADVANCE_SUCCESS_MESSAGE)) {
-			ra.addFlashAttribute("successMessage", MessageConstants.UPDATE_ADVANCE_SUCCESS_MESSAGE);
+		if (response != null && response.equals(MessageConstants.UPDATE_ADVANCETOFARMER_SUCCESS_MESSAGE)) {
+			ra.addFlashAttribute("successMessage", MessageConstants.UPDATE_ADVANCETOFARMER_SUCCESS_MESSAGE);
 			return "redirect:/advanceToFarmer";
 		}
-		ra.addFlashAttribute("errorMessage", MessageConstants.UPDATE_ADVANCE_ERROR_MSG);
+		ra.addFlashAttribute("errorMessage", MessageConstants.UPDATE_ADVANCETOFARMER_ERROR_MSG);
 		return "redirect:/advanceToFarmer/"+advanceRequestDto.getId();
 
 	}

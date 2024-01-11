@@ -383,6 +383,30 @@
                         </li>
                         <!-- End Branch slide -->
                         
+                        
+                        <!-- Start Main Branch slide -->
+                        
+                        <li class="slide has-sub">
+                            <a href="javascript:void(0);" class="side-menu__item">
+                                <i class="bx bx-file-blank side-menu__icon"></i>
+                                <span class="side-menu__label">Main Branch</span>
+                                <i class="fe fe-chevron-right side-menu__angle"></i>
+                            </a>
+                            <ul class="slide-menu child1">
+                                <li class="slide side-menu__label1">
+                                    <a href="javascript:void(0);">Main Branch</a>
+                                </li>
+                                <li class="slide">
+                                    <a href="/mainBranchs/add-mainBranch-page" class="side-menu__item">Add Main Branch</a>
+                                </li>
+                                 <li class="slide">
+                                    <a href="/mainBranchs" class="side-menu__item">All Main Branches</a>
+                                </li>
+                                
+                            </ul>
+                        </li>
+                        <!-- End  Main Branch slide -->
+                        
                         <!-- Start Equipment slide -->
                         
                         <li class="slide has-sub">
