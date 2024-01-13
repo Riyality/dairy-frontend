@@ -21,6 +21,7 @@
 								
 								<div class="col-md-6">
 									<label class="form-label dairy-input-label">Farmer Id</label>
+									<input type="hidden" class="form-control dairy-form-input" id="hiddenFarmerId">
 									<input type="text" class="form-control dairy-form-input" placeholder="Enter Farmer Id" name="farmerId" value="${farmerId}" id="farmerId" disabled="disabled">
 								</div>
 								

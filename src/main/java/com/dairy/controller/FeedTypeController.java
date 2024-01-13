@@ -53,7 +53,7 @@ public class FeedTypeController {
 		model.addAttribute("feedType",list);
 		return "/feedTypes/all";
 		
-
+																																					
 	}
 	
 
