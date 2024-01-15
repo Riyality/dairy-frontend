@@ -10,6 +10,8 @@ public class MessageConstants {
 	public static final String UPDATE_BRANCH_SUCCESS_MESSAGE = "Branch updated successfully";
 	public static final String UPDATE_BRANCH_ERROR_MSG = "Unable to update branch";
 
+
+	
 	public static final String ADD_EQIPMENT_SUCCESS_MESSAGE = "Equipment added successfully";
 	public static final String ADD_EQIPMENT_ERROR_MSG = "unable to Add equipments";
 	public static final String UPDATE_EQIPMENT_SUCCESS_MESSAGE = "Equipment updated successfully";
@@ -39,6 +41,7 @@ public class MessageConstants {
 	public static final String ADD_ADVANCETOFARMER_ERROR_MSG = "Unable to add";
 	public static final String UPDATE_ADVANCETOFARMER_SUCCESS_MESSAGE = "update AdvanceToFarmer successfully";
 	public static final String UPDATE_ADVANCETOFARMER_ERROR_MSG = "Unable to update advance";
+	
 	public static final String ADD_MILK_COLLECTION_SUCCESS_MESSAGE = "Milk Collection added Successfully";
 	public static final String ADD_MILK_COLLECTION_ERROR_MSG = "Unable to add Milk Collection";
 	public static final String UPDATE_MILK_COLLECTION_MESSAGE = "Update Milk Collection ";

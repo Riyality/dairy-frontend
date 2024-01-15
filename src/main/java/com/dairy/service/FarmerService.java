@@ -11,4 +11,6 @@ public interface FarmerService {
 
 	List<FarmerResponseDto> findAllActiveFarmers( int branchId );
 
+	List<FarmerResponseDto> farmersListRoutewise(int branchId, int routeId);
+
 }
