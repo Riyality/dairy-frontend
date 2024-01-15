@@ -22,36 +22,56 @@ import lombok.extern.slf4j.Slf4j;
 public class FarmerServiceImpl implements FarmerService {
 
 	@Override
-	public String add( FarmerRequestDto dto ) {
+	public String add(FarmerRequestDto dto) {
 		RestTemplate template = new RestTemplate();
 		String url = "http://localhost:6262/farmers";
 
 		HttpHeaders headers = new HttpHeaders();
-		headers.setContentType( MediaType.APPLICATION_JSON );
+		headers.setContentType(MediaType.APPLICATION_JSON);
 
-		HttpEntity<FarmerRequestDto> request = new HttpEntity<>( dto, headers );
+		dto.setStatus("Active");
+
+		HttpEntity<FarmerRequestDto> request = new HttpEntity<>(dto, headers);
 		try {
-			ResponseEntity<String> result = template.postForEntity( url, request, String.class );
+			ResponseEntity<String> result = template.postForEntity(url, request, String.class);
 			return result.getBody();
-		} catch ( Exception e ) {
-			log.error( e.getMessage(), e );
+		} catch (Exception e) {
+			log.error(e.getMessage(), e);
 		}
 		return null;
 	}
 
 	@Override
-	public List<FarmerResponseDto> findAllActiveFarmers( int branchId ) {
+	public List<FarmerResponseDto> findAllActiveFarmers(int branchId) {
 		RestTemplate template = new RestTemplate();
 		String url = "http://localhost:6262/farmers/branch/" + branchId;
 		HttpHeaders headers = new HttpHeaders();
-		HttpEntity<String> entity = new HttpEntity<>( "body", headers );
+		HttpEntity<String> entity = new HttpEntity<>("body", headers);
 		try {
 			ParameterizedTypeReference<List<FarmerResponseDto>> responseType = new ParameterizedTypeReference<List<FarmerResponseDto>>() {
 			};
-			ResponseEntity<List<FarmerResponseDto>> res = template.exchange( url, HttpMethod.GET, entity, responseType );
+			ResponseEntity<List<FarmerResponseDto>> res = template.exchange(url, HttpMethod.GET, entity, responseType);
 			return res.getBody();
 
-		} catch ( Exception e ) {
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	@Override
+	public List<FarmerResponseDto> farmersListRoutewise(int branchId, int routeId) {
+		RestTemplate template = new RestTemplate();
+		String url = "http://localhost:6262/farmers/branch/" + branchId + "/route/" +routeId;
+		HttpHeaders headers = new HttpHeaders();
+		HttpEntity<String> entity = new HttpEntity<>("body", headers);
+		try {
+			ParameterizedTypeReference<List<FarmerResponseDto>> responseType = new ParameterizedTypeReference<List<FarmerResponseDto>>() {
+			};
+			ResponseEntity<List<FarmerResponseDto>> res = template.exchange(url, HttpMethod.GET, entity, responseType);
+			return res.getBody();
+
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return null;
