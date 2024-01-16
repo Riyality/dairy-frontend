@@ -1,4 +1,7 @@
  $(document).ready(function(){
+	 
+	 
+	 		/*Equipment Script Start*/
 			
 			$("#equipmentQuantity").on("blur", function(){
 				
@@ -16,6 +19,10 @@
 				
 			});
 			
+			/*Equipment Script End*/
+			
+			
+			/*Feed Company Script Start*/
 			
 			$("#feedCompanyList").on("change",function(){
 				
@@ -33,33 +40,17 @@
 			        console.error('Error fetching data:', error);
 			    }
 			});
-			})
-
-
-		var farmerId;
-
-		if(farmerId != null || farmerId != ""){
-			farmerData(farmerId);
-		}
-
-
+		});
+		
+		/*Feed Company Script End*/
+		
+		
+		/*Route Name Script Start*/
 
 	    $("#routeName").on("change",function(){
-			
+		
 			var id = $("#routeName").val();
-			
-			farmerData(id);
-					
-			});
-			
-		   $("#milkForm").on("click",function(){
-			   alert("hhjhjh")
-			   alert(farmerId)
-			   
-			 });
-			
-			function farmerData(id){
-				
+		
 				$.ajax({
 					        url: 'http://localhost:6161/milkCollection/' + id, 
 					        type: 'GET',
@@ -87,8 +78,46 @@
 					            console.error('Error fetching data:', error);
 					        }
 					 });
-			}
+			});
 			
+			/*Route Name Script End*/
+			
+		
+			/*Milk Collection Script Start*/
+			
+			function updateMilkRateAndAmount() {
+		        var milkQuantity = $("#milkQuantity").val();
+		        var milkFat = $("#milkFat").val();
+		        var milkSNF = $("#milkSNF").val();
+		        var animalType = document.querySelector('input[name="animalType"]:checked').value;
+		
+		        if (animalType && milkFat && milkSNF) {
+		            $.ajax({
+		                url: 'http://localhost:6161/milkRate/type/' + encodeURIComponent(animalType) + '/fat/' + encodeURIComponent(milkFat) + '/snf/' + encodeURIComponent(milkSNF),
+		                type: 'GET',
+		                dataType: 'json',
+		                success: function (result) {
+		                    $("#milkRate").val(result);
+		                    $("#totalMilkAmount").val(milkQuantity * result);
+		                },
+		                error: function (error) {
+		                    console.error('Error fetching data:', error);
+		                }
+		            });
+		        }
+		    }
+		
+		    updateMilkRateAndAmount();
+		
+		    $('input[name="animalType"]').on('change', function () {
+		        updateMilkRateAndAmount();
+		    });
+		
+		    $('#milkFat, #milkSNF').on('keyup', function () {
+		        updateMilkRateAndAmount();
+		    });
+
+	      /*Milk Collection Script End*/
 			
 		});
 		
