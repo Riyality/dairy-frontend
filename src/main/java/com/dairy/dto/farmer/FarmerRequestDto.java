@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import com.dairy.dto.bankdetails.BankRequestDto;
+import com.dairy.dto.branch.BranchRequestDto;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -22,4 +22,5 @@ public class FarmerRequestDto {
 	private String address;
 	private String status;
 	private int branchId;
-	private BankRequestDto bankRequestDto;
+	private BranchRequestDto bankRequestDto;
+}
