@@ -469,10 +469,10 @@
                                     <a href="javascript:void(0);">Feed Distribution</a>
                                 </li>
                                 <li class="slide">
-                                    <a href="/feedCompanies/add-feed-company" class="side-menu__item">Add Feed Distribution</a>
+                                    <a href="/feedTofarmers/feedToFarmer-add-page" class="side-menu__item">Add Feed Distribution</a>
                                 </li>
                                  <li class="slide">
-                                    <a href="/feedCompanies" class="side-menu__item">All Feed Distribution</a>
+                                    <a href="/feedTofarmers" class="side-menu__item">All Feed Distribution</a>
                                 </li>
                                 
                             </ul>

@@ -9,16 +9,8 @@
 		  <div class="col-11 mx-auto mt-4">
 		    <div class="card custom-card">
 		      <div class="card-header dairy-card-header">
-		        <div class="card-title">Route-wise Farmers</div>
-		        
-		             <div class="col-md-3 ms-auto">
-			             <select class="form-select dairy-form-input" name="" id="">
-							<option value="" selected="selected" disabled="disabled">Set Route</option>
-							<option value="1">Achakadani</option> 
-							<option value="1">Thombarewadi</option> 
-						 </select>
-					 </div>
-					 
+		        <div class="card-title">All Feed To  Farmers</div>
+		       
 		      </div>
 		      <div class="card-body">
 		        <div class="table-responsive">
@@ -29,16 +21,27 @@
 		              <thead>
 		                <tr class="dairy-table-head">
 		                      <th>Farmer Name</th>
-			                  <th>Action</th>
+		                      <th>Feed Company</th>
+		                      <th>Feed Type</th>
+		                      <th>Quantity</th>
+		                      <th>Rate per Unit</th>
+		                      <th>Total Amount</th>
+		                      <th></th>
+		                      <th>Action</th>
 		                  </tr>
 		              </thead>
 		              <tbody>
 		              
-		                <c:forEach items="${branches}" var="branch">
+		                <c:forEach items="${feedToFarmers}" var="feedToFarmer">
                           <tr class="gridjs-tr">
-                            <td>Chandu Chavan</td>
+                            <td>${feedToFarmer.farmerName }</td>
+                             <td>${feedToFarmer.feedCompanyName }</td>
+                              <td>${feedToFarmer.feedTypeName }</td>
+                              <td>${feedToFarmer.quantity }</td>
+                               <td>${feedToFarmer.feedRate}</td>
+                                <td>${feedToFarmer.totalAmount }</td>
                             <td>
-                              <a href="http://localhost:6161/branches/${branch.id }">
+                              <a href="http://localhost:6161/feedTofarmers/${feedToFarmer.id }">
                                    <button class="btn btn-sm btn-primary dairy-form-btn">Check Feed Data</button>
                               </a>
                             </td>
