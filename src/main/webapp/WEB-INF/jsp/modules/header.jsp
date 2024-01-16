@@ -55,6 +55,9 @@
 <!-- CUSTOM JS -->
 <script src="<c:url value="/resources/assets/js/custom.js"/>"></script>
 
+<!-- default-custom-script JS -->
+<script src="<c:url value="/resources/assets/js/default-custom-script.js"/>"></script>
+
 <link rel="stylesheet" href="<c:url value="/resources/assets/css/custom.css"/>" />
 
 </head>
