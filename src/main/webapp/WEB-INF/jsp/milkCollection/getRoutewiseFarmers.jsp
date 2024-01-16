@@ -12,7 +12,7 @@
 		        <div class="card-title">Route-wise Farmers</div>
 		        
 		             <div class="col-md-3 ms-auto">
-			             <select class="form-select dairy-form-input" name="" id="">
+			             <select class="form-select dairy-form-input" name="name" id="routeName">
 							<option value="" selected="selected" disabled="disabled">Set Route</option>
 							    <c:forEach items="${routes}" var="route">
 								  <option value="${route.id}">${route.name}</option> 
@@ -33,20 +33,26 @@
 			                  <th>Action</th>
 		                  </tr>
 		              </thead>
-		              <tbody>
-		                <c:forEach items="${list}" var="farmer">
-                          <tr class="gridjs-tr">
-                            <td>${farmer.name }</td>
-                            <td>
-                              <a href="http://localhost:6161/milkCollection/add-milkCollection-page/${farmer.id }/${farmer.name }">
-                                   <button class="btn btn-sm btn-primary dairy-form-btn">Collect Milk</button>
-                              </a>
-                              <a href="http://localhost:6161/milkCollection/${farmer.id }">
-                                   <button class="btn btn-sm btn-danger dairy-form-btn">Distribute Feed</button>
-                              </a>
-                            </td>
-                          </tr>
-                        </c:forEach>
+		              <tbody id="milkTableBody">
+		                
+		                	<%-- <c:choose>
+			                	<c:when test="${dataFromController == true}">
+				                	<c:forEach items="${list}" var="farmer">
+			                          <tr class="gridjs-tr">
+			                            <td id="farmerName">${farmer.name }</td>
+			                            <td>
+			                              <a href="http://localhost:6161/milkCollection/add-milkCollection-page/${farmer.id }/${farmer.name }">
+			                                   <button class="btn btn-sm btn-primary dairy-form-btn">Collect Milk</button>
+			                              </a>
+			                              <a href="http://localhost:6161/milkCollection/${farmer.id }">
+			                                   <button class="btn btn-sm btn-danger dairy-form-btn">Distribute Feed</button>
+			                              </a>
+			                            </td>
+			                          </tr>
+			                        </c:forEach>
+			                	</c:when>
+		                	
+		                	</c:choose> --%>
 		              
 		              </tbody>
 		            </table>

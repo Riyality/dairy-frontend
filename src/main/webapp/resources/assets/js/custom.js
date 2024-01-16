@@ -1,4 +1,7 @@
  $(document).ready(function(){
+	 
+	 
+	 		/*Equipment Script Start*/
 			
 			$("#equipmentQuantity").on("blur", function(){
 				
@@ -16,6 +19,10 @@
 				
 			});
 			
+			/*Equipment Script End*/
+			
+			
+			/*Feed Company Script Start*/
 			
 			$("#feedCompanyList").on("change",function(){
 				
@@ -26,18 +33,91 @@
 			    type: 'GET',
 			    dataType: 'json',
 			    success: function(response) {
-			        // Handle the JSON response here
+			       
 			        console.log(response);
 			    },
 			    error: function(error) {
 			        console.error('Error fetching data:', error);
 			    }
 			});
-			})
+		});
+		
+		/*Feed Company Script End*/
+		
+		
+		/*Route Name Script Start*/
 
+	    $("#routeName").on("change",function(){
+		
+			var id = $("#routeName").val();
+		
+				$.ajax({
+					        url: 'http://localhost:6161/milkCollection/' + id, 
+					        type: 'GET',
+					        dataType: 'json',
+					        success: function (result) {
+							$("#milkTableBody").empty();
+					             $.each(result, function(key, value) {
+			                            $("#milkTableBody").append(`
+			                                <tr>
+			                                    <td>${value.name}</td>
+			                                    <td>
+				                                    <a id="milkForm" href="http://localhost:6161/milkCollection/add-milkCollection-page/${value.id }/${value.name }">
+				                                      <button class="btn btn-sm btn-primary dairy-form-btn">Collect Milk</button>
+				                                    </a>
+			                                    	 <a href="http://localhost:6161/milkCollection/${value.id }">
+						                                   <button class="btn btn-sm btn-danger dairy-form-btn">Distribute Feed</button>
+						                             </a>
+			                                    </td>
+			                                </tr>`);
+			                                farmerId = value.id;
+			                        });
+					            console.log(result);
+					        },
+					        error: function (error) {
+					            console.error('Error fetching data:', error);
+					        }
+					 });
+			});
 			
+			/*Route Name Script End*/
 			
+		
+			/*Milk Collection Script Start*/
 			
+			function updateMilkRateAndAmount() {
+		        var milkQuantity = $("#milkQuantity").val();
+		        var milkFat = $("#milkFat").val();
+		        var milkSNF = $("#milkSNF").val();
+		        var animalType = document.querySelector('input[name="animalType"]:checked').value;
+		
+		        if (animalType && milkFat && milkSNF) {
+		            $.ajax({
+		                url: 'http://localhost:6161/milkRate/type/' + encodeURIComponent(animalType) + '/fat/' + encodeURIComponent(milkFat) + '/snf/' + encodeURIComponent(milkSNF),
+		                type: 'GET',
+		                dataType: 'json',
+		                success: function (result) {
+		                    $("#milkRate").val(result);
+		                    $("#totalMilkAmount").val(milkQuantity * result);
+		                },
+		                error: function (error) {
+		                    console.error('Error fetching data:', error);
+		                }
+		            });
+		        }
+		    }
+		
+		    updateMilkRateAndAmount();
+		
+		    $('input[name="animalType"]').on('change', function () {
+		        updateMilkRateAndAmount();
+		    });
+		
+		    $('#milkFat, #milkSNF').on('keyup', function () {
+		        updateMilkRateAndAmount();
+		    });
+
+	      /*Milk Collection Script End*/
 			
 		});
 		

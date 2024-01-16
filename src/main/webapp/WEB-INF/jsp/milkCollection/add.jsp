@@ -21,6 +21,7 @@
 								
 								<div class="col-md-6">
 									<label class="form-label dairy-input-label">Farmer Id</label>
+									<input type="hidden" class="form-control dairy-form-input" id="hiddenFarmerId">
 									<input type="text" class="form-control dairy-form-input" placeholder="Enter Farmer Id" name="farmerId" value="${farmerId}" id="farmerId" disabled="disabled">
 								</div>
 								
@@ -41,7 +42,7 @@
 								             <div class="form-check"> 
 								                   
 								                   <label class="form-check-label">
-								                      <input class="form-check-input" type="radio" name="animalType" id="animalType_1" checked="" value="cow"> 
+								                      <input class="form-check-input animalType" type="radio" name="animalType" id="" value="cow" checked="checked"> 
 								                      Cow 
 								                   </label> 
 								                   
@@ -51,7 +52,7 @@
 								               <div class="form-check"> 
 								                   
 								                   <label class="form-check-label">
-								                      <input class="form-check-input" type="radio" name="animalType" id="animalType_2" value="buffalo"> 
+								                      <input class="form-check-input animalType" type="radio" name="animalType" id="" value="buffalo"> 
 								                      Buffalo 
 								                   </label> 
 								                   
@@ -88,17 +89,17 @@
 								
 								<div class="col-md-4">
 									<label class="form-label dairy-input-label">Milk Quantity </label> 
-									<input type="text" class="form-control dairy-form-input" placeholder="Enter Quantity in liter" id="milkQuantity" name="milkQuantity" required>
+									<input type="text" class="form-control dairy-form-input calculateMilkData" placeholder="Enter Quantity in liter" id="milkQuantity" name="milkQuantity" required>
 								</div>
 								
 								<div class="col-md-4">
 									<label class="form-label dairy-input-label">Fat </label> 
-									<input type="text" class="form-control dairy-form-input" placeholder="Enter Fat" id="milkFat" name="milkFat" required>
+									<input type="text" class="form-control dairy-form-input calculateMilkData" placeholder="Enter Fat" id="milkFat" name="milkFat" required>
 								</div>
 								
 								<div class="col-md-4">
 									<label class="form-label dairy-input-label">SNF </label> 
-									<input type="text" class="form-control dairy-form-input" placeholder="Enter SNF" id="milkSNF" name="milkSNF" required>
+									<input type="text" class="form-control dairy-form-input calculateMilkData" placeholder="Enter SNF" id="milkSNF" name="milkSNF" required>
 								</div>
 								
 								<div class="col-md-6">
