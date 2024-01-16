@@ -9,7 +9,7 @@ public class MessageConstants {
 	public static final String ADD_BRANCH_ERROR_MSG = "Unable to add branch";
 	public static final String UPDATE_BRANCH_SUCCESS_MESSAGE = "Branch updated successfully";
 	public static final String UPDATE_BRANCH_ERROR_MSG = "Unable to update branch";
-  
+
 	public static final String ADD_EQIPMENT_SUCCESS_MESSAGE = "Equipment added successfully";
 	public static final String ADD_EQIPMENT_ERROR_MSG = "unable to Add equipments";
 	public static final String UPDATE_EQIPMENT_SUCCESS_MESSAGE = "Equipment updated successfully";
@@ -57,11 +57,10 @@ public class MessageConstants {
 	public static final String ADD_ROUTE_ERROR_MSG = "Unable to add Route";
 	public static final String UPDATE_ROUTE_SUCCESS_MESSAGE = "Route Updated";
 	public static final String UPDATE_ROUTE_ERROR_MSG = "Unable to update";
-	
+
 	public static final String ADD_FEEDTOFARMER_SUCCESS_MESSAGE = "FeedToFarmer added successfully";
 	public static final String ADD_FEEDTOFARMER_ERROR_MSG = "Unable to add FeedToFarmer";
 	public static final String UPDATE_FEEDTOFARMER_SUCCESS_MESSAGE = "FeedToFarmer update successfully";
 	public static final String UPDATE_FEEDTOFARMER_ERROR_MSG = "Unable to update FeedTofarmer";
-
 
 }
