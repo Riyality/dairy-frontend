@@ -16,5 +16,6 @@ public class EquipmentResponseDto {
 	private Integer quantity;
 	private Float price;
 	private Float totalAmount;
+	private int branchId;
 
 }

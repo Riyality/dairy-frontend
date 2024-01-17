@@ -14,7 +14,7 @@
 							<div class="card-title">Update Supplier</div>
 						</div>
 						<div class="card-body dairy-card-body">
-							<form class="row g-3 needs-validation" action="/suppliers"
+							<form class="row g-3 needs-validation" action="/suppliers/update"
 								method="post" novalidate>
 								
 								<div class="col-md-6">

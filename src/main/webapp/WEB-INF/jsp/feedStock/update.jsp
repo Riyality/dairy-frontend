@@ -15,7 +15,7 @@
 							<div class="card-title">Update Feed Stock</div>
 						</div>
 						<div class="card-body dairy-card-body">
-							<form class="row g-3 needs-validation" action="/feedStock"
+							<form class="row g-3 needs-validation" action="/feedStock/update"
 								method="post" novalidate>
 								
                           <input type="hidden" class="form-control dairy-form-input" id="" name="id" value="${feedstock.id }"> 

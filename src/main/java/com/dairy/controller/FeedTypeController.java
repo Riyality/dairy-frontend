@@ -2,6 +2,8 @@ package com.dairy.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -36,9 +38,12 @@ public class FeedTypeController {
 	}
 
 	@PostMapping
-	public String addFeedType(@ModelAttribute FeedTypeRequestDto dto, Model m, RedirectAttributes ra) {
+	public String addFeedType(@ModelAttribute FeedTypeRequestDto dto, Model m, RedirectAttributes ra ,
+			                    HttpSession session) {
+		int branchId=(int) session.getAttribute("branchId");
+		dto.setBranchId(branchId);
+		
 		String response = feedTypeService.addFeedType(dto);
-
 		if (response != null && response.equals(MessageConstants.ADD_FEEDTYPE_SUCCESS_MESSAGE)) {
 			ra.addFlashAttribute("successMessage", response);
 			return "redirect:/feedTypes";

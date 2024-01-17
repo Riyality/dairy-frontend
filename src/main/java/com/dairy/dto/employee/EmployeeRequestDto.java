@@ -4,15 +4,16 @@ import java.time.LocalDateTime;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.dairy.dto.bankdetails.BankRequestDto;
 import com.dairy.dto.branch.BranchRequestDto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
-
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
+import lombok.Setter;
+@Setter
+@Getter
 public class EmployeeRequestDto {
 	private long id;
 	private String name;
@@ -22,5 +23,5 @@ public class EmployeeRequestDto {
 	@DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
 	private LocalDateTime dateOfJoining;
 
-	private BranchRequestDto bankRequestDto;
+	private BankRequestDto bankRequestDto;
 }

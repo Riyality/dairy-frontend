@@ -19,5 +19,6 @@ public class EquipmentRequestDto {
 	private Integer quantity;
 	private Float price;
 	private Float totalAmount;
+	private int branchId;
 
 }

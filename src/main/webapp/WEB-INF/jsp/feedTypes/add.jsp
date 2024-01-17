@@ -15,7 +15,7 @@
 							<div class="card-title">Add Feed Type</div>
 						</div>
 						<div class="card-body">
-							<form class="row g-3 needs-validation" action="/feedType"
+							<form class="row g-3 needs-validation" action="/feedTypes"
 								method="post" novalidate>
 
 								<div class="col-md-6">

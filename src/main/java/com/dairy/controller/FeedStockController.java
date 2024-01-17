@@ -2,6 +2,8 @@ package com.dairy.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -59,7 +61,10 @@ public class FeedStockController {
 
 	@PostMapping
 	public String feedStockAdd(@ModelAttribute FeedStockRequestDto feedStockRequestDto, Model model,
-			RedirectAttributes ra) {
+			RedirectAttributes ra ,HttpSession session) {
+		
+		int branchId=(int) session.getAttribute("branchId");
+		feedStockRequestDto.setBranchId(branchId);
 		String response = feedStockService.addFeedStock(feedStockRequestDto);
 		if (response != null && response.equals(MessageConstants.ADD_FEEDSTOCK_SUCCESS_MESSAGE)) {
 			ra.addFlashAttribute("successMessage", response);

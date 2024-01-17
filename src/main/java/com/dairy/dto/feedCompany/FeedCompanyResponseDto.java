@@ -14,4 +14,5 @@ public class FeedCompanyResponseDto {
 	private Long id;
 	private String name;
 	private Long feedcompanyId;
+	private int branchId;
 }
