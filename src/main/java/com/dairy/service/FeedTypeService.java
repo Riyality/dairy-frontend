@@ -14,5 +14,9 @@ public interface FeedTypeService {
 
 	public List<FeedTypeResponseDto> getFeedTypeByFeedCompanyId(int id);
 
+	public FeedTypeResponseDto findById(long id);
+
+	public String updateFeedCompany(FeedTypeRequestDto dto);
+
 
 }

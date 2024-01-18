@@ -29,7 +29,8 @@
                           <tr class="gridjs-tr">
                             <td>${fc.name}</td>
                               <td>
-                                 <a href="http://localhost:6161/branches/${fc.id }">
+                                 <a href="http://localhost:6161/feedCompanies/${fc.id }">
+                                   <button class="btn btn-sm btn-primary dairy-form-btn">Edit</button>
                                    <i class="ti ti-color-picker" style="font-size: 14px"></i>
                                  </a>
                             </td>

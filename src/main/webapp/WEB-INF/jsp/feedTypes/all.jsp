@@ -31,7 +31,8 @@
                           <td>${feed.type}</td>
                             <td>${feed.feedCompanyName }</td> 
                             <td>
-                              <a href="http://localhost:6161/feedType/${feed.id }">
+                              <a href="http://localhost:6161/feedTypes/${feed.id }">
+                              <button class="btn btn-sm btn-primary dairy-form-btn">Edit</button>
                                 <em class="ti ti-color-picker" style="font-size: 14px"></em>
                               </a>
                             </td>

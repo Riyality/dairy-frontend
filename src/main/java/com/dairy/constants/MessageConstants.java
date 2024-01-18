@@ -25,10 +25,10 @@ public class MessageConstants {
 	public static final String UPDATE_SUPPLIER_SUCCESS_MESSAGE = "Update supplier successfully ";
 	public static final String UPDATE_SUPPLIER_ERROR_MSG = "Unable to update supplier";
 
-	public static final String ADD_FEEDCOMPANY_SUCCESS_MESSAGE = "FeedCompany added Successfully";
-	public static final String ADD_FEEDCOMPANY_ERROR_MSG = "Unable to add FeedCompany";
-	public static final String ADD_FEEDTYPE_SUCCESS_MESSAGE = "FeedType added successfully";
-	public static final String ADD_FEEDTYPE_ERROR_MSG = "Unable to add Feedtype";
+	public static final String ADD_FEEDCOMPANY_SUCCESS_MESSAGE = "Feedcompany added successfully";
+	public static final String ADD_FEEDCOMPANY_ERROR_MESSAGE = "Failed To Add Feedcompany";
+	public static final String ADD_FEEDTYPE_SUCCESS_MESSAGE = "Feedtype added successfully";
+	public static final String ADD_FEEDTYPE_ERROR_MSG = "Failed To Add FeedType";
 
 	public static final String ADD_FEEDSTOCK_SUCCESS_MESSAGE = "FeedStock Added successfully";
 	public static final String ADD_FEEDSTOCK_ERROR_MSG = "Unable to add";
@@ -63,4 +63,9 @@ public class MessageConstants {
 	public static final String UPDATE_FEEDTOFARMER_SUCCESS_MESSAGE = "FeedToFarmer update successfully";
 	public static final String UPDATE_FEEDTOFARMER_ERROR_MSG = "Unable to update FeedTofarmer";
 
+	public static final String UPDATE_FEEDTYPE_SUCCESS_MESSAGE = "Update FeedType successfully";
+	public static final String UPDATE_FEEDTYPE_ERROR_MSG = "Unable to update feedType";
+	
+	public static final String UPDATE_FEEDCOMPANY_SUCCESS_MESSAGE = "FeedCompany Update";
+	public static final String UPDATE_FEEDCOMPANY_ERROR_MESSAGE = "Unable to update FeedCompany";
 }
