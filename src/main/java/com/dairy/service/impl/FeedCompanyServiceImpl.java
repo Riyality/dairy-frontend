@@ -1,5 +1,6 @@
 package com.dairy.service.impl;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.core.ParameterizedTypeReference;
@@ -11,8 +12,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import com.dairy.dto.equipment.EquipmentResponseDto;
 import com.dairy.dto.feedCompany.FeedCompanyRequestDto;
 import com.dairy.dto.feedCompany.FeedCompanyResponseDto;
+import com.dairy.dto.feedStock.FeedStockRequestDto;
+import com.dairy.dto.feedStock.FeedStockResponseDto;
 import com.dairy.service.FeedCompanyService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -58,5 +62,45 @@ public class FeedCompanyServiceImpl implements FeedCompanyService {
 		}
 		return null;
 	}
+
+	@Override
+	public FeedCompanyResponseDto findById(long id) {
+		RestTemplate template = new RestTemplate();
+		String url = "http://localhost:6262/feedcompany/" + id;
+		HttpHeaders headers = new HttpHeaders();
+		HttpEntity<String> entity = new HttpEntity<>("body", headers);
+		try {
+
+			ResponseEntity<FeedCompanyResponseDto> res = template.exchange(url, HttpMethod.GET, entity,
+					FeedCompanyResponseDto.class);
+			return res.getBody();
+
+		} catch (Exception e) {
+			log.error(e.getMessage(), e);
+		}
+		return null;
+	}
+
+	@Override
+	public String updateFeedCompany(FeedCompanyRequestDto dto) {
+		RestTemplate template = new RestTemplate();
+
+		String url = "http://localhost:6262/feedcompany";
+
+		HttpHeaders headers = new HttpHeaders();
+		headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+		headers.setContentType(MediaType.APPLICATION_JSON);
+
+		HttpEntity<FeedCompanyRequestDto> request = new HttpEntity<>(dto, headers);
+		try {
+			ResponseEntity<String> result = template.exchange(url, HttpMethod.PUT, request, String.class);
+			return result.getBody();
+		} catch (Exception e) {
+			log.error(e.getMessage(), e);
+		}
+		return null;
+	}
+
+	
 
 }
