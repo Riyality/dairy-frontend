@@ -16,15 +16,16 @@
 							<div class="card-title">Update Advance Amount to Farmers</div>
 						</div>
 						<div class="card-body dairy-card-body">
-							<form class="row g-3 needs-validation" action="/advanceToFarmer"
+							<form class="row g-3 needs-validation" action="/advanceToFarmer/update"
 								method="post" novalidate>
+								
+								<input type="hidden" class="form-control dairy-form-input"  id="id" name="id" value="${advance.id }">
 								
 								<div class="col-md-6">
 									<label class="form-label dairy-input-label">Farmer Name</label> 
 					
 									<select class="form-select dairy-form-input" id=""
 										name="farmerId" value="${advance.farmerId }">
-										<option  selected="selected" value="${advance.farmerId}">${advance.farmerName}</option>
 										<c:forEach items="${list}" var="farmer">
 											<option  selected="selected" value="${farmer.id}">${farmer.name}</option>
 										</c:forEach>
