@@ -64,7 +64,6 @@ public class FeedTypeController {
 		return "/feedTypes/all";																																			
     }
 
-	}
 
 	@GetMapping("/{id}")
 	public String getById(@PathVariable long id, Model model) {
