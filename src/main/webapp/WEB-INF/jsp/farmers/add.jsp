@@ -1,6 +1,6 @@
 
 <jsp:include page="../modules/header.jsp" />
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <body>
 
@@ -30,7 +30,13 @@
 
 								<div class="col-md-6">
 									<label class="form-label dairy-input-label">Route</label>
-									<input type="text" class="form-control dairy-form-input" placeholder="Enter Employee Name" id="" name="route">
+									 <select class="form-select dairy-form-input" id=""
+										name="route">
+										<option value="" selected="selected" disabled="disabled">Select Route</option>
+										<c:forEach items="${routes}" var="route">
+											<option value="${route.id}">${route.name}</option>
+										</c:forEach>
+									</select>
 								</div>
 								
 								<div class="col-md-6">

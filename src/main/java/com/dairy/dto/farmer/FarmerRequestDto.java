@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import com.dairy.dto.branch.BranchRequestDto;
+import com.dairy.dto.bankdetails.BankRequestDto;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -18,10 +18,10 @@ public class FarmerRequestDto {
 	@DateTimeFormat( pattern = "yyyy-MM-dd'T'HH:mm" )
 	private LocalDateTime dateOfRegistration;
 	private String contact;
-	private String route;
+	private int route;
 	private String address;
 	private String status;
 	private int branchId;
-	private BranchRequestDto bankRequestDto;
+	private BankRequestDto bankRequestDto;
 	
 }

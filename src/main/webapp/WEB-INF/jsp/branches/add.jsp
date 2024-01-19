@@ -38,7 +38,7 @@
 								
 								<div class="col-md-6">
 									<label class="form-label dairy-input-label">Start Date</label> 
-									<input type="date" class="form-control dairy-form-input" id="" name="startDate">
+									<input type="datetime-local" class="form-control dairy-form-input" id="" name="startDate">
 								</div>
 								<div class="col-md-6">
 									<label class="form-label dairy-input-label">Address</label>

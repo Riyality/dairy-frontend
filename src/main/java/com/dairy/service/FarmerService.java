@@ -13,4 +13,8 @@ public interface FarmerService {
 
 	List<FarmerResponseDto> farmersListRoutewise(int branchId, int routeId);
 
+	FarmerResponseDto findById(Long id);
+
+	String update(FarmerRequestDto dto);
+
 }
