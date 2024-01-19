@@ -30,14 +30,14 @@
 			
 			        document.getElementById('dateOfMilkCollection').value = formattedDateAndTime;
 			    }
-			      
 			    
 			    /*Set Default Milk Collection Date Script End*/
 			    
-			     function onLoad() {
-			        setDefaultShift();
-			        setDefaultDate();
-			    }
+			   function onLoad() {
+				   
+				    setDefaultDate();
+				    setDefaultShift();
+				}
 			    window.onload = onLoad;
 			 
 			 });   

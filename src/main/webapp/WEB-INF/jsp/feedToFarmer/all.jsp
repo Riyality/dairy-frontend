@@ -41,7 +41,7 @@
                                <td>${feedToFarmer.feedRate}</td>
                                 <td>${feedToFarmer.totalAmount }</td>
                             <td>
-                              <a href="http://localhost:6161/feedTofarmers/${feedToFarmer.id }">
+                              <a href="http://localhost:6161/feedToFarmers/${feedToFarmer.id }">
                                    <button class="btn btn-sm btn-primary dairy-form-btn">Check Feed Data</button>
                               </a>
                             </td>
