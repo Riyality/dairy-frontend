@@ -1,5 +1,20 @@
  $(document).ready(function(){
 	 
+	     
+	      
+	      /*Feed Distribution Script Start*/
+		
+		    function calculateTotalFeedAmount() {
+				 
+			       var feedQuantity = $("#feedQuantity").val();
+			       var feedCostPerUnit = $("#feedCostPerUnit").val();
+			       $("#FeedTotalAmount").val(feedQuantity*feedCostPerUnit);
+				   
+			       };
+		       
+		        $('#feedQuantity, #feedCostPerUnit').on('keyup', function () {
+			        calculateTotalFeedAmount();
+			    });
 	 
 	 		/*Equipment Script Start*/
 			
@@ -10,6 +25,10 @@
 				$("#equipmentTotalAmount").val(equipmentQuantity*equipmentPrice);
 				
 			});
+	      
+	      /*Feed Distribution Script End*/
+	      
+	          /*Equipment Script Start*/
 			
 			$("#equipmentPrice").on("blur", function(){
 				
@@ -26,21 +45,23 @@
 			
 			$("#feedCompanyList").on("change",function(){
 				
-				var id = $("#feedCompanyList").val();
+				alert("HJVHV")
 				
-				$.ajax({
-			    url: 'http://localhost:6161/feedStock/getFeedTypeByFeedCompanyId/{id}',
-			    type: 'GET',
-			    dataType: 'json',
-			    success: function(response) {
-			       
-			        console.log(response);
-			    },
-			    error: function(error) {
-			        console.error('Error fetching data:', error);
-			    }
-			});
-		});
+						var id = $("#feedCompanyList").val();
+						
+						$.ajax({
+					    url: 'http://localhost:6161/feedStock/getFeedTypeByFeedCompanyId/{id}',
+					    type: 'GET',
+					    dataType: 'json',
+					    success: function(response) {
+					       
+					        console.log(response);
+					    },
+					    error: function(error) {
+					        console.error('Error fetching data:', error);
+					    }
+					});
+				});
 		
 		/*Feed Company Script End*/
 		
@@ -65,7 +86,7 @@
 				                                    <a id="milkForm" href="http://localhost:6161/milkCollection/add-milkCollection-page/${value.id }/${value.name }">
 				                                      <button class="btn btn-sm btn-primary dairy-form-btn">Collect Milk</button>
 				                                    </a>
-			                                    	 <a href="http://localhost:6161/milkCollection/${value.id }">
+			                                    	 <a href="http://localhost:6161/feedToFarmers/add-feedToFarmer-page/${value.id }/${value.name }">
 						                                   <button class="btn btn-sm btn-danger dairy-form-btn">Distribute Feed</button>
 						                             </a>
 			                                    </td>
@@ -86,6 +107,7 @@
 			/*Milk Collection Script Start*/
 			
 			function updateMilkRateAndAmount() {
+				
 		        var milkQuantity = $("#milkQuantity").val();
 		        var milkFat = $("#milkFat").val();
 		        var milkSNF = $("#milkSNF").val();
@@ -93,7 +115,7 @@
 		
 		        if (animalType && milkFat && milkSNF) {
 		            $.ajax({
-		                url: 'http://localhost:6161/milkRate/type/' + encodeURIComponent(animalType) + '/fat/' + encodeURIComponent(milkFat) + '/snf/' + encodeURIComponent(milkSNF),
+		                url: 'http://localhost:6161/milkRate/type/' +encodeURIComponent(animalType) + '/fat/' + encodeURIComponent(milkFat) + '/snf/' + encodeURIComponent(milkSNF),
 		                type: 'GET',
 		                dataType: 'json',
 		                success: function (result) {
@@ -116,8 +138,22 @@
 		    $('#milkFat, #milkSNF').on('keyup', function () {
 		        updateMilkRateAndAmount();
 		    });
+		    
+		     $('#milkQuantity').on('keyup', function () {
+				 
+			       var milkQuantity = $("#milkQuantity").val();
+			       var milkRate = $("#milkRate").val();
+			       
+			       if(milkRate !== 0 || milkRate !== "" || milkRate !== null ){
+					   $("#totalMilkAmount").val(milkQuantity*milkRate);
+				   }
+			   
+		       });
 
 	      /*Milk Collection Script End*/
+	      
+	      
+	      
 			
 		});
 		

@@ -32,7 +32,7 @@ import com.dairy.service.FeedTypeService;
 import com.dairy.service.RouteService;
 
 @Controller
-@RequestMapping("/feedTofarmers")
+@RequestMapping("/feedToFarmers")
 public class FeedToFarmerController {
 
 	@Autowired
@@ -90,14 +90,25 @@ public class FeedToFarmerController {
 		    String response=feedToFarmerService.addFeedToFarmers(feedToFarmerResponseDto);
 			if (response != null && response.equals(MessageConstants.ADD_FEEDTOFARMER_SUCCESS_MESSAGE)) {
 			ra.addFlashAttribute("successMessage", response);
-			return "redirect:/feedTofarmers";
+			return "redirect:/feedToFarmers";
 		}
 			ra.addFlashAttribute("errorMessage", MessageConstants.ADD_FEEDTOFARMER_ERROR_MSG);
 
 		return "feedToFarmer/add";				
 		
 	}
-	 
+	
+	@GetMapping( "/add-feedToFarmer-page/{farmerId}/{farmerName}" )
+	public String addFeedToFarmerPage(@PathVariable long farmerId, @PathVariable String farmerName, HttpSession session, Model model ) {
+		model.addAttribute( "farmerId", farmerId );
+		model.addAttribute( "farmerName", farmerName );
+		List<FeedCompanyResponseDto> list1 = feedCompanyService.getAllFeedCompany();
+		model.addAttribute("feedCompany", list1);
+
+		List<FeedTypeResponseDto> list2 = feedTypeService.getAllFeedTypes();
+		model.addAttribute("feedType", list2);
+		return "feedToFarmer/add";
+	}
 	 
 	 @GetMapping
 		public String allFeedToFarmer(Model model, HttpSession session) {

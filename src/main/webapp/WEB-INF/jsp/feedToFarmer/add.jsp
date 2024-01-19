@@ -16,40 +16,30 @@
 							<div class="card-title">Add Feed Distribution</div>
 						</div>
 						<div class="card-body dairy-card-body">
-							<form class="row g-3 needs-validation" action="/feedTofarmers"
+							<form class="row g-3 needs-validation" action="/feedToFarmers"
 								method="Post" novalidate>
 								
-								<%--  <div class="col-md-6">
+							
+								<div class="col-md-6">
 									<label class="form-label dairy-input-label">Farmer Id</label>
-									<input type="text" class="form-control dairy-form-input" placeholder="Farmer Id" id="" name="farmerId"  value="${farmerId}" id="farmerId" disabled="disabled">
+									<input type="hidden" class="form-control dairy-form-input" name="farmerId" id="hiddenFarmerId" value="${farmerId}" id="farmerId">
+									<input type="text" class="form-control dairy-form-input" placeholder="Enter Farmer Id" name="farmerId" value="${farmerId}" id="farmerId" disabled="disabled">
 								</div>
 								
 								<div class="col-md-6">
 									<label class="form-label dairy-input-label">Farmer Name</label>
-								    <input type="text" class="form-control dairy-form-input" placeholder="Enter  Farmer Name" name="farmerName" id="farmerName" value="${farmerName}" disabled="disabled">
-								</div>  --%>
-								
-								<div class="col-md-6">
-									<label class="form-label dairy-input-label">Farmer Name</label> 
-									<select class="form-select dairy-form-input" id=""
-										name="farmerId">
-										<option value="" selected="selected" disabled="disabled">Select Farmer</option>
-										<c:forEach items="${farmers}" var="farmer">
-											<option value="${farmer.id}">${farmer.name}</option>
-										</c:forEach>
-									</select>
+									<input type="text" class="form-control dairy-form-input" placeholder="Enter  Farmer Name" name="farmerName" id="farmerName" value="${farmerName}" disabled="disabled">
 								</div>
 								 
-								
 								<div class="col-md-6">
 									<label class="form-label dairy-input-label">Date of distributions</label> 
-									<input type="datetime-local" class="form-control dairy-form-input" id="" name="dateOfPurchase">
+									<input type="datetime-local" class="form-control dairy-form-input" id="dateOfPurchase" name="dateOfPurchase">
 								</div>
 
 								<div class="col-md-6">
 									<label class="form-label dairy-input-label">Feed Company</label> 
 									 <select  class="form-select dairy-form-input"
-										id="" name="feedCompanyId">
+										id="feedCompanyList" name="feedCompanyId">
 										<option value="" selected="selected" disabled="disabled">Select
 											Feed Company</option>
 										<c:forEach items="${feedCompany}" var="fc">
@@ -61,32 +51,28 @@
 								<div class="col-md-6">
 									<label class="form-label dairy-input-label">Feed Company Type</label> 
 									<select class="form-select dairy-form-input"
-										id="" name="feedTypeId">
-										<option value="" selected="selected" disabled="disabled">Select
+										id="feedTypeList" name="feedTypeId">
+										<%-- <option value="" selected="selected" disabled="disabled">Select
 											Feed Type</option>
 										<c:forEach items="${feedType}" var="feed">
 											<option value="${feed.id}">${feed.type}</option>
-										</c:forEach>
+										</c:forEach> --%>
 									</select>
 								</div>
 								
 								<div class="col-md-6">
-									<label class="form-label dairy-input-label">Feed Cost (1 unit)</label>
-									<input type="text" class="form-control dairy-form-input" placeholder="Enter Feed Cost pre Unit" id="" name="feedRate">
+									<label class="form-label dairy-input-label">Total Quantity</label>
+									<input type="text" class="form-control dairy-form-input" placeholder="Enter Total Quantity" id="feedQuantity" name="quantity">
 								</div>
 								
 								<div class="col-md-6">
-									<label class="form-label dairy-input-label">Total Quantity</label>
-									<input type="text" class="form-control dairy-form-input" placeholder="Enter Total Quantity" id="" name="quantity">
+									<label class="form-label dairy-input-label">Feed Cost (1 unit)</label>
+									<input type="text" class="form-control dairy-form-input" placeholder="Enter Feed Cost pre Unit" id="feedCostPerUnit" name="feedRate">
 								</div>
 								
 								<div class="col-md-6">
 									<label class="form-label dairy-input-label">Total Amount</label>
-									<input type="text" class="form-control dairy-form-input" placeholder="Total Amount" id="" name="totalAmount">
-								</div>
-								<div class="col-md-6">
-									<label class="form-label dairy-input-label">Payment Status</label>
-									<input type="text" class="form-control dairy-form-input" placeholder="payment status" id="" name="paymentStatus">
+									<input type="text" class="form-control dairy-form-input" placeholder="Total Amount" id="FeedTotalAmount" name="totalAmount">
 								</div>
 								
 								<div class="col-12">

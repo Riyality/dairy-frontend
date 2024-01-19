@@ -2,6 +2,8 @@ package com.dairy.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -80,8 +82,9 @@ public class FeedStockController {
 
 	@GetMapping( "getFeedTypeByFeedCompanyId/{id}" )
 	@ResponseBody
-	public ResponseEntity<List<FeedTypeResponseDto>> getFeedTypeByFeedCompanyId(@PathVariable int id) {
-	    List<FeedTypeResponseDto> list = feedTypeService.getFeedTypeByFeedCompanyId(id);
+	public ResponseEntity<List<FeedTypeResponseDto>> getFeedTypeByFeedCompanyId(@PathVariable int id, HttpSession session ) {
+		int branchId = ( int ) session.getAttribute( "branchId" );
+	    List<FeedTypeResponseDto> list = feedTypeService.getFeedTypeByFeedCompanyId(id, branchId);
 	    return new ResponseEntity<>(list, HttpStatus.OK);
 	}
 

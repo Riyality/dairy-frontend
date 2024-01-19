@@ -23,4 +23,5 @@ public class FarmerRequestDto {
 	private String status;
 	private int branchId;
 	private BranchRequestDto bankRequestDto;
+	
 }
