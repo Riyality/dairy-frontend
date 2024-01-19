@@ -13,4 +13,6 @@ public class FeedTypeResponseDto {
 	private Long id;
 	private String type;
 	private Long feedCompanyId;
+	private String feedCompanyName;
+	private int branchId;
 }

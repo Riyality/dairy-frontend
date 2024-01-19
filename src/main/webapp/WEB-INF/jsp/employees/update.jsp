@@ -14,7 +14,7 @@
 							<div class="card-title">Update Employee</div>
 						</div>
 						<div class="card-body">
-							<form class="row g-3 needs-validation" action="/employee"
+							<form class="row g-3 needs-validation" action="/employee/update"
 								method="post" novalidate>
 								
 								<div class="col-md-6">
@@ -25,7 +25,7 @@
 								
 								<div class="col-md-6">
 									<label class="form-label dairy-input-label">Date of Joing</label> 
-									<input type="datetime-local" class="form-control dairy-form-input" id="" name="dateOfJoining" value=" ${employee.dateOfJoining }">
+									<input type="datetime-local" class="form-control dairy-form-input" id="" name="dateOfJoining" value="${employee.dateOfJoining}">
 								</div>
 
 								<div class="col-md-6">

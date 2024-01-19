@@ -2,6 +2,8 @@ package com.dairy.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -40,9 +42,12 @@ public class FeedTypeController {
 	}
 
 	@PostMapping
-	public String addFeedType(@ModelAttribute FeedTypeRequestDto dto, Model m, RedirectAttributes ra) {
-		String response = feedTypeService.addFeedType(dto);
+	public String addFeedType(@ModelAttribute FeedTypeRequestDto dto, Model m, RedirectAttributes ra,
+			HttpSession session) {
+		int branchId = (int) session.getAttribute("branchId");
+		dto.setBranchId(branchId);
 
+		String response = feedTypeService.addFeedType(dto);
 		if (response != null && response.equals(MessageConstants.ADD_FEEDTYPE_SUCCESS_MESSAGE)) {
 			ra.addFlashAttribute("successMessage", response);
 			return "redirect:/feedTypes";
@@ -50,13 +55,36 @@ public class FeedTypeController {
 		ra.addFlashAttribute("errorMessage", MessageConstants.ADD_FEEDTYPE_ERROR_MSG);
 		return "feedTypes/add";
 	}
-	
+
 	@GetMapping
 	public String getAllFeedTypes(Model model) {
 		List<FeedTypeResponseDto> list = feedTypeService.getAllFeedTypes();
+
 		model.addAttribute("feedType",list);
 		return "/feedTypes/all";																																			
+    }
+
 	}
 
+	@GetMapping("/{id}")
+	public String getById(@PathVariable long id, Model model) {
+		FeedTypeResponseDto response = feedTypeService.findById(id);
+		model.addAttribute("feedType", response);
+
+		List<FeedCompanyResponseDto> list = feedCompanyService.getAllFeedCompany();
+		model.addAttribute("feedCompany", list);
+		return "feedTypes/update";
+	}
+
+	@PostMapping("/update")
+	public String update(@ModelAttribute FeedTypeRequestDto dto, Model m, RedirectAttributes ra, HttpSession session) {
+		String response = feedTypeService.updateFeedCompany(dto);
+		if (response != null && response.equals(MessageConstants.UPDATE_FEEDTYPE_SUCCESS_MESSAGE)) {
+			ra.addFlashAttribute("successMessage", MessageConstants.UPDATE_FEEDTYPE_SUCCESS_MESSAGE);
+			return "redirect:/feedTypes";
+		}
+		ra.addFlashAttribute("errorMessage", MessageConstants.UPDATE_FEEDTYPE_ERROR_MSG);
+		return "redirect:/feedTypes/" + dto.getId();
+	}
 
 }

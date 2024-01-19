@@ -43,7 +43,9 @@ public class AdvanceToFarmerController {
 
 	@PostMapping
 	public String addAdvance(@ModelAttribute AdvanceToFarmerRequestDto advanceRequestDto, Model model,
-			RedirectAttributes ra) {
+			RedirectAttributes ra ,HttpSession session) {
+		int branchId=(int) session.getAttribute("branchId");
+		advanceRequestDto.setBranchId(branchId);
 		String response = advanceToFarmerService.addAdvance(advanceRequestDto);
 		if (response != null && response.equals(MessageConstants.ADD_ADVANCETOFARMER_SUCCESS_MESSAGE)) {
 			ra.addFlashAttribute("successMessage", response);
@@ -75,7 +77,11 @@ public class AdvanceToFarmerController {
 	}
 
 	@PostMapping("/update")
-	public String updateAdvance(@ModelAttribute AdvanceToFarmerRequestDto advanceRequestDto, RedirectAttributes ra) {
+	public String updateAdvance(@ModelAttribute AdvanceToFarmerRequestDto advanceRequestDto, RedirectAttributes ra,
+			HttpSession session) {
+		
+		int branchId=(int) session.getAttribute("branchId");
+		advanceRequestDto.setBranchId(branchId);
 		String response = advanceToFarmerService.updateAdvance(advanceRequestDto);
 		if (response != null && response.equals(MessageConstants.UPDATE_ADVANCETOFARMER_SUCCESS_MESSAGE)) {
 			ra.addFlashAttribute("successMessage", MessageConstants.UPDATE_ADVANCETOFARMER_SUCCESS_MESSAGE);

@@ -2,6 +2,8 @@ package com.dairy.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,7 +32,9 @@ public class EquipmentController {
 
 	@PostMapping
 	public String addEquipment(@ModelAttribute EquipmentRequestDto equipmentRequestDto, Model model,
-			RedirectAttributes ra) {
+			RedirectAttributes ra ,HttpSession session) {
+		int branchId=(int) session.getAttribute("branchId");
+		equipmentRequestDto.setBranchId(branchId);
 		String response = equipmentService.addEquipment(equipmentRequestDto);
 		if (response != null && response.equals(MessageConstants.ADD_EQIPMENT_SUCCESS_MESSAGE)) {
 			ra.addFlashAttribute("successMessage", response);
