@@ -1,5 +1,6 @@
 package com.dairy.service.impl;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.core.ParameterizedTypeReference;
@@ -62,7 +63,7 @@ public class FarmerServiceImpl implements FarmerService {
 	@Override
 	public List<FarmerResponseDto> farmersListRoutewise(int branchId, int routeId) {
 		RestTemplate template = new RestTemplate();
-		String url = "http://localhost:6262/farmers/branch/" + branchId + "/route/" +routeId;
+		String url = "http://localhost:6262/farmers/branch/" + branchId + "/route/" + routeId;
 		HttpHeaders headers = new HttpHeaders();
 		HttpEntity<String> entity = new HttpEntity<>("body", headers);
 		try {
@@ -73,6 +74,44 @@ public class FarmerServiceImpl implements FarmerService {
 
 		} catch (Exception e) {
 			e.printStackTrace();
+		}
+		return null;
+	}
+
+	@Override
+	public FarmerResponseDto findById(Long id) {
+		RestTemplate template = new RestTemplate();
+		String url = "http://localhost:6262/farmers/id/" + id;
+		HttpHeaders headers = new HttpHeaders();
+		HttpEntity<String> entity = new HttpEntity<>("body", headers);
+		try {
+
+			ResponseEntity<FarmerResponseDto> res = template.exchange(url, HttpMethod.GET, entity,
+					FarmerResponseDto.class);
+			return res.getBody();
+
+		} catch (Exception e) {
+			log.error(e.getMessage(), e);
+		}
+		return null;
+	}
+
+	@Override
+	public String update(FarmerRequestDto dto) {
+		RestTemplate template = new RestTemplate();
+
+		String url = "http://localhost:6262/farmers";
+
+		HttpHeaders headers = new HttpHeaders();
+		headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+		headers.setContentType(MediaType.APPLICATION_JSON);
+
+		HttpEntity<FarmerRequestDto> request = new HttpEntity<>(dto, headers);
+		try {
+			ResponseEntity<String> result = template.exchange(url, HttpMethod.PUT, request, String.class);
+			return result.getBody();
+		} catch (Exception e) {
+			log.error(e.getMessage(), e);
 		}
 		return null;
 	}

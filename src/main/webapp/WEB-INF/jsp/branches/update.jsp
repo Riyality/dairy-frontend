@@ -21,10 +21,10 @@
 				<div class="col">
 					<div class="card custom-card">
 						<div class="card-header justify-content-between">
-							<div class="card-title">Add Branch</div>
+							<div class="card-title">Update Branch</div>
 						</div>
 						<div class="card-body">
-							<form class="row g-3 needs-validation" action="/branches"
+							<form class="row g-3 needs-validation" action="/branches/update"
 								method="post" novalidate>
 								<div class="col-md-12">
 									<label for="validationCustom01" class="form-label">Name</label>

@@ -2,6 +2,8 @@ package com.dairy.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,8 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.dairy.constants.MessageConstants;
-import com.dairy.dto.branch.BranchRequestDto;
-import com.dairy.dto.branch.BranchResponseDto;
 import com.dairy.dto.route.RouteRequestDto;
 import com.dairy.dto.route.RouteResponseDto;
 import com.dairy.service.RouteService;
@@ -32,7 +32,9 @@ public class RouteController {
 	}
 
 	@PostMapping
-	public String addRoute( @ModelAttribute RouteRequestDto dto, Model model, RedirectAttributes ra ) {
+	public String addRoute( @ModelAttribute RouteRequestDto dto, Model model, RedirectAttributes ra ,HttpSession session) {
+		int branchId=(int) session.getAttribute("branchId");
+		dto.setBranchId(branchId);
 		String response = routeService.addRoute( dto );
 		if ( response != null && response.equals( MessageConstants.ADD_ROUTE_SUCCESS_MESSAGE ) ) {
 			ra.addFlashAttribute( "successMessage", response );
@@ -57,7 +59,9 @@ public class RouteController {
 	}
 	
 	@PostMapping( "/update" )
-	public String updateRoute( @ModelAttribute RouteRequestDto dto, RedirectAttributes ra ) {
+	public String updateRoute( @ModelAttribute RouteRequestDto dto, RedirectAttributes ra,HttpSession session ) {
+		int branchId=(int) session.getAttribute("branchId");
+		dto.setBranchId(branchId);
 		String response = routeService.update( dto );
 		if ( response != null && response.equals( MessageConstants.UPDATE_ROUTE_SUCCESS_MESSAGE ) ) {
 			ra.addFlashAttribute( "successMessage", MessageConstants.UPDATE_ROUTE_SUCCESS_MESSAGE );
