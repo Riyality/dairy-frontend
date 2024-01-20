@@ -45,6 +45,8 @@ public class MessageConstants {
 	public static final String UPDATE_MILK_COLLECTION_MESSAGE = "Update Milk Collection ";
 	public static final String UPDATE_MILK_COLLECTION_ERROR_MSG = "Unable to update";
 
+	public static final String ADD_MILK_RATE_SUCCESS_MESSAGE = "Milk rates saved successfully";
+	
 	public static final String ADD_FARMER_SUCCESS_MESSAGE = "Farmer added successfully";
 	public static final String ADD_FARMER_ERROR_MSG = "Failed To add farmer";
 

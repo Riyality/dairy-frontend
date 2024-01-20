@@ -688,7 +688,56 @@
                         </li>
                         <!-- End Advance to Farmer slide -->
                         
+                        
+                        
+                        <!-- Start Invoice  slide  -->
+                        
+                        <li class="slide has-sub">
+                            <a href="javascript:void(0);" class="side-menu__item">
+                                <i class="bx bx-file-blank side-menu__icon"></i>
+                                <span class="side-menu__label">Invoice </span>
+                                <i class="fe fe-chevron-right side-menu__angle"></i>
+                            </a>
+                            <ul class="slide-menu child1">
+                                <li class="slide side-menu__label1">
+                                    <a href="javascript:void(0);">Invoice </a>
+                                </li>
+                                <li class="slide">
+                                    <a href="/add-invoice-page" class="side-menu__item">Milk Collection Invoice</a>
+                                </li>
+                                 
+                                
+                            </ul>
+                        </li>
+                        <!-- End  Invoice slide -->
+                        
+                        
+                        <!-- Start Milkrate  slide  -->
+                        
+                        <li class="slide has-sub">
+                            <a href="javascript:void(0);" class="side-menu__item">
+                                <i class="bx bx-file-blank side-menu__icon"></i>
+                                <span class="side-menu__label">Milk Rates </span>
+                                <i class="fe fe-chevron-right side-menu__angle"></i>
+                            </a>
+                            <ul class="slide-menu child1">
+                                <li class="slide side-menu__label1">
+                                    <a href="javascript:void(0);">Milk Rates </a>
+                                </li>
+                                <li class="slide">
+                                    <a href="/milkRate/milkrate-page" class="side-menu__item">Milk Rates</a>
+                                </li>
+                                 
+                                
+                            </ul>
+                        </li>
+                        <!-- End Milkrate slide -->
+                        
+                        
+                        
+                        
                     </ul>
+                    
                     <div class="slide-right" id="slide-right">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="#7b8191" width="24" height="24" viewBox="0 0 24 24">
                             <path d="M10.707 17.707 16.414 12l-5.707-5.707-1.414 1.414L13.586 12l-4.293 4.293z"></path>

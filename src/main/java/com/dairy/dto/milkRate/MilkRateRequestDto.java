@@ -22,4 +22,7 @@ public class MilkRateRequestDto {
 	private String remark;
 	@DateTimeFormat( pattern = "yyyy-MM-dd'T'HH:mm" )
 	private LocalDateTime date_of_rate;
+	
+	private int branchId;
+	
 }
