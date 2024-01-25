@@ -641,29 +641,7 @@
                             </ul>
                         </li>
                         <!-- End Farmer slide -->
-                        
-                          <!-- Start Feed to Farmer slide -->
-                        
-                        <li class="slide has-sub">
-                            <a href="javascript:void(0);" class="side-menu__item">
-                                <i class="bx bx-file-blank side-menu__icon"></i>
-                                <span class="side-menu__label">Feed to Farmer </span>
-                                <i class="fe fe-chevron-right side-menu__angle"></i>
-                            </a>
-                            <ul class="slide-menu child1">
-                                <li class="slide side-menu__label1">
-                                    <a href="javascript:void(0);">Feed to Farmer </a>
-                                </li>
-                                <li class="slide">
-                                    <a href="/branches/add-branch-page" class="side-menu__item">Add Feed to Farmer </a>
-                                </li>
-                                 <li class="slide">
-                                    <a href="/branches" class="side-menu__item">All Feed to Farmer</a>
-                                </li>
-                                
-                            </ul>
-                        </li>
-                        <!-- End Feed to Farmer slide -->
+
                         
                         <!-- Start Advance to Farmer slide -->
                         
@@ -732,6 +710,53 @@
                             </ul>
                         </li>
                         <!-- End Milkrate slide -->
+                        
+                         <!-- Start farmer animal slide -->
+                        
+                        <li class="slide has-sub">
+                            <a href="javascript:void(0);" class="side-menu__item">
+                                <i class="bx bx-file-blank side-menu__icon"></i>
+                                <span class="side-menu__label">Farmer Animals</span>
+                                <i class="fe fe-chevron-right side-menu__angle"></i>
+                            </a>
+                            <ul class="slide-menu child1">
+                                <li class="slide side-menu__label1">
+                                    <a href="javascript:void(0);">Farmer Animals</a>
+                                </li>
+                                <li class="slide">
+                                    <a href="/farmerAnimalMapping//add-animal-page" class="side-menu__item">Add Animals</a>
+                                </li>
+                                 <li class="slide">
+                                    <a href="/farmerAnimalMapping" class="side-menu__item">All Animals</a>
+                                </li>
+                                
+                            </ul>
+                        </li>
+                        <!-- End farmer animal slide -->
+                        
+                        
+                        <!-- Start DairyManger Transactions slide -->
+                        
+                        <li class="slide has-sub">
+                            <a href="javascript:void(0);" class="side-menu__item">
+                                <i class="bx bx-file-blank side-menu__icon"></i>
+                                <span class="side-menu__label">DairyManger Transactions</span>
+                                <i class="fe fe-chevron-right side-menu__angle"></i>
+                            </a>
+                            <ul class="slide-menu child1">
+                                <li class="slide side-menu__label1">
+                                    <a href="javascript:void(0);">DairyManger Transactions</a>
+                                </li>
+                                <li class="slide">
+                                    <a href="/dairyManger/add-dairyManger-Page" class="side-menu__item">Add DairyManger</a>
+                                </li>
+                                 <li class="slide">
+                                    <a href="/dairyManger" class="side-menu__item">All DairyManger</a>
+                                </li>
+                                
+                            </ul>
+                        </li>
+                        <!-- End DairyManger Transactions slide -->
                         
                         
                         
