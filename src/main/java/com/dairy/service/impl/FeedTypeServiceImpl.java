@@ -62,7 +62,7 @@ public class FeedTypeServiceImpl implements FeedTypeService {
 	}
 
 	@Override
-	public List<FeedTypeResponseDto> getFeedTypeByFeedCompanyId(int id, int branchId) {
+	public List<FeedTypeResponseDto> getFeedTypeByFeedCompanyId(long id, int branchId) {
 		RestTemplate template = new RestTemplate();
 		String url = "http://localhost:6262/feedtype/id/" + id + "/branchId/" + branchId;
 		

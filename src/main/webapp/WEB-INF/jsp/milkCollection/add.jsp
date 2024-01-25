@@ -32,7 +32,7 @@
 								
 								<div class="col-md-4">
 									<label class="form-label dairy-input-label">Date</label> 
-									<input type="datetime-local" class="form-control dairy-form-input" name="dateOfMilkCollection" id="dateOfMilkCollection">
+									<input type="date" class="form-control dairy-form-input" name="dateOfMilkCollection" id="dateOfMilkCollection">
 								</div>
 								
 								<div class="col-md-3 offset-md-1 mt-4" > 
