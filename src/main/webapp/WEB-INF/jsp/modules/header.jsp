@@ -618,7 +618,8 @@
                             </ul>
                         </li>
                         <!-- End Feed Stock slide -->
-                        
+
+                          
                         <!-- Start Farmer slide -->
                         
                         <li class="slide has-sub">
@@ -641,6 +642,29 @@
                             </ul>
                         </li>
                         <!-- End Farmer slide -->
+                        
+                        <!-- Start Payment to Farmer slide -->
+                        
+                        <li class="slide has-sub">
+                            <a href="javascript:void(0);" class="side-menu__item">
+                                <i class="bx bx-file-blank side-menu__icon"></i>
+                                <span class="side-menu__label"> Payment to Farmers </span>
+                                <i class="fe fe-chevron-right side-menu__angle"></i>
+                            </a>
+                            <ul class="slide-menu child1">
+                                <li class="slide side-menu__label1">
+                                    <a href="javascript:void(0);"> Payment to Farmers </a>
+                                </li>
+                                <li class="slide">
+                                    <a href="/paymentToFarmer/add-payment-page" class="side-menu__item"> Payment to Farmer </a>
+                                </li>
+                                 <li class="slide">
+                                    <a href="/farmers" class="side-menu__item">All Farmers</a>
+                                </li>
+                                
+                            </ul>
+                        </li>
+                        <!-- End Payment to Farmer slide -->
                         
                           <!-- Start Feed to Farmer slide -->
                         
