@@ -42,7 +42,7 @@
 									<label class="form-label dairy-input-label">Milk Type</label><br>
 									<input type="radio"  name="milkType" value="cow" />Cow
 									<input type="radio"  name="milkType" value="buffalo"/>Buffalo
-													</div>
+								</div>
 								
 								<div class="col-md-6">
 									<label class="form-label dairy-input-label">Date Of Rate</label> 

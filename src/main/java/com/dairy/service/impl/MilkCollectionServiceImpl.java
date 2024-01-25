@@ -1,5 +1,9 @@
 package com.dairy.service.impl;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.util.Collections;
+import java.util.Date;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -7,6 +11,7 @@ import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -42,6 +47,34 @@ public class MilkCollectionServiceImpl implements MilkCollectionService {
 	}
 
 	@Override
+	public List<MilkCollectionResponseDto> findByFromDateAndToDateAndAnimalType(Date fromDate,
+			Date toDate, String animalType) {
+    
+	    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+	    String formattedFromDate = dateFormat.format(fromDate);
+	    String formattedToDate = dateFormat.format(toDate);
+
+	    RestTemplate template = new RestTemplate();
+	  
+	    String url = "http://localhost:6262/milkCollection/" + formattedFromDate + "/" + formattedToDate + "/" + animalType;
+
+	    HttpHeaders headers = new HttpHeaders();
+	    headers.setContentType(MediaType.APPLICATION_JSON);
+	    HttpEntity<String> entity = new HttpEntity<>("body", headers);
+
+	    try {
+	        ResponseEntity<List<MilkCollectionResponseDto>> res = template.exchange(
+	                url, HttpMethod.GET, entity, new ParameterizedTypeReference<List<MilkCollectionResponseDto>>() {});
+
+	        return res.getBody();
+
+	    } catch (Exception e) {
+	        log.error(e.getMessage(), e);
+	    }
+
+	    return Collections.emptyList(); // Return an empty list for error cases
+	}
+
 	public List<MilkCollectionResponseDto> getMilkCollectionDataByDate(int branchId, LocalDate dateOfCollection) {
 		RestTemplate template = new RestTemplate();
 		String url = "http://localhost:6262/milkCollection/branchId/"+branchId+"/dateOfCollection/"+dateOfCollection;
@@ -59,6 +92,5 @@ public class MilkCollectionServiceImpl implements MilkCollectionService {
 		}
 		return null;
 	}
-
 
 }
