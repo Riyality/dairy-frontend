@@ -85,7 +85,7 @@ public class FeedStockController {
 
 	@GetMapping( "getFeedTypeByFeedCompanyId/{id}" )
 	@ResponseBody
-	public ResponseEntity<List<FeedTypeResponseDto>> getFeedTypeByFeedCompanyId(@PathVariable int id, HttpSession session ) {
+	public ResponseEntity<List<FeedTypeResponseDto>> getFeedTypeByFeedCompanyId(@PathVariable long id, HttpSession session ) {
 		int branchId = ( int ) session.getAttribute( "branchId" );
 	    List<FeedTypeResponseDto> list = feedTypeService.getFeedTypeByFeedCompanyId(id, branchId);
 	    return new ResponseEntity<>(list, HttpStatus.OK);

@@ -51,10 +51,10 @@
 								<div class="col-md-6">
 									<label class="form-label dairy-input-label">Feed Company Type</label> 
 									<select class="form-select dairy-form-input"
-										id="feedTypeList" name="feedTypeId">
-										<%-- <option value="" selected="selected" disabled="disabled">Select
-											Feed Type</option>
-										<c:forEach items="${feedType}" var="feed">
+										id="feedTypeList" name="feedTypeId" disabled="disabled">
+										<!-- <option value="" selected="selected" disabled="disabled">Select
+											Feed Type</option> -->
+										<%-- <c:forEach items="${feedType}" var="feed">
 											<option value="${feed.id}">${feed.type}</option>
 										</c:forEach> --%>
 									</select>
@@ -90,4 +90,36 @@
 			</div>
 		</div>
 	</div>
+	
+	
+	<script type="text/javascript">
+	
+	/*Set Default Milk Collection Date Script Start*/
+	
+			 function setDefaultDate() {
+		
+		alert("kljj")
+				 
+			        var today = new Date();
+			        var year = today.getFullYear();
+			        var month = ('0' + (today.getMonth() + 1)).slice(-2);
+			        var day = ('0' + today.getDate()).slice(-2);
+			        var hours = ('0' + today.getHours()).slice(-2);
+			        var minutes = ('0' + today.getMinutes()).slice(-2);
+			
+			        var formattedDateAndTime = year + '-' + month + '-' + day + 'T' + hours + ':' + minutes;
+			
+			        document.getElementById('dateOfPurchase').value = formattedDateAndTime;
+				    }
+				    
+				    /*Set Default Milk Collection Date Script End*/
+				    
+				   function onLoad() {
+					    setDefaultDate();
+					}
+				    window.onload = onLoad;
+	
+	</script>
+	
+	
 	<jsp:include page="../modules/footer.jsp" />

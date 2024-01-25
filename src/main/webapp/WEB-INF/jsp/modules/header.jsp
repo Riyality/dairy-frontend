@@ -611,6 +611,9 @@
                                 <li class="slide">
                                     <a href="/milkCollection/get-farmer-list-page" class="side-menu__item">Add Milk Collection </a>
                                 </li>
+                                <li class="slide">
+                                    <a href="/milkCollection/byTodaysDate" class="side-menu__item">Date wise Milk Collection </a>
+                                </li>
                                  <li class="slide">
                                     <a href="/milkCollection" class="side-menu__item">All Milk Collection</a>
                                 </li>
