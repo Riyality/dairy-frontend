@@ -1,5 +1,8 @@
+
 package com.dairy.controller;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -28,65 +31,95 @@ import com.dairy.service.MilkCollectionService;
 import com.dairy.service.RouteService;
 
 @Controller
-@RequestMapping( "/milkCollection" )
+@RequestMapping("/milkCollection")
 public class MilkCollectionController {
 
 	@Autowired
 	private BranchService branchService;
-	
+
 	@Autowired
 	private FarmerService farmerService;
-	
+
 	@Autowired
 	private RouteService routeService;
 
 	@Autowired
 	private MilkCollectionService milkCollectionService;
-	
-	@GetMapping( "/get-farmer-list-page" )
-	public String getAllFarmersList(HttpSession session, Model model ) {
+
+	@GetMapping("/get-farmer-list-page")
+	public String getAllFarmersList(HttpSession session, Model model) {
 		List<RouteResponseDto> routes = routeService.getAllRoutes();
-		model.addAttribute( "routes", routes );
+		model.addAttribute("routes", routes);
 		return "milkCollection/getRoutewiseFarmers";
 	}
-	
-	@GetMapping( "/add-milkCollection-page/{farmerId}/{farmerName}" )
-	public String addMilkCollectionPage(@PathVariable long farmerId, @PathVariable String farmerName, HttpSession session, Model model ) {
-		model.addAttribute( "farmerId", farmerId );
-		model.addAttribute( "farmerName", farmerName );
+
+	@GetMapping("/add-milkCollection-page/{farmerId}/{farmerName}")
+	public String addMilkCollectionPage(@PathVariable long farmerId, @PathVariable String farmerName,
+			HttpSession session, Model model) {
+		model.addAttribute("farmerId", farmerId);
+		model.addAttribute("farmerName", farmerName);
 		return "milkCollection/add";
 	}
-	
+
 	@PostMapping
-	public String addMilkCollection( @ModelAttribute MilkCollectionRequestDto dto, Model model, RedirectAttributes ra ) {
-		String response = milkCollectionService.addMilkCollection( dto );
-		if ( response != null && response.equals( MessageConstants.ADD_MILK_COLLECTION_SUCCESS_MESSAGE ) ) {
-			ra.addFlashAttribute( "successMessage", response );
+	public String addMilkCollection(@ModelAttribute MilkCollectionRequestDto dto, Model model, RedirectAttributes ra) {
+		String response = milkCollectionService.addMilkCollection(dto);
+		if (response != null && response.equals(MessageConstants.ADD_MILK_COLLECTION_SUCCESS_MESSAGE)) {
+			ra.addFlashAttribute("successMessage", response);
 			return "redirect:/milkCollection";
 		}
-		ra.addFlashAttribute( "errorMessage", MessageConstants.ADD_MILK_COLLECTION_ERROR_MSG );
+		ra.addFlashAttribute("errorMessage", MessageConstants.ADD_MILK_COLLECTION_ERROR_MSG);
 		return "milkCollection/add";
 	}
-	
+
 	@GetMapping
-	public String allFarmers( HttpSession session, Model model ) {
-		int branchId = ( int ) session.getAttribute( "branchId" );
-		List<FarmerResponseDto> list = farmerService.findAllActiveFarmers( branchId );
-		model.addAttribute( "list", list );
+	public String allFarmers(HttpSession session, Model model) {
+		int branchId = (int) session.getAttribute("branchId");
+		List<FarmerResponseDto> list = farmerService.findAllActiveFarmers(branchId);
+		model.addAttribute("list", list);
+		System.out.println(list);
 		return "farmers/all";
 	}
+
+	@GetMapping("/byTodaysDate")
+	public String getMilkCollectionDataByDate(HttpSession session, Model model) {
+		int branchId = (int) session.getAttribute("branchId");
+		LocalDate today = LocalDate.now();
+
+		 List<MilkCollectionResponseDto> list = milkCollectionService.getMilkCollectionDataByDate( branchId, today );
+		 model.addAttribute( "list", list );
+		return "milkCollection/datewiseList";
+	}
 	
+
+	@GetMapping("/selectedDateForMilkData/{date}")
+	@ResponseBody
+	public ResponseEntity<List<MilkCollectionResponseDto>> getMilkCollectionDataBySelectedDate(@PathVariable String date, HttpSession session) {
+		try {
+			int branchId = (int) session.getAttribute("branchId");
+	        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+	        LocalDate selectedDate = LocalDate.parse(date, formatter);
+	        
+			 List<MilkCollectionResponseDto> list = milkCollectionService.getMilkCollectionDataByDate( branchId, selectedDate );
+			return new ResponseEntity<>(list, HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+
+
 	@GetMapping("/{id}")
 	@ResponseBody
 	public ResponseEntity<List<FarmerResponseDto>> farmersListRoutewise(@PathVariable int id, HttpSession session) {
-	    try {
-	        int branchId = (int) session.getAttribute("branchId");
-	        List<FarmerResponseDto> list = farmerService.farmersListRoutewise(branchId, id);
-	        return new ResponseEntity<>(list, HttpStatus.OK);
-	    } catch (Exception e) {
-	        e.printStackTrace();
-	        return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-	    }
+		try {
+			int branchId = (int) session.getAttribute("branchId");
+			List<FarmerResponseDto> list = farmerService.farmersListRoutewise(branchId, id);
+			return new ResponseEntity<>(list, HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 	}
 
 }
