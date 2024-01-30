@@ -61,7 +61,11 @@ public class SupplierController {
 	}
 
 	@PostMapping("/update")
-	public String updateSupplier(@ModelAttribute SupplierRequestDto supplierRequestDto, RedirectAttributes ra) {
+	public String updateSupplier(@ModelAttribute SupplierRequestDto supplierRequestDto, RedirectAttributes ra, HttpSession session) {
+		
+		int branchId = (int) session.getAttribute("branchId");
+		supplierRequestDto.setBranchId(branchId);
+		
 		String response = supplierService.updateSupplier(supplierRequestDto);
 		if (response != null && response.equals(MessageConstants.UPDATE_SUPPLIER_SUCCESS_MESSAGE)) {
 			ra.addFlashAttribute("successMessage", MessageConstants.UPDATE_SUPPLIER_SUCCESS_MESSAGE);

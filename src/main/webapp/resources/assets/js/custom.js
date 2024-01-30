@@ -108,17 +108,6 @@
 			                                </tr>`);
 			                        });
 							
-							
-							$("#setFarmerId").val(result.farmerId);
-							$("#setFarmerName").val(result.farmerName);
-							$("#setDateOfMilkCollection").val(result.dateOfMilkCollection);
-							$("#setShift").val(result.shift);
-							$("#setAnimalType").val(result.animalType);
-							$("#setMilkQuantity").val(result.milkQuantity);
-							$("#setMilkFat").val(result.milkFat);
-							$("#setMilkSNF").val(result.milkSNF);
-							$("#setMilkRate").val(result.milkRate);
-							$("#setTotalMilkAmount").val(result.totalMilkAmount);
 					    },
 					    error: function(error) {
 					        console.error('Error fetching data:', error);
