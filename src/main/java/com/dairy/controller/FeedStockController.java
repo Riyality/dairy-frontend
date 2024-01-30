@@ -109,7 +109,11 @@ public class FeedStockController {
 	}
 
 	@PostMapping("/update")
-	public String updatefeed(@ModelAttribute FeedStockRequestDto feedStockRequestDto, RedirectAttributes ra) {
+	public String updatefeed(@ModelAttribute FeedStockRequestDto feedStockRequestDto, RedirectAttributes ra,HttpSession session) {
+	
+		int branchId = (int) session.getAttribute("branchId");
+		feedStockRequestDto.setBranchId(branchId);
+		
 		String response = feedStockService.updateFeed(feedStockRequestDto);
 		if (response != null && response.equals(MessageConstants.UPDATE_FEEDSTOCK_SUCCESS_MESSAGE)) {
 			ra.addFlashAttribute("successMessage", MessageConstants.UPDATE_FEEDSTOCK_SUCCESS_MESSAGE);
