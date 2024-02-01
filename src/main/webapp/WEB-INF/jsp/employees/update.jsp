@@ -51,6 +51,7 @@
 								
 								<div class="col-md-6">
 									<label class="form-label dairy-input-label">Bank Name</label> 
+									<input type="hidden" class="form-control dairy-form-input"  id="" name="bankRequestDto.id" value="${employee.bankId }">
 									<input type="text" class="form-control dairy-form-input" placeholder="Enter Bank Name"  id="" name="bankRequestDto.bankName" value="${employee.bankName }" required>
 								</div>
 								
