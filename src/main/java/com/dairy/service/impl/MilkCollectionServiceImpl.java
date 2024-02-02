@@ -29,9 +29,9 @@ import lombok.extern.slf4j.Slf4j;
 public class MilkCollectionServiceImpl implements MilkCollectionService {
 
 	@Override
-	public String addMilkCollection(MilkCollectionRequestDto dto) {
+	public String addMilkCollection(MilkCollectionRequestDto dto, int branchId) {
 		RestTemplate template = new RestTemplate();
-		String url = "http://localhost:6262/milkCollection";
+		String url = "http://localhost:6262/milkCollection/branchId"+branchId;
 
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType( MediaType.APPLICATION_JSON );
