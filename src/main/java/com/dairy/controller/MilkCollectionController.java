@@ -62,8 +62,10 @@ public class MilkCollectionController {
 	}
 
 	@PostMapping
-	public String addMilkCollection(@ModelAttribute MilkCollectionRequestDto dto, Model model, RedirectAttributes ra) {
-		String response = milkCollectionService.addMilkCollection(dto);
+	public String addMilkCollection(@ModelAttribute MilkCollectionRequestDto dto, Model model, RedirectAttributes ra,HttpSession session) {
+		
+		int branchId = (int) session.getAttribute("branchId");
+		String response = milkCollectionService.addMilkCollection(dto,branchId);
 		if (response != null && response.equals(MessageConstants.ADD_MILK_COLLECTION_SUCCESS_MESSAGE)) {
 			ra.addFlashAttribute("successMessage", response);
 			return "redirect:/milkCollection";

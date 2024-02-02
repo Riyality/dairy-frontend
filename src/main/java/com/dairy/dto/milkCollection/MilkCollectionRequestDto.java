@@ -1,6 +1,5 @@
 package com.dairy.dto.milkCollection;
 
-import java.time.LocalDateTime;
 import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -23,6 +22,7 @@ public class MilkCollectionRequestDto {
 	private Float milkRate;
 	private Float totalMilkAmount;
 	private String remark;
+	private int branchId;
 	@DateTimeFormat( pattern = "yyyy-MM-dd'T'HH:mm" )
 	private Date dateOfMilkCollection;
 }
