@@ -206,6 +206,106 @@
 	    
 			
 		});
+
+ 
+ 
+ 
+ 
+ /*Bonus To Farmer Script Start*/
+ 
+ var fDate
+ var tDate;
+ $(document).ready(function () {
+        
+     $("#getFarmerRecords").on("click", function () {
+         fDate=fromDate
+         var bonusFlag = $(this).data("flag");
+         var fromDate = $("#fromDate").val();
+         var toDate = $("#toDate").val();
+         var bonusAmountPerLiter = $("#bonusAmountPerLiter").val();
+     	
+         fDate=fromDate
+         tDate=toDate
+         var milkType = document.querySelector('input[name="milkType"]:checked').value;
+
+         $.ajax({
+             url: 'http://localhost:6161/bonusToFarmer/' + fromDate + '/' + toDate + '/' + milkType,
+             type: 'GET',
+             dataType: 'json',
+             success: function (result) {
+                 console.log(result)
+                 $("#file-export tbody").empty();
+                 for (var i = 0; i < result.length; i++) {
+                     var farmer = result[i];
+                     var formattedDate = new Date(farmer.dateOfMilkCollection).toISOString().split('T')[0];
+                     if (flag = bonusFlag){
+                     var newRow = '<tr class="gridjs-tr">' +
+                     '<td>' + '<input type="checkbox" id="checkbox-' + farmer.farmerId + '" onchange="updateSelectedFarmers(' + farmer.farmerId + ')" data-farmer-id="' + farmer.farmerId + '"> ' + '</td>' +
+                     '<td>' + farmer.farmerName + '</td>' +
+                     '<td>' +farmer.milkQuantity  + '</td>' +
+                     '<td>' + farmer.totalMilkAmount + '</td>' +
+                     '<td>' + farmer.milkQuantity*bonusAmountPerLiter + '</td>' +
+                     '</tr>';
+                     }else{
+                    	alert("this is another");
+                     }
+
+                   $("#file-export tbody").append(newRow);
+
+
+                 }
+             },
+             error: function (error) {
+                 console.error('Error fetching data:', error);
+             }
+         });
+     });
+     
+     
+     
+     var selectedFarmerIds = [];
+	    $("#file-export").on("change", ":checkbox", function () {
+	    var farmerId = $(this).data("farmer-id");		
+	    if (this.checked) {
+	        selectedFarmerIds.push(farmerId); 
+	    } else {
+	        selectedFarmerIds = selectedFarmerIds.filter(id => id !== farmerId);
+	    }
+	  	});
+	    function generatePdf(selectedFarmerIds) {
+	    	 var encodedFarmerIds = selectedFarmerIds.map(function(id) {
+	    	        return encodeURIComponent(id);
+	    	    }).join(',');
+	    	 console.log(encodedFarmerIds)
+	    
+	    var fromDate = fDate; 
+	    var toDate = tDate;
+	    var bonusAmountPerLiter = $("#bonusAmountPerLiter").val();
+	    var milkType = document.querySelector('input[name="milkType"]:checked').value;
+	    var url = "/generatePdfBonus?" +
+	        "fromDate=" + encodeURIComponent(fromDate) +
+	        "&toDate=" + encodeURIComponent(toDate) +
+	        "&bonusAmountPerLiter=" + encodeURIComponent(bonusAmountPerLiter) +
+	        "&milkType=" + encodeURIComponent(milkType) +
+	        "&encodedFarmerIds=" + encodedFarmerIds;
+	    
+
+	    $("#pdfIframe").attr("src", url);
+	    }
+		$("#pdfForm").submit(function (event) { 
+		    generatePdf(selectedFarmerIds);
+		    event.preventDefault();
+		});
+	          
+		
+
+     }); 
+
+
+         /*Bonus To Farmer Script end*/
+ 
+ 
+
 		
 		  /*Milk Collection Script End*/
 		  
@@ -306,4 +406,5 @@
 	                
  			});
 		 /*Payment To Farmer Script Start*/ 
+
 		

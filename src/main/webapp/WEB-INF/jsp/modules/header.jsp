@@ -756,7 +756,30 @@
                                 
                             </ul>
                         </li>
-                        <!-- End Milkrate slide -->
+                        <!-- End Bonus slide -->
+                        
+                         <!-- Start farmer animal slide -->
+                         
+                          <!-- Start Milkrate  slide  -->
+                        
+                        <li class="slide has-sub">
+                            <a href="javascript:void(0);" class="side-menu__item">
+                                <i class="bx bx-file-blank side-menu__icon"></i>
+                                <span class="side-menu__label">Bonus</span>
+                                <i class="fe fe-chevron-right side-menu__angle"></i>
+                            </a>
+                            <ul class="slide-menu child1">
+                                <li class="slide side-menu__label1">
+                                    <a href="javascript:void(0);">Bonus </a>
+                                </li>
+                                <li class="slide">
+                                    <a href="/bonusToFarmer" class="side-menu__item">Genarte Bonus</a>
+                                </li>
+                                 
+                                
+                            </ul>
+                        </li>
+                        <!-- End Bonus slide -->
                         
                          <!-- Start farmer animal slide -->
                         
