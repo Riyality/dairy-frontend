@@ -77,7 +77,12 @@ public class FeedTypeController {
 
 	@PostMapping("/update")
 	public String update(@ModelAttribute FeedTypeRequestDto dto, Model m, RedirectAttributes ra, HttpSession session) {
+	
+		int branchId = (int) session.getAttribute("branchId");
+			dto.setBranchId(branchId);
+		
 		String response = feedTypeService.updateFeedCompany(dto);
+		
 		if (response != null && response.equals(MessageConstants.UPDATE_FEEDTYPE_SUCCESS_MESSAGE)) {
 			ra.addFlashAttribute("successMessage", MessageConstants.UPDATE_FEEDTYPE_SUCCESS_MESSAGE);
 			return "redirect:/feedTypes";

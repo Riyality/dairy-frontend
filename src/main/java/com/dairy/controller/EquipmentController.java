@@ -59,7 +59,11 @@ public class EquipmentController {
 	}
 
 	@PostMapping("/update")
-	public String updateEquipments(@ModelAttribute EquipmentRequestDto equipmentRequestDto, RedirectAttributes ra) {
+	public String updateEquipments(@ModelAttribute EquipmentRequestDto equipmentRequestDto, RedirectAttributes ra,HttpSession session) {
+		
+		int branchId = (int) session.getAttribute("branchId");
+		equipmentRequestDto.setBranchId(branchId);
+		
 		String response = equipmentService.update(equipmentRequestDto);
 		if (response != null && response.equals(MessageConstants.UPDATE_EQIPMENT_SUCCESS_MESSAGE)) {
 			ra.addFlashAttribute("successMessage", MessageConstants.UPDATE_EQIPMENT_SUCCESS_MESSAGE);

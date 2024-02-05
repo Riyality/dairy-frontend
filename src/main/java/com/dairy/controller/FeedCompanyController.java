@@ -67,6 +67,10 @@ public class FeedCompanyController {
 	@PostMapping("/update")
 	public String update (@ModelAttribute FeedCompanyRequestDto dto, Model m, RedirectAttributes ra ,
             HttpSession session){
+		
+		int branchId = (int) session.getAttribute("branchId");
+		dto.setBranchId(branchId);
+		
 		String response = feedCompanyService.updateFeedCompany(dto);
 		if (response != null && response.equals(MessageConstants.UPDATE_FEEDCOMPANY_SUCCESS_MESSAGE)) {
 			ra.addFlashAttribute("successMessage", MessageConstants.UPDATE_FEEDCOMPANY_SUCCESS_MESSAGE);
