@@ -29,7 +29,7 @@ public class MilkCollectionServiceImpl implements MilkCollectionService {
 	public String addMilkCollection(MilkCollectionRequestDto dto, int branchId) {
     
 		RestTemplate template = new RestTemplate();
-		String url = "http://localhost:6262/milkCollection/branchId"+branchId;
+		String url = "http://localhost:6262/milkCollection/branchId/"+branchId;
 
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType( MediaType.APPLICATION_JSON );
