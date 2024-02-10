@@ -2,6 +2,17 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <jsp:include page="../modules/header.jsp" />
 <style>
+
+
+    .button-container {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .button-container button {
+        margin: 0;
+    }
+
 </style>
 <body>
     <div class="main-content app-content p-4">
@@ -33,7 +44,7 @@
                                     <input  class="form-check-input" type="radio"  name="milkType" value="baffalo" />Buffalo
                                 </div>
                                 <div class="col-12">
-                                   <button class="btn btn-primary dairy-form-btn" type="button" id="getFarmerRecords"  data-flag="bonusFlag">Get Records </button>
+                                   <button class="btn btn-primary dairy-form-btn" type="button" id="getFarmerRecordsBonus"  data-flag="bonusFlag">Get Records </button>
 
                                 </div>
                             </form>
@@ -41,27 +52,22 @@
                             <table id="file-export" class="table table-bordered dataTable no-footer dairy-table-border mt-2">
                                 <thead>
                                     <tr class="dairy-table-head">
-                                        <th>Select </th>
+                                        <th><input type="checkbox" onchange="toggleAllCheckboxes(this)"></th>
                                         <th>Farmer Name</th>
-                                         <th>Quantity</th>
-                                        <th>Amount</th>
-                                        <th>Bonus Amount</th>
+                                         <th>Total Milk</th>
+                                        <th> TotalBonus Amount</th>
                                     </tr>
                                 </thead>
                                 <tbody >
                                 </tbody>
                             </table>
-                            <form class="mt-2" id="pdfForm" action="generatePdfBonus" method="get" target="pdfIframe">
-                                <input type="hidden" name="fromDate" />
-                               <input type="hidden" name="toDate" />
-                              <input type="hidden" name="milkType" />
-                                <input type="hidden" name="bonusAmountPerLiter" />
-                              <button type="submit">Generate PDF</button>
-                          </form>
-                            
-
-                            <!-- Display PDF in iframe -->
-                            <iframe id="pdfIframe" name="pdfIframe" width="100%" height="500"></iframe>
+                                       <div class="row">
+                                         <div class="col-4">
+                                        <div class="mt-2">
+                                       <button type="submit" id="submitSelectedRecords" class="btn btn-primary">Submit</button>
+                                     </div>
+                                   </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -71,7 +77,7 @@
     <jsp:include page="../modules/footer.jsp" />
 
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
+ 
 </body>
 
 
