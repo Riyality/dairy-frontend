@@ -2,7 +2,7 @@
  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
         <footer class="footer mt-auto py-3 bg-white text-center">
             <div class="container">
-                <span class="text-muted"> Copyright © <span id="year"></span> <a href="javascript:void(0);" class="text-dark fw-semibold">Riyality</a>. Designed by
+                <span class="text-muted"> Copyright Â© <span id="year"></span> <a href="javascript:void(0);" class="text-dark fw-semibold">Riyality</a>. Designed by
                 <a href="https://www.riyalitysoftwares.com/" target="_blank">
                     <span class="fw-semibold text-primary text-decoration-underline">Riyality Softwares</span>
                 </a> All rights reserved
@@ -15,6 +15,13 @@
     <!-- END PAGE-->
 
     <!-- SCRIPTS -->
+    
+    <script>
+	    function changeLanguage() {
+	        var lang = document.getElementById("language-select").value;
+	        window.location.href = "${pageContext.request.contextPath}/changeLanguage?lang=" + lang;
+	    }
+	</script>
 
     <!-- SCROLL-TO-TOP -->
     <div class="scrollToTop">
