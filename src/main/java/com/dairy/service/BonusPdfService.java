@@ -15,5 +15,5 @@ public interface BonusPdfService {
 
 	List<BonusToFarmerResponseDto> findAllBonusRecords(int branchId);
 
-	String storeBonusRecord(BonusToFarmerRequestDto dtoCopy);
+	public String storeBonusRecord(BonusToFarmerRequestDto dtoCopy);
 }
