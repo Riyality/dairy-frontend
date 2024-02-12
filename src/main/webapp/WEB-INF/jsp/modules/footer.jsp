@@ -15,6 +15,13 @@
     <!-- END PAGE-->
 
     <!-- SCRIPTS -->
+    
+    <script>
+	    function changeLanguage() {
+	        var lang = document.getElementById("language-select").value;
+	        window.location.href = "${pageContext.request.contextPath}/changeLanguage?lang=" + lang;
+	    }
+	</script>
 
     <!-- SCROLL-TO-TOP -->
     <div class="scrollToTop">
