@@ -63,7 +63,7 @@ public class MilkCollectionController {
 
 	@PostMapping
 	public String addMilkCollection(@ModelAttribute MilkCollectionRequestDto dto, Model model, RedirectAttributes ra,HttpSession session) {
-		System.out.println(dto);
+
 		int branchId = (int) session.getAttribute("branchId");
 		String response = milkCollectionService.addMilkCollection(dto,branchId);
 		if (response != null && response.equals(MessageConstants.ADD_MILK_COLLECTION_SUCCESS_MESSAGE)) {

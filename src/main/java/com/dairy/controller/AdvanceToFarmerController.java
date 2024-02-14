@@ -5,6 +5,8 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,8 +19,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.dairy.constants.MessageConstants;
 import com.dairy.dto.advanceToFarmer.AdvanceToFarmerRequestDto;
 import com.dairy.dto.advanceToFarmer.AdvanceToFarmerResponseDto;
-import com.dairy.dto.branch.BranchRequestDto;
-import com.dairy.dto.branch.BranchResponseDto;
 import com.dairy.dto.farmer.FarmerResponseDto;
 import com.dairy.service.AdvanceToFarmerService;
 import com.dairy.service.FarmerService;
@@ -75,6 +75,17 @@ public class AdvanceToFarmerController {
 		return "advanceToFarmers/update";
 
 	}
+	
+
+	 @GetMapping("farmerId/{farmerId}")
+		public ResponseEntity<Double> findTotalOfRemainingAmountByFarmerIdAndBranchId(
+		        @PathVariable("farmerId") Long farmerId,HttpSession session) {
+		 	int branchId = (int) session.getAttribute("branchId");
+		    Double result = advanceToFarmerService.findTotalOfRemainingAmountByFarmerIdAndBranchId(farmerId, branchId);
+
+		    return ResponseEntity.status(HttpStatus.OK).body(result);
+		}
+	
 
 	@PostMapping("/update")
 	public String updateAdvance(@ModelAttribute AdvanceToFarmerRequestDto advanceRequestDto, RedirectAttributes ra,

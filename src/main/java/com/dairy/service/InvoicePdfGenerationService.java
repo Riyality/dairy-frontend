@@ -1,12 +1,9 @@
 package com.dairy.service;
 
 import java.io.IOException;
-import java.text.DecimalFormat;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletOutputStream;
@@ -21,7 +18,6 @@ import com.itextpdf.text.FontFactory;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Phrase;
 import com.itextpdf.text.Rectangle;
-import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
@@ -29,7 +25,7 @@ import com.itextpdf.text.pdf.PdfWriter;
 @Service
 public class InvoicePdfGenerationService {
 
-	public void generatePdf(ServletOutputStream outputStream, List<MilkCollectionResponseDto> list, String fromDate, String toDate) {
+	public void generatePdf(ServletOutputStream outputStream, List<MilkCollectionResponseDto> list, String fromDate, String toDate, List<String> farmerId) {
 		try {
 			
 			Document document = new Document();
@@ -39,24 +35,41 @@ public class InvoicePdfGenerationService {
 			Font cellFont = FontFactory.getFont(FontFactory.HELVETICA, 10);
 			Font boldFont = FontFactory.getFont(FontFactory.HELVETICA_BOLD);
 
-			//String marathiFontPath = "C:/Windows/Fonts/Tiro Devanagari Marathi";
-			// Create a BaseFont object with the Marathi font
-			//String marathiFontPath = "C:/Users/Admin/Desktop/New folder/Kruti_Dev_010.ttf";
-			//BaseFont marathiBaseFont = BaseFont.createFont(marathiFontPath, BaseFont.IDENTITY_H, BaseFont.EMBEDDED, BaseFont.CACHED);
-			//Font marathiFont = new Font(marathiBaseFont, 16);
+			for (String encodedFarmerId : farmerId) {
+                int customerId = Integer.parseInt(encodedFarmerId);
 
-			String BranchName=null;
-			String farmerName=null;
-			String MilkType=null;
-			
-			int customerId=0;
-			 for (MilkCollectionResponseDto dto : list) {
-				 farmerName = dto.getFarmerName();
-				 MilkType=dto.getAnimalType();
-				 customerId=dto.getFarmerId();
-				 BranchName=dto.getBranchName();
-				 }
-			
+                String BranchName = null;
+                String farmerName = null;
+                String MilkType = null;
+                double morningTotalLitre = 0;
+                double morningTotalAmount = 0;
+                double eveningTotalLitre = 0;
+                double eveningTotalAmount = 0;
+                double totalLitreMorningShift = 0;
+                double totalAmountMorinigShift = 0;
+                double totalLitreEveningShift = 0;
+                double totalAmountEveningShift = 0;
+                double averageRateMorningShift = 0;
+                double averageRateEveningShift = 0;
+                float averageFatMorningShift = 0;
+                float averageFatEveningShift = 0;
+                float averageSnfMorningShift = 0;
+                float averageSnfEveningShift = 0;
+                int snfCountMorning = 0;
+                int snfCountEvening = 0;
+                int fatCountMorning = 0;
+                int fatCountEvening = 0;
+                int rateCountMorning = 0;
+                int rateCountEvening = 0;
+              
+                for (MilkCollectionResponseDto dto : list) {
+                    if (dto.getFarmerId() == customerId) {
+                        farmerName = dto.getFarmerName();
+                        MilkType = dto.getAnimalType();
+                        BranchName = dto.getBranchName();
+                    }
+                   
+                }
 			//Paragraph title = new Paragraph("egky{eh nq/k laLFkk", marathiFont);
 			Paragraph title = new Paragraph(BranchName, titleFont);
 			title.setAlignment(Element.ALIGN_CENTER);
@@ -66,13 +79,11 @@ public class InvoicePdfGenerationService {
 			 LocalDate to = LocalDate.parse(toDate, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 			 String displayFromDate = from.format(DateTimeFormatter.ofPattern("dd/MM/yy"));
 			 String displayToDate = to.format(DateTimeFormatter.ofPattern("dd/MM/yy"));
-			
-			
-			
+
 
 			Paragraph khata = new Paragraph("Khata No:"+customerId, cellFont);
 			khata.setAlignment(Element.ALIGN_LEFT);
-			Paragraph spacer1 = new Paragraph("                                                          ");
+			Paragraph spacer1 = new Paragraph("                                                       ");
 
 			// Second paragraph (right-aligned)
 			Paragraph bill = new Paragraph("Bill Type: " +MilkType);
@@ -88,8 +99,8 @@ public class InvoicePdfGenerationService {
 			// Add the Phrase to the PDF
 			document.add(phrase1);
 			
-			Paragraph CustomeraName = new Paragraph(" Name:"+farmerName);
-			CustomeraName.setAlignment(Element.ALIGN_LEFT);
+			Paragraph CustomerName = new Paragraph(" Name:"+farmerName);
+			CustomerName.setAlignment(Element.ALIGN_LEFT);
 			// document.add(CustomeraName);
  
 			Paragraph spacer2 = new Paragraph("                                            ");
@@ -97,7 +108,7 @@ public class InvoicePdfGenerationService {
 			date.setAlignment(Element.ALIGN_RIGHT);
 
 			Phrase phrase2 = new Phrase();
-			phrase2.add(CustomeraName);
+			phrase2.add(CustomerName);
 			phrase2.add(spacer2);
 			phrase2.add(spacer2);
 			phrase2.add(date);
@@ -191,34 +202,18 @@ public class InvoicePdfGenerationService {
 
 		    for (MilkCollectionResponseDto dto : list) {
 		        if ("Morning".equalsIgnoreCase(dto.getShift())) {
+		        	if(customerId==dto.getFarmerId()) {
 		            morningRecords.add(dto);
+		            }
 		        } else if ("Evening".equalsIgnoreCase(dto.getShift())) {
-		            eveningRecords.add(dto);
+		           
+		        	if(customerId==dto.getFarmerId()) {
+		        		eveningRecords.add(dto);
+			            }
+		        	
 		        }
 		    }
 		    
-		    double morningTotalLitre = 0;//Rows sum of Litre
-		    double morningTotalAmount = 0;//Rows sum Amount
-		    double eveningTotalLitre = 0;
-		    double eveningTotalAmount = 0;
-		    double totalLitreMorningShift = 0;//Column Total litre
-		   
-		    double totalAmountMorinigShift = 0;
-		    
-		    double totalLitreEveningShift = 0;
-		    double totalAmountEveningShift = 0;
-		    double averageRateMorningShift = 0;
-		    double averageRateEveningShift = 0;
-		    float averageFatMorningShift = 0;
-		    float averageFatEveningShift = 0;
-		    float averageSnfMorningShift = 0;
-		    float averageSnfEveningShift = 0;
-		    int snfCountMorning=0;
-		    int snfCountEvening=0;
-		    int fatCountMorning=0;
-		    int fatCountEvening=0;
-		    int rateCountMorning = 0;
-		    int rateCountEvening = 0;
 		    // Create a new row for each date
 		    for (int i = 0; i < Math.max(morningRecords.size(), eveningRecords.size()); i++) {
 		        if (i < morningRecords.size()) {
@@ -244,13 +239,21 @@ public class InvoicePdfGenerationService {
 		        } else {
 		        	
 		            // Add empty cells for Morning
-		            for (int j = 0; j < 6; j++) {
-		                table.addCell(createCellWithFont("", cellFont));
-		            }
+		        	for (int j = 0; j < 6; j++) {
+		        	    if (j==0) {
+		        	        MilkCollectionResponseDto eveningRecord = eveningRecords.get(0);
+		        	        LocalDate currentDate = eveningRecord.getDateOfMilkCollection();
+		        	        table.addCell(createCellWithFont(currentDate, cellFont));//Added Date to evening Records 
+		        	    } else {
+		        	        table.addCell(createCellWithFont("-", cellFont));
+		        	    }
+		        	}
+
 		        }           
 		        if (i < eveningRecords.size()) {
 		            MilkCollectionResponseDto eveningRecord = eveningRecords.get(i);
 		            // Add cells for Evening
+		            //LocalDate currentDate = eveningRecord.getDateOfMilkCollection();
 		            eveningTotalLitre = eveningRecord.getMilkQuantity();
 		            eveningTotalAmount = eveningRecord.getTotalMilkAmount();
 		            totalLitreEveningShift+=eveningRecord.getMilkQuantity();
@@ -261,6 +264,7 @@ public class InvoicePdfGenerationService {
 		            rateCountEvening++;
 		            fatCountEvening++;
 		            snfCountEvening++;
+		           // table.addCell(createCellWithFont(currentDate, cellFont));
 		            table.addCell(createCellWithFont(String.valueOf(eveningRecord.getMilkQuantity()), cellFont));
 		            table.addCell(createCellWithFont(String.valueOf(eveningRecord.getMilkFat()), cellFont));
 		            table.addCell(createCellWithFont(String.valueOf(eveningRecord.getMilkSNF()), cellFont));
@@ -269,20 +273,19 @@ public class InvoicePdfGenerationService {
 		        } else {
 		            // Add empty cells for Evening
 		            for (int j = 0; j < 5; j++) {
-		                table.addCell(createCellWithFont("", cellFont));
+		                table.addCell(createCellWithFont("-", cellFont));
 		            }
 		           
 		        }
 		       
-		        table.addCell(createCellWithFont(String.valueOf(morningTotalLitre+eveningTotalLitre), cellFont));//Rows Litre Total of Morning & Evening
+		        table.addCell(createCellWithFont(String.valueOf(morningTotalLitre+eveningTotalLitre), cellFont));//Rows Liter Total of Morning & Evening
 			    table.addCell(createCellWithFont(String.valueOf(morningTotalAmount+eveningTotalAmount), cellFont));//Rows TotalAmount Total of Morning & Evening
 		        // Add empty cells for Total
 		        for (int j = 0; j < 6; j++) {
 		            table.addCell(createCellWithFont("", cellFont));
 		            
 		        }
-		        
-
+		        		 
 		        PdfPCell lineCell = new PdfPCell();
 		        lineCell.setColspan(13);
 		        lineCell.setBorder(Rectangle.NO_BORDER);
@@ -298,17 +301,24 @@ public class InvoicePdfGenerationService {
 		    float averageSnfMorning =  (float) (snfCountMorning > 0 ? averageSnfMorningShift / snfCountMorning : 0.0);
 		    float averageSnfEvening =  (float) (snfCountEvening > 0 ? averageSnfEveningShift / snfCountEvening : 0.0);
 		   
-		  //Total Row
+		    
+		    String formattedSnfEvening = String.format("%.1f", averageSnfEvening);
+		    String formattedSnfMorning = String.format("%.1f", averageSnfMorning);
+		    String formattedFatMorning = String.format("%.1f", averageFatMorning);
+		    String formattedFatEvening = String.format("%.1f", averageFatEvening); 
+		    String formattedRateEvening = String.format("%.1f", averageRateEvening);
+		    String formattedRateMorning = String.format("%.1f", averageRateMorning);
+		    //Total Row
 		    table.addCell(createCellWithFont("Total", boldFont));
 		    table.addCell(createCellWithFont(String.valueOf(totalLitreMorningShift), cellFont));//Column Total litre
-		    table.addCell(createCellWithFont(String.valueOf(averageFatMorning), cellFont));
-		    table.addCell(createCellWithFont(String.valueOf(averageSnfMorning), cellFont));
-		    table.addCell(createCellWithFont(String.valueOf(averageRateMorning), cellFont));
+		    table.addCell(createCellWithFont(String.valueOf(formattedFatMorning), cellFont));
+		    table.addCell(createCellWithFont(String.valueOf(formattedSnfMorning), cellFont));
+		    table.addCell(createCellWithFont(String.valueOf(formattedRateMorning), cellFont));
 		    table.addCell(createCellWithFont(String.valueOf(totalAmountMorinigShift), cellFont));
 		    table.addCell(createCellWithFont(String.valueOf(totalLitreEveningShift), cellFont));
-		    table.addCell(createCellWithFont(String.valueOf(averageFatEvening), cellFont));
-		    table.addCell(createCellWithFont(String.valueOf(averageSnfEvening), cellFont));
-		    table.addCell(createCellWithFont(String.valueOf(averageRateEvening), cellFont));
+		    table.addCell(createCellWithFont(String.valueOf(formattedFatEvening), cellFont));
+		    table.addCell(createCellWithFont(String.valueOf(formattedSnfEvening), cellFont));//##
+		    table.addCell(createCellWithFont(String.valueOf(formattedRateEvening), cellFont));
 		    table.addCell(createCellWithFont(String.valueOf(totalAmountEveningShift), cellFont));
 		    table.addCell(createCellWithFont(String.valueOf(totalLitreMorningShift+totalLitreEveningShift), boldFont));//Added Morning Total Litre And Evening Total
 		    table.addCell(createCellWithFont(String.valueOf(totalAmountMorinigShift+totalAmountEveningShift), boldFont));//Added Morning Total Litre And Evening Total
@@ -343,22 +353,23 @@ public class InvoicePdfGenerationService {
 			table2.addCell(createCellWithFont("Total Pay:0.0", cellFont));
 			
 			document.add(table2);
-
-			document.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				outputStream.flush();
-				outputStream.close();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-
-	}
 	
-
+			 if (!encodedFarmerId.equals(farmerId.get(farmerId.size() - 1))) {
+                 document.newPage();
+             }
+         }
+	   document.close();
+     } catch (Exception e) {
+         e.printStackTrace();
+     } finally {
+         try {
+             outputStream.flush();
+             outputStream.close();
+         } catch (IOException e) {
+             e.printStackTrace();
+         }
+     }
+ }
 	private PdfPCell createCellWithFont(String content, Font font) {
 	    PdfPCell cell = new PdfPCell(new Phrase(content, font));
 	    cell.setBorderWidth(0);
@@ -367,7 +378,6 @@ public class InvoicePdfGenerationService {
 	   // cell.setBorder(Rectangle.BOTTOM); // Set the bottom border for the cell
 	    return cell;
 	}
-
 	private PdfPCell createCellWithFont(LocalDate localDate, Font font) {
 	    String formattedDate = formatDateToDayMonth(localDate);
 	    PdfPCell cell = createCellWithFont(formattedDate, font);

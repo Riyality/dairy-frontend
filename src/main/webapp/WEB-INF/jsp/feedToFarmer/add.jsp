@@ -74,7 +74,14 @@
 									<label class="form-label dairy-input-label">Total Amount</label>
 									<input type="text" class="form-control dairy-form-input" placeholder="Total Amount" id="FeedTotalAmount" name="totalAmount">
 								</div>
-								
+								<div class="col-md-6">
+									<label class="form-label dairy-input-label">Amount Paid</label>
+									<input type="text" class="form-control dairy-form-input" placeholder="Total Amount" id="FeedAmountPaid" name="paidAmount">
+								</div>
+								<div class="col-md-6">
+									<label class="form-label dairy-input-label">Remaining Amount</label>
+									<input type="text" class="form-control dairy-form-input" placeholder="Total Amount" id="FeedremainingAmount" name="remainingAmount">
+								</div>
 								<div class="col-12">
 									<label class="form-label dairy-input-label">Remark</label>
 									<textarea class="col-12 dairy-textarea" rows="4" name="remark" placeholder="Enter Remark Here"></textarea> 
@@ -98,7 +105,7 @@
 	
 			 function setDefaultDate() {
 		
-		alert("kljj")
+		//alert("kljj")
 				 
 			        var today = new Date();
 			        var year = today.getFullYear();

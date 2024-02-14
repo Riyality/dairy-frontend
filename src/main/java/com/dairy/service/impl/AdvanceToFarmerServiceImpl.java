@@ -23,6 +23,9 @@ import lombok.extern.slf4j.Slf4j;
 public class AdvanceToFarmerServiceImpl implements AdvanceToFarmerService {
 	@Override
 	public String addAdvance(AdvanceToFarmerRequestDto advanceRequestDto) {
+		
+		//advanceRequestDto.setRemainingAmount(null);
+		
 		RestTemplate template = new RestTemplate();
 		String url = "http://localhost:6262/advanceToFarmer";
 
@@ -92,6 +95,25 @@ public class AdvanceToFarmerServiceImpl implements AdvanceToFarmerService {
 			return result.getBody();
 		} catch ( Exception e ) {
 			log.error( e.getMessage(), e );
+		}
+		return null;
+	}
+
+	@Override
+	public Double findTotalOfRemainingAmountByFarmerIdAndBranchId(Long farmerId, int branchId) {
+		
+		RestTemplate template = new RestTemplate();
+		String url = "http://localhost:6262/advanceToFarmer/" + farmerId+"/"+branchId;
+		HttpHeaders headers = new HttpHeaders();
+		HttpEntity<String> entity = new HttpEntity<>("body", headers);
+		try {
+
+			ResponseEntity<Double> res = template.exchange(url, HttpMethod.GET, entity,
+					Double.class);
+			return res.getBody();
+
+		} catch (Exception e) {
+			log.error(e.getMessage(), e);
 		}
 		return null;
 	}

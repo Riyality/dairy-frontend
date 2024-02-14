@@ -23,6 +23,7 @@ public class MilkCollectionRequestDto {
 	private Float totalMilkAmount;
 	private String remark;
 	private int branchId;
-	@DateTimeFormat(pattern = "yyyy/MM/dd")
+	@DateTimeFormat( pattern = "yyyy-MM-dd" )
 	private Date dateOfMilkCollection;
+	
 }

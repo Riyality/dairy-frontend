@@ -26,6 +26,8 @@
 		                      <th>Quantity</th>
 		                      <th>Rate per Unit</th>
 		                      <th>Total Amount</th>
+							  <th>Paid Amount</th>
+							  <th>Remaining Amount</th>
 		                      <th></th>
 		                      <th>Action</th>
 		                  </tr>
@@ -40,6 +42,8 @@
                               <td>${feedToFarmer.quantity }</td>
                                <td>${feedToFarmer.feedRate}</td>
                                 <td>${feedToFarmer.totalAmount }</td>
+								<td>${feedToFarmer.paidAmount }</td>
+								<td>${feedToFarmer.remainingAmount }</td>
                             <td>
                               <a href="http://localhost:6161/feedToFarmers/${feedToFarmer.id }">
                                    <button class="btn btn-sm btn-primary dairy-form-btn">Check Feed Data</button>

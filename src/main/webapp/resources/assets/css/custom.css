@@ -60,6 +60,25 @@
     font-width: 500;
     color: #666;
   }
+ 
+ #eyeButton {
+   color: blue;
+  font-size: 16px; 
+  padding: 4px 8px; 
+  border: none;
+  border-radius: 25px;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+#eyeButton:hover {
+  background-color: #e0e0e0; 
+}
+
+#DisplayfarmerName{
+    font-size: medium;
+   font-weight: bold;
+}
   
   .listIcons{
   	font-size: 17px;
