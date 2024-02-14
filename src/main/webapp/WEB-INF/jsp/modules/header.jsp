@@ -1,14 +1,17 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%-- <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%> --%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<%@ page session="false" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
 
-
 <meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=no'>
+
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="Description" content="Laravel Bootstrap Responsive Admin Web Dashboard Template">
 <meta name="Author" content="Spruko Technologies Private Limited">
@@ -20,10 +23,14 @@
 <!-- FAVICON -->
 <link rel="icon" href="<c:url value="/resources/assets/images/brand-logos/favicon.ico"/>" type="image/x-icon">
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
 <!-- BOOTSTRAP CSS -->
 <link id="style" href="<c:url value="/resources/assets/libs/bootstrap/css/bootstrap.min.css"/>" rel="stylesheet">
-   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-  
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
 <!-- ICONS CSS -->
 <link href="<c:url value="/resources/assets/icon-fonts/icons.css"/>" rel="stylesheet">
 
@@ -32,7 +39,7 @@
 <link rel="stylesheet" href="<c:url value="/resources/assets/app-fce3f544.css"/>" />
 
 <!-- NODE WAVES CSS -->
-<link href = "<c:url value="/resources/assets/ts/libs/node-waves/waves.min.css"/>" rel="stylesheet">
+<link href = "<c:url value="/resources/assets/libs/node-waves/waves.min.css"/>" rel="stylesheet">
 
 <!-- SIMPLEBAR CSS -->
 <link rel="stylesheet" href="<c:url value="/resources/assets/libs/simplebar/simplebar.min.css"/>">
@@ -53,12 +60,6 @@
 <script src="<c:url value="/resources/assets/main.js"/>"></script>
 
 <script src="js/feed-distribution.js"></script>
-
-<!-- CUSTOM JS -->
-<script src="<c:url value="/resources/assets/js/custom.js"/>"></script>
-
-<!-- default-custom-script JS -->
-<script src="<c:url value="/resources/assets/js/default-custom-script.js"/>"></script>
 
 <link rel="stylesheet" href="<c:url value="/resources/assets/css/custom.css"/>" />
 
@@ -124,34 +125,7 @@
         </span> English
                                 </a>
                             </li>
-                            <li>
-                                <a class="dropdown-item d-flex align-items-center" href="javascript:void(0);">
-                                    <span class="avatar avatar-xs lh-1 me-2">
-        <img src="<c:url value="/resources/assets/images/flags/spain_flag.jpg"/>" alt="img" >
-        </span> Spanish
-                                </a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item d-flex align-items-center" href="javascript:void(0);">
-                                    <span class="avatar avatar-xs lh-1 me-2">
-        <img src="<c:url value="/resources/assets/images/flags/french_flag.jpg"/>" alt="img" >
-        </span> French
-                                </a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item d-flex align-items-center" href="javascript:void(0);">
-                                    <span class="avatar avatar-xs lh-1 me-2">
-        <img src="<c:url value="/resources/assets/images/flags/germany_flag.jpg"/>" alt="img" >
-        </span> German
-                                </a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item d-flex align-items-center" href="javascript:void(0);">
-                                    <span class="avatar avatar-xs lh-1 me-2">
-        <img src="<c:url value="/resources/assets/images/flags/italy_flag.jpg"/>" alt="img" >
-        </span> Italian
-                                </a>
-                            </li>
+                           
                             <li>
                                 <a class="dropdown-item d-flex align-items-center" href="javascript:void(0);">
                                     <span class="avatar avatar-xs lh-1 me-2">
@@ -162,128 +136,16 @@
                         </ul>
                     </div>
                     <!-- End::header-element -->
+                    
+                    <select id="language-select" onchange="changeLanguage()">
+                        <option value="">Select Lang</option>
+					    <option value="en" <c:if test="${lang eq 'en'}">selected</c:if>>English</option>
+					    <option value="mr" <c:if test="${lang eq 'mr'}">selected</c:if>>मराठी</option>
+					</select>
 
                     <!-- Start::header-element -->
                     <div class="header-element header-theme-mode">
                         <!-- Start::header-link|layout-setting -->
-                    </div>
-                    <!-- End::header-element -->
-
-                    
-                    <!-- Start::header-element -->
-                    <div class="header-element notifications-dropdown">
-                        <!-- Start::header-link|dropdown-toggle -->
-                        <a href="javascript:void(0);" class="header-link dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" id="messageDropdown" aria-expanded="false">
-                            <i class="bx bx-bell header-link-icon"></i>
-                            <span class="badge bg-secondary rounded-pill header-icon-badge pulse pulse-secondary" id="notification-icon-badge">5</span>
-                        </a>
-                        <!-- End::header-link|dropdown-toggle -->
-                        <!-- Start::main-header-dropdown -->
-                        <div class="main-header-dropdown dropdown-menu dropdown-menu-end" data-popper-placement="none">
-                            <div class="p-3">
-                                <div class="d-flex align-items-center justify-content-between">
-                                    <p class="mb-0 fs-17 fw-semibold">Notifications</p>
-                                    <span class="badge bg-secondary-transparent" id="notifiation-data">5 Unread</span>
-                                </div>
-                            </div>
-                            <div class="dropdown-divider"></div>
-                            <ul class="list-unstyled mb-0" id="header-notification-scroll">
-                                <li class="dropdown-item">
-                                    <div class="d-flex align-items-start">
-                                        <div class="pe-2">
-                                            <span class="avatar avatar-md bg-primary-transparent avatar-rounded"><i class="ti ti-gift fs-18"></i></span>
-                                        </div>
-                                        <div class="flex-grow-1 d-flex align-items-center justify-content-between">
-                                            <div>
-                                                <p class="mb-0 fw-semibold"><a href="notifications.html">Your Order Has Been Shipped</a></p>
-                                                <span class="text-muted fw-normal fs-12 header-notification-text">Order No: 123456 Has Shipped To Your Delivery Address</span>
-                                            </div>
-                                            <div>
-                                                <a href="javascript:void(0);" class="min-w-fit-content text-muted me-1 dropdown-item-close1"><i class="ti ti-x fs-16"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="dropdown-item">
-                                    <div class="d-flex align-items-start">
-                                        <div class="pe-2">
-                                            <span class="avatar avatar-md bg-secondary-transparent avatar-rounded"><i class="ti ti-discount-2 fs-18"></i></span>
-                                        </div>
-                                        <div class="flex-grow-1 d-flex align-items-center justify-content-between">
-                                            <div>
-                                                <p class="mb-0 fw-semibold"><a href="notifications.html">Discount Available</a></p>
-                                                <span class="text-muted fw-normal fs-12 header-notification-text">Discount Available On Selected Products</span>
-                                            </div>
-                                            <div>
-                                                <a href="javascript:void(0);" class="min-w-fit-content text-muted me-1 dropdown-item-close1"><i class="ti ti-x fs-16"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="dropdown-item">
-                                    <div class="d-flex align-items-start">
-                                        <div class="pe-2">
-                                            <span class="avatar avatar-md bg-pink-transparent avatar-rounded"><i class="ti ti-user-check fs-18"></i></span>
-                                        </div>
-                                        <div class="flex-grow-1 d-flex align-items-center justify-content-between">
-                                            <div>
-                                                <p class="mb-0 fw-semibold"><a href="notifications.html">Account Has Been Verified</a></p>
-                                                <span class="text-muted fw-normal fs-12 header-notification-text">Your Account Has Been Verified Sucessfully</span>
-                                            </div>
-                                            <div>
-                                                <a href="javascript:void(0);" class="min-w-fit-content text-muted me-1 dropdown-item-close1"><i class="ti ti-x fs-16"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="dropdown-item">
-                                    <div class="d-flex align-items-start">
-                                        <div class="pe-2">
-                                            <span class="avatar avatar-md bg-warning-transparent avatar-rounded"><i class="ti ti-circle-check fs-18"></i></span>
-                                        </div>
-                                        <div class="flex-grow-1 d-flex align-items-center justify-content-between">
-                                            <div>
-                                                <p class="mb-0 fw-semibold"><a href="notifications.html">Order Placed <span class="text-warning">ID: #1116773</span></a></p>
-                                                <span class="text-muted fw-normal fs-12 header-notification-text">Order Placed Successfully</span>
-                                            </div>
-                                            <div>
-                                                <a href="javascript:void(0);" class="min-w-fit-content text-muted me-1 dropdown-item-close1"><i class="ti ti-x fs-16"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="dropdown-item">
-                                    <div class="d-flex align-items-start">
-                                        <div class="pe-2">
-                                            <span class="avatar avatar-md bg-success-transparent avatar-rounded"><i class="ti ti-clock fs-18"></i></span>
-                                        </div>
-                                        <div class="flex-grow-1 d-flex align-items-center justify-content-between">
-                                            <div>
-                                                <p class="mb-0 fw-semibold"><a href="notifications.html">Order Delayed <span class="text-success">ID: 7731116</span></a></p>
-                                                <span class="text-muted fw-normal fs-12 header-notification-text">Order Delayed Unfortunately</span>
-                                            </div>
-                                            <div>
-                                                <a href="javascript:void(0);" class="min-w-fit-content text-muted me-1 dropdown-item-close1"><i class="ti ti-x fs-16"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                            <div class="p-3 empty-header-item1 border-top">
-                                <div class="d-grid">
-                                    <a href="notifications.html" class="btn btn-primary">View All</a>
-                                </div>
-                            </div>
-                            <div class="p-5 empty-item1 d-none">
-                                <div class="text-center">
-                                    <span class="avatar avatar-xl avatar-rounded bg-secondary-transparent">
-        <i class="ri-notification-off-line fs-2"></i>
-        </span>
-                                    <h6 class="fw-semibold mt-3">No New Notifications</h6>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End::main-header-dropdown -->
                     </div>
                     <!-- End::header-element -->
 
@@ -354,7 +216,7 @@
                         <!-- Start::slide -->
                         <li class="slide has-sub">
                             <a href="index.html" class="side-menu__item">
-                                <i class="bx bx-home side-menu__icon"></i>
+                                <i class="fa-solid fa-gauge listIcons"></i>
                                 <span class="side-menu__label">Dashboards</span>
                             </a>
                             <ul class="slide-menu child1"></ul>
@@ -369,19 +231,18 @@
                         
                         <li class="slide has-sub">
                             <a href="javascript:void(0);" class="side-menu__item">
-                                <i class="bx bx-file-blank side-menu__icon"></i>
+                                <i class="fa-solid fa-shop listIcons"></i>
                                 <span class="side-menu__label">Branch</span>
                                 <i class="fe fe-chevron-right side-menu__angle"></i>
                             </a>
                             <ul class="slide-menu child1">
-                                <li class="slide side-menu__label1">
-                                    <a href="javascript:void(0);">Branch</a>
-                                </li>
                                 <li class="slide">
-                                    <a href="/branches/add-branch-page" class="side-menu__item">Add Branch</a>
+                                    <a href="/branches/add-branch-page" class="side-menu__item">
+                                    <i class="fa fa-plus-square-o listIcons" aria-hidden="true"></i>Add Branch</a>
                                 </li>
                                  <li class="slide">
-                                    <a href="/branches" class="side-menu__item">All Branches</a>
+                                    <a href="/branches" class="side-menu__item">
+                                    <i class="fa fa-table listIcons" aria-hidden="true"></i>All Branches</a>
                                 </li>
                                 
                             </ul>
@@ -392,19 +253,17 @@
                         
                         <li class="slide has-sub">
                             <a href="javascript:void(0);" class="side-menu__item">
-                                <i class="bx bx-file-blank side-menu__icon"></i>
+                                <i class="fa-solid fa-road listIcons"></i>
                                 <span class="side-menu__label">Routes</span>
-                                <i class="fe fe-chevron-right side-menu__angle"></i>
                             </a>
                             <ul class="slide-menu child1">
-                                <li class="slide side-menu__label1">
-                                    <a href="javascript:void(0);">Routes</a>
-                                </li>
                                 <li class="slide">
-                                    <a href="/routes/add-route-page" class="side-menu__item">Add Routes</a>
+                                    <a href="/routes/add-route-page" class="side-menu__item">
+                                    <i class="fa fa-plus-square-o listIcons" aria-hidden="true"></i>Add Routes</a>
                                 </li>
                                  <li class="slide">
-                                    <a href="/routes" class="side-menu__item">All Routes</a>
+                                    <a href="/routes" class="side-menu__item">
+                                    <i class="fa fa-table listIcons" aria-hidden="true"></i>All Routes</a>
                                 </li>
                                 
                             </ul>
@@ -416,19 +275,18 @@
                         
                         <li class="slide has-sub">
                             <a href="javascript:void(0);" class="side-menu__item">
-                                <i class="bx bx-file-blank side-menu__icon"></i>
+                                <i class="fa-solid fa-building listIcons" aria-hidden="true"></i>
                                 <span class="side-menu__label">Main Branch</span>
                                 <i class="fe fe-chevron-right side-menu__angle"></i>
                             </a>
                             <ul class="slide-menu child1">
-                                <li class="slide side-menu__label1">
-                                    <a href="javascript:void(0);">Main Branch</a>
-                                </li>
                                 <li class="slide">
-                                    <a href="/mainBranchs/add-mainBranch-page" class="side-menu__item">Add Main Branch</a>
+                                    <a href="/mainBranchs/add-mainBranch-page" class="side-menu__item">
+                                    <i class="fa fa-plus-square-o listIcons" aria-hidden="true"></i>Add Main Branch</a>
                                 </li>
                                  <li class="slide">
-                                    <a href="/mainBranchs" class="side-menu__item">All Main Branches</a>
+                                    <a href="/mainBranchs" class="side-menu__item">
+                                    <i class="fa fa-table listIcons" aria-hidden="true"></i>All Main Branches</a>
                                 </li>
                                 
                             </ul>
@@ -439,20 +297,19 @@
                         
                         <li class="slide has-sub">
                             <a href="javascript:void(0);" class="side-menu__item">
-                                <i class="bx bx-file-blank side-menu__icon"></i>
+                            <i class="fa-solid fa-screwdriver-wrench listIcons"></i>
                                 <span class="side-menu__label">Equipments</span>
                                 <i class="fe fe-chevron-right side-menu__angle"></i>
                             </a>
                             <ul class="slide-menu child1">
-                                <li class="slide side-menu__label1">
-                                    <a href="javascript:void(0);">Equipments</a>
-                                </li>
                                 <li class="slide">
-                                    <a href="/equipments/add-equipment-page" class="side-menu__item">Add Equipments</a>
+                                    <a href="/equipments/add-equipment-page" class="side-menu__item">
+                                    <i class="fa fa-plus-square-o listIcons" aria-hidden="true"></i>Add Equipments</a>
                                 </li>
                                  <li class="slide">
-                                    <a href="/equipments" class="side-menu__item">All Equipments</a>
-                                </li>
+                                    <a href="/equipments" class="side-menu__item">
+                                    <i class="fa fa-table listIcons" aria-hidden="true"></i>All Equipments</a>
+                                    </li>
                                 
                             </ul>
                         </li>
@@ -462,19 +319,18 @@
                                            
                         <li class="slide has-sub">
                             <a href="javascript:void(0);" class="side-menu__item">
-                                <i class="bx bx-file-blank side-menu__icon"></i>
+                                <i class="fa-solid fa-truck listIcons"></i>
                                 <span class="side-menu__label">Feed Distribution</span>
                                 <i class="fe fe-chevron-right side-menu__angle"></i>
                             </a>
                             <ul class="slide-menu child1">
-                                <li class="slide side-menu__label1">
-                                    <a href="javascript:void(0);">Feed Distribution</a>
-                                </li>
                                 <li class="slide">
-                                    <a href="/feedToFarmers/feedToFarmer-add-page" class="side-menu__item">Add Feed Distribution</a>
+                                    <a href="/feedToFarmers/feedToFarmer-add-page" class="side-menu__item">
+                                    <i class="fa fa-plus-square-o listIcons" aria-hidden="true"></i>Add Feed Distribution</a>
                                 </li>
                                  <li class="slide">
-                                    <a href="/feedToFarmers" class="side-menu__item">All Feed Distribution</a>
+                                    <a href="/feedToFarmers" class="side-menu__item">
+                                <i     class="fa fa-table listIcons" aria-hidden="true"></i>All Feed Distribution</a>
                                 </li>
                                 
                             </ul>
@@ -485,19 +341,18 @@
                                            
                         <li class="slide has-sub">
                             <a href="javascript:void(0);" class="side-menu__item">
-                                <i class="bx bx-file-blank side-menu__icon"></i>
+                                <i class="fa-solid fa-industry listIcons"></i>
                                 <span class="side-menu__label">Feed Company</span>
                                 <i class="fe fe-chevron-right side-menu__angle"></i>
                             </a>
                             <ul class="slide-menu child1">
-                                <li class="slide side-menu__label1">
-                                    <a href="javascript:void(0);">Feed Company</a>
-                                </li>
                                 <li class="slide">
-                                    <a href="/feedCompanies/add-feed-company" class="side-menu__item">Add Feed Company</a>
+                                    <a href="/feedCompanies/add-feed-company" class="side-menu__item">
+                                    <i class="fa fa-plus-square-o listIcons" aria-hidden="true"></i>Add Feed Company</a>
                                 </li>
                                  <li class="slide">
-                                    <a href="/feedCompanies" class="side-menu__item">All Feed Companies</a>
+                                    <a href="/feedCompanies" class="side-menu__item">
+                                <i     class="fa fa-table listIcons" aria-hidden="true"></i>All Feed Companies</a>
                                 </li>
                                 
                             </ul>
@@ -508,19 +363,18 @@
                         
                         <li class="slide has-sub">
                             <a href="javascript:void(0);" class="side-menu__item">
-                                <i class="bx bx-file-blank side-menu__icon"></i>
+                                <i class="fa-solid fa-list-ol listIcons" aria-hidden="true"></i>
                                 <span class="side-menu__label">Feed Type </span>
                                 <i class="fe fe-chevron-right side-menu__angle"></i>
                             </a>
                             <ul class="slide-menu child1">
-                                <li class="slide side-menu__label1">
-                                    <a href="javascript:void(0);">Feed Type </a>
-                                </li>
                                 <li class="slide">
-                                    <a href="/feedTypes/add-feed-type" class="side-menu__item">Add Feed Type </a>
+                                    <a href="/feedTypes/add-feed-type" class="side-menu__item">
+                                    <i class="fa fa-plus-square-o listIcons" aria-hidden="true"></i>Add Feed Type </a>
                                 </li>
                                  <li class="slide">
-                                    <a href="/feedTypes" class="side-menu__item">All Feed Types</a>
+                                    <a href="/feedTypes" class="side-menu__item">
+                                    <i class="fa fa-table listIcons" aria-hidden="true"></i>All Feed Types</a>
                                 </li>
                                 
                             </ul>
@@ -531,19 +385,20 @@
                         
                         <li class="slide has-sub">
                             <a href="javascript:void(0);" class="side-menu__item">
-                                <i class="bx bx-file-blank side-menu__icon"></i>
+                               		 <i class="fa-solid fa-person listIcons"></i>
                                 <span class="side-menu__label">Employee </span>
                                 <i class="fe fe-chevron-right side-menu__angle"></i>
                             </a>
                             <ul class="slide-menu child1">
-                                <li class="slide side-menu__label1">
-                                    <a href="javascript:void(0);">Employee </a>
-                                </li>
                                 <li class="slide">
-                                    <a href="/employee/add-employee-page" class="side-menu__item">Add Employee </a>
+                                    <a href="/employee/add-employee-page" class="side-menu__item">
+                               		 <i class="fa fa-user-plus listIcons" aria-hidden="true"></i>
+                                    <i class="fa fa-plus-square-o listIcons" aria-hidden="true"></i>Add Employee </a>
                                 </li>
                                  <li class="slide">
-                                    <a href="/employee" class="side-menu__item">All Employee</a>
+                                    <a href="/employee" class="side-menu__item">
+                               		 <i class="fa fa-user-table listIcons" aria-hidden="true"></i>
+                                <i class="fa fa    -table listIcons" aria-hidden="true"></i>All Employee</a>
                                 </li>
                                 
                             </ul>
@@ -554,19 +409,19 @@
                         
                         <li class="slide has-sub">
                             <a href="javascript:void(0);" class="side-menu__item">
-                                <i class="bx bx-file-blank side-menu__icon"></i>
+                                <i class="fa fa-truck listIcons" aria-hidden="true"></i>
                                 <span class="side-menu__label">Supplier </span>
                                 <i class="fe fe-chevron-right side-menu__angle"></i>
                             </a>
                             <ul class="slide-menu child1">
-                                <li class="slide side-menu__label1">
-                                    <a href="javascript:void(0);">Supplier </a>
-                                </li>
                                 <li class="slide">
-                                    <a href="/suppliers/add-supplier-page" class="side-menu__item">Add Supplier </a>
+                                    <a href="/suppliers/add-supplier-page" class="side-menu__item">
+                               		 <i class="fa fa-user-plus listIcons" aria-hidden="true"></i>
+                                    Add Supplier </a>
                                 </li>
                                  <li class="slide">
-                                    <a href="/suppliers" class="side-menu__item">All Supplier</a>
+                                    <a href="/suppliers" class="side-menu__item">
+                                    <i class="fa fa-table listIcons" aria-hidden="true"></i>All Supplier</a>
                                 </li>
                                 
                             </ul>
@@ -577,19 +432,18 @@
                         
                         <li class="slide has-sub">
                             <a href="javascript:void(0);" class="side-menu__item">
-                                <i class="bx bx-file-blank side-menu__icon"></i>
+                                <i class="fa-solid fa-chart-gantt listIcons" aria-hidden="true"></i>
                                 <span class="side-menu__label">Feed Stock </span>
                                 <i class="fe fe-chevron-right side-menu__angle"></i>
                             </a>
                             <ul class="slide-menu child1">
-                                <li class="slide side-menu__label1">
-                                    <a href="javascript:void(0);">Feed Stock </a>
-                                </li>
                                 <li class="slide">
-                                    <a href="/feedStock/add-feedStock-page" class="side-menu__item">Add Feed Stock </a>
+                                    <a href="/feedStock/add-feedStock-page" class="side-menu__item">
+                                    <i class="fa fa-plus-square-o listIcons" aria-hidden="true"></i>Add Feed Stock </a>
                                 </li>
                                  <li class="slide">
-                                    <a href="/feedStock" class="side-menu__item">All Feed Stock</a>
+                                    <a href="/feedStock" class="side-menu__item">
+                                    <i class="fa fa-table listIcons" aria-hidden="true"></i>All Feed Stock</a>
                                 </li>
                                 
                             </ul>
@@ -600,22 +454,23 @@
                         
                         <li class="slide has-sub">
                             <a href="javascript:void(0);" class="side-menu__item">
-                                <i class="bx bx-file-blank side-menu__icon"></i>
+                               <!-- <i class="fa-solid fa-bottle-droplet listIcons"></i> -->
+                               <i class="fa-solid fa-jar listIcons"></i>
                                 <span class="side-menu__label">Milk Collection </span>
                                 <i class="fe fe-chevron-right side-menu__angle"></i>
                             </a>
                             <ul class="slide-menu child1">
-                                <li class="slide side-menu__label1">
-                                    <a href="javascript:void(0);">Milk Collection </a>
+                                <li class="slide">
+                                    <a href="/milkCollection/get-farmer-list-page" class="side-menu__item">
+                                    <i class="fa fa-plus-square-o listIcons" aria-hidden="true"></i>Add Milk Collection </a>
                                 </li>
                                 <li class="slide">
-                                    <a href="/milkCollection/get-farmer-list-page" class="side-menu__item">Add Milk Collection </a>
-                                </li>
-                                <li class="slide">
-                                    <a href="/milkCollection/byTodaysDate" class="side-menu__item">Date wise Milk Collection </a>
+                                    <a href="/milkCollection/byTodaysDate" class="side-menu__item">
+                                    <i class="fa-regular fa-calendar listIcons"></i>Date wise  </a>
                                 </li>
                                  <li class="slide">
-                                    <a href="/milkCollection" class="side-menu__item">All Milk Collection</a>
+                                    <a href="/milkCollection" class="side-menu__item">
+                                <i     class="fa fa-table listIcons" aria-hidden="true"></i>All Milk Collection</a>
                                 </li>
                                 
                             </ul>
@@ -627,19 +482,20 @@
                         
                         <li class="slide has-sub">
                             <a href="javascript:void(0);" class="side-menu__item">
-                                <i class="bx bx-file-blank side-menu__icon"></i>
+                                <i class="fa-regular fa-id-card listIcons"></i>
                                 <span class="side-menu__label">Farmers </span>
                                 <i class="fe fe-chevron-right side-menu__angle"></i>
                             </a>
                             <ul class="slide-menu child1">
-                                <li class="slide side-menu__label1">
-                                    <a href="javascript:void(0);">Farmers </a>
-                                </li>
                                 <li class="slide">
-                                    <a href="/farmers/addFarmerPage" class="side-menu__item">Add Farmer </a>
+                                    <a href="/farmers/addFarmerPage" class="side-menu__item">
+                               		 <i class="fa fa-user-plus listIcons" aria-hidden="true"></i>
+                                    Add Farmer </a>
                                 </li>
                                  <li class="slide">
-                                    <a href="/farmers" class="side-menu__item">All Farmers</a>
+                                    <a href="/farmers" class="side-menu__item">
+                               		 <i class="fa fa-table listIcons" aria-hidden="true"></i>
+                                    All Farmers</a>
                                 </li>
                                 
                             </ul>
@@ -650,19 +506,18 @@
                         
                         <li class="slide has-sub">
                             <a href="javascript:void(0);" class="side-menu__item">
-                                <i class="bx bx-file-blank side-menu__icon"></i>
+                                <i class="fa-regular fa-money-bill-1 listIcons"></i>
                                 <span class="side-menu__label"> Payment to Farmers </span>
                                 <i class="fe fe-chevron-right side-menu__angle"></i>
                             </a>
                             <ul class="slide-menu child1">
-                                <li class="slide side-menu__label1">
-                                    <a href="javascript:void(0);"> Payment to Farmers </a>
-                                </li>
                                 <li class="slide">
-                                    <a href="/paymentToFarmer/add-payment-page" class="side-menu__item"> Payment to Farmer </a>
+                                    <a href="/paymentToFarmer/add-payment-page" class="side-menu__item"> 
+                                    <i class ="fa fa-plus-square-o listIcons" aria-hidden="true"></i>Payment to Farmer </a>
                                 </li>
                                  <li class="slide">
-                                    <a href="/farmers" class="side-menu__item">All Farmers</a>
+                                    <a href="/farmers" class="side-menu__item">
+                                    <i class="fa fa-table listIcons" aria-hidden="true"></i>All Farmers</a>
                                 </li>
                                 
                             </ul>
@@ -673,19 +528,18 @@
                         
                         <li class="slide has-sub">
                             <a href="javascript:void(0);" class="side-menu__item">
-                                <i class="bx bx-file-blank side-menu__icon"></i>
+                                <i class="fa-solid fa-truck-fast listIcons"></i>
                                 <span class="side-menu__label">Feed to Farmer </span>
                                 <i class="fe fe-chevron-right side-menu__angle"></i>
                             </a>
                             <ul class="slide-menu child1">
-                                <li class="slide side-menu__label1">
-                                    <a href="javascript:void(0);">Feed to Farmer </a>
-                                </li>
                                 <li class="slide">
-                                    <a href="/branches/add-branch-page" class="side-menu__item">Add Feed to Farmer </a>
+                                    <a href="/branches/add-branch-page" class="side-menu__item">
+                                    <i class="fa fa-plus-square-o listIcons" aria-hidden="true"></i>Add Feed to Farmer </a>
                                 </li>
                                  <li class="slide">
-                                    <a href="/branches" class="side-menu__item">All Feed to Farmer</a>
+                                    <a href="/branches" class="side-menu__item">
+                                    <i class="fa fa-table listIcons" aria-hidden="true"></i>All Feed to Farmer</a>
                                 </li>
                                 
                             </ul>
@@ -696,19 +550,19 @@
                         
                         <li class="slide has-sub">
                             <a href="javascript:void(0);" class="side-menu__item">
-                                <i class="bx bx-file-blank side-menu__icon"></i>
+                                <i class="fa-solid fa-money-bill-trend-up listIcons"></i>
                                 <span class="side-menu__label">Advance to Farmer </span>
                                 <i class="fe fe-chevron-right side-menu__angle"></i>
                             </a>
                             <ul class="slide-menu child1">
-                                <li class="slide side-menu__label1">
-                                    <a href="javascript:void(0);">Advance to Farmer </a>
-                                </li>
+                                <i class="fa fa-tachometer listIcons" aria-hidden="true"></i>
                                 <li class="slide">
-                                    <a href="/advanceToFarmer/advanceToFarmer-add-page" class="side-menu__item">Add Advance to Farmer </a>
+                                    <a href="/advanceToFarmer/advanceToFarmer-add-page" class="side-menu__item">
+                                    <i class="fa fa-plus-square-o listIcons" aria-hidden="true"></i>Add Advance to Farmer </a>
                                 </li>
                                  <li class="slide">
-                                    <a href="/advanceToFarmer" class="side-menu__item">All Advance to Farmer</a>
+                                    <a href="/advanceToFarmer" class="side-menu__item">
+                                <i class="fa fa-table listIcons" aria-hidden="true"></i>All Advance to Farmer</a>
                                 </li>
                                 
                             </ul>
@@ -719,14 +573,11 @@
                         
                         <li class="slide has-sub">
                             <a href="javascript:void(0);" class="side-menu__item">
-                                <i class="bx bx-file-blank side-menu__icon"></i>
+                                <i class="fa-solid fa-file-invoice-dollar listIcons"></i>
                                 <span class="side-menu__label">Invoice </span>
                                 <i class="fe fe-chevron-right side-menu__angle"></i>
                             </a>
                             <ul class="slide-menu child1">
-                                <li class="slide side-menu__label1">
-                                    <a href="javascript:void(0);">Invoice </a>
-                                </li>
                                 <li class="slide">
                                     <a href="/add-invoice-page" class="side-menu__item">Milk Collection Invoice</a>
                                 </li>
@@ -735,20 +586,17 @@
                             </ul>
                         </li>
                         <!-- End  Invoice slide -->
-                        
+                      
                         
                         <!-- Start Milkrate  slide  -->
                         
                         <li class="slide has-sub">
                             <a href="javascript:void(0);" class="side-menu__item">
-                                <i class="bx bx-file-blank side-menu__icon"></i>
+                            <i class="fa-solid fa-table-cells listIcons"></i>
                                 <span class="side-menu__label">Milk Rates </span>
                                 <i class="fe fe-chevron-right side-menu__angle"></i>
                             </a>
                             <ul class="slide-menu child1">
-                                <li class="slide side-menu__label1">
-                                    <a href="javascript:void(0);">Milk Rates </a>
-                                </li>
                                 <li class="slide">
                                     <a href="/milkRate/milkrate-page" class="side-menu__item">Milk Rates</a>
                                 </li>
@@ -756,25 +604,46 @@
                                 
                             </ul>
                         </li>
-                        <!-- End Milkrate slide -->
+                      
+                         
+                          <!-- end Milkrate  slide  -->
+                          
+                            <!-- Start Bonus slide -->
+                        
+                        <li class="slide has-sub">
+                            <a href="javascript:void(0);" class="side-menu__item"> 
+                                <i class="fa-solid fa-money-bill-1-wave listIcons" aria-hidden="true"></i>
+                                <span class="side-menu__label">Bonus</span>
+                                <i class="fe fe-chevron-right side-menu__angle"></i>
+                            </a>
+                            <ul class="slide-menu child1">
+						         <li class="slide side-menu__label1">
+						         <a href="javascript:void(0);">Bonus </a></li>
+						         <li class="slide"><a href="/bonusToFarmer/page"
+							       class="side-menu__item">Genarte Bonus</a></li>
+						        <li class="slide"><a href="/bonusToFarmer"
+							     class="side-menu__item">All Bonus Records</a></li>
+					
+					  </ul>
+					</li>
+                        <!-- End Bonus slide -->
                         
                          <!-- Start farmer animal slide -->
                         
                         <li class="slide has-sub">
                             <a href="javascript:void(0);" class="side-menu__item">
-                                <i class="bx bx-file-blank side-menu__icon"></i>
+                                <i class="fa-solid fa-cow listIcons" aria-hidden="true"></i>
                                 <span class="side-menu__label">Farmer Animals</span>
                                 <i class="fe fe-chevron-right side-menu__angle"></i>
                             </a>
                             <ul class="slide-menu child1">
-                                <li class="slide side-menu__label1">
-                                    <a href="javascript:void(0);">Farmer Animals</a>
-                                </li>
                                 <li class="slide">
-                                    <a href="/farmerAnimalMapping//add-animal-page" class="side-menu__item">Add Animals</a>
+                                    <a href="/farmerAnimalMapping//add-animal-page" class="side-menu__item">
+                                    <i class="fa fa-plus-square-o listIcons" aria-hidden="true"></i>Add Animals</a>
                                 </li>
                                  <li class="slide">
-                                    <a href="/farmerAnimalMapping" class="side-menu__item">All Animals</a>
+                                    <a href="/farmerAnimalMapping" class="side-menu__item">
+                                <i class ="fa fa-table listIcons" aria-hidden="true"></i>All Animals</a>
                                 </li>
                                 
                             </ul>
@@ -786,19 +655,18 @@
                         
                         <li class="slide has-sub">
                             <a href="javascript:void(0);" class="side-menu__item">
-                                <i class="bx bx-file-blank side-menu__icon"></i>
+                                <i class="fa fa-tachometer listIcons" aria-hidden="true"></i>
                                 <span class="side-menu__label">DairyManger Transactions</span>
                                 <i class="fe fe-chevron-right side-menu__angle"></i>
                             </a>
                             <ul class="slide-menu child1">
-                                <li class="slide side-menu__label1">
-                                    <a href="javascript:void(0);">DairyManger Transactions</a>
-                                </li>
                                 <li class="slide">
-                                    <a href="/dairyManger/add-dairyManger-Page" class="side-menu__item">Add DairyManger</a>
+                                    <a href="/dairyManger/add-dairyManger-Page" class="side-menu__item">
+                                    <i class="fa fa-plus-square-o listIcons" aria-hidden="true"></i>Add DairyManger</a>
                                 </li>
                                  <li class="slide">
-                                    <a href="/dairyManger" class="side-menu__item">All DairyManger</a>
+                                    <a href="/dairyManger" class="side-menu__item">
+                                    <i class="fa fa-table listIcons" aria-hidden="true"></i>All Dairy Manager</a>
                                 </li>
                                 
                             </ul>

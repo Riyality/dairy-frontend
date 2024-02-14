@@ -27,9 +27,10 @@ public class MilkCollectionServiceImpl implements MilkCollectionService {
 
 	@Override
 	public String addMilkCollection(MilkCollectionRequestDto dto, int branchId) {
-   	RestTemplate template = new RestTemplate();
-   
+
+		RestTemplate template = new RestTemplate();
 		String url = "http://localhost:6262/milkCollection/branchId/"+branchId;
+
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType( MediaType.APPLICATION_JSON );
 
@@ -128,10 +129,5 @@ public class MilkCollectionServiceImpl implements MilkCollectionService {
 		}
 		return null;
 	}
-
-	
-
-	
-
 
 }

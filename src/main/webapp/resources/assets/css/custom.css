@@ -70,11 +70,17 @@
   background-color: transparent;
   cursor: pointer;
 }
+
 #eyeButton:hover {
   background-color: #e0e0e0; 
 }
+
 #DisplayfarmerName{
     font-size: medium;
    font-weight: bold;
 }
   
+  .listIcons{
+  	font-size: 17px;
+    margin: 0 10px 0 0;
+  }

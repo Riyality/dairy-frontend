@@ -17,4 +17,6 @@ public interface FarmerService {
 
 	String update(FarmerRequestDto dto);
 
+	List<FarmerResponseDto> findAllInActiveFarmers(int branchId);
+
 }

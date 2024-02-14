@@ -56,6 +56,16 @@ public class FarmerController {
 		model.addAttribute("list", list);
 		return "farmers/all";
 	}
+	
+	
+	@GetMapping("/InActiveFarmers")
+	public String allInActiveFarmers(HttpSession session, Model model) {
+		int branchId = (int) session.getAttribute("branchId");
+		List<FarmerResponseDto> list = farmerService.findAllInActiveFarmers(branchId);
+		model.addAttribute("list", list);
+		return "farmers/all";
+		
+	}
 
 	@GetMapping("/id/{id}")
 	public String findById(@PathVariable Long id, Model model) {
@@ -64,7 +74,6 @@ public class FarmerController {
 		List<RouteResponseDto> list = routeService.getAllRoutes();
 		model.addAttribute("routes", list);
 		return "farmers/update";
-
 	}
 
 	@PostMapping("/update")
@@ -78,6 +87,7 @@ public class FarmerController {
 		}
 		ra.addFlashAttribute("errorMessage", MessageConstants.UPDATE_FARMER_ERROR_MSG);
 		return "redirect:/farmers/" + dto.getId();
-
 	}
+	
+	
 }
