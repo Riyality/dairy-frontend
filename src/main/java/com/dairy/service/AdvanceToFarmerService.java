@@ -15,4 +15,6 @@ public interface AdvanceToFarmerService {
 
 	String updateAdvance(AdvanceToFarmerRequestDto advanceRequestDto);
 
+	Double findTotalOfRemainingAmountByFarmerIdAndBranchId(Long farmerId, int branchId);
+
 }

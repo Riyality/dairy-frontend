@@ -1,93 +1,113 @@
- $(document).ready(function(){
-	 
-	      /*Feed Distribution Script Start*/
-		
-		    function calculateTotalFeedAmount() {
-				 
-			       var feedQuantity = $("#feedQuantity").val();
-			       var feedCostPerUnit = $("#feedCostPerUnit").val();
-			       $("#FeedTotalAmount").val(feedQuantity*feedCostPerUnit);
-				   
-			       };
-		       
-		        $('#feedQuantity, #feedCostPerUnit').on('keyup', function () {
-			        calculateTotalFeedAmount();
-			    });
-	 
-	 		/*Equipment Script Start*/
-			
-			$("#equipmentQuantity").on("blur", function(){
-				
-				var equipmentQuantity = $("#equipmentQuantity").val();
-			    var equipmentPrice = $("#equipmentPrice").val();
-				$("#equipmentTotalAmount").val(equipmentQuantity*equipmentPrice);
-				
-			});
-	      
-	      /*Feed Distribution Script End*/
-	      
-	          /*Equipment Script Start*/
-			
-			$("#equipmentPrice").on("blur", function(){
-				
-				 var equipmentQuantity = $("#equipmentQuantity").val();
-			     var equipmentPrice = $("#equipmentPrice").val();
-				$("#equipmentTotalAmount").val(equipmentQuantity*equipmentPrice);
-				
-			});
-			
-			/*Equipment Script End*/
-						
-			/*Feed Company Script Start*/
-			
-			$("#feedCompanyList").on("change",function(){
-			
-						var id = $("#feedCompanyList").val();
-						
-						$.ajax({
-					    url: 'http://localhost:6161/feedStock/getFeedTypeByFeedCompanyId/'+id,
-					    type: 'GET',
-					    dataType: 'json',
-					    success: function(result) {
-							console.log(result)
-							$("#feedTypeList").empty();
-							 $("#feedTypeList").prop("disabled", false);
-							  $("#feedTypeList").append(
-								   `<option value="" selected="selected" disabled="disabled">Select
+ $(document).ready(function() {
+
+ 	/*Feed Distribution Script Start*/
+
+ 	function calculateTotalFeedAmount() {
+
+ 		var feedQuantity = $("#feedQuantity").val();
+ 		var feedCostPerUnit = $("#feedCostPerUnit").val();
+ 		$("#FeedTotalAmount").val(feedQuantity * feedCostPerUnit);
+
+
+ 	};
+
+ 	$('#feedQuantity, #feedCostPerUnit').on('keyup', function() {
+ 		calculateTotalFeedAmount();
+ 	});
+
+
+ 	function calculateRemainingAmount() {
+ 		var amountPaid = parseFloat($("#FeedAmountPaid").val()) || 0;
+ 		var totalAmount = parseFloat($("#FeedTotalAmount").val()) || 0;
+ 		if (amountPaid > totalAmount) {
+ 			alert("Amount paid cannot be greater than total amount");
+ 			$("#FeedAmountPaid").val(totalAmount);
+ 			amountPaid = totalAmount;
+ 		}
+ 		var remainingAmount = totalAmount - amountPaid;
+ 		$("#FeedremainingAmount").val(remainingAmount);
+ 	}
+ 	$('#FeedAmountPaid').on('keyup', function() {
+ 		calculateRemainingAmount();
+ 	});
+
+ 	/*Feed Distribution Script End*/
+
+
+ 	/*Equipment Script Start*/
+
+ 	$("#equipmentQuantity").on("blur", function() {
+
+ 		var equipmentQuantity = $("#equipmentQuantity").val();
+ 		var equipmentPrice = $("#equipmentPrice").val();
+ 		$("#equipmentTotalAmount").val(equipmentQuantity * equipmentPrice);
+
+ 	});
+
+ 	/*Feed Distribution Script End*/
+
+ 	/*Equipment Script Start*/
+
+ 	$("#equipmentPrice").on("blur", function() {
+
+ 		var equipmentQuantity = $("#equipmentQuantity").val();
+ 		var equipmentPrice = $("#equipmentPrice").val();
+ 		$("#equipmentTotalAmount").val(equipmentQuantity * equipmentPrice);
+
+ 	});
+
+ 	/*Equipment Script End*/
+
+ 	/*Feed Company Script Start*/
+
+ 	$("#feedCompanyList").on("change", function() {
+
+ 		var id = $("#feedCompanyList").val();
+
+ 		$.ajax({
+ 			url: 'http://localhost:6161/feedStock/getFeedTypeByFeedCompanyId/' + id,
+ 			type: 'GET',
+ 			dataType: 'json',
+ 			success: function(result) {
+ 				console.log(result)
+ 				$("#feedTypeList").empty();
+ 				$("#feedTypeList").prop("disabled", false);
+ 				$("#feedTypeList").append(
+ 					`<option value="" selected="selected" disabled="disabled">Select
 											Feed Type</option>`
-							   );
-							$.each(result, function(key, value) {
-						       $("#feedTypeList").append(
-								   `<option value="${value.id}">${value.type}</option>`
-							   );
-						   });
-					    },
-					    error: function(error) {
-					        console.error('Error fetching data:', error);
-					    }
-					});
-				});
-		
-		/*Feed Company Script End*/
-		
-		/*Milk Data Script Start*/
-		$("#milkTableBodyFromJS").hide();
-			
-			$("#milkCollectionByDate").on("change",function(){
-				
-						var date = $("#milkCollectionByDate").val();
-						
-						$.ajax({
-					    url: 'http://localhost:6161/milkCollection/selectedDateForMilkData/'+date,
-					    type: 'GET',
-					    dataType: 'json',
-					    success: function(result) {
-							
-								 $("#milkTableBody").hide();
-								 $("#milkTableBodyFromJS").show();
-							
-							     $.each(result, function(key, data) {
-			                            $("#milkTableBodyFromJS").append(`
+ 				);
+ 				$.each(result, function(key, value) {
+ 					$("#feedTypeList").append(
+ 						`<option value="${value.id}">${value.type}</option>`
+ 					);
+ 				});
+ 			},
+ 			error: function(error) {
+ 				console.error('Error fetching data:', error);
+ 			}
+ 		});
+ 	});
+
+ 	/*Feed Company Script End*/
+
+ 	/*Milk Data Script Start*/
+ 	$("#milkTableBodyFromJS").hide();
+
+ 	$("#milkCollectionByDate").on("change", function() {
+
+ 		var date = $("#milkCollectionByDate").val();
+
+ 		$.ajax({
+ 			url: 'http://localhost:6161/milkCollection/selectedDateForMilkData/' + date,
+ 			type: 'GET',
+ 			dataType: 'json',
+ 			success: function(result) {
+
+ 				$("#milkTableBody").hide();
+ 				$("#milkTableBodyFromJS").show();
+
+ 				$.each(result, function(key, data) {
+ 					$("#milkTableBodyFromJS").append(`
 			                                <tr>
 			                                    <td>${data.farmerId }</td>
 					                            <td>${data.farmerName }</td>
@@ -105,32 +125,32 @@
 				                                    </a>
 			                                    </td>
 			                                </tr>`);
-			                        });
-							
-					    },
-					    error: function(error) {
-					        console.error('Error fetching data:', error);
-					    }
-					});
-				});
-		
-		/*Milk Data Script End*/
-		
-		
-		/*Route Name Script Start*/
+ 				});
 
-	    $("#routeName").on("change",function(){
-		
-			var id = $("#routeName").val();
-		
-				$.ajax({
-					        url: 'http://localhost:6161/milkCollection/' + id, 
-					        type: 'GET',
-					        dataType: 'json',
-					        success: function (result) {
-							$("#milkTableBody").empty();
-					             $.each(result, function(key, value) {
-			                            $("#milkTableBody").append(`
+ 			},
+ 			error: function(error) {
+ 				console.error('Error fetching data:', error);
+ 			}
+ 		});
+ 	});
+
+ 	/*Milk Data Script End*/
+
+
+ 	/*Route Name Script Start*/
+
+ 	$("#routeName").on("change", function() {
+
+ 		var id = $("#routeName").val();
+
+ 		$.ajax({
+ 			url: 'http://localhost:6161/milkCollection/' + id,
+ 			type: 'GET',
+ 			dataType: 'json',
+ 			success: function(result) {
+ 				$("#milkTableBody").empty();
+ 				$.each(result, function(key, value) {
+ 					$("#milkTableBody").append(`
 			                                <tr>
 			                                    <td>${value.name}</td>
 			                                    <td>
@@ -142,168 +162,297 @@
 						                             </a>
 			                                    </td>
 			                                </tr>`);
-			                                farmerId = value.id;
-			                        });
-					            console.log(result);
-					        },
-					        error: function (error) {
-					            console.error('Error fetching data:', error);
-					        }
-					 });
-			});
-			
-			/*Route Name Script End*/
-			
-		
-			/*Milk Collection Script Start*/
-			
-			function updateMilkRateAndAmount() {
-				
-		        var milkQuantity = $("#milkQuantity").val();
-		        var milkFat = $("#milkFat").val();
-		        var milkSNF = $("#milkSNF").val();
-		        var animalType = document.querySelector('input[name="animalType"]:checked').value;
-		
-		        if (animalType && milkFat && milkSNF) {
-		            $.ajax({
-		                url: 'http://localhost:6161/milkRate/type/' +encodeURIComponent(animalType) + '/fat/' + encodeURIComponent(milkFat) + '/snf/' + encodeURIComponent(milkSNF),
-		                type: 'GET',
-		                dataType: 'json',
-		                success: function (result) {
-		                    $("#milkRate").val(result);
-		                    $("#totalMilkAmount").val(milkQuantity * result);
-		                },
-		                error: function (error) {
-		                    console.error('Error fetching data:', error);
-		                }
-		            });
-		        }
-		    }
-		
-		    updateMilkRateAndAmount();
-		
-		    $('input[name="animalType"]').on('change', function () {
-		        updateMilkRateAndAmount();
-		    });
-		
-		    $('#milkFat, #milkSNF').on('keyup', function () {
-		        updateMilkRateAndAmount();
-		    });
-		    
-		     $('#milkQuantity').on('keyup', function () {
-				 
-			       var milkQuantity = $("#milkQuantity").val();
-			       var milkRate = $("#milkRate").val();
-			       
-			       if(milkRate !== 0 || milkRate !== "" || milkRate !== null ){
-					   $("#totalMilkAmount").val(milkQuantity*milkRate);
-				   }
-			   
-		       });
+ 					farmerId = value.id;
+ 				});
+ 				console.log(result);
+ 			},
+ 			error: function(error) {
+ 				console.error('Error fetching data:', error);
+ 			}
+ 		});
+ 	});
 
-	     
-	      
-	    
-			
-		});
-		
-		  /*Milk Collection Script End*/
-		  
-		  
-		  
-		  /*Payment To Farmer Script Start*/
-		  
-	   	var fDate
-        var tDate;
-        $(document).ready(function () {
-               
-            $("#getFarmerRecords").on("click", function () {
-              
-                fDate=fromDate
-                var fromDate = $("#fromDate").val();
-                var toDate = $("#toDate").val();
-                fDate=fromDate
-                tDate=toDate
-                var milkType = document.querySelector('input[name="milkType"]:checked').value;
+ 	/*Route Name Script End*/
 
-                $.ajax({
-                    url: 'http://localhost:6161/paymentToFarmer/' + fromDate + '/' + toDate + '/' + milkType,
-                    type: 'GET',
-                    dataType: 'json',
-                    success: function (result) {
-                        console.log(result)
-                        $("#file-export tbody").empty(); // Clear existing table rows
-                        for (var i = 0; i < result.length; i++) {
-                            var farmer = result[i];                           
-                            var newRow = '<tr class="gridjs-tr">' +
-                                '<td>' + '<input type="checkbox"  data-farmer-id="' + farmer.farmerId + '"> ' + '</td>'+
-                                '<td>' + farmer.farmerName + '</td>' +                             
-                                '<td>' + farmer.milkQuantity + '</td>' +
-                                '<td>' + farmer.totalMilkAmount + '</td>' +
-                                '<td>' + '<button type="button" id="eyeButton" data-farmer-id="' + farmer.farmerId + '" data-bs-toggle="modal" data-bs-target="#milkList"><b>i</b></button>' + '</td>' +
-                                '</tr>';   
-                                $("#file-export tbody").append(newRow);
-                        }
-                    },
-                    error: function (error) {
-                        console.error('Error fetching data:', error);
-                    }
-                });
-            });
-                $("#file-export").on("click", "#eyeButton", function () {
-                var farmerId = $(this).data("farmer-id");
-                $.ajax({
-                    url: 'http://localhost:6161/paymentToFarmer/getMilkCollectionDataBy/'+farmerId,
-                    type: 'GET',
-                    dataType: 'json',
-                    success: function (result) {
-                      
-                        $("#file-export2 tbody").empty();
-                            var prevDate = null;
-                            for (var i = 0; i < result.length; i++) {
-                                var farmer = result[i];
-                                var formattedDate = new Date(farmer.dateOfMilkCollection).toISOString().split('T')[0];
-                                var newRow = '<tr class="gridjs-tr">';
-                                if (prevDate === formattedDate) {
-                                    newRow += '<td></td>';  // Empty cell for rowspan
-                                } else {
-                                    newRow += '<td>' + formattedDate + '</td>';  // Show the date only once
-                                }
-                                // Add other columns as needed
-                                newRow += '<td>' + farmer.shift + '</td>' +
-                                    '<td>' + farmer.milkQuantity + '</td>' +
-                                    '<td>' + farmer.milkFat + '</td>' +
-                                    '<td>' + farmer.milkSNF + '</td>' +
-                                    '<td>' + farmer.totalMilkAmount + '</td>' +
-                                    '</tr>';
-                                $("#file-export2 tbody").append(newRow);
-                                document.getElementById("farmerName").innerHTML = farmer.farmerName;
-                                prevDate = formattedDate;// Update prevDate for the next iteration
-                            }
-                    },
-                    error: function (error) {
-                        console.error('Error fetching data:', error);
-                    }
-                });
-                });  
-                function generatePdf(selectedFarmerIds) {
-            	var encodedId = encodeURIComponent(selectedFarmerIds);
-				$("#pdfIframe").attr("src", "/generatePdf?farmerId=" + encodedId+"&fromDate="+fDate+"&toDate="+tDate );
-			}
-			$("#pdfForm").submit(function (event) { 
-			    generatePdf(selectedFarmerIds);
-			    event.preventDefault();
-			});
-		    var selectedFarmerIds = [];
-		    $("#file-export").on("change", ":checkbox", function () {
-		    var farmerId = $(this).data("farmer-id");		
-		    if (this.checked) {
-		        selectedFarmerIds.push(farmerId); // Add the selected farmer ID to the array
-		    } else {
-		        selectedFarmerIds = selectedFarmerIds.filter(id => id !== farmerId);// Remove the unselected farmer ID from the array
-		    }
-		  	});
-	                
+
+ 	/*Milk Collection Script Start*/
+
+ 	function updateMilkRateAndAmount() {
+
+ 		var milkQuantity = $("#milkQuantity").val();
+ 		var milkFat = $("#milkFat").val();
+ 		var milkSNF = $("#milkSNF").val();
+ 		var animalType = document.querySelector('input[name="animalType"]:checked').value;
+
+ 		if (animalType && milkFat && milkSNF) {
+ 			$.ajax({
+ 				url: 'http://localhost:6161/milkRate/type/' + encodeURIComponent(animalType) + '/fat/' + encodeURIComponent(milkFat) + '/snf/' + encodeURIComponent(milkSNF),
+ 				type: 'GET',
+ 				dataType: 'json',
+ 				success: function(result) {
+ 					$("#milkRate").val(result);
+ 					$("#totalMilkAmount").val(milkQuantity * result);
+ 				},
+ 				error: function(error) {
+ 					console.error('Error fetching data:', error);
+ 				}
  			});
-		 /*Payment To Farmer Script Start*/ 
-		
+ 		}
+ 	}
+
+ 	updateMilkRateAndAmount();
+
+ 	$('input[name="animalType"]').on('change', function() {
+ 		updateMilkRateAndAmount();
+ 	});
+
+ 	$('#milkFat, #milkSNF').on('keyup', function() {
+ 		updateMilkRateAndAmount();
+ 	});
+
+ 	$('#milkQuantity').on('keyup', function() {
+
+ 		var milkQuantity = $("#milkQuantity").val();
+ 		var milkRate = $("#milkRate").val();
+
+ 		if (milkRate !== 0 || milkRate !== "" || milkRate !== null) {
+ 			$("#totalMilkAmount").val(milkQuantity * milkRate);
+ 		}
+
+ 	});
+
+
+
+
+
+ });
+
+ /*Milk Collection Script End*/
+
+
+
+ /*Payment To Farmer Script Start*/
+
+ var fDate
+ var tDate;
+ var AnimalType;
+ var TotalMilkQuantity;
+ var TotalMilkAmount;
+ var farmerName;
+ var farmeID;
+ var TotalFeedRemainingAmount;
+ var TotalAdvanceAmount;
+ $(document).ready(function() {
+ 	var today = new Date().toISOString().split('T')[0];
+ 	$("#paymentDate").val(today);
+ 	$("#generateInvoice").prop("disabled", true);
+ 	$("#payment").prop("disabled", true);
+
+ 	$("#getFarmerRecords").on("click", function() {
+ 		fDate = fromDate
+ 		var fromDate = $("#fromDate").val();
+ 		var toDate = $("#toDate").val();
+ 		fDate = fromDate
+ 		tDate = toDate
+ 		var milkType = document.querySelector('input[name="milkType"]:checked').value;
+ 		AnimalType = milkType
+ 		$.ajax({
+ 			url: 'http://localhost:6161/paymentToFarmer/' + fromDate + '/' + toDate + '/' + milkType,
+ 			type: 'GET',
+ 			dataType: 'json',
+ 			success: function(result) {
+ 				console.log(result)
+ 				$("#file-export tbody").empty(); // Clear existing table rows
+ 				for (var i = 0; i < result.length; i++) {
+ 					var farmer = result[i];
+ 					var newRow = '<tr class="gridjs-tr">' +
+ 						'<td>' + '<input type="checkbox"  data-farmer-id="' + farmer.farmerId + '"> ' + '</td>' +
+ 						'<td>' + farmer.farmerName + '</td>' +
+ 						'<td>' + farmer.milkQuantity + '</td>' +
+ 						'<td>' + farmer.totalMilkAmount + '</td>' +
+ 						'<td class="hide-column">' + farmer.totalFeedRemainingAmount + '</td>' +
+ 						'<td class="hide-column">' + farmer.totalAdvanceAmount + '</td>' +
+ 						'<td>' + '<button type="button" id="eyeButton" data-farmer-id="' + farmer.farmerId + '" data-bs-toggle="modal" data-bs-target="#milkList"><b>i</b></button>' + '</td>' +
+ 						'</tr>';
+ 					$("#file-export tbody").append(newRow);
+ 				}
+ 			},
+ 			error: function(error) {
+ 				console.error('Error fetching data:', error);
+ 			}
+ 		});
+ 	});
+ 	$("#file-export").on("click", "#eyeButton", function() {
+ 		var farmerId = $(this).data("farmer-id");
+ 		$.ajax({
+ 			url: 'http://localhost:6161/paymentToFarmer/getMilkCollectionDataBy/' + farmerId + "/" + fDate + "/" + tDate + "/" + AnimalType,
+ 			type: 'GET',
+ 			dataType: 'json',
+ 			success: function(result) {
+ 				$("#FarmerwiseMilkList tbody").empty();
+ 				var prevDate = null;
+ 				for (var i = 0; i < result.length; i++) {
+ 					var farmer = result[i];
+ 					var formattedDate = new Date(farmer.dateOfMilkCollection).toISOString().split('T')[0];
+ 					var newRow = '<tr class="gridjs-tr">';
+ 					if (prevDate === formattedDate) {
+ 						newRow += '<td></td>'; // Empty cell for rowspan
+ 					} else {
+ 						newRow += '<td>' + formattedDate + '</td>'; // Show the date only once
+ 					}
+ 					// Add other columns as needed
+ 					newRow += '<td>' + farmer.shift + '</td>' +
+ 						'<td>' + farmer.milkQuantity + '</td>' +
+ 						'<td>' + farmer.milkFat + '</td>' +
+ 						'<td>' + farmer.milkSNF + '</td>' +
+ 						'<td>' + farmer.totalMilkAmount + '</td>' +
+ 						'</tr>';
+ 					$("#FarmerwiseMilkList tbody").append(newRow);
+ 					document.getElementById("DisplayfarmerName").innerHTML = farmer.farmerName;
+ 					prevDate = formattedDate; // Update prevDate for the next iteration
+ 				}
+ 			},
+ 			error: function(error) {
+ 				console.error('Error fetching data:', error);
+ 			}
+ 		});
+ 	});
+
+ 	function generatePdf(selectedFarmerIds) {
+ 		var encodedId = encodeURIComponent(selectedFarmerIds);
+ 		$("#pdfIframe").attr("src", "/generatePdf?farmerId=" + encodedId + "&fromDate=" + fDate + "&toDate=" + tDate + "&animalType=" + AnimalType);
+ 	}
+ 	$("#pdfForm").submit(function(event) {
+ 		generatePdf(selectedFarmerIds);
+ 		event.preventDefault();
+ 	});
+
+ 	var selectedFarmerIds = [];
+
+ 	$("#file-export").on("change", ":checkbox", function() {
+
+ 		var anyCheckboxChecked = $("input[type='checkbox']:checked").length > 0;
+ 		$("#generateInvoice").prop("disabled", !anyCheckboxChecked);
+ 		$("#payment").prop("disabled", !anyCheckboxChecked);
+ 		updateSelectedFarmerIds();
+ 		updateSelectAllCheckbox();		
+	
+	
+ 	});
+ 	
+ 	$("#selectAllCheckbox").change(function() {
+ 		var isChecked = this.checked;
+ 		$("#file-export :checkbox").prop("checked", isChecked); // Update individual checkboxes based on "Select All" state		
+ 		updateSelectedFarmerIds(); // Update the selectedFarmerIds array
+ 	});
+
+ 	function updateSelectedFarmerIds() {
+ 		selectedFarmerIds = $("#file-export :checkbox:checked").map(function() {
+
+ 			return $(this).data("farmer-id");
+ 		}).get();
+ 	}
+
+ 	function updateSelectAllCheckbox() {
+ 		var allCheckboxes = $("#file-export :checkbox");
+ 		$("#selectAllCheckbox").prop("checked", allCheckboxes.length === allCheckboxes.filter(":checked").length);
+ 	}
+ 	
+ 	$("#payment").on("click", function() {
+	var advancePercentage= $("#advancePercentage").val();
+	 $("#Percentage").html(advancePercentage);
+   	$("#displayDates").html("From "+fDate+" To "+tDate);
+    if (selectedFarmerIds.length > 0) {
+      
+
+		$("#paymentGenerateList tbody").empty();
+
+        for (var i = 0; i < selectedFarmerIds.length; i++) {
+            var farmerId = selectedFarmerIds[i];
+            var selectedRow = $("#file-export tbody").find('input[data-farmer-id="' + farmerId + '"]').closest('tr');
+
+            var farmerName = selectedRow.find('td:eq(1)').text();
+            var milkQuantity = selectedRow.find('td:eq(2)').text();
+            var totalMilkAmount = selectedRow.find('td:eq(3)').text();
+			var totalRemainingFeedAmount = selectedRow.find('td:eq(4)').text();
+			var totalAdvanceAmount = selectedRow.find('td:eq(5)').text();
+			var amountAfterDeduction=((totalMilkAmount-totalRemainingFeedAmount) * advancePercentage) / 100;
+			var remainingAmount=totalMilkAmount-totalRemainingFeedAmount
+			var paymentAmount=remainingAmount-amountAfterDeduction;
+			
+			if(totalAdvanceAmount < amountAfterDeduction){
+	
+				paymentAmount=amountAfterDeduction-totalAdvanceAmount
+				if(remainingAmount > totalAdvanceAmount){
+					
+					if(totalAdvanceAmount < amountAfterDeduction){ 
+						paymentAmount=remainingAmount-totalAdvanceAmount	
+					}
+				}
+				
+			} if(totalAdvanceAmount > amountAfterDeduction){
+				
+				if(remainingAmount > totalAdvanceAmount){
+					paymentAmount=remainingAmount-amountAfterDeduction;
+					   
+				}
+				
+			}
+			if(totalAdvanceAmount == 0){
+				amountAfterDeduction=0
+			}
+            var newRow = '<tr>' +
+                '<td><input type="checkbox"></td>' +
+                '<td>' +farmerName +'-'+ farmerId + '</td>' +
+                '<td>' + milkQuantity + '</td>' +
+                '<td>' + totalMilkAmount + '</td>' +
+                '<td>' + totalRemainingFeedAmount + '</td>' +
+                '<td>' + totalAdvanceAmount + '</td>' +
+                '<td>'+amountAfterDeduction+'</td>' + 
+                '<td>'+paymentAmount+'</td>' + 
+                '</tr>';
+            $("#paymentGenerateList tbody").append(newRow);
+        }
+    } else {
+        alert("Please select at least one farmer before proceeding with the payment.");
+    }
+    
+	});
+
+
+ 	$('#advanceDeductionPercentage').on('keyup', function() {
+ 		calculateAdvanceDeductionAmount();
+ 		calculateTotalDeductionAmount();
+
+ 	});
+
+ 	function calculateAdvanceDeductionAmount() {
+ 		//var totalMilkAmount = parseFloat($("#totalMilkAmount").val()); // Get the total milk amount from the input field
+ 		var advancePercentage = parseFloat($("#advanceDeductionPercentage").val()); // Get the advance percentage from the input field
+
+ 		
+ 		var advanceDeduction = (TotalAdvanceAmount * advancePercentage) / 100;
+
+ 		$("#advanceDeduction").val(advanceDeduction);
+ 	}
+
+
+ 	$('#feedDeduction, #advanceDeduction').on('keyup', function() {
+ 		calculateTotalDeductionAmount();
+ 		calculateDeductionAmount();
+ 	});
+ 	function calculateTotalDeductionAmount() {		 
+ 		var feedDeduction = parseFloat($("#feedDeduction").val()) || 0;
+ 		var advanceDeduction = parseFloat($("#advanceDeduction").val()) || 0;
+ 		var deductionAmount = (feedDeduction + advanceDeduction);
+ 		$("#deductionAmount").val(deductionAmount);
+ 		$("#totalPayment").val(TotalMilkAmount - deductionAmount);
+ 	}
+
+
+ });
+
+
+
+
+ /*Payment To Farmer Script Start*/

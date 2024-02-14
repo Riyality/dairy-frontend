@@ -42,14 +42,15 @@
 									<input type="text" class="form-control dairy-form-input" placeholder="Enter Advance Amount" id="AdvanceAmount" name="amount" required>
 								</div>
 								
-								<div class="col-md-6">
+								<!-- <div class="col-md-6">
 									<label class="form-label dairy-input-label"> Deduction </label> 
 									<input type="text" class="form-control dairy-form-input" placeholder="Enter Advance Amount" id="deduction" name="deduction" required>
-								</div>
-								<div class="col-md-6">
+								</div> -->
+
+								<!-- <div class="col-md-6">
 									<label class="form-label dairy-input-label">Remaining Amount</label> 
 									<input type="text" class="form-control dairy-form-input" placeholder="Enter Advance Amount" id="remeninigAmount" name="remainingAmount" required>
-								</div>
+								</div> -->
 								<div class="col-12">
 									<label class="form-label dairy-input-label">Remark</label>
 									<textarea class="col-md-12 dairy-textarea" rows="4" name="address" placeholder="Enter Remark Here"></textarea> 

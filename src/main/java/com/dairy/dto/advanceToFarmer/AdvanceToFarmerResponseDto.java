@@ -1,6 +1,6 @@
 package com.dairy.dto.advanceToFarmer;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 
 public class AdvanceToFarmerResponseDto {
 	private Long id;
-	private LocalDateTime dateOfAdvance;
+	private LocalDate dateOfAdvance;
 	private Float amount;
 	private Float deduction;
 	private Float remainingAmount;

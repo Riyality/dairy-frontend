@@ -37,8 +37,8 @@
                               <td>${advanceTofarmer.remainingAmount}</td>
                             <td>${advanceTofarmer.dateOfAdvance}</td>
                             <td>
-                              <a href="http://localhost:6161/advanceToFarmer/${advanceToFarmer.id }">
-                                <i class="ti ti-color-picker" style="font-size: 14px"></i>
+                              <a href="http://localhost:6161/advanceToFarmer/${advanceTofarmer.id}">
+                                <i class="ti ti-color-picker" style="font-size: 14px">Edit</i>
                               </a>
                             </td>
                           </tr>

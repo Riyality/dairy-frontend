@@ -27,6 +27,7 @@
 			        var formattedDateAndTime = year + '-' + month + '-' + day;
 			
 			        document.getElementById('dateOfMilkCollection').value = formattedDateAndTime;
+			        document.getElementById('paymentDate').value = formattedDateAndTime;
 			    }
 			    
 			    /*Set Default Milk Collection Date Script End*/

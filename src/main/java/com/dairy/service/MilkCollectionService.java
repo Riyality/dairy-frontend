@@ -18,4 +18,8 @@ public interface MilkCollectionService {
 
 	public List<MilkCollectionResponseDto> getRecordsByFarmerId(Long farmerId);
 
+	public List<MilkCollectionResponseDto> getRecordsByFarmerIdFromDateAndToDateAndAnimalType(long farmerId,
+			String fromDate, String toDate, String animalType);
+
+
 }

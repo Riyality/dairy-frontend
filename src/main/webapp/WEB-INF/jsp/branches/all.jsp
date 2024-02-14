@@ -38,7 +38,7 @@
                             <td>${branch.address}</td>
                             <td>
                               <a href="http://localhost:6161/branches/${branch.id }">
-                                <i class="ti ti-color-picker" style="font-size: 14px"></i>
+                                <i class="ti ti-color-picker" style="font-size: 14px">Edit</i>
                               </a>
                             </td>
                           </tr>

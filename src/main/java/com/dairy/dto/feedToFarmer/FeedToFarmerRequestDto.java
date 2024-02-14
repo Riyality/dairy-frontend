@@ -1,6 +1,6 @@
 package com.dairy.dto.feedToFarmer;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -13,11 +13,13 @@ public class FeedToFarmerRequestDto {
 	private Long id;
 	
 	@DateTimeFormat( pattern = "yyyy-MM-dd'T'HH:mm" )
-	private LocalDateTime dateOfPurchase;
+	private Date dateOfPurchase;
 	
 	private Integer quantity;
 	private Float feedRate;
 	private Float totalAmount;
+	private Float paidAmount;
+	private Float remainingAmount;
 	private String paymentStatus;
 	private String remark;
 	private Long farmerId;

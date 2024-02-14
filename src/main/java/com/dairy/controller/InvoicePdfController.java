@@ -1,5 +1,6 @@
 package com.dairy.controller;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
@@ -30,15 +31,19 @@ public class InvoicePdfController {
     
     @GetMapping("/generatePdf")
     @ResponseBody
-    public void generatePdf(HttpServletResponse response,  @RequestParam String farmerId,@RequestParam String fromDate,@RequestParam String toDate) {
-        
-        try {
-           
+    public void generatePdf(HttpServletResponse response,  @RequestParam List<String>  farmerId,@RequestParam String fromDate,@RequestParam String toDate,@RequestParam String animalType) {
+    	
+    	List<MilkCollectionResponseDto> list = new ArrayList<>();
+
+		for (String encodedFarmerId : farmerId) {
+			long farmerId1 = Long.parseLong(encodedFarmerId);
+			list.addAll(milkCollectionService.getRecordsByFarmerIdFromDateAndToDateAndAnimalType(farmerId1,fromDate,toDate,animalType));
+		}
+	
+        try {          
            response.setContentType("application/pdf"); // Set the response content type
-           int FarmerId = Integer.parseInt(farmerId);  
-           List<MilkCollectionResponseDto> list = milkCollectionService.getRecordsByFarmerId((long) FarmerId);
            response.setHeader("Content-Disposition", "inline; filename=invoice_" + fromDate + "_to_" + toDate + ".pdf");
-            pdfGenerationService.generatePdf(response.getOutputStream(), list,fromDate,toDate);  // Generate the PDF directly to the response output stream
+            pdfGenerationService.generatePdf(response.getOutputStream(), list,fromDate,toDate,farmerId);  // Generate the PDF directly to the response output stream
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -9,10 +9,12 @@ public interface FeedToFarmerService {
 
 	 public List<FeedToFarmerResponseDto> getAllFeedToFarmer();
 
-	public String addFeedToFarmers(FeedToFarmerResponseDto feedToFarmerResponseDto);
+	public String addFeedToFarmers(FeedToFarmerRequestDto feedToFarmerResponseDto);
 
 	public FeedToFarmerResponseDto findByIdFeedToFarmer(Long id);
 
 	public String updateFeedToFarmer(FeedToFarmerRequestDto feedToFarmerDto);
+
+	public Double findTotalOfRemainingAmountByFarmerIdAndBranchId(Long farmerId, int branchId);
 
 }

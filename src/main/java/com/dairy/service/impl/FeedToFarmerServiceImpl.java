@@ -12,7 +12,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import com.dairy.dto.branch.BranchResponseDto;
 import com.dairy.dto.feedToFarmer.FeedToFarmerRequestDto;
 import com.dairy.dto.feedToFarmer.FeedToFarmerResponseDto;
 import com.dairy.service.FeedToFarmerService;
@@ -46,14 +45,14 @@ public class FeedToFarmerServiceImpl implements FeedToFarmerService {
 
 
 	@Override
-	public String addFeedToFarmers(FeedToFarmerResponseDto feedToFarmerResponseDto) {
+	public String addFeedToFarmers(FeedToFarmerRequestDto dto) {
 		RestTemplate template = new RestTemplate();
 		String url = "http://localhost:6262/feedTofarmers";
 
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
 
-		HttpEntity<FeedToFarmerResponseDto> request = new HttpEntity<>(feedToFarmerResponseDto, headers);
+		HttpEntity<FeedToFarmerRequestDto> request = new HttpEntity<>(dto, headers);
 		try {
 			ResponseEntity<String> result = template.postForEntity(url, request, String.class);
 			return result.getBody();
@@ -105,4 +104,26 @@ public class FeedToFarmerServiceImpl implements FeedToFarmerService {
 
 
 
-}
+	@Override
+	public Double findTotalOfRemainingAmountByFarmerIdAndBranchId(Long farmerId, int branchId) {
+	
+		RestTemplate template = new RestTemplate();
+		String url = "http://localhost:6262/feedTofarmers/" + farmerId+"/"+branchId;
+		HttpHeaders headers = new HttpHeaders();
+		HttpEntity<String> entity = new HttpEntity<>("body", headers);
+		try {
+
+			ResponseEntity<Double> res = template.exchange(url, HttpMethod.GET, entity,
+					Double.class);
+			return res.getBody();
+
+		} catch (Exception e) {
+			log.error(e.getMessage(), e);
+		}
+		return null;
+	}
+	}
+
+
+
+

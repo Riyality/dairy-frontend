@@ -5,31 +5,27 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.dairy.constants.MessageConstants;
-import com.dairy.dto.branch.BranchResponseDto;
-import com.dairy.dto.employee.EmployeeRequestDto;
 import com.dairy.dto.farmer.FarmerResponseDto;
 import com.dairy.dto.feedCompany.FeedCompanyResponseDto;
 import com.dairy.dto.feedToFarmer.FeedToFarmerRequestDto;
 import com.dairy.dto.feedToFarmer.FeedToFarmerResponseDto;
 import com.dairy.dto.feedType.FeedTypeResponseDto;
-import com.dairy.dto.mainBranch.MainBranchRequestDto;
-import com.dairy.dto.route.RouteResponseDto;
 import com.dairy.service.FarmerService;
 import com.dairy.service.FeedCompanyService;
 import com.dairy.service.FeedToFarmerService;
 import com.dairy.service.FeedTypeService;
-import com.dairy.service.RouteService;
 
 @Controller
 @RequestMapping("/feedToFarmers")
@@ -82,12 +78,12 @@ public class FeedToFarmerController {
 
 	
 	@PostMapping
-	public String add(@ModelAttribute FeedToFarmerResponseDto feedToFarmerResponseDto ,Model model,RedirectAttributes ra,
+	public String add(@ModelAttribute FeedToFarmerRequestDto dto ,Model model,RedirectAttributes ra,
 			           HttpSession session ){
 		    int branchId=(int) session.getAttribute("branchId");
-		    feedToFarmerResponseDto.setBranchId(branchId);
+		    dto.setBranchId(branchId);
 		    
-		    String response=feedToFarmerService.addFeedToFarmers(feedToFarmerResponseDto);
+		    String response=feedToFarmerService.addFeedToFarmers(dto);
 			if (response != null && response.equals(MessageConstants.ADD_FEEDTOFARMER_SUCCESS_MESSAGE)) {
 			ra.addFlashAttribute("successMessage", response);
 			return "redirect:/feedToFarmers";
@@ -136,6 +132,17 @@ public class FeedToFarmerController {
 			
 			return "feedToFarmer/update";
 		}
+	 
+	 
+	 @GetMapping("farmerId/{farmerId}")
+		public ResponseEntity<Double> findTotalOfRemainingAmountByFarmerIdAndBranchId(
+		        @PathVariable("farmerId") Long farmerId,HttpSession session) {
+		 	int branchId = (int) session.getAttribute("branchId");
+		    Double result = feedToFarmerService.findTotalOfRemainingAmountByFarmerIdAndBranchId(farmerId, branchId);
+
+		    return ResponseEntity.status(HttpStatus.OK).body(result);
+		}
+	 
 	 
 	 
 	 @PostMapping("/update")

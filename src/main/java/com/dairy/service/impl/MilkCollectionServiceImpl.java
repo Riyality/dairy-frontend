@@ -27,10 +27,9 @@ public class MilkCollectionServiceImpl implements MilkCollectionService {
 
 	@Override
 	public String addMilkCollection(MilkCollectionRequestDto dto, int branchId) {
-    
-		RestTemplate template = new RestTemplate();
-		String url = "http://localhost:6262/milkCollection/branchId"+branchId;
-
+   	RestTemplate template = new RestTemplate();
+   
+		String url = "http://localhost:6262/milkCollection/branchId/"+branchId;
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType( MediaType.APPLICATION_JSON );
 
@@ -109,5 +108,30 @@ public class MilkCollectionServiceImpl implements MilkCollectionService {
 		}
 		return null;
 	}
+
+	@Override
+	public List<MilkCollectionResponseDto> getRecordsByFarmerIdFromDateAndToDateAndAnimalType(long farmerId,
+			String fromDate, String toDate, String animalType) {
+		RestTemplate template = new RestTemplate();
+		String url ="http://localhost:6262/milkCollection/getMilkCollectionDataBy/"+farmerId+"/"+fromDate+"/"+toDate+"/"+animalType;
+		HttpHeaders headers = new HttpHeaders();
+		HttpEntity<String> entity = new HttpEntity<>("body", headers);
+		try {
+			ParameterizedTypeReference<List<MilkCollectionResponseDto>> responseType = new ParameterizedTypeReference<List<MilkCollectionResponseDto>>() {
+			};
+			ResponseEntity<List<MilkCollectionResponseDto>> res = template.exchange(url, HttpMethod.GET, entity,
+					responseType);
+			return res.getBody();
+
+		} catch (Exception e) {
+			log.error(e.getMessage(), e);
+		}
+		return null;
+	}
+
+	
+
+	
+
 
 }

@@ -48,7 +48,7 @@
                             <td>${employee.address}</td>
                             <td>
                               <a href="http://localhost:6161/employee/${employee.id }">
-                                <i class="ti ti-color-picker" style="font-size: 14px"></i>
+                                <i class="ti ti-color-picker" style="font-size: 14px">Edit</i>
                               </a>
                             </td>
                           </tr>
