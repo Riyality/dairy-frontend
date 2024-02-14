@@ -476,7 +476,7 @@
 		                    console.error('Error fetching data:', error);
 		                }
 		            });
-		        }
+		        
 		    }
 		
 		    updateMilkRateAndAmount();
@@ -500,11 +500,7 @@
 			   
 		       });
 
-	     
-	      
-	    
-			
-		});
+	   
  /*Milk Collection Script End*/
 
 
