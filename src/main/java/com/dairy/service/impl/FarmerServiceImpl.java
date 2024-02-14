@@ -116,4 +116,22 @@ public class FarmerServiceImpl implements FarmerService {
 		return null;
 	}
 
+	@Override
+	public List<FarmerResponseDto> findAllInActiveFarmers(int branchId) {
+		RestTemplate template = new RestTemplate();
+		String url = "http://localhost:6262/farmers/in-ActiveFarmers/branch/" + branchId;
+		HttpHeaders headers = new HttpHeaders();
+		HttpEntity<String> entity = new HttpEntity<>("body", headers);
+		try {
+			ParameterizedTypeReference<List<FarmerResponseDto>> responseType = new ParameterizedTypeReference<List<FarmerResponseDto>>() {
+			};
+			ResponseEntity<List<FarmerResponseDto>> res = template.exchange(url, HttpMethod.GET, entity, responseType);
+			return res.getBody();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
 }

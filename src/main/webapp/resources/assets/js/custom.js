@@ -449,5 +449,41 @@
 	                
  			});
 		 /*Payment To Farmer Script Start*/ 
+        
+        /* Start Farmer Records Active and InActive*/
+        function getFarmers(status) {
+            var url = '/farmers'; 
+            if (status === 'active') {
+                url += '/active';
+                document.getElementById('statusDropdown').innerHTML = 'Active';
+            } else if (status === 'inactive') {
+                url += '/InActiveFarmers/inActive';
+                
+                document.getElementById('statusDropdown').innerHTML = 'inactive';
+                
+                setTimeout(function() {
+                    if (document.getElementById('statusDropdown').innerHTML === 'inactive') {
+                        document.getElementById('statusDropdown').innerHTML = 'Active';
+                    }
+                },90000);
+            } else {
+                console.error('Invalid status');
+                return;
+            }
+            
+            $.ajax({
+                type: 'GET',
+                url: url,
+                success: function(data) {
+                    $('#file-export tbody').html(data);
+                },
+                error: function(xhr, status, error) {
+                    console.error(xhr.responseText);
+                }
+            });
+        }  
 
+        
+        
+        /* Start Farmer Records Active and InActive*/
 		

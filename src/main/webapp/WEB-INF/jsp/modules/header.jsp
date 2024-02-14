@@ -587,24 +587,6 @@
                         </li>
                         <!-- End  Invoice slide -->
                       
-                      <!-- Start Milkrate  slide  -->
-                        
-                        <li class="slide has-sub">
-                            <a href="javascript:void(0);" class="side-menu__item"> 
-                                <i class="fa-solid fa-money-bill-1-wave listIcons" aria-hidden="true"></i>
-                                <span class="side-menu__label">Bonus</span>
-                                <i class="fe fe-chevron-right side-menu__angle"></i>
-                            </a>
-                            <ul class="slide-menu child1">
-                                <li class="slide">
-                                    <a href="/bonusToFarmer" class="side-menu__item">Genarte Bonus</a>
-                                </li>
-                                 
-                                
-                            </ul>
-                        </li>
-                        <!-- End Bonus slide -->
-                        
                         
                         <!-- Start Milkrate  slide  -->
                         
@@ -622,11 +604,11 @@
                                 
                             </ul>
                         </li>
-                        <!-- End Bonus slide -->
-                        
-                         <!-- Start farmer animal slide -->
+                      
                          
-                          <!-- Start Milkrate  slide  -->
+                          <!-- end Milkrate  slide  -->
+                          
+                            <!-- Start Bonus slide -->
                         
                         <li class="slide has-sub">
                             <a href="javascript:void(0);" class="side-menu__item"> 
@@ -635,13 +617,15 @@
                                 <i class="fe fe-chevron-right side-menu__angle"></i>
                             </a>
                             <ul class="slide-menu child1">
-                                <li class="slide">
-                                    <a href="/bonusToFarmer" class="side-menu__item">Genarte Bonus</a>
-                                </li>
-                                 
-                                
-                            </ul>
-                        </li>
+						         <li class="slide side-menu__label1">
+						         <a href="javascript:void(0);">Bonus </a></li>
+						         <li class="slide"><a href="/bonusToFarmer/page"
+							       class="side-menu__item">Genarte Bonus</a></li>
+						        <li class="slide"><a href="/bonusToFarmer"
+							     class="side-menu__item">All Bonus Records</a></li>
+					
+					  </ul>
+					</li>
                         <!-- End Bonus slide -->
                         
                          <!-- Start farmer animal slide -->
