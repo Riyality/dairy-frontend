@@ -43,7 +43,7 @@
 										name="feedCompanyId">
 										<option value="${feedstock.feedCompanyId}" selected="selected" disabled="disabled">${feedstock.feedCompanyName}</option>
 										<c:forEach items="${feedCompany}" var="fc">
-											<option selected="selected" value="${fc.id}">${fc.name}</option>
+											<option  value="${fc.id}">${fc.name}</option>
 										</c:forEach>
 									</select>
 
