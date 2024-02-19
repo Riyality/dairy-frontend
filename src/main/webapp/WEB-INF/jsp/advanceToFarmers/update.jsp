@@ -24,10 +24,10 @@
 								<div class="col-md-6">
 									<label class="form-label dairy-input-label">Farmer Name</label> 
 					
-									<select class="form-select dairy-form-input" id=""
-										name="farmerId" value="${advance.farmerId }">
+									<select class="form-select dairy-form-input" id="" name="farmerId" value="${advance.farmerId }">
+									<option  selected="selected" value="${advance.farmerId}">${advance.farmerName}</option>
 										<c:forEach items="${list}" var="farmer">
-											<option  selected="selected" value="${farmer.id}">${farmer.name}</option>
+											<option   value="${farmer.id}">${farmer.name}</option>
 										</c:forEach>
 									</select>
 									
@@ -35,7 +35,7 @@
 								
 								<div class="col-md-6">
 									<label class="form-label dairy-input-label">Date of Advance</label> 
-									<input type="datetime-local" class="form-control dairy-form-input" id="" name="dateOfAdvance" value="${advance.dateOfAdvance }">
+									<input type="date" class="form-control dairy-form-input" id="" name="dateOfAdvance" value="${advance.dateOfAdvance }">
 								</div>
 								
 								<div class="col-md-6">
@@ -53,7 +53,7 @@
 								</div>
 								<div class="col-12">
 									<label class="form-label dairy-input-label">Remark</label>
-									<textarea class="col-md-12 dairy-textarea" rows="4" name="address" placeholder="Enter Remark Here"></textarea> 
+									<textarea class="col-md-12 dairy-textarea" rows="4" name="remark" placeholder="Enter Remark Here"></textarea> 
 								</div>
 								<div class="col-12">
 									<button class="btn btn-primary dairy-form-btn" type="submit">Submit </button>

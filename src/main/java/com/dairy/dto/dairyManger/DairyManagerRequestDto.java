@@ -18,6 +18,5 @@ public class DairyManagerRequestDto {
 	private String transactionType;
 	private String contact;
 	private Long amount;
-	private Long balance;
 	private String remark;
 }
