@@ -32,8 +32,9 @@
 									<label class="form-label dairy-input-label">Route</label>
 									 <select class="form-select dairy-form-input" id=""
 										name="route" value="${farmer.route}">
+										<option  selected="selected" value="${farmer.route.id}">${farmer.route.name}</option>
 										<c:forEach items="${routes}" var="route">
-											<option  selected="selected" value="${route.id}">${route.name}</option>
+											<option  value="${route.id}">${route.name}</option>
 										</c:forEach>
 									</select>
 								</div>
@@ -87,7 +88,7 @@
 								
 								<div class="col-md-12">
 									<label class="form-label dairy-input-label">Remark</label>
-									<textarea class="col-md-12 dairy-textarea" rows="4" name="remark" placeholder="Enter Remark Here"></textarea> 
+									<textarea class="col-md-12 dairy-textarea" rows="4" name="remark" placeholder="Enter Remark Here">${farmer.remark}</textarea> 
 								</div>
 								
 								<div class="col-12">

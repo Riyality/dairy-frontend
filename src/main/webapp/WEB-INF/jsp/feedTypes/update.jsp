@@ -38,7 +38,7 @@
 								<div class="col-12">
 									<label class="form-label dairy-input-label">Remark</label>
 									<textarea class="col-md-12 dairy-textarea" rows="4"
-										name="remark" placeholder="Enter Remark Here"></textarea>
+										name="remark" placeholder="Enter Remark Here">${feedType.remark}</textarea>
 								</div>
 								<div class="col-12">
 									<button class="btn btn-primary dairy-form-btn" type="submit">Submit

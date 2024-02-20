@@ -15,4 +15,5 @@ public class FeedCompanyRequestDto {
 	private String name;
 	private Long feedcompanyId;
 	private int branchId;
+	private String remark;
 }

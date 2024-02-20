@@ -16,4 +16,5 @@ public class BranchResponseDto {
 	private String owner;
 	private String ownerContact;
 	private LocalDateTime startDate;
+	private String remark;
 }

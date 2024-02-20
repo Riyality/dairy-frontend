@@ -19,4 +19,5 @@ public class AdvanceToFarmerResponseDto {
 	private Long farmerId;
 	private String farmerName;
 	private int branchId;
+	private String remark;
 }

@@ -24,6 +24,7 @@
 		                  <th>Quantity</th>
 		                  <th>Price</th>
 		                  <th>Total Amount</th>
+		                   <th>Remark</th>
 		                  <th>Action</th>
 		                  </tr>
 		              </thead>
@@ -36,6 +37,7 @@
                             <td>${equipment.quantity}</td>
                             <td>${equipment.price}</td>
                             <td>${equipment.totalAmount}</td>
+                             <td>${equipment.remark}</td>
                             <td>
                               <a href="http://localhost:6161/equipments/${equipment.id }">
                                 <i class="ti ti-color-picker" style="font-size: 14px">Edit</i>

@@ -14,6 +14,7 @@ public class FeedTypeRequestDto {
 	private String type;
 	private Long feedCompanyId;
 	private int branchId;
+	private String remark;
 
 
 }
