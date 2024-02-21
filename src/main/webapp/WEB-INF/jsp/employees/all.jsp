@@ -29,6 +29,7 @@
 		                  <th>IFSC Code</th>
 		                  <th>UPI Code</th>
 		                  <th>Address</th>
+		                   <th>Remark</th>
 		                  <th>Action</th>
 		                  </tr>
 		              </thead>
@@ -38,7 +39,7 @@
                           <tr class="gridjs-tr">
                             <td>${employee.name}</td>
                             <td>${employee.dateOfJoining}</td>
-                            <td>Employee</td>
+                            <td>${employee.role}</td>
                             <td>${employee.contact}</td>
                             <td>${employee.bankName}</td>
                             <td>${employee.bankBranchName}</td>
@@ -46,6 +47,7 @@
                             <td>${employee.ifscCode}</td>
                             <td>${employee.upiId}</td>
                             <td>${employee.address}</td>
+                            <td>${employee.remark}</td>
                             <td>
                               <a href="http://localhost:6161/employee/${employee.id }">
                                 <i class="ti ti-color-picker" style="font-size: 14px">Edit</i>

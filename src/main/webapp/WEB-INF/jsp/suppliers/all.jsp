@@ -28,6 +28,7 @@
 		                  <th>IFSC Code</th>
 		                  <th>UPIId</th>
 		                  <th>Address</th>
+		                  <th>Remark</th>
 		                  <th>Action</th>
 		                  </tr>
 		              </thead>
@@ -44,6 +45,7 @@
                             <td>${supplier.ifscCode}</td>
                             <td>${supplier.upiId}</td>
                              <td>${supplier.address}</td>
+                              <td>${supplier.remark}</td>
                             <td>
                               <a href="http://localhost:6161/suppliers/${supplier.id }">
                                 <i class="ti ti-color-picker" style="font-size: 14px">Edit</i>
@@ -51,7 +53,7 @@
                             </td>
                           </tr>
                         </c:forEach>
-		              
+		             
 		              </tbody>
 		            </table>
 		        </div>

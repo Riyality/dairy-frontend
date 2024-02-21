@@ -44,6 +44,10 @@
 									<label class="form-label dairy-input-label">Address</label>
 									<textarea class="col-md-12 dairy-textarea" name="address" placeholder="Enter Address Here"></textarea> 
 								</div>
+								<div class="col-md-12">
+									<label class="form-label dairy-input-label">Remark</label>
+									<textarea class="col-md-12 dairy-textarea" rows="4" name="remark" placeholder="Enter Remark Here"></textarea> 
+								</div>
 								<div class="col-12">
 									<button class="btn btn-primary dairy-form-btn" type="submit">Submit </button>
 								</div>

@@ -21,9 +21,9 @@
 		                <tr class="dairy-table-head">
 		                  <th>Farmer Name</th>
 		                  <th>Advance Amount</th>
-		                  <th>Deduction</th>
 		                  <th>Remaining Amount</th>
 		                  <th>Date</th>
+		                  <th>Remark</th>
 		                  <th>Action</th>
 		                  </tr>
 		              </thead>
@@ -33,9 +33,9 @@
                           <tr class="gridjs-tr">
                             <td>${advanceTofarmer.farmerName}</td>
                             <td>${advanceTofarmer.amount}</td>
-                             <td>${advanceTofarmer.deduction}</td>
                               <td>${advanceTofarmer.remainingAmount}</td>
                             <td>${advanceTofarmer.dateOfAdvance}</td>
+                            <td>${advanceTofarmer.remark}</td>
                             <td>
                               <a href="http://localhost:6161/advanceToFarmer/${advanceTofarmer.id}">
                                 <i class="ti ti-color-picker" style="font-size: 14px">Edit</i>

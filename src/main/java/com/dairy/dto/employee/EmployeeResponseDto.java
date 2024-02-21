@@ -2,8 +2,6 @@ package com.dairy.dto.employee;
 
 import java.time.LocalDateTime;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,6 +16,9 @@ public class EmployeeResponseDto {
 	private String contact;
 	private String address;
 	private LocalDateTime dateOfJoining;
+	private String remark;
+	private String role;
+
 	private int branchId;
 	private String branchName;
 	private long bankId;
@@ -26,5 +27,4 @@ public class EmployeeResponseDto {
 	private String bankBranchName;
 	private String accountNumber;
 	private String upiId;
-
 }

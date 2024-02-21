@@ -32,7 +32,7 @@
 									<label class="form-label dairy-input-label">Employee Role</label> 
 									<select class="form-select dairy-form-input" name="role" id="">
 										<option value="" selected="selected" disabled="disabled">Select Role</option>
-										<option value="Employee">Employee</option> 
+										<option value="employee">Employee</option> 
 									</select>
 								</div>
 								

@@ -30,6 +30,7 @@
 			                  <th>Total Milk</th>
 			                  <th>Milk Rate</th>
 			                  <th>Total Amount</th>
+			                   <th>Remark</th>
 			                  <th>Action</th>
 		                  </tr>
 		              </thead>
@@ -47,6 +48,7 @@
                             <td>${mainBranch.quantity }</td>
                             <td>${mainBranch.rate }</td>
                             <td>${mainBranch.totalAmount }</td>
+                            <td>${mainBranch.remark}</td>
                             <td>
                               <a href="http://localhost:6161/mainBranchs/${mainBranch.id }">
                                  <button>Edit</button>

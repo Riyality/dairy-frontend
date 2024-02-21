@@ -30,9 +30,8 @@
 
 								<div class="col-md-6">
 									<label class="form-label dairy-input-label">Employee Role</label> 
-									<select class="form-select dairy-form-input" name="role" id="">
-										<option value="" selected="selected" disabled="disabled">Select Role</option>
-										<option value="Employee">Employee</option> 
+									<select class="form-select dairy-form-input" name="role" id="" value="${employee.role}">
+										<option value="employee">Employee</option> 
 									</select>
 								</div>
 								
@@ -77,7 +76,7 @@
 								
 								<div class="col-md-12">
 									<label class="form-label dairy-input-label">Remark</label>
-									<textarea class="col-md-12 dairy-textarea" rows="4" name="remark" placeholder="Enter Remark Here"></textarea> 
+									<textarea class="col-md-12 dairy-textarea" rows="4" name="remark" placeholder="Enter Remark Here" >${employee.remark}</textarea> 
 								</div>
 								
 								<div class="col-12">

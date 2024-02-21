@@ -116,7 +116,7 @@
 				
 								<div class="col-md-12">
 									<label class="form-label dairy-input-label">Remark</label>
-									<textarea class="col-md-12 form-control dairy-textarea" rows="4" name="address" placeholder="Enter Remark Here"></textarea> 
+									<textarea class="col-md-12 form-control dairy-textarea" rows="4" name="reamrk" placeholder="Enter Remark Here"> ${mainBranch.remark}</textarea> 
 								</div>
 								<div class="col-12">
 									<button class="btn btn-primary dairy-form-btn" type="submit">Submit </button>

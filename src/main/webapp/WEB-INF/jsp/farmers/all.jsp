@@ -37,6 +37,7 @@
                                             <th>Account No.</th>
                                             <th>IFSC Code</th>
                                             <th>Address</th>
+                                             <th>Remark</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -52,6 +53,7 @@
                                                 <td>${farmer.bank.accountNumber }</td>
                                                 <td>${farmer.bank.ifscCode }</td>
                                                 <td>${farmer.address }</td>
+                                                <td>${farmer.remark}</td>
                                                 <td><a href="http://localhost:6161/farmers/id/${farmer.id }"> <i class="ti ti-color-picker" style="font-size: 14px"></i> <button class="btn btn-sm btn-primary dairy-form-btn">Edit</button> </a></td>
                                             </tr>
                                         </c:forEach>

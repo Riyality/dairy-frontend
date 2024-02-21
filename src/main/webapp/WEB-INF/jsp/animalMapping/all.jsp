@@ -20,6 +20,7 @@
 		                  <th>Farmer Name</th>
 		                  <th>Animal Type</th>
 		                  <th>Animal Count</th>
+		                   <th>Remark</th>
 		                  <th>Action</th>
 		                  </tr>
 		              </thead>
@@ -30,6 +31,7 @@
                             <td>${animal.farmerName}</td>
                             <td>${animal.type}</td>
                              <td>${animal.count}</td>
+                              <td>${animal.remark}</td>
                             <td>
                               <a href="http://localhost:6161/farmerAnimalMapping/${animal.id}">
                               <button>Edit</button>

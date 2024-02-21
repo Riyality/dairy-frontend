@@ -20,6 +20,7 @@ public class FarmerResponseDto {
 	private String address;
 	private String status;
 	private int branchId;
+	private String remark;
 	private BankResponseDto bank;
 
 }
