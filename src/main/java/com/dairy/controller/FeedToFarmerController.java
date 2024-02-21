@@ -78,8 +78,7 @@ public class FeedToFarmerController {
 
 	
 	@PostMapping
-	public String add(@ModelAttribute FeedToFarmerRequestDto dto ,Model model,RedirectAttributes ra,
-			           HttpSession session ){
+	public String add(@ModelAttribute FeedToFarmerRequestDto dto ,Model model,RedirectAttributes ra, HttpSession session ){
 		    int branchId=(int) session.getAttribute("branchId");
 		    dto.setBranchId(branchId);
 		    
