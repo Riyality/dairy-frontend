@@ -41,16 +41,15 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	@Override
-	public List<EmployeeResponseDto> getAllEmployee() {
+	public List<EmployeeResponseDto> getAllEmployee(Integer branchId) {
 		RestTemplate template = new RestTemplate();
-		String url = "http://localhost:6262/employee";
+		String url = "http://localhost:6262/employee/all/"+branchId;
 		HttpHeaders headers = new HttpHeaders();
 		HttpEntity<String> entity = new HttpEntity<>("body", headers);
 		try {
 			ParameterizedTypeReference<List<EmployeeResponseDto>> responseType = new ParameterizedTypeReference<List<EmployeeResponseDto>>() {
 			};
-			ResponseEntity<List<EmployeeResponseDto>> res = template.exchange(url, HttpMethod.GET, entity,
-					responseType);
+			ResponseEntity<List<EmployeeResponseDto>> res = template.exchange(url, HttpMethod.GET, entity,responseType);
 			return res.getBody();
 
 		} catch (Exception e) {
@@ -60,9 +59,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	@Override
-	public EmployeeResponseDto findById(long id) {
+	public EmployeeResponseDto findById(long id ,Integer branchId) {
 		RestTemplate template = new RestTemplate();
-		String url = "http://localhost:6262/employee/" + id;
+		String url = "http://localhost:6262/employee/" + id+"/"+branchId;
 		HttpHeaders headers = new HttpHeaders();
 		HttpEntity<String> entity = new HttpEntity<>("body", headers);
 		try {
