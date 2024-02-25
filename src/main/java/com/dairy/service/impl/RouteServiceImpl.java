@@ -44,10 +44,10 @@ public class RouteServiceImpl implements RouteService {
 	}
 
 	@Override
-	public List<RouteResponseDto> getAllRoutes() {
+	public List<RouteResponseDto> getAllRoutes(int branchId) {
 		
 		RestTemplate template = new RestTemplate();
-		String url = "http://localhost:6262/routes"; 
+		String url = "http://localhost:6262/routes/all/"+branchId; 
 		
 		HttpHeaders headers = new HttpHeaders();
 		HttpEntity<String> entity = new HttpEntity<>( "body", headers );

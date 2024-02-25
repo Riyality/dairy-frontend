@@ -13,7 +13,7 @@ public interface FarmerService {
 
 	List<FarmerResponseDto> farmersListRoutewise(int branchId, int routeId);
 
-	FarmerResponseDto findById(Long id);
+	FarmerResponseDto findById(Long id, int branchId);
 
 	String update(FarmerRequestDto dto);
 

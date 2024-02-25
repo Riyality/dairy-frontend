@@ -79,9 +79,9 @@ public class FarmerServiceImpl implements FarmerService {
 	}
 
 	@Override
-	public FarmerResponseDto findById(Long id) {
+	public FarmerResponseDto findById(Long id, int branchId) {
 		RestTemplate template = new RestTemplate();
-		String url = "http://localhost:6262/farmers/id/" + id;
+		String url = "http://localhost:6262/farmers/id/"+ id+"/"+branchId;
 		HttpHeaders headers = new HttpHeaders();
 		HttpEntity<String> entity = new HttpEntity<>("body", headers);
 		try {
