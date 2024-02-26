@@ -44,9 +44,9 @@ public class FeedCompanyServiceImpl implements FeedCompanyService {
 	}
 
 	@Override
-	public List<FeedCompanyResponseDto> getAllFeedCompany() {
+	public List<FeedCompanyResponseDto> getAllFeedCompany( int branchId) {
 		RestTemplate template = new RestTemplate();
-		String url = "http://localhost:6262/feedcompany"; 
+		String url = "http://localhost:6262/feedcompany/all/"+branchId; 
 		
 		HttpHeaders headers = new HttpHeaders();
 		HttpEntity<String> entity = new HttpEntity<>( "body", headers );
@@ -64,9 +64,9 @@ public class FeedCompanyServiceImpl implements FeedCompanyService {
 	}
 
 	@Override
-	public FeedCompanyResponseDto findById(long id) {
+	public FeedCompanyResponseDto findById(long id , int branchId) {
 		RestTemplate template = new RestTemplate();
-		String url = "http://localhost:6262/feedcompany/" + id;
+		String url = "http://localhost:6262/feedcompany/" + id+"/"+branchId;
 		HttpHeaders headers = new HttpHeaders();
 		HttpEntity<String> entity = new HttpEntity<>("body", headers);
 		try {

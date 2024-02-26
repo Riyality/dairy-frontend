@@ -49,19 +49,31 @@ public class FeedCompanyController {
 	}
 
 	@GetMapping
-	public String getAllFeedCompany(Model model) {
-		List<FeedCompanyResponseDto> list =feedCompanyService.getAllFeedCompany();
-		model.addAttribute( "feedCompany", list );
-		return "/feedCompanies/all";
+	public String getAllFeedCompany(Model model ,HttpSession session) {
+		String user = (String) session.getAttribute("username");
 		
-
+		if(user != null) {
+			int branchId = (int) session.getAttribute("branchId");
+			
+			List<FeedCompanyResponseDto> list =feedCompanyService.getAllFeedCompany(branchId);
+			model.addAttribute( "feedCompany", list );
+			return "/feedCompanies/all";
+		}
+		return "login";
 	}
 	
 	@GetMapping("/{id}")
-	public String getById(@PathVariable long id, Model model) {
-		FeedCompanyResponseDto response = feedCompanyService.findById(id);
-		model.addAttribute("feedCompany", response);
-		return "feedCompanies/update";
+	public String getById(@PathVariable long id, Model model ,HttpSession session) {
+		String user = (String) session.getAttribute("username");
+		
+		if(user != null) {
+			int branchId = (int) session.getAttribute("branchId");
+			
+			FeedCompanyResponseDto response = feedCompanyService.findById(id ,branchId);
+			model.addAttribute("feedCompany", response);
+			return "feedCompanies/update";	
+		}
+		return "login";
 	}
 	
 	@PostMapping("/update")

@@ -35,10 +35,18 @@ public class FeedTypeController {
 	public FeedCompanyService feedCompanyService;
 
 	@GetMapping("/add-feed-type")
-	public String addFeedTypepage(Model model) {
-		List<FeedCompanyResponseDto> list = feedCompanyService.getAllFeedCompany();
-		model.addAttribute("feedCompany", list);
-		return "/feedTypes/add";
+	public String addFeedTypepage(Model model ,HttpSession session) {
+		
+		String user = (String) session.getAttribute("username");
+		
+		if(user != null) {
+			int branchId = (int) session.getAttribute("branchId");
+			
+			List<FeedCompanyResponseDto> list = feedCompanyService.getAllFeedCompany(branchId);
+			model.addAttribute("feedCompany", list);
+			return "/feedTypes/add";
+		}
+		return "login";
 	}
 
 	@PostMapping
@@ -66,13 +74,21 @@ public class FeedTypeController {
 
 
 	@GetMapping("/{id}")
-	public String getById(@PathVariable long id, Model model) {
-		FeedTypeResponseDto response = feedTypeService.findById(id);
-		model.addAttribute("feedType", response);
+	public String getById(@PathVariable long id, Model model ,HttpSession session) {
+		
+		String user = (String) session.getAttribute("username");
+		
+		if(user != null) {
+			int branchId = (int) session.getAttribute("branchId");
+			
+			FeedTypeResponseDto response = feedTypeService.findById(id);
+			model.addAttribute("feedType", response);
 
-		List<FeedCompanyResponseDto> list = feedCompanyService.getAllFeedCompany();
-		model.addAttribute("feedCompany", list);
-		return "feedTypes/update";
+			List<FeedCompanyResponseDto> list = feedCompanyService.getAllFeedCompany(branchId);
+			model.addAttribute("feedCompany", list);
+			return "feedTypes/update";
+		}
+		return "login";
 	}
 
 	@PostMapping("/update")
