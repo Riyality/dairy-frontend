@@ -17,7 +17,7 @@
 						</div>
 						<div class="card-body dairy-card-body">
 							<form class="row g-3 needs-validation" action="/feedToFarmers"
-								method="Post" novalidate>
+								method="Post" >
 								
 							
 								<div class="col-md-6">
@@ -32,12 +32,12 @@
 								</div>
 								 
 								<div class="col-md-6">
-									<label class="form-label dairy-input-label">Date of distributions</label> 
-									<input type="datetime-local" class="form-control dairy-form-input" id="dateOfPurchase" name="dateOfPurchase">
+									<label class="form-label dairy-input-label required-field">Date of distributions</label> 
+									<input type="date" class="form-control dairy-form-input" id="dateOfPurchase" name="dateOfPurchase" required>
 								</div>
 
 								<div class="col-md-6">
-									<label class="form-label dairy-input-label">Feed Company</label> 
+									<label class="form-label dairy-input-label required-field">Feed Company</label> 
 									 <select  class="form-select dairy-form-input"
 										id="feedCompanyList" name="feedCompanyId">
 										<option value="" selected="selected" disabled="disabled">Select
@@ -49,7 +49,7 @@
 								</div>
 
 								<div class="col-md-6">
-									<label class="form-label dairy-input-label">Feed Company Type</label> 
+									<label class="form-label dairy-input-label required-field">Feed Company Type</label> 
 									<select class="form-select dairy-form-input"
 										id="feedTypeList" name="feedTypeId" disabled="disabled">
 										<!-- <option value="" selected="selected" disabled="disabled">Select
@@ -61,18 +61,18 @@
 								</div>
 								
 								<div class="col-md-6">
-									<label class="form-label dairy-input-label">Total Quantity</label>
-									<input type="text" class="form-control dairy-form-input" placeholder="Enter Total Quantity" id="feedQuantity" name="quantity">
+									<label class="form-label dairy-input-label required-field">Total Quantity</label>
+									<input type="text" class="form-control dairy-form-input" placeholder="Enter Total Quantity" id="feedQuantity" name="quantity" required>
 								</div>
 								
 								<div class="col-md-6">
-									<label class="form-label dairy-input-label">Feed Cost (1 unit)</label>
-									<input type="text" class="form-control dairy-form-input" placeholder="Enter Feed Cost pre Unit" id="feedCostPerUnit" name="feedRate">
+									<label class="form-label dairy-input-label required-field">Feed Cost (1 unit)</label>
+									<input type="text" class="form-control dairy-form-input" placeholder="Enter Feed Cost pre Unit" id="feedCostPerUnit" name="feedRate" required>
 								</div>
 								
 								<div class="col-md-6">
-									<label class="form-label dairy-input-label">Total Amount</label>
-									<input type="text" class="form-control dairy-form-input" placeholder="Total Amount" id="FeedTotalAmount" name="totalAmount">
+									<label class="form-label dairy-input-label required-field">Total Amount</label>
+									<input type="text" class="form-control dairy-form-input" placeholder="Total Amount" id="FeedTotalAmount" name="totalAmount"required>
 								</div>
 								<div class="col-md-6">
 									<label class="form-label dairy-input-label">Amount Paid</label>
@@ -97,7 +97,7 @@
 			</div>
 		</div>
 	</div>
-	
+	<jsp:include page="../modules/footer.jsp" />
 	
 	<script type="text/javascript">
 	
@@ -111,10 +111,10 @@
 			        var year = today.getFullYear();
 			        var month = ('0' + (today.getMonth() + 1)).slice(-2);
 			        var day = ('0' + today.getDate()).slice(-2);
-			        var hours = ('0' + today.getHours()).slice(-2);
-			        var minutes = ('0' + today.getMinutes()).slice(-2);
+			      /*   var hours = ('0' + today.getHours()).slice(-2);
+			        var minutes = ('0' + today.getMinutes()).slice(-2); */
 			
-			        var formattedDateAndTime = year + '-' + month + '-' + day + 'T' + hours + ':' + minutes;
+			        var formattedDateAndTime = year + '-' + month + '-' + day /* + 'T' + hours + ':' + minutes */;
 			
 			        document.getElementById('dateOfPurchase').value = formattedDateAndTime;
 				    }
@@ -129,4 +129,4 @@
 	</script>
 	
 	
-	<jsp:include page="../modules/footer.jsp" />
+	

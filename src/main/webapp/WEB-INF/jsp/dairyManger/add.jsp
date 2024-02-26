@@ -15,23 +15,23 @@
 						</div>
 						<div class="card-body dairy-card-body">
 							<form class="row g-3 needs-validation" action="/dairyManger"
-								method="post" novalidate>
+								method="post" >
 								
 								<div class="col-md-6">
-									<label class="form-label dairy-input-label">  Name</label>
-									<input type="text" class="form-control dairy-form-input" placeholder="Enter Name" id="" name="name">
+									<label class="form-label dairy-input-label required-field">  Name</label>
+									<input type="text" class="form-control dairy-form-input" placeholder="Enter Name" id="name" name="name">
 								</div>
 								
 								<div class="col-md-6">
-									<label class="form-label dairy-input-label">Date</label> 
+									<label class="form-label dairy-input-label required-field">Date</label> 
 									<input type="datetime-local" class="form-control dairy-form-input" id="" name="dateTransaction">
 								</div>
 								
 								<div class="col-md-6">
-									<label class="form-label dairy-input-label">Contact</label> 
+									<label class="form-label dairy-input-label required-field">Contact</label> 
 									<div class="input-group has-validation">
 								   <span class="input-group-text" id="">+91</span>
-									<input type="text" class="form-control dairy-form-input" placeholder="Enter  Contact No." id="" name="contact" required>
+									<input type="text" class="form-control dairy-form-input" placeholder="Enter  Contact No." id="contactNumber" name="contact" required>
 								  </div>
 								</div>
 								
@@ -42,7 +42,7 @@
 								
 								<div class="col-md-6 offset-md-1" > 
 								   <div class="row"> 
-								     <label class="form-label mb-1">Transition Type</label> 
+								     <label class="form-label mb-1 required-field">Transition Type</label> 
 								          <div class="col-md-4"> 
 								             <div class="form-check"> 
 								                   
@@ -67,8 +67,8 @@
 								    </div>
 								    
 								    <div class="col-md-6">
-									<label class="form-label dairy-input-label">Amount </label> 
-									<input type="text" class="form-control dairy-form-input" placeholder="Enter Amount" id="" name="amount" required>
+									<label class="form-label dairy-input-label required-field">Amount </label> 
+									<input type="text" class="form-control dairy-form-input" placeholder="Enter Amount" id="DairyMangementAmount" name="amount" required>
 								</div>
 								
 								<div class="col-md-12">
@@ -85,3 +85,4 @@
 			</div>
 		</div>
 	</div>
+	<jsp:include page="../modules/footer.jsp" />

@@ -15,11 +15,11 @@
 							<div class="card-title">Add Animal Mapping</div>
 						</div>
 						<div class="card-body dairy-card-body">
-							<form class="row g-3 needs-validation" action="/farmerAnimalMapping"
-								method="Post" novalidate>
+							<form class="row g-3 needs-validation" id="animalMappingForm" action="/farmerAnimalMapping"
+								method="Post" >
 								
 								<div class="col-md-6">
-									<label class="form-label dairy-input-label">Farmer Name</label> 
+									<label class="form-label dairy-input-label required-field">Farmer Name</label> 
 					
 									<select class="form-select dairy-form-input" id=""
 										name="farmerId">
@@ -32,7 +32,7 @@
 								
 								<div class="col-md-3 offset-md-1 mt-4" > 
 								   <div class="row"> 
-								     <label class="form-label mb-1">Animal Type</label> 
+								     <label class="form-label mb-1 required-field">Animal Type</label> 
 								          <div class="col-md-4"> 
 								             <div class="form-check"> 
 								                   
@@ -57,8 +57,8 @@
 								    </div>
 								
 								<div class="col-md-6">
-									<label class="form-label dairy-input-label">Count</label>
-									<input type="text" class="form-control dairy-form-input" placeholder="Enter Count" id="count" name="count">
+									<label class="form-label dairy-input-label required-field">Count</label>
+									<input type="text" class="form-control dairy-form-input" placeholder="Enter Count" id="count" name="count" required>
 								</div>
 								
 								<div class="col-12">

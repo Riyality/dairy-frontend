@@ -13,9 +13,9 @@ public interface FeedCompanyService {
 
 	public String addFeedCompany(FeedCompanyRequestDto dto) ;
 
-	public List<FeedCompanyResponseDto> getAllFeedCompany();
+	public List<FeedCompanyResponseDto> getAllFeedCompany( int branchId);
 
-	public FeedCompanyResponseDto findById(long id);
+	public FeedCompanyResponseDto findById(long id, int branchId);
 
 	public String updateFeedCompany(FeedCompanyRequestDto dto);
 

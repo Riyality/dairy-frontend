@@ -15,12 +15,12 @@
 						</div>
 						<div class="card-body dairy-card-body">
 							<form class="row g-3 needs-validation" action="/routes/update"
-								method="post" novalidate>
+								method="post" >
 								
 								<div class="col-md-6">
-									<label class="form-label dairy-input-label">Route Name</label>
+									<label class="form-label dairy-input-label required-field">Route Name</label>
 									<input type="hidden" class="form-control dairy-form-input"  id="" name="id" value="${route.id }">
-									<input type="text" class="form-control dairy-form-input" placeholder="Enter Route Name" id="" name="name" value="${route.name}">
+									<input type="text" class="form-control dairy-form-input" placeholder="Enter Route Name" id="" name="name" value="${route.name}"required>
 								</div>
 								
 								<div class="col-12">

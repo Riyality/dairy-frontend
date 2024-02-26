@@ -15,24 +15,24 @@
 						</div>
 						<div class="card-body dairy-card-body">
 							<form class="row g-3 needs-validation" action="/suppliers"
-								method="post" novalidate>
+								method="post" >
 								
 								<div class="col-md-6">
-									<label class="form-label dairy-input-label">Supplier Name</label>
-									<input type="text" class="form-control dairy-form-input" placeholder="Enter Supplier Name" id="" name="name">
+									<label class="form-label dairy-input-label required-field">Supplier Name</label>
+									<input type="text" class="form-control dairy-form-input" placeholder="Enter Supplier Name" id="name" name="name"required>
 								</div>
 								
 								<div class="col-md-6">
-									<label class="form-label dairy-input-label">Supplier Contact</label>
+									<label class="form-label dairy-input-label required-field">Supplier Contact</label>
 									<div class="input-group has-validation">
 										<span class="input-group-text" id="">+91</span>
-										<input type="text" class="form-control dairy-form-input" placeholder="Enter Mobile No." id="" aria-describedby="inputGroupPrepend" name="contact" required>
+										<input type="text" class="form-control dairy-form-input" placeholder="Enter Mobile No." id="contactNumber" aria-describedby="inputGroupPrepend" name="contact" required>
 									</div>
 								</div>
 								
 								<div class="col-md-6">
-									<label class="form-label dairy-input-label">Date of Joining</label> 
-									<input type="datetime-local" class="form-control dairy-form-input" id="" name="dateOfRegistration">
+									<label class="form-label dairy-input-label required-field">Date of Joining</label> 
+									<input type="datetime-local" class="form-control dairy-form-input" id="" name="dateOfRegistration" required>
 								</div>
 								
 								<div class="col-md-6">
@@ -47,7 +47,7 @@
 								
 								<div class="col-md-6">
 									<label class="form-label dairy-input-label">Account No.</label>
-									<input type="text" class="form-control dairy-form-input" placeholder="Enter Account No." id="" name="bankRequestDto.accountNumber">
+									<input type="text" class="form-control dairy-form-input" placeholder="Enter Account No." id="accountNumber" name="bankRequestDto.accountNumber" >
 								</div>
 								
 								<div class="col-md-6">
@@ -60,8 +60,8 @@
 									<input type="text" class="form-control dairy-form-input" placeholder="Enter UPI Code" id="" name="bankRequestDto.upiId">
 								</div>
 								<div class="col-12">
-									<label class="form-label dairy-input-label">Address</label>
-									<textarea class="col-12 dairy-textarea" rows="4" name="address" placeholder="Enter Address Here"></textarea> 
+									<label class="form-label dairy-input-label required-field">Address</label>
+									<textarea class="col-12 dairy-textarea" rows="4" name="address" placeholder="Enter Address Here"required></textarea> 
 								</div>
 								<div class="col-md-12">
 									<label class="form-label dairy-input-label">Remark</label>

@@ -15,12 +15,12 @@
 						</div>
 						<div class="card-body">
 							<form class="row g-3 needs-validation" action="/feedTypes/update"
-								method="post" novalidate>
+								method="post" >
 
 								<div class="col-md-6">
 								  <input type="hidden" class="form-control dairy-form-input" id="" name="id" value="${feedType.id }">
 								
-									<label class="form-label dairy-input-label">Feed Company Name</label> 
+									<label class="form-label dairy-input-label required-field">Feed Company Name</label> 
 										
 								      <select  class="form-select dairy-form-input"id="" name="feedCompanyId" value="${feedType.feedCompanyId }">
                                       <option value="${feedType.feedCompanyId }" selected="selected" >${feedType.feedCompanyName}</option>
@@ -31,8 +31,8 @@
 								</div>
 
 								<div class="col-md-6">
-									<label class="form-label dairy-input-label">Feed Type Name</label> 
-									<input type="text"class="form-control dairy-form-input" placeholder="Enter Feed Type Name" id="" name="type" value="${feedType.type }">
+									<label class="form-label dairy-input-label required-field">Feed Type Name<span class="required-field">*</span></label> 
+									<input type="text"class="form-control dairy-form-input" placeholder="Enter Feed Type Name" id="" name="type" value="${feedType.type }" required>
 								</div>
 
 								<div class="col-12">

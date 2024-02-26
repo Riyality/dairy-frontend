@@ -45,17 +45,26 @@ public class FeedStockController {
 	private FeedStockService feedStockService;
 
 	@GetMapping("/add-feedStock-page")
-	public String addFeedStockPage(Model model) {
-		List<FeedCompanyResponseDto> list = feedCompanyService.getAllFeedCompany();
-		model.addAttribute("feedCompany", list);
+	public String addFeedStockPage(Model model ,HttpSession session) {
+		
+		String user = (String) session.getAttribute("username");
+		
+		if(user != null) {
+			int branchId = (int) session.getAttribute("branchId");
+			
+			List<FeedCompanyResponseDto> list = feedCompanyService.getAllFeedCompany(branchId);
+			model.addAttribute("feedCompany", list);
+			
+			List<FeedTypeResponseDto> list1 = feedTypeService.getAllFeedTypes();
+			model.addAttribute("feedType", list1);
 
-		List<FeedTypeResponseDto> list1 = feedTypeService.getAllFeedTypes();
-		model.addAttribute("feedType", list1);
+			List<SupplierResponseDto> list2 = supplierService.getAllSupplier();
+			model.addAttribute("suppliers", list2);
 
-		List<SupplierResponseDto> list2 = supplierService.getAllSupplier();
-		model.addAttribute("suppliers", list2);
-
-		return "feedStock/add";
+			return "feedStock/add";
+			
+		}
+		return "login";		
 	}
 
 
@@ -92,20 +101,29 @@ public class FeedStockController {
 	}
 
 	@GetMapping( "/{id}" )
-	public String getById( @PathVariable int id, Model model ) {
-		FeedStockResponseDto response = feedStockService.findById( id );
-		model.addAttribute( "feedstock", response );
+	public String getById( @PathVariable int id, Model model ,HttpSession session ) {
 		
-		List<FeedCompanyResponseDto> list = feedCompanyService.getAllFeedCompany();
-		model.addAttribute("feedCompany", list);
-
-		List<FeedTypeResponseDto> list1 = feedTypeService.getAllFeedTypes();
-		model.addAttribute("feedType", list1);
-
-		List<SupplierResponseDto> list2 = supplierService.getAllSupplier();
-		model.addAttribute("suppliers", list2);
+		String user = (String) session.getAttribute("username");
 		
-		return "feedStock/update";
+		if(user != null) {
+			int branchId = (int) session.getAttribute("branchId");
+			
+			FeedStockResponseDto response = feedStockService.findById( id );
+			model.addAttribute( "feedstock", response );
+			
+			List<FeedCompanyResponseDto> list = feedCompanyService.getAllFeedCompany(branchId);
+			model.addAttribute("feedCompany", list);
+
+			List<FeedTypeResponseDto> list1 = feedTypeService.getAllFeedTypes();
+			model.addAttribute("feedType", list1);
+
+			List<SupplierResponseDto> list2 = supplierService.getAllSupplier();
+			model.addAttribute("suppliers", list2);
+			
+			return "feedStock/update";
+			
+		}
+		return "login";
 	}
 
 	@PostMapping("/update")
