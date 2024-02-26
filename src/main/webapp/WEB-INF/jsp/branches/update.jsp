@@ -25,28 +25,28 @@
 						</div>
 						<div class="card-body">
 							<form class="row g-3 needs-validation" action="/branches/update"
-								method="post" novalidate>
+								method="post" >
 								<div class="col-md-12">
-									<label for="validationCustom01" class="form-label">Name</label>
+									<label for="validationCustom01" class="form-label required-field">Name</label>
 									<input type="hidden" name="id" class="col-md-12 spti-inpt" value="${branch.id }"> <input type="text" class="form-control" id="validationCustom01" name="name" value="${branch.name }" required>
 									<div class="valid-feedback">Looks good!</div>
 								</div>
 								<div class="col-md-6">
-									<label for="validationCustom02" class="form-label">Owner Name</label> 
+									<label for="validationCustom02" class="form-label required-field">Owner Name</label> 
 									<input type="text" class="form-control" id="validationCustom02" name="owner" value="${branch.owner }" required> 
 									<div class="valid-feedback">Looks good!</div>
 								</div>
 								<div class="col-md-6">
-									<label for="validationCustomUsername" class="form-label">Owner Contact</label>
+									<label for="validationCustomUsername" class="form-label required-field">Owner Contact</label>
 									<div class="input-group has-validation">
 										<span class="input-group-text" id="inputGroupPrepend">+91</span>
-										<input type="text" class="form-control" id="validationCustomUser aria-describedby="inputGroupPrepend" value="${branch.ownerContact }" name="ownerContact" required>
+										<input type="text" class="form-control" id="contactNumber" value="${branch.ownerContact }" name="ownerContact" required>
 										<div class="invalid-feedback">Please choose a username.
 										</div>
 									</div>
 								</div>
 								<div class="col-md-12">
-									<label for="validationCustom03" class="form-label">Start Date</label>
+									<label for="validationCustom03" class="form-label required-field">Start Date</label>
 									 <input type="datetime-local" class="form-control id="validationCustom03" required name="startDate" value="${branch.startDate }">
 									<div class="invalid-feedback" >Please provide a valid city.
 									</div>

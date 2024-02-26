@@ -16,11 +16,11 @@
 						</div>
 						<div class="card-body dairy-card-body">
 							<form class="row g-3 needs-validation" action="/feedStock"
-								method="post" novalidate>
+								method="post" >
 
 								<div class="col-md-6">
-									<label class="form-label dairy-input-label">Supplier
-										Name</label> <select class="form-select dairy-form-input" id=""
+									<label class="form-label dairy-input-label required-field">Supplier
+										Name<span class="required-field">*</span></label> <select class="form-select dairy-form-input" id=""
 										name="supplierId">
 										<option value="" selected="selected" disabled="disabled">Select Supplier</option>
 										<c:forEach items="${suppliers}" var="supplier">
@@ -32,13 +32,13 @@
 								</div>
 
 								<div class="col-md-6">
-									<label class="form-label dairy-input-label">Purchase
+									<label class="form-label dairy-input-label required-field">Purchase
 										Date</label> <input type="datetime-local" class="form-control dairy-form-input"
-										id="" name="dateOfPurchase">
+										id="" name="dateOfPurchase" required>
 								</div>
 
 								<div class="col-md-6">
-									<label class="form-label dairy-input-label">Feed
+									<label class="form-label dairy-input-label required-field">Feed
 										Company</label> <select class="form-select dairy-form-input" id="feedCompanyList"
 										name="feedCompanyId">
 										<option value="" selected="selected" disabled="disabled">Select
@@ -52,7 +52,7 @@
 								</div>
 
 								<div class="col-md-6">
-									<label class="form-label dairy-input-label">Feed
+									<label class="form-label dairy-input-label required-field">Feed
 										Company Type</label> <select class="form-select dairy-form-input"
 										id="" name="feedTypeId">
 										<option value="" selected="selected" disabled="disabled">Select
@@ -64,22 +64,22 @@
 								</div>
 
 								<div class="col-md-6">
-									<label class="form-label dairy-input-label">Feed Cost
+									<label class="form-label dairy-input-label required-field">Feed Cost
 										(1 unit)</label> <input type="text"
 										class="form-control dairy-form-input"
 										placeholder="Enter Feed Cost pre Unit" id="equipmentPrice"
-										name="feedCostPerUnit">
+										name="feedCostPerUnit" required>
 								</div>
 
 								<div class="col-md-6">
-									<label class="form-label dairy-input-label">Total
+									<label class="form-label dairy-input-label required-field">Total
 										Quantity</label> <input type="text"
 										class="form-control dairy-form-input"
-										placeholder="Enter Total Quantity" id="equipmentQuantity" name="quantity">
+										placeholder="Enter Total Quantity" id="equipmentQuantity" name="quantity"required>
 								</div>
 
 								<div class="col-md-6">
-									<label class="form-label dairy-input-label">Total
+									<label class="form-label dairy-input-label required-field">Total
 										Amount</label> <input type="text"
 										class="form-control dairy-form-input"
 										placeholder="Total Amount" id="equipmentTotalAmount" name="totalAmount">

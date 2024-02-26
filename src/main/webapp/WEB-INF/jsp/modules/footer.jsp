@@ -78,6 +78,7 @@
   <!-- CUSTOM JS -->
 	<script src="<c:url value="/resources/assets/js/custom.js"/>"></script>
 	<script src="<c:url value="/resources/assets/js/custom-datatable.js"/>"></script>
+	<script src="<c:url value="/resources/assets/js/custom-validation.js"/>"></script>
 	
 	<!-- default-custom-script JS -->
 	<script src="<c:url value="/resources/assets/js/default-custom-script.js"/>"></script>

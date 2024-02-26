@@ -17,27 +17,27 @@
 						</div>
 						<div class="card-body dairy-card-body">
 							<form class="row g-3 needs-validation" action="/milkCollection"
-								method="post" novalidate>
+								method="post" >
 								
 								<div class="col-md-6">
-									<label class="form-label dairy-input-label">Farmer Id</label>
+									<label class="form-label dairy-input-label required-field">Farmer Id</label>
 									<input type="hidden" class="form-control dairy-form-input" id="hiddenFarmerId">
 									<input type="text" class="form-control dairy-form-input" placeholder="Enter Farmer Id" name="farmerId" value="${farmerId}" id="farmerId" >
 								</div>
 								
 								<div class="col-md-6">
-									<label class="form-label dairy-input-label">Farmer Name</label>
+									<label class="form-label dairy-input-label required-field">Farmer Name</label>
 									<input type="text" class="form-control dairy-form-input" placeholder="Enter  Farmer Name" name="farmerName" id="farmerName" value="${farmerName}" >
 								</div>
 								
 								<div class="col-md-4">
-									<label class="form-label dairy-input-label">Date</label> 
+									<label class="form-label dairy-input-label required-field">Date</label> 
 									<input type="date" class="form-control dairy-form-input" name="dateOfMilkCollection" id="dateOfMilkCollection">
 								</div>
 								
 								<div class="col-md-3 offset-md-1 mt-4" > 
 								   <div class="row"> 
-								     <label class="form-label mb-1">Animal Type</label> 
+								     <label class="form-label mb-1 required-field">Animal Type</label> 
 								          <div class="col-md-4"> 
 								             <div class="form-check"> 
 								                   
@@ -63,7 +63,7 @@
 								
 								<div class="col-md-4 mt-4"> 
 								   <div class="row"> 
-								     <label class="form-label mb-1">Shift</label> 
+								     <label class="form-label mb-1 required-field">Shift</label> 
 								          <div class="col-md-6"> 
 								             <div class="form-check"> 
 								                   
@@ -88,27 +88,27 @@
 								    </div>
 								
 								<div class="col-md-4">
-									<label class="form-label dairy-input-label">Milk Quantity </label> 
+									<label class="form-label dairy-input-label required-field">Milk Quantity </label> 
 									<input type="text" class="form-control dairy-form-input calculateMilkData" placeholder="Enter Quantity in liter" id="milkQuantity" name="milkQuantity" required>
 								</div>
 								
 								<div class="col-md-4">
-									<label class="form-label dairy-input-label">Fat </label> 
+									<label class="form-label dairy-input-label required-field">Fat </label> 
 									<input type="text" class="form-control dairy-form-input calculateMilkData" placeholder="Enter Fat" id="milkFat" name="milkFat" required>
 								</div>
 								
 								<div class="col-md-4">
-									<label class="form-label dairy-input-label">SNF </label> 
+									<label class="form-label dairy-input-label required-field">SNF </label> 
 									<input type="text" class="form-control dairy-form-input calculateMilkData" placeholder="Enter SNF" id="milkSNF" name="milkSNF" required>
 								</div>
 								
 								<div class="col-md-6">
-									<label class="form-label dairy-input-label">Milk Rate</label>
+									<label class="form-label dairy-input-label required-field">Milk Rate</label>
 									<input type="text" class="form-control dairy-form-input" placeholder="Milk Rate" id="milkRate" name="milkRate">
 								</div>
 								
 								<div class="col-md-6">
-									<label class="form-label dairy-input-label">Total Amount</label>
+									<label class="form-label dairy-input-label required-field">Total Amount</label>
 									<input type="text" class="form-control dairy-form-input" placeholder="Enter Total Amount" id="totalMilkAmount" name="totalMilkAmount">
 								</div>
 								

@@ -84,3 +84,8 @@
   	font-size: 17px;
     margin: 0 10px 0 0;
   }
+
+ .required-field::after {
+    content: '*';
+    color: red;
+}

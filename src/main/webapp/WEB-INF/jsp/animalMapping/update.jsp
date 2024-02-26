@@ -20,7 +20,7 @@
 								
 								<div class="col-md-6">
 								<input type="hidden" class="form-control dairy-form-input"  id="" name="id" value="${animal.id}">
-									<label class="form-label dairy-input-label">Farmer Name</label> 
+									<label class="form-label dairy-input-label required-field">Farmer Name</label> 
 					
 									<select class="form-select dairy-form-input" id=""
 										name="farmerId"  value="${animal.farmerId}">
@@ -33,7 +33,7 @@
 								
 								<div class="col-md-6 offset-md-1 mt-4" > 
 								   <div class="row"> 
-								     <label class="form-label mb-1">Animal Type</label> 
+								     <label class="form-label mb-1 required-field">Animal Type</label> 
 								          <div class="col-md-4"> 
 								             <div class="form-check"> 
 								                   
@@ -49,8 +49,7 @@
 								                   
 								                   <label class="form-check-label">
 								                    <input class="form-check-input" type="radio" name="type" value="Buffalo"  value="Buffalo" ${animal.type == 'Buffalo' ? 'checked' : ''}
-                                                     /> Buffalo
-								                     
+                                                     /> Buffalo  
 								                   </label> 
 								                   
 								                 </div> 
@@ -59,7 +58,7 @@
 								    </div>
 								
 								<div class="col-md-6">
-									<label class="form-label dairy-input-label">Count</label>
+									<label class="form-label dairy-input-label">Count<span class="required-field">*</span></label>
 									<input type="text" class="form-control dairy-form-input" placeholder="Enter Count" id="count" name="count"  value="${animal.count}" >
 								</div>
 								
