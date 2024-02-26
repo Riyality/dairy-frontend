@@ -20,7 +20,7 @@
 								method="post" novalidate>
 								
 								<div class="col-md-6">
-									<label class="form-label dairy-input-label">Farmer Name</label> 
+									<label class="form-label dairy-input-label">Farmer Name<span class="required-field">*</span></label> 
 					
 									<select class="form-select dairy-form-input" id=""
 										name="farmerId">
@@ -33,12 +33,12 @@
 								</div>
 								
 								<div class="col-md-6">
-									<label class="form-label dairy-input-label">Date of Advance</label> 
-									<input type="date" class="form-control dairy-form-input" id="" name="dateOfAdvance">
+									<label class="form-label dairy-input-label">Date of Advance<span class="required-field">*</span></label> 
+									<input type="date" class="form-control dairy-form-input" id="" name="dateOfAdvance"required>
 								</div>
 								
 								<div class="col-md-6">
-									<label class="form-label dairy-input-label">Advance Amount</label> 
+									<label class="form-label dairy-input-label">Advance Amount<span class="required-field">*</span></label> 
 									<input type="text" class="form-control dairy-form-input" placeholder="Enter Advance Amount" id="AdvanceAmount" name="amount" required>
 								</div>
 								

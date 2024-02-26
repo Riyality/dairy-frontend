@@ -16,12 +16,12 @@
 							<div class="card-title">Update Feed Distribution</div>
 						</div>
 						<div class="card-body dairy-card-body">
-							<form class="row g-3 needs-validation" action="/feedToFarmer/update" method="post" novalidate>
+							<form class="row g-3 needs-validation" action="/feedToFarmer/update" method="post" >
 								
 								<input type="hidden"  class="form-control dairy-form-input"  name="id" value="${feedToFarmer.id}" >
 								
 								<div class="col-md-6">
-									<label class="form-label dairy-input-label">Farmer Name</label>
+									<label class="form-label dairy-input-label required-field">Farmer Name</label>
 								<select class="form-select dairy-form-input" id=""
 										name="farmerId" value="${feedToFarmer.farmerId}">
 										<c:forEach items="${Farmers}" var="farmer">
@@ -31,12 +31,12 @@
 								</div>
 								
 								<div class="col-md-6">
-									<label class="form-label dairy-input-label">Date of distributions</label> 
-									<input type="datetime-local" class="form-control dairy-form-input" id="" name="dateOfPurchase"  value="${feedToFarmer.dateOfPurchase}">
+									<label class="form-label dairy-input-label required-field">Date of distributions</label> 
+									<input type="datetime-local" class="form-control dairy-form-input" id="" name="dateOfPurchase"  value="${feedToFarmer.dateOfPurchase}"required>
 								</div>
 
 								<div class="col-md-6">
-									<label class="form-label dairy-input-label">Feed Company</label> 
+									<label class="form-label dairy-input-label required-field">Feed Company</label> 
 									 <select  class="form-select dairy-form-input"
 										id="" name="feedCompanyId"  value="${feedToFarmer.feedCompanyId}">
 										<c:forEach items="${feedCompany}" var="fc">
@@ -46,7 +46,7 @@
 								</div>
 
 								<div class="col-md-6">
-									<label class="form-label dairy-input-label">Feed Company Type</label> 
+									<label class="form-label dairy-input-label required-field">Feed Company Type</label> 
 									<select class="form-select dairy-form-input"
 										id="" name="feedTypeId"  value="${feedToFarmer.feedTypeId}">
 										<c:forEach items="${feedType}" var="feed">
@@ -56,18 +56,18 @@
 								</div>
 								
 								<div class="col-md-6">
-									<label class="form-label dairy-input-label">Feed Cost (1 unit)</label>
-									<input type="text" class="form-control dairy-form-input" placeholder="Enter Feed Cost pre Unit" id="" name="feedRate"  value="${feedToFarmer.feedRate}">
+									<label class="form-label dairy-input-label required-field">Feed Cost (1 unit)</label>
+									<input type="text" class="form-control dairy-form-input" placeholder="Enter Feed Cost pre Unit" id="" name="feedRate"  value="${feedToFarmer.feedRate}"required>
 								</div>
 								
 								<div class="col-md-6">
-									<label class="form-label dairy-input-label">Total Quantity</label>
-									<input type="text" class="form-control dairy-form-input" placeholder="Enter Total Quantity" id="" name="quantity" value="${feedToFarmer.quantity}">
+									<label class="form-label dairy-input-label required-field">Total Quantity</label>
+									<input type="text" class="form-control dairy-form-input" placeholder="Enter Total Quantity" id="" name="quantity" value="${feedToFarmer.quantity}" required>
 								</div>
 								
 								<div class="col-md-6">
-									<label class="form-label dairy-input-label">Total Amount</label>
-									<input type="text" class="form-control dairy-form-input" placeholder="Total Amount" id="" name="totalAmount" value="${feedToFarmer.totalAmount}">
+									<label class="form-label dairy-input-label required-field">Total Amount</label>
+									<input type="text" class="form-control dairy-form-input" placeholder="Total Amount" id="" name="totalAmount" value="${feedToFarmer.totalAmount}" required>
 								</div>
 								<div class="col-md-6">
 									<label class="form-label dairy-input-label">Payment Status</label>

@@ -16,11 +16,11 @@
 						</div>
 						<div class="card-body dairy-card-body">
 							<form class="row g-3 needs-validation" action="/routes"
-								method="post" novalidate>
+								method="post" >
 								
 								<div class="col-md-6">
-									<label class="form-label dairy-input-label">Route Name</label>
-									<input type="text" class="form-control dairy-form-input" placeholder="Enter Route Name" id="" name="name">
+									<label class="form-label dairy-input-label required-field">Route Name</label>
+									<input type="text" class="form-control dairy-form-input" placeholder="Enter Route Name" id="" name="name" required>
 								</div>
 								
 								<div class="col-12">

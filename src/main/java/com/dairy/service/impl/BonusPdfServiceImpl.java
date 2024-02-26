@@ -2,6 +2,7 @@ package com.dairy.service.impl;
 
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.servlet.ServletOutputStream;
 
@@ -49,7 +50,11 @@ public class BonusPdfServiceImpl implements BonusPdfService {
 			Font cellFont = FontFactory.getFont(FontFactory.HELVETICA, 10);
 			Font boldFont = FontFactory.getFont(FontFactory.HELVETICA_BOLD);
 
-			for (String encodedFarmerId : encodedFarmerIds) {
+			List<String> validEncodedFarmerIds = encodedFarmerIds.stream()
+					.filter(id -> id != null && !id.equals("undefined")).collect(Collectors.toList());
+
+			for (String encodedFarmerId : validEncodedFarmerIds) {
+
 				int farmerId = Integer.parseInt(encodedFarmerId);
 
 				String farmerName = null;

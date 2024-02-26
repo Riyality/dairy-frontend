@@ -15,31 +15,31 @@
 						</div>
 						<div class="card-body">
 							<form class="row g-3 needs-validation" action="/equipments"
-								method="post" novalidate>
+								method="post" >
 								
 								<div class="col-md-6">
-									<label class="form-label dairy-input-label">Equipment Name</label>
-									<input type="text" class="form-control dairy-form-input" placeholder="Enter Equipment Name"  id="equipmentName" name="name">
+									<label class="form-label dairy-input-label required-field">Equipment Name</label>
+									<input type="text" class="form-control dairy-form-input" placeholder="Enter Equipment Name"  id="equipmentName" name="name" required>
 								</div>
 								
 								<div class="col-md-6">
-									<label class="form-label dairy-input-label">Date of Purchase</label> 
+									<label class="form-label dairy-input-label required-field">Date of Purchase</label> 
 									<input type="datetime-local" class="form-control dairy-form-input" id="equipmentDateOfPurchase" name="dateOfPurchase">
 								</div>
 								
 								<div class="col-md-6">
-									<label class="form-label dairy-input-label">Quantity</label> 
+									<label class="form-label dairy-input-label required-field">Quantity</label> 
 									<input type="text" class="form-control dairy-form-input" placeholder="Enter Quantity"  id="equipmentQuantity" name="quantity" required>
 								</div>
 								
 								<div class="col-md-6">
-									<label class="form-label dairy-input-label">Price</label> 
+									<label class="form-label dairy-input-label required-field">Price</label> 
 									<input type="text" class="form-control dairy-form-input" placeholder="Enter Price per Unit"  id="equipmentPrice" name="price" required>
 								</div>
 								
 								<div class="col-md-6">
-									<label class="form-label dairy-input-label">Total Amount</label> 
-									<input type="text" class="form-control dairy-form-input" placeholder="Total Amount"  id="equipmentTotalAmount" name="totalAmount" required>
+									<label class="form-label dairy-input-label required-field">Total Amount</label> 
+									<input type="text" class="form-control dairy-form-input" placeholder="Total Amount"  id="equipmentTotalAmount" name="totalAmount"  required>
 								</div>
 								
 								<div class="col-12">

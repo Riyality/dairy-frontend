@@ -16,11 +16,11 @@
 						</div>
 						<div class="card-body">
 							<form class="row g-3 needs-validation" action="/feedCompanies"
-								method="post" novalidate>
+								method="post" >
 								
 								<div class="col-md-6">
-									<label class="form-label dairy-input-label">Feed Company Name</label>
-									<input type="text" class="form-control dairy-form-input" placeholder="Enter Feed Company Name" id="" name="name">
+									<label class="form-label dairy-input-label required-field">Feed Company Name</label>
+									<input type="text" class="form-control dairy-form-input" placeholder="Enter Feed Company Name" id="" name="name" required>
 								</div>
 								
 								<div class="col-12">

@@ -24,22 +24,22 @@
                             <div class="card-title">Bonus To Farmer</div>
                         </div>
                         <div class="card-body dairy-card-body">
-                            <form id="filterForm" class="row g-3 needs-validation" novalidate>
+                            <form id="filterForm" class="row g-3 needs-validation" >
                                 <div class="col-md-6">
-                                    <label class="form-label dairy-input-label">Select From Date</label>
-                                    <input type="date" class="form-control dairy-form-input" id="fromDate" name="fromDate" >
+                                    <label class="form-label dairy-input-label required-field">Select From Date</label>
+                                    <input type="date" class="form-control dairy-form-input" id="fromDate" name="fromDate"  required>
                                 </div>
 
                                 <div class="col-md-6">
-                                    <label class="form-label dairy-input-label">Select To of Date</label>
-                                    <input type="date" class="form-control dairy-form-input" id="toDate" name="toDate" >
+                                    <label class="form-label dairy-input-label required-field">Select To of Date</label>
+                                    <input type="date" class="form-control dairy-form-input" id="toDate" name="toDate" required >
                                 </div>
                                  <div class="col-md-6">
-                                    <label class="form-label dairy-input-label">Bonus Amount Per Liter</label>
-                                    <input type="text" class="form-control dairy-form-input" name="bonusAmountPerLiter" id="bonusAmountPerLiter" placeholder="Enter Bonus amont per liter" name="toDate" >
+                                    <label class="form-label dairy-input-label required-field">Bonus Amount Per Liter</label>
+                                    <input type="text" class="form-control dairy-form-input" name="bonusAmountPerLiter" id="bonusAmountPerLiter" placeholder="Enter Bonus amont per liter" name="toDate" required>
                                 </div>
                                  <div class="col-md-6">
-                                    <label class="form-label dairy-input-label">Milk Type</label><br>
+                                    <label class="form-label dairy-input-label required-field">Milk Type</label><br>
                                     <input  class="form-check-input" type="radio"   name="milkType" value="cow" />Cow
                                     <input  class="form-check-input" type="radio"  name="milkType" value="baffalo" />Buffalo
                                 </div>
@@ -52,7 +52,7 @@
                             <table id="file-export" class="table table-bordered dataTable no-footer dairy-table-border mt-2">
                                 <thead>
                                     <tr class="dairy-table-head">
-                                        <th><input type="checkbox" onchange="toggleAllCheckboxes(this)"></th>
+                                      <th><input type="checkbox" id="toggleAll"></th>
                                         <th>Farmer Name</th>
                                          <th>Total Milk</th>
                                         <th> TotalBonus Amount</th>
@@ -74,11 +74,11 @@
             </div>
         </div>
     </div>
-    <jsp:include page="../modules/footer.jsp" />
 
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
  
 </body>
+  <jsp:include page="../modules/footer.jsp" />
 
 
 
