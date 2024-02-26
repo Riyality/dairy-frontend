@@ -3,6 +3,7 @@ package com.dairy.controller;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
+import javax.websocket.Session;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -45,17 +46,31 @@ public class EquipmentController {
 	}
 
 	@GetMapping
-	public String getAllEquipments(Model model) {
-		List<EquipmentResponseDto> list = equipmentService.getAllEquipments();
-		model.addAttribute("equipments", list);
-		return "equipments/all";
+	public String getAllEquipments(Model model ,HttpSession session) {
+		
+		String user = (String) session.getAttribute("username");
+		
+		if(user != null) {
+			int branchId = (int) session.getAttribute("branchId");
+			List<EquipmentResponseDto> list = equipmentService.getAllEquipments(branchId);
+			model.addAttribute("equipments", list);
+			return "equipments/all";
+		}
+		return "login";
 	}
 
 	@GetMapping("/{id}")
-	public String getById(@PathVariable long id, Model model) {
-		EquipmentResponseDto response = equipmentService.findById(id);
-		model.addAttribute("equipment", response);
-		return "equipments/update";
+	public String getById(@PathVariable long id, Model model,HttpSession session){
+		String user = ( String ) session.getAttribute( "username" );
+		
+		if(user != null ) {
+			int branchId = (int) session.getAttribute("branchId");
+			EquipmentResponseDto response = equipmentService.findById(id ,branchId);
+			model.addAttribute("equipment", response);
+			return "equipments/update";
+			
+		}
+		return "login";
 	}
 
 	@PostMapping("/update")
