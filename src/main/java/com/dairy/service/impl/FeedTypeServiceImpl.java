@@ -41,9 +41,9 @@ public class FeedTypeServiceImpl implements FeedTypeService {
 	}
 
 	@Override
-	public List<FeedTypeResponseDto> getAllFeedTypes() {
+	public List<FeedTypeResponseDto> getAllFeedTypes(int branchId) {
 		RestTemplate template = new RestTemplate();
-		String url = "http://localhost:6262/feedtype";
+		String url = "http://localhost:6262/feedtype/all/"+branchId;
 		
 		HttpHeaders headers = new HttpHeaders();
 		HttpEntity<String> entity = new HttpEntity<>( "body", headers );
@@ -83,9 +83,9 @@ public class FeedTypeServiceImpl implements FeedTypeService {
 	}
 
 	@Override
-	public FeedTypeResponseDto findById(long id) {
+	public FeedTypeResponseDto findById(long id ,int branchId) {
 		RestTemplate template = new RestTemplate();
-		String url = "http://localhost:6262/feedtype/" + id;
+		String url = "http://localhost:6262/feedtype/" + id+"/branchId/"+branchId;
 		HttpHeaders headers = new HttpHeaders();
 		HttpEntity<String> entity = new HttpEntity<>("body", headers);
 		try {
