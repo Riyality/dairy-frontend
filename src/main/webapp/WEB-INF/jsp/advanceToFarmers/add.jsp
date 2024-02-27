@@ -20,7 +20,7 @@
 								method="post" novalidate>
 								
 								<div class="col-md-6">
-									<label class="form-label dairy-input-label">Farmer Name</label> 
+									<label class="form-label dairy-input-label">Farmer Name<span class="required-field">*</span></label> 
 					
 									<select class="form-select dairy-form-input" id=""
 										name="farmerId">
@@ -33,27 +33,18 @@
 								</div>
 								
 								<div class="col-md-6">
-									<label class="form-label dairy-input-label">Date of Advance</label> 
-									<input type="datetime-local" class="form-control dairy-form-input" id="" name="dateOfAdvance">
+									<label class="form-label dairy-input-label">Date of Advance<span class="required-field">*</span></label> 
+									<input type="date" class="form-control dairy-form-input" id="" name="dateOfAdvance"required>
 								</div>
 								
 								<div class="col-md-6">
-									<label class="form-label dairy-input-label">Advance Amount</label> 
+									<label class="form-label dairy-input-label">Advance Amount<span class="required-field">*</span></label> 
 									<input type="text" class="form-control dairy-form-input" placeholder="Enter Advance Amount" id="AdvanceAmount" name="amount" required>
 								</div>
 								
-								<!-- <div class="col-md-6">
-									<label class="form-label dairy-input-label"> Deduction </label> 
-									<input type="text" class="form-control dairy-form-input" placeholder="Enter Advance Amount" id="deduction" name="deduction" required>
-								</div> -->
-
-								<!-- <div class="col-md-6">
-									<label class="form-label dairy-input-label">Remaining Amount</label> 
-									<input type="text" class="form-control dairy-form-input" placeholder="Enter Advance Amount" id="remeninigAmount" name="remainingAmount" required>
-								</div> -->
 								<div class="col-12">
 									<label class="form-label dairy-input-label">Remark</label>
-									<textarea class="col-md-12 dairy-textarea" rows="4" name="address" placeholder="Enter Remark Here"></textarea> 
+									<textarea class="col-md-12 dairy-textarea" rows="4" name="remark" placeholder="Enter Remark Here"></textarea> 
 								</div>
 								<div class="col-12">
 									<button class="btn btn-primary dairy-form-btn" type="submit">Submit </button>

@@ -21,6 +21,7 @@
 		                <tr class="dairy-table-head">
 		                  <th>Feed Types</th>
 		                  <th>Company Name</th>
+		                  <th>Remark</th>
 		                  <th>Action</th>
 		                  </tr>
 		              </thead>
@@ -28,8 +29,9 @@
 		              
 		                <c:forEach items="${feedType}" var="feed">
                           <tr class="gridjs-tr">
-                          <td>${feed.type}</td>
-                            <td>${feed.feedCompanyName }</td> 
+                           <td>${feed.type}</td>
+                           <td>${feed.feedCompanyName }</td> 
+                           <td>${feed.remark}</td> 
                             <td>
                               <a href="http://localhost:6161/feedTypes/${feed.id }">
                               <button class="btn btn-sm btn-primary dairy-form-btn">Edit</button>

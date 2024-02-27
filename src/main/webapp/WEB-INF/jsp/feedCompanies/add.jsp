@@ -16,16 +16,16 @@
 						</div>
 						<div class="card-body">
 							<form class="row g-3 needs-validation" action="/feedCompanies"
-								method="post" novalidate>
+								method="post" >
 								
 								<div class="col-md-6">
-									<label class="form-label dairy-input-label">Feed Company Name</label>
-									<input type="text" class="form-control dairy-form-input" placeholder="Enter Feed Company Name" id="" name="name">
+									<label class="form-label dairy-input-label required-field">Feed Company Name</label>
+									<input type="text" class="form-control dairy-form-input" placeholder="Enter Feed Company Name" id="" name="name" required>
 								</div>
 								
 								<div class="col-12">
 									<label class="form-label dairy-input-label">Remark</label>
-									<textarea class="col-md-12 dairy-textarea" rows="4" name="address" placeholder="Enter Remark Here"></textarea> 
+									<textarea class="col-md-12 dairy-textarea" rows="4" name="remark" placeholder="Enter Remark Here"></textarea> 
 								</div>
 								<div class="col-12">
 									<button class="btn btn-primary dairy-form-btn" type="submit">Submit </button>

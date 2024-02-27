@@ -9,7 +9,7 @@ public interface RouteService {
 	
 	public String addRoute(RouteRequestDto dto);
 
-	public List<RouteResponseDto> getAllRoutes();
+	public List<RouteResponseDto> getAllRoutes(int branchId);
 	
 	public RouteResponseDto findById( int id );
 

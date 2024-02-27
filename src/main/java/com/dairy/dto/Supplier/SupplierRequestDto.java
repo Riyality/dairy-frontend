@@ -26,5 +26,6 @@ public class SupplierRequestDto {
 	private LocalDateTime dateOfRegistration;
 	private String address;
 	private int branchId;
+	private String remark;
 	private BankRequestDto bankRequestDto;
 }

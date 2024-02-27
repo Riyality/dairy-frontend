@@ -22,5 +22,6 @@ public class MainBranchRequestDto {
 	private Float protein ;
 	private Float rate;
 	private Float totalAmount;
+	private String remark;
 
 }

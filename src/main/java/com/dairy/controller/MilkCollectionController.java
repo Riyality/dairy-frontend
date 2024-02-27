@@ -48,14 +48,20 @@ public class MilkCollectionController {
 
 	@GetMapping("/get-farmer-list-page")
 	public String getAllFarmersList(HttpSession session, Model model) {
-		List<RouteResponseDto> routes = routeService.getAllRoutes();
-		model.addAttribute("routes", routes);
-		return "milkCollection/getRoutewiseFarmers";
+		
+		String user = ( String ) session.getAttribute( "username" );
+		
+		if(user != null) {
+			int branchId = (int) session.getAttribute("branchId");
+			List<RouteResponseDto> routes = routeService.getAllRoutes(branchId);
+			model.addAttribute("routes", routes);
+			return "milkCollection/getRoutewiseFarmers";
+		}
+		return "login";	
 	}
 
 	@GetMapping("/add-milkCollection-page/{farmerId}/{farmerName}")
-	public String addMilkCollectionPage(@PathVariable long farmerId, @PathVariable String farmerName,
-			HttpSession session, Model model) {
+	public String addMilkCollectionPage(@PathVariable long farmerId, @PathVariable String farmerName, HttpSession session, Model model) {
 		model.addAttribute("farmerId", farmerId);
 		model.addAttribute("farmerName", farmerName);
 		return "milkCollection/add";
@@ -65,6 +71,7 @@ public class MilkCollectionController {
 	public String addMilkCollection(@ModelAttribute MilkCollectionRequestDto dto, Model model, RedirectAttributes ra,HttpSession session) {
 
 		int branchId = (int) session.getAttribute("branchId");
+		dto.setBranchId(branchId);
 		String response = milkCollectionService.addMilkCollection(dto,branchId);
 		if (response != null && response.equals(MessageConstants.ADD_MILK_COLLECTION_SUCCESS_MESSAGE)) {
 			ra.addFlashAttribute("successMessage", response);

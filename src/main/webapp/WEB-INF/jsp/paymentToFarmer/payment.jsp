@@ -16,24 +16,28 @@
                             <div class="card-title">Payment To Farmer</div>
                         </div>
                         <div class="card-body dairy-card-body">
-                            <form id="filterForm" class="row g-3 needs-validation" novalidate>
+                            <form id="filterForm" class="row g-3 needs-validation" >
                                 <div class="col-md-3">
-                                    <label class="form-label dairy-input-label">Select From Date</label>
-                                    <input type="date" class="form-control dairy-form-input" id="fromDate" name="fromDate" >
+                                    <label class="form-label dairy-input-label required-field">Select From Date</label>
+                                    <input type="date" class="form-control dairy-form-input" id="fromDate" name="fromDate" required >
                                 </div>
 
                                 <div class="col-md-3">
-                                    <label class="form-label dairy-input-label">Select To Date</label>
-                                    <input type="date" class="form-control dairy-form-input" id="toDate" name="toDate" >
+
+                                  
+
+                                    <label class="form-label dairy-input-label required-field">Select To Date</label>
+                                    <input type="date" class="form-control dairy-form-input" id="toDate" name="toDate" required>
                                 </div>
                                 <div class="col-md-4">
-                                    <label class="form-label dairy-input-label">Milk Type</label><br>
+                                    <label class="form-label dairy-input-label required-field">Milk Type</label><br>
                                     <input type="radio" name="milkType" value="cow" />Cow
                                     <input type="radio" name="milkType" value="buffalo" />Buffalo
                                 </div>
                                 <div class="col-md-3">
-                                  <label class="form-label dairy-input-label">Enter Advance Percentage % </label><br>
-                                  <input type="text" class="form-control dairy-form-input" name="advanceDeductionPercentage" id="advancePercentage">
+                                  <label class="form-label dairy-input-label required-field">Enter Advance Percentage</label><br>
+                                  <input type="text" class="form-control dairy-form-input" name="advanceDeductionPercentage" id="advancePercentage" required>
+
                                  
                               </div>
                                

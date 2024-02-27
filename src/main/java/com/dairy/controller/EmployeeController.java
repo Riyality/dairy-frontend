@@ -45,18 +45,32 @@ public class EmployeeController {
 	}
 
 	@GetMapping
-	public String getAllEmployee(Model model) {
-		List<EmployeeResponseDto> list = employeeService.getAllEmployee();
-		model.addAttribute("employee", list);
-		return "employees/all";
+	public String getAllEmployee(Model model ,HttpSession session) {
+		
+		String user = ( String ) session.getAttribute( "username" );
+		
+		if ( user != null ) {
+			Integer branchId = ( Integer ) session.getAttribute( "branchId" );
+			List<EmployeeResponseDto> list = employeeService.getAllEmployee(branchId);
+				 model.addAttribute("employee", list);
+				 return "employees/all";
+		}
+		return "login";
 	}
 
 	@GetMapping("/{id}")
-	public String getById(@PathVariable long id, Model model) {
-		EmployeeResponseDto response = employeeService.findById(id);
-		model.addAttribute("employee", response);
-		return "employees/update";
+	public String getById(@PathVariable long id, Model model ,HttpSession session) {
+		
+		String user = ( String ) session.getAttribute( "username" );
+		
+		if ( user != null ) {
+			Integer branchId = ( Integer ) session.getAttribute( "branchId" );
+			EmployeeResponseDto response = employeeService.findById(id ,branchId);
+			model.addAttribute("employee", response);
+			return "employees/update";
 	}
+		return "login";
+}
 
 	@PostMapping("/update")
 	public String updateEquipments(@ModelAttribute EmployeeRequestDto employeeRequestDto, RedirectAttributes ra,

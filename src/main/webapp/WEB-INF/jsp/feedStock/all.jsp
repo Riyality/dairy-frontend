@@ -26,6 +26,7 @@
 		                  <th>Feed Cost</th>
 		                  <th>Total Quantity</th>
 		                  <th>Total Amount</th>
+		                  <th>Remark</th>
 		                  <th>Action</th>
 		                  </tr>
 		              </thead>
@@ -40,6 +41,7 @@
                             <td>${feedstock.feedCostPerUnit}</td>
                             <td>${feedstock.quantity}</td>
                             <td>${feedstock.totalAmount}</td>
+                             <td>${feedstock.remark}</td>
                             <td>
                               <a href="http://localhost:6161/feedStock/${feedstock.id}">
                                 <i class="ti ti-color-picker" style="font-size: 14px">Edit</i>

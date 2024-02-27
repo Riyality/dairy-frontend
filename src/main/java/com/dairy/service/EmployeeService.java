@@ -9,9 +9,9 @@ public interface EmployeeService {
 
 	public String addEmployee(EmployeeRequestDto employeeRequestDto);
 
-	public List<EmployeeResponseDto> getAllEmployee();
+	public List<EmployeeResponseDto> getAllEmployee(Integer branchId);
 
-	public EmployeeResponseDto findById(long id);
+	public EmployeeResponseDto findById(long id , Integer branchId);
 
 	public String updateEmployee(EmployeeRequestDto employeeRequestDto);
 

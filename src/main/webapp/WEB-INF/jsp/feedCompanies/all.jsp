@@ -20,6 +20,7 @@
 		              <thead>
 		                <tr class="dairy-table-head">
 		                  <th>Company Name</th>
+		                  <th>Remark</th>
 		                  <th>Action</th>
 		                  </tr>
 		              </thead>
@@ -28,6 +29,7 @@
 		                <c:forEach items="${feedCompany}" var="fc">
                           <tr class="gridjs-tr">
                             <td>${fc.name}</td>
+                              <td>${fc.remark}</td>
                               <td>
                                  <a href="http://localhost:6161/feedCompanies/${fc.id }">
                                    <button class="btn btn-sm btn-primary dairy-form-btn">Edit</button>

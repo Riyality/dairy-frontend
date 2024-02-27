@@ -45,10 +45,17 @@ public class RouteController {
 	}
 
 	@GetMapping
-	public String getAllRoutes( Model model ) {
-		List<RouteResponseDto> list = routeService.getAllRoutes();
-		model.addAttribute( "routes", list );
-		return "routes/all";
+	public String getAllRoutes( Model model ,HttpSession session ) {
+		
+		String user = ( String ) session.getAttribute( "username" );
+		
+		if(user != null) {
+			int branchId = (int) session.getAttribute("branchId");
+			List<RouteResponseDto> list = routeService.getAllRoutes(branchId);
+			model.addAttribute( "routes", list );
+			return "routes/all";
+		}
+		return "login";
 	}
 
 	@GetMapping( "/{id}" )

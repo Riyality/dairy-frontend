@@ -9,9 +9,9 @@ public interface EquipmentService {
 
 	public String addEquipment(EquipmentRequestDto equipmentRequestDto);
 
-	public List<EquipmentResponseDto> getAllEquipments();
+	public List<EquipmentResponseDto> getAllEquipments(int branchId);
 
-	public EquipmentResponseDto findById(long id);
+	public EquipmentResponseDto findById(long id, int branchId);
 
 	public String update(EquipmentRequestDto equipmentRequestDto);
 

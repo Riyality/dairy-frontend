@@ -1,3 +1,12 @@
+
+package com.dairy.controller;
+
+import java.util.List;
+
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
 package com.dairy.controller;
 
 import java.util.List;
@@ -45,18 +54,24 @@ public class FeedToFarmerController {
 
 	@GetMapping("/feedToFarmer-add-page")
 	public String feedToFarmerPage(Model model, HttpSession session) {
-
-		int branchId = (int) session.getAttribute("branchId");
-		List<FarmerResponseDto> list = farmerService.findAllActiveFarmers(branchId);
-		model.addAttribute("farmers", list);
 		
-		List<FeedCompanyResponseDto> list1 = feedCompanyService.getAllFeedCompany();
-		model.addAttribute("feedCompany", list1);
-
-		List<FeedTypeResponseDto> list2 = feedTypeService.getAllFeedTypes();
-		model.addAttribute("feedType", list2);
+		String user = (String) session.getAttribute("username");
 		
-     	return "feedToFarmer/add";
+		if(user != null) {
+			int branchId = (int) session.getAttribute("branchId");
+			
+			List<FarmerResponseDto> list = farmerService.findAllActiveFarmers(branchId);
+			model.addAttribute("farmers", list);
+			
+			List<FeedCompanyResponseDto> list1 = feedCompanyService.getAllFeedCompany(branchId);
+			model.addAttribute("feedCompany", list1);
+
+			List<FeedTypeResponseDto> list2 = feedTypeService.getAllFeedTypes();
+			model.addAttribute("feedType", list2);
+			
+	     	return "feedToFarmer/add";
+		}
+		return "login";	
 	}
 	
 	
@@ -78,8 +93,7 @@ public class FeedToFarmerController {
 
 	
 	@PostMapping
-	public String add(@ModelAttribute FeedToFarmerRequestDto dto ,Model model,RedirectAttributes ra,
-			           HttpSession session ){
+	public String add(@ModelAttribute FeedToFarmerRequestDto dto ,Model model,RedirectAttributes ra, HttpSession session ){
 		    int branchId=(int) session.getAttribute("branchId");
 		    dto.setBranchId(branchId);
 		    
@@ -96,14 +110,21 @@ public class FeedToFarmerController {
 	
 	@GetMapping( "/add-feedToFarmer-page/{farmerId}/{farmerName}" )
 	public String addFeedToFarmerPage(@PathVariable long farmerId, @PathVariable String farmerName, HttpSession session, Model model ) {
-		model.addAttribute( "farmerId", farmerId );
-		model.addAttribute( "farmerName", farmerName );
-		List<FeedCompanyResponseDto> list1 = feedCompanyService.getAllFeedCompany();
-		model.addAttribute("feedCompany", list1);
+		String user = (String) session.getAttribute("username");
+		
+		if(user != null) {
+			int branchId = (int) session.getAttribute("branchId");
+			
+			model.addAttribute( "farmerId", farmerId );
+			model.addAttribute( "farmerName", farmerName );
+			List<FeedCompanyResponseDto> list1 = feedCompanyService.getAllFeedCompany(branchId);
+			model.addAttribute("feedCompany", list1);
 
-		List<FeedTypeResponseDto> list2 = feedTypeService.getAllFeedTypes();
-		model.addAttribute("feedType", list2);
-		return "feedToFarmer/add";
+			List<FeedTypeResponseDto> list2 = feedTypeService.getAllFeedTypes();
+			model.addAttribute("feedType", list2);
+			return "feedToFarmer/add";
+		}
+		return "login";
 	}
 	 
 	 @GetMapping
@@ -117,20 +138,26 @@ public class FeedToFarmerController {
 	 
 	 @GetMapping( "/{id}" )
 	 public String getById( @PathVariable Long id, Model model , HttpSession session) {
-		 FeedToFarmerResponseDto response = feedToFarmerService.findByIdFeedToFarmer( id );
-			model.addAttribute( "feedToFarmer", response );
+			String user = (String) session.getAttribute("username");
 			
-			List<FeedCompanyResponseDto> list1 = feedCompanyService.getAllFeedCompany();
-			model.addAttribute("feedCompany", list1);
+			if(user != null) {
+				int branchId = (int) session.getAttribute("branchId");
+				
+				FeedToFarmerResponseDto response = feedToFarmerService.findByIdFeedToFarmer( id );
+				model.addAttribute( "feedToFarmer", response );
+				
+				List<FeedCompanyResponseDto> list1 = feedCompanyService.getAllFeedCompany(branchId);
+				model.addAttribute("feedCompany", list1);
 
-			List<FeedTypeResponseDto> list2 = feedTypeService.getAllFeedTypes();
-			model.addAttribute("feedType", list2);
-			
-			int branchId = (int) session.getAttribute("branchId");
-			List<FarmerResponseDto> list = farmerService.findAllActiveFarmers(branchId);
-			model.addAttribute("Farmers", list);
-			
-			return "feedToFarmer/update";
+				List<FeedTypeResponseDto> list2 = feedTypeService.getAllFeedTypes();
+				model.addAttribute("feedType", list2);
+				
+				List<FarmerResponseDto> list = farmerService.findAllActiveFarmers(branchId);
+				model.addAttribute("Farmers", list);
+				
+				return "feedToFarmer/update";
+			}
+			return "login";
 		}
 	 
 	 
@@ -139,6 +166,7 @@ public class FeedToFarmerController {
 		        @PathVariable("farmerId") Long farmerId,HttpSession session) {
 		 	int branchId = (int) session.getAttribute("branchId");
 		    Double result = feedToFarmerService.findTotalOfRemainingAmountByFarmerIdAndBranchId(farmerId, branchId);
+
 		    return ResponseEntity.status(HttpStatus.OK).body(result);
 		}
 	 
@@ -147,6 +175,7 @@ public class FeedToFarmerController {
 	 @PostMapping("/update")
 		public String update(@ModelAttribute FeedToFarmerRequestDto feedToFarmerDto, RedirectAttributes ra,
 				HttpSession session) {
+
 			int branchId = (int) session.getAttribute("branchId");
 			feedToFarmerDto.setBranchId(branchId);
 			

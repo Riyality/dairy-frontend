@@ -353,7 +353,7 @@ $("#GeneratePayment").prop("disabled", true);
  		var allCheckboxes = $("#file-export :checkbox");
  		$("#selectAllCheckbox").prop("checked", allCheckboxes.length === allCheckboxes.filter(":checked").length);
  	}
- 	//========
+
  				
  				var selectedFarmers = [];
 			 	function calculatePaymentDetails(totalMilkAmount, totalRemainingFeedAmount, totalAdvanceAmount, advancePercentage) {
@@ -497,7 +497,7 @@ $("#GeneratePayment").prop("disabled", true);
 			        }
 			    });		    
 			});
-//=========
+
 
 
  	
@@ -527,7 +527,12 @@ $("#GeneratePayment").prop("disabled", true);
 		                    console.error('Error fetching data:', error);
 		                }
 		            });
+
 		        }
+
+		        
+		    }
+
 		
 		    updateMilkRateAndAmount();
 		
@@ -550,11 +555,15 @@ $("#GeneratePayment").prop("disabled", true);
 			   
 		       });
 
+
 	     
 	      
 	    
 			
 	
+
+	   
+
  /*Milk Collection Script End*/
 
 

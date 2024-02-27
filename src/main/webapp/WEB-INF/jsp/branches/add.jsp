@@ -1,7 +1,6 @@
 
 <jsp:include page="../modules/header.jsp" />
 <style>
-
 </style>
 <body>
 
@@ -16,33 +15,37 @@
 						</div>
 						<div class="card-body dairy-card-body">
 							<form class="row g-3 needs-validation" action="/branches"
-								method="post" novalidate>
+								method="post" >
 								
 								<div class="col-md-6">
-									<label class="form-label dairy-input-label">Name</label>
-									<input type="text" class="form-control dairy-form-input" placeholder="Enter Branch Name" id="" name="name">
+									<label class="form-label dairy-input-label required-field">Name</label>
+									<input type="text" class="form-control dairy-form-input" placeholder="Enter Branch Name" id="" name="name" required>
 								</div>
 								
 								<div class="col-md-6">
-									<label class="form-label dairy-input-label">Owner Name</label> 
-									<input type="text" class="form-control dairy-form-input" placeholder="Enter Owner Name" id="" name="owner" required>
+									<label class="form-label dairy-input-label required-field">Owner Name</label> 
+									<input type="text" class="form-control dairy-form-input" placeholder="Enter Owner Name" id="name" name="owner" required>
 								</div>
 								
 								<div class="col-md-6">
-									<label class="form-label dairy-input-label">Owner Contact</label>
+									<label class="form-label dairy-input-label required-field">Owner Contact</label>
 									<div class="input-group has-validation">
 										<span class="input-group-text" id="">+91</span>
-										<input type="text" class="form-control dairy-form-input" placeholder="Enter Mobile No." id="" aria-describedby="inputGroupPrepend" name="ownerContact" required>
+										<input type="text" class="form-control dairy-form-input" placeholder="Enter Mobile No." id="contactNumber" aria-describedby="inputGroupPrepend" name="ownerContact" required>
 									</div>
 								</div>
 								
 								<div class="col-md-6">
-									<label class="form-label dairy-input-label">Start Date</label> 
-									<input type="datetime-local" class="form-control dairy-form-input" id="" name="startDate">
+									<label class="form-label dairy-input-label required-field">Start Date</label> 
+									<input type="datetime-local" class="form-control dairy-form-input" id="" name="startDate" required>
 								</div>
 								<div class="col-md-6">
 									<label class="form-label dairy-input-label">Address</label>
 									<textarea class="col-md-12 dairy-textarea" name="address" placeholder="Enter Address Here"></textarea> 
+								</div>
+								<div class="col-md-12">
+									<label class="form-label dairy-input-label">Remark</label>
+									<textarea class="col-md-12 dairy-textarea" rows="4" name="remark" placeholder="Enter Remark Here"></textarea> 
 								</div>
 								<div class="col-12">
 									<button class="btn btn-primary dairy-form-btn" type="submit">Submit </button>

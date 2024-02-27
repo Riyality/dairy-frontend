@@ -23,5 +23,6 @@ public class SupplierResponseDto {
 	private String bankBranchName;
 	private String accountNumber;
 	private String upiId;
+	private String remark;
 
 }

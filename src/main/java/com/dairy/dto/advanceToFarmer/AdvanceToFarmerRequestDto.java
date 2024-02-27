@@ -22,5 +22,6 @@ public class AdvanceToFarmerRequestDto {
 	private Float remainingAmount;
 	private Long farmerId;
 	private int branchId;
+	private String remark;
 
 }

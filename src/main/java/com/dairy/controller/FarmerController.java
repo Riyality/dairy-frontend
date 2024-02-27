@@ -31,14 +31,22 @@ public class FarmerController {
 	RouteService routeService;
 
 	@GetMapping("/addFarmerPage")
-	public String addFarmerPage(Model model) {
-		List<RouteResponseDto> list = routeService.getAllRoutes();
-		model.addAttribute("routes", list);
-		return "farmers/add";
+	public String addFarmerPage(Model model , HttpSession session) {
+		
+		String user = ( String ) session.getAttribute( "username" );
+		
+		if(user != null) {
+			int branchId = (int) session.getAttribute("branchId");
+			List<RouteResponseDto> list = routeService.getAllRoutes(branchId);
+			model.addAttribute("routes", list);
+			return "farmers/add";
+		}
+		return "login";
 	}
 
 	@PostMapping
 	public String addFarmer(@ModelAttribute FarmerRequestDto dto, HttpSession session) {
+		
 		int branchId = (int) session.getAttribute("branchId");
 		dto.setBranchId(branchId);
 
@@ -51,29 +59,48 @@ public class FarmerController {
 
 	@GetMapping
 	public String allFarmers(HttpSession session, Model model) {
-		int branchId = (int) session.getAttribute("branchId");
-		List<FarmerResponseDto> list = farmerService.findAllActiveFarmers(branchId);
-		model.addAttribute("list", list);
-		return "farmers/all";
+		
+		String user = ( String ) session.getAttribute( "username" );
+		
+		if(user != null) {
+			int branchId = (int) session.getAttribute("branchId");
+			List<FarmerResponseDto> list = farmerService.findAllActiveFarmers(branchId);
+			model.addAttribute("list", list);
+			return "farmers/all";
+		}
+		return "login";
 	}
 	
 	
 	@GetMapping("/InActiveFarmers")
 	public String allInActiveFarmers(HttpSession session, Model model) {
-		int branchId = (int) session.getAttribute("branchId");
-		List<FarmerResponseDto> list = farmerService.findAllInActiveFarmers(branchId);
-		model.addAttribute("list", list);
-		return "farmers/all";
 		
+		String user = ( String ) session.getAttribute( "username" );
+		
+		if(user != null) {
+			int branchId = (int) session.getAttribute("branchId");
+			List<FarmerResponseDto> list = farmerService.findAllInActiveFarmers(branchId);
+			model.addAttribute("list", list);
+			return "farmers/all";
+		}
+		return "login";
 	}
 
 	@GetMapping("/id/{id}")
-	public String findById(@PathVariable Long id, Model model) {
-		FarmerResponseDto response = farmerService.findById(id);
-		model.addAttribute("farmer", response);
-		List<RouteResponseDto> list = routeService.getAllRoutes();
-		model.addAttribute("routes", list);
-		return "farmers/update";
+	public String findById(@PathVariable Long id, Model model ,HttpSession session) {
+		
+		String user = ( String ) session.getAttribute( "username" );
+		
+		if(user !=null) {
+			int branchId = (int) session.getAttribute("branchId");
+			FarmerResponseDto response = farmerService.findById(id ,branchId);
+			model.addAttribute("farmer", response);
+			
+			List<RouteResponseDto> list = routeService.getAllRoutes(branchId);
+			model.addAttribute("routes", list);
+			return "farmers/update";
+		}
+		return "login";
 	}
 
 	@PostMapping("/update")

@@ -15,8 +15,9 @@ public class PaymentToFarmerServiceImpl implements PaymentToFarmerService{
 
 	@Override
 	public String addPayment(PaymentToFarmerRequestDto paymentToFarmerRequestDto) {
-		
+	
 		RestTemplate template = new RestTemplate();	   
+
 		String url = "http://localhost:6262/paymentTofarmer/";
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType( MediaType.APPLICATION_JSON );
@@ -29,7 +30,6 @@ public class PaymentToFarmerServiceImpl implements PaymentToFarmerService{
 			//log.error( e.getMessage(), e );
 		}
 		return null;
-		
 	}
 
 }

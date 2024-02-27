@@ -49,9 +49,14 @@ public class MilkRateController {
 	public String saveMilkRates(@RequestBody List<MilkRateRequestDto> milkRateDtoList, HttpSession session) {
 	    try {
 	        int branchId = (int) session.getAttribute("branchId");
+	        if (branchId <= 0) {
+	            // Handle invalid branchId
+	            return "error"; // Or return an appropriate error view
+	        }
 	        for (MilkRateRequestDto milkRateDto : milkRateDtoList) {
 	            milkRateDto.setBranchId(branchId);
 	        }
+	        
 	        String result = milkRateService.saveMilkRates(milkRateDtoList);
 	        if (result.equals(MessageConstants.ADD_MILK_RATE_SUCCESS_MESSAGE)) {
 	            return "milkCollection/milkRateCalculate";

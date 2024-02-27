@@ -41,9 +41,9 @@ public class EquipmentServiceImpl implements EquipmentService {
 	}
 
 	@Override
-	public List<EquipmentResponseDto> getAllEquipments() {
+	public List<EquipmentResponseDto> getAllEquipments(int branchId) {
 		RestTemplate template = new RestTemplate();
-		String url = "http://localhost:6262/equipments";
+		String url = "http://localhost:6262/equipments/all/"+branchId;
 		HttpHeaders headers = new HttpHeaders();
 		HttpEntity<String> entity = new HttpEntity<>("body", headers);
 		try {
@@ -60,9 +60,9 @@ public class EquipmentServiceImpl implements EquipmentService {
 	}
 
 	@Override
-	public EquipmentResponseDto findById(long id) {
+	public EquipmentResponseDto findById(long id ,int branchId) {
 		RestTemplate template = new RestTemplate();
-		String url = "http://localhost:6262/equipments/" + id;
+		String url = "http://localhost:6262/equipments/" + id+"/"+branchId;
 		HttpHeaders headers = new HttpHeaders();
 		HttpEntity<String> entity = new HttpEntity<>("body", headers);
 		try {

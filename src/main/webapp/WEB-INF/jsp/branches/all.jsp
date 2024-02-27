@@ -9,7 +9,7 @@
 		  <div class="col-11 mx-auto mt-4">
 		    <div class="card custom-card">
 		      <div class="card-header dairy-card-header">
-		        <div class="card-title">All Equipments</div>
+		        <div class="card-title">All Branches</div>
 		      </div>
 		      <div class="card-body">
 		        <div class="table-responsive">
@@ -24,6 +24,7 @@
 		                  <th>Owner Contact</th>
 		                  <th>Start Date</th>
 		                  <th>Address</th>
+		                   <th>Remark</th>
 		                  <th>Action</th>
 		                  </tr>
 		              </thead>
@@ -36,6 +37,7 @@
                             <td>${branch.ownerContact}</td>
                             <td>${branch.startDate}</td>
                             <td>${branch.address}</td>
+                            <td>${branch.remark}</td>
                             <td>
                               <a href="http://localhost:6161/branches/${branch.id }">
                                 <i class="ti ti-color-picker" style="font-size: 14px">Edit</i>
