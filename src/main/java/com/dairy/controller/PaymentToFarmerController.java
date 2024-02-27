@@ -55,8 +55,8 @@ public class PaymentToFarmerController {
 	        
 	        Date parsedFromDate = inputDateFormat.parse(fromDate);
 	        Date parsedToDate = inputDateFormat.parse(toDate);
-	      
-	        List<MilkCollectionResponseDto> list = milkCollectionService.findByFromDateAndToDateAndAnimalType(parsedFromDate, parsedToDate, animalType);
+	        String Flag="Payment";
+	        List<MilkCollectionResponseDto> list = milkCollectionService.findByFromDateAndToDateAndAnimalType(parsedFromDate, parsedToDate, animalType,Flag);
 	        return new ResponseEntity<>(list, HttpStatus.OK);
 	        
 	    } catch (Exception e) {
@@ -86,30 +86,19 @@ public class PaymentToFarmerController {
 	 
 	 
 	 @PostMapping
-		public ResponseEntity<String> addAdvance(@ModelAttribute PaymentToFarmerRequestDto dto,HttpSession session) {
-		 
-		
-		 int branchId = (int) session.getAttribute("branchId");
-			dto.setBranch(branchId);
-			
-			String added = paymentToFarmerService.addPayment(dto);
-			if (added.equals(MessageConstants.ADD_PAYMENT_SUCCESS_MESSAGE)) {
-				
-			}
-				
-				//return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(MessageConstants.ADD_PAYMENT_ERROR_MSG);
-			
-			return null;
-		}
-		
-	 
-	
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	
+	 public ResponseEntity<String> addPayment(@RequestBody List<PaymentToFarmerRequestDto> dtos, HttpSession session) {
+	     int branchId = (int) session.getAttribute("branchId");
+
+	     for (PaymentToFarmerRequestDto dto : dtos) {
+	         dto.setBranch(branchId);
+	        
+	         
+	         String added = paymentToFarmerService.addPayment(dto);
+	         
+	     }
+
+	     return ResponseEntity.status(HttpStatus.OK).body("Payment records added successfully");
+	 }
+
+
 }

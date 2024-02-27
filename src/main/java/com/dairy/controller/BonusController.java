@@ -50,9 +50,9 @@ public class BonusController {
 
 			Date parsedFromDate = inputDateFormat.parse(fromDate);
 			Date parsedToDate = inputDateFormat.parse(toDate);
-
+			String Flag="Bonus";
 			List<MilkCollectionResponseDto> list = milkCollectionService
-					.findByFromDateAndToDateAndAnimalType(parsedFromDate, parsedToDate, animalType);
+					.findByFromDateAndToDateAndAnimalType(parsedFromDate, parsedToDate, animalType,Flag);
 
 			return new ResponseEntity<>(list, HttpStatus.OK);
 

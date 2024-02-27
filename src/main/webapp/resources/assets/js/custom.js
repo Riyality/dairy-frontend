@@ -232,7 +232,6 @@
 
 
  /*Payment To Farmer Script Start*/
-
  var fDate
  var tDate;
  var AnimalType;
@@ -242,12 +241,13 @@
  var farmeID;
  var TotalFeedRemainingAmount;
  var TotalAdvanceAmount;
- $(document).ready(function() {
+ var TotalDeductionForFeed;
+ var TotalDeductionForAdvance;
+ $(document).ready(function() { 
  	var today = new Date().toISOString().split('T')[0];
  	$("#paymentDate").val(today);
  	$("#generateInvoice").prop("disabled", true);
  	$("#payment").prop("disabled", true);
-
  	$("#getFarmerRecords").on("click", function() {
  		fDate = fromDate
  		var fromDate = $("#fromDate").val();
@@ -300,7 +300,6 @@
  					} else {
  						newRow += '<td>' + formattedDate + '</td>'; // Show the date only once
  					}
- 					// Add other columns as needed
  					newRow += '<td>' + farmer.shift + '</td>' +
  						'<td>' + farmer.milkQuantity + '</td>' +
  						'<td>' + farmer.milkFat + '</td>' +
@@ -328,16 +327,13 @@
  	});
 
  	var selectedFarmerIds = [];
-
+$("#GeneratePayment").prop("disabled", true);
  	$("#file-export").on("change", ":checkbox", function() {
-
  		var anyCheckboxChecked = $("input[type='checkbox']:checked").length > 0;
  		$("#generateInvoice").prop("disabled", !anyCheckboxChecked);
- 		$("#payment").prop("disabled", !anyCheckboxChecked);
+ 		$("#GeneratePayment").prop("disabled", !anyCheckboxChecked);
  		updateSelectedFarmerIds();
  		updateSelectAllCheckbox();		
-	
-	
  	});
  	
  	$("#selectAllCheckbox").change(function() {
@@ -357,106 +353,161 @@
  		var allCheckboxes = $("#file-export :checkbox");
  		$("#selectAllCheckbox").prop("checked", allCheckboxes.length === allCheckboxes.filter(":checked").length);
  	}
- 	
- 	$("#payment").on("click", function() {
-	var advancePercentage= $("#advancePercentage").val();
-	 $("#Percentage").html(advancePercentage);
-   	$("#displayDates").html("From "+fDate+" To "+tDate);
-    if (selectedFarmerIds.length > 0) {
-      
 
-		$("#paymentGenerateList tbody").empty();
-
-        for (var i = 0; i < selectedFarmerIds.length; i++) {
-            var farmerId = selectedFarmerIds[i];
-            var selectedRow = $("#file-export tbody").find('input[data-farmer-id="' + farmerId + '"]').closest('tr');
-
-            var farmerName = selectedRow.find('td:eq(1)').text();
-            var milkQuantity = selectedRow.find('td:eq(2)').text();
-            var totalMilkAmount = selectedRow.find('td:eq(3)').text();
-			var totalRemainingFeedAmount = selectedRow.find('td:eq(4)').text();
-			var totalAdvanceAmount = selectedRow.find('td:eq(5)').text();
-			var amountAfterDeduction=((totalMilkAmount-totalRemainingFeedAmount) * advancePercentage) / 100;
-			var remainingAmount=totalMilkAmount-totalRemainingFeedAmount
-			var paymentAmount=remainingAmount-amountAfterDeduction;
-			
-			if(totalAdvanceAmount < amountAfterDeduction){
+ 				
+ 				var selectedFarmers = [];
+			 	function calculatePaymentDetails(totalMilkAmount, totalRemainingFeedAmount, totalAdvanceAmount, advancePercentage) {
+				var advanceAdded=0;	
+			    var amountAfterDeduction = ((totalMilkAmount - totalRemainingFeedAmount) * advancePercentage) / 100;
+			    var remainingAmount = totalMilkAmount - totalRemainingFeedAmount;
+			    var paymentAmount = remainingAmount - amountAfterDeduction;
 	
-				paymentAmount=amountAfterDeduction-totalAdvanceAmount
-				if(remainingAmount > totalAdvanceAmount){
-					
-					if(totalAdvanceAmount < amountAfterDeduction){ 
-						paymentAmount=remainingAmount-totalAdvanceAmount	
-					}
-				}
-				
-			} if(totalAdvanceAmount > amountAfterDeduction){
-				
-				if(remainingAmount > totalAdvanceAmount){
-					paymentAmount=remainingAmount-amountAfterDeduction;
-					   
-				}
-				
-
+				if (totalAdvanceAmount < amountAfterDeduction) {
+			    paymentAmount = Math.max(0, amountAfterDeduction - totalAdvanceAmount);
+			    if (remainingAmount > totalAdvanceAmount) {
+			        paymentAmount = Math.max(0, remainingAmount - totalAdvanceAmount);
+			    }
+			} else if (totalAdvanceAmount > amountAfterDeduction && remainingAmount > totalAdvanceAmount) {
+			    paymentAmount = Math.max(0, remainingAmount - amountAfterDeduction);
 			}
-			if(totalAdvanceAmount == 0){
-				amountAfterDeduction=0
+			if (totalAdvanceAmount == 0) {
+			    amountAfterDeduction = 0;
 			}
-            var newRow = '<tr>' +
-                '<td><input type="checkbox"></td>' +
-                '<td>' +farmerName +'-'+ farmerId + '</td>' +
-                '<td>' + milkQuantity + '</td>' +
-                '<td>' + totalMilkAmount + '</td>' +
-                '<td>' + totalRemainingFeedAmount + '</td>' +
-                '<td>' + totalAdvanceAmount + '</td>' +
-                '<td>'+amountAfterDeduction+'</td>' + 
-                '<td>'+paymentAmount+'</td>' + 
-                '</tr>';
-            $("#paymentGenerateList tbody").append(newRow);
-        }
-    } else {
-        alert("Please select at least one farmer before proceeding with the payment.");
-    }
-    
-	});
+			if (Number(totalMilkAmount) < Number(totalRemainingFeedAmount)) {
+		    advanceAdded = totalRemainingFeedAmount - totalMilkAmount;
+		  	}
+			if (totalRemainingFeedAmount > totalMilkAmount) {
+			    var remainingAmountAfterFeedDeduction = Math.max(0, totalRemainingFeedAmount - totalMilkAmount);
+			    if (remainingAmountAfterFeedDeduction !== 0) {
+			        totalAdvanceAmount += remainingAmountAfterFeedDeduction;
+			        advavamountAfterDeduction = 0;
+			        paymentAmount = 0;
+			    }
+			    amountAfterDeduction = 0;
+			}
+			//console.log('Feed Deduction:', TotalDeductionForFeed);
+			//console.log('Advance Deduction:', TotalDeductionForAdvance)
+		    return {
+			        amountAfterDeduction: amountAfterDeduction,
+			        remainingAmount: remainingAmount,
+			        paymentAmount: paymentAmount,
+			        advanceAdded:advanceAdded
+			    };
+			}
+			
+			$("#GeneratePayment").on("click", function() {
+			    var advancePercentage = $("#advancePercentage").val();
+			    $("#Percentage").html(advancePercentage);
+			    $("#displayDates").html("From " + fDate + " To " + tDate);		
+			    if (selectedFarmerIds.length > 0) {
+			        $("#paymentGenerateList tbody").empty();
+			        for (var i = 0; i < selectedFarmerIds.length; i++) {
+			            var farmerId = selectedFarmerIds[i];
+			            var selectedRow = $("#file-export tbody").find('input[data-farmer-id="' + farmerId + '"]').closest('tr');
+			            var farmerName = selectedRow.find('td:eq(1)').text();
+			            var milkQuantity = selectedRow.find('td:eq(2)').text();
+			            var totalMilkAmount = parseFloat(selectedRow.find('td:eq(3)').text());
+			            var totalRemainingFeedAmount = selectedRow.find('td:eq(4)').text();
+			            var totalAdvanceAmount = selectedRow.find('td:eq(5)').text();					
+			            var paymentDetails = calculatePaymentDetails(totalMilkAmount, totalRemainingFeedAmount, totalAdvanceAmount, advancePercentage);						
+			            var newRow = '<tr>' +
+			                '<td><input type="checkbox" data-farmer-id="' + farmerId + '"></td>' +		
+			                '<td>' + farmerName + '-' + farmerId + '</td>' +
+			                '<td>' + milkQuantity + '</td>' +
+			                '<td>' + totalMilkAmount + '</td>' +
+			                '<td>' + totalRemainingFeedAmount + '</td>' +
+			                '<td>' + (Number(totalAdvanceAmount)+Number(paymentDetails.advanceAdded)).toFixed(1)+ '</td>' +			               
+			                '<td>' + paymentDetails.amountAfterDeduction + '</td>' +
+			                '<td>' + Number(paymentDetails.paymentAmount).toFixed(1) + '</td>' +
+			                '</tr>';
+			            $("#paymentGenerateList tbody").append(newRow);			           
+			        }
+			    } 
+			    $('#pay').prop('disabled', true);
+			});
+	
+			$('#paymentGenerateList tbody').on('change', 'input[type="checkbox"]', function () {			
+			if ($(this).prop('checked')) {
+			        $('#pay').prop('disabled', false); // Enable the "Pay" button when a checkbox is checked
+			    } else {
+			        if ($('#paymentGenerateList tbody').find('input[type="checkbox"]:checked').length === 0) {
+			            $('#pay').prop('disabled', true); // Disable the "Pay" button when all checkboxes are unchecked
+			        }
+			    }			
+			    var $row = $(this).closest('tr');
+			    var farmerId = $(this).data('farmer-id');
+			    var total_collected_milk = $row.find('td:eq(2)').text();
+			    var TotalMilkAmount = $row.find('td:eq(3)').text();
+			    TotalDeductionForFeed = Number($row.find('td:eq(4)').text());
+				var AdvanceTotalAmount = Number($row.find('td:eq(5)').text());
+			    var TotalDeductionForAdvance = Number($row.find('td:eq(6)').text());
+    			if(Number(TotalDeductionForAdvance) > Number(AdvanceTotalAmount)){
+				TotalDeductionForAdvance=Number(AdvanceTotalAmount);
+				}
+				if(Number(TotalDeductionForFeed) > Number(TotalMilkAmount)){
+				console.log((TotalDeductionForFeed-TotalMilkAmount));
+				TotalDeductionForFeed=Number(TotalMilkAmount)
+				}
+			    var TotalPaymentAmount = $row.find('td:eq(7)').text();
+			    var invoiceDate = $('#paymentDate').val();
+			    var paymentMethod = $('#paymentMethod').val();
+			    var paymentNote = $('#paymentNote').val();			
+			    if ($(this).prop('checked')) {
+			        selectedFarmers.push({
+			            invoice_date: invoiceDate,
+			            from_date: fDate,
+			            to_date: tDate,
+			            amount: TotalPaymentAmount,
+			            farmer: farmerId,
+			            total_collected_milk: total_collected_milk,
+			            milktype: AnimalType,
+			            feed_deduction: TotalDeductionForFeed,
+			            advance_deduction: TotalDeductionForAdvance,
+			            payment_method: paymentMethod,
+			            payment_note: paymentNote
+			        });
+			    } else {
+			        selectedFarmers = selectedFarmers.filter(farmer => farmer.farmer !== farmerId);
+			    }     
+			});
+			function deleteSelectedRow(farmerId) {
+		     $('#paymentGenerateList tbody').find('input[type="checkbox"][data-farmer-id="' + farmerId + '"]').closest('tr').hide();
+			}
+			$('#pay').click(function () {
+				 $(this).prop('disabled', true);
+			    console.log(selectedFarmers);
+			    $.ajax({
+			        type: 'POST',
+			        url: 'http://localhost:6161/paymentToFarmer',
+			        contentType: 'application/json',
+			        data: JSON.stringify(selectedFarmers),
+			        success: function (response) {
+			            console.log('Payment submitted successfully:', response);
+			            alert(response)
+				            for (var i = 0; i < selectedFarmers.length; i++) {
+				                var farmerId = selectedFarmers[i].farmer;
+				                deleteSelectedRow(farmerId);
+				            }
+				              selectedFarmers = [];
+				            $('#paymentNote').val("")     
+			              $(this).prop('disabled', true); 
+			        },
+			        error: function (error) {
+			            console.error('Error submitting payment:', error);
+			        }
+			    });		    
+			});
 
 
- 	$('#advanceDeductionPercentage').on('keyup', function() {
- 		calculateAdvanceDeductionAmount();
- 		calculateTotalDeductionAmount();
 
- 	});
-
- 	function calculateAdvanceDeductionAmount() {
- 		//var totalMilkAmount = parseFloat($("#totalMilkAmount").val()); // Get the total milk amount from the input field
- 		var advancePercentage = parseFloat($("#advanceDeductionPercentage").val()); // Get the advance percentage from the input field
-
- 		
- 		var advanceDeduction = (TotalAdvanceAmount * advancePercentage) / 100;
-
- 		$("#advanceDeduction").val(advanceDeduction);
- 	}
-
-
- 	$('#feedDeduction, #advanceDeduction').on('keyup', function() {
- 		calculateTotalDeductionAmount();
- 		calculateDeductionAmount();
- 	});
- 	function calculateTotalDeductionAmount() {		 
- 		var feedDeduction = parseFloat($("#feedDeduction").val()) || 0;
- 		var advanceDeduction = parseFloat($("#advanceDeduction").val()) || 0;
- 		var deductionAmount = (feedDeduction + advanceDeduction);
- 		$("#deductionAmount").val(deductionAmount);
- 		$("#totalPayment").val(TotalMilkAmount - deductionAmount);
- 	}
-
-
- });
-
-
-
+ 	
+ });	
 
  /*Payment To Farmer End Start*/
+
+
+
+ /*Milk Collection Script Start*/
 
 		        var milkQuantity = $("#milkQuantity").val();
 		        var milkFat = $("#milkFat").val();
@@ -476,8 +527,12 @@
 		                    console.error('Error fetching data:', error);
 		                }
 		            });
+
+		        }
+
 		        
 		    }
+
 		
 		    updateMilkRateAndAmount();
 		
@@ -500,13 +555,20 @@
 			   
 		       });
 
+
+	     
+	      
+	    
+			
+	
+
 	   
+
  /*Milk Collection Script End*/
 
 
+
 /*Bonus To Farmer Script Start*/
-
-
 	$(document).ready(function () {
 		var fDate;
 		var tDate;
@@ -578,7 +640,6 @@
 				};
 	
 				selectedFarmersData.push(farmerData);
-	
 				totalQuantity += milkQuantity;
 				totalBonusAmount += bonusAmount;
 			});
@@ -639,17 +700,9 @@
     	
 
 	});
-	
-	
-		/*Bonus To Farmer Script end*/
+ /*Bonus To Farmer Script end*/
 
 
- 
-		  
-		  
-		  
-		 
-        
         /* Start Farmer Records Active and InActive*/
         function getFarmers(status) {
             var url = '/farmers'; 
@@ -682,9 +735,7 @@
                 }
             });
         }  
-
-        
-        
+    
         /* End Farmer Records Active and InActive*/
 		
 
