@@ -139,7 +139,6 @@ public class FeedToFarmerController {
 		        @PathVariable("farmerId") Long farmerId,HttpSession session) {
 		 	int branchId = (int) session.getAttribute("branchId");
 		    Double result = feedToFarmerService.findTotalOfRemainingAmountByFarmerIdAndBranchId(farmerId, branchId);
-
 		    return ResponseEntity.status(HttpStatus.OK).body(result);
 		}
 	 
@@ -148,7 +147,6 @@ public class FeedToFarmerController {
 	 @PostMapping("/update")
 		public String update(@ModelAttribute FeedToFarmerRequestDto feedToFarmerDto, RedirectAttributes ra,
 				HttpSession session) {
-
 			int branchId = (int) session.getAttribute("branchId");
 			feedToFarmerDto.setBranchId(branchId);
 			

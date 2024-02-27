@@ -23,16 +23,16 @@
                                 </div>
 
                                 <div class="col-md-3">
-                                    <label class="form-label dairy-input-label">Select To of Date</label>
+                                    <label class="form-label dairy-input-label">Select To Date</label>
                                     <input type="date" class="form-control dairy-form-input" id="toDate" name="toDate" >
                                 </div>
                                 <div class="col-md-4">
                                     <label class="form-label dairy-input-label">Milk Type</label><br>
                                     <input type="radio" name="milkType" value="cow" />Cow
-                                    <input type="radio" name="milkType" value="baffalo" />Buffalo
+                                    <input type="radio" name="milkType" value="buffalo" />Buffalo
                                 </div>
                                 <div class="col-md-3">
-                                  <label class="form-label dairy-input-label">Enter Advance Percentage</label><br>
+                                  <label class="form-label dairy-input-label">Enter Advance Percentage % </label><br>
                                   <input type="text" class="form-control dairy-form-input" name="advanceDeductionPercentage" id="advancePercentage">
                                  
                               </div>
@@ -48,8 +48,8 @@
                                     <tr class="dairy-table-head">
                                         <th> <input type="checkbox" id="selectAllCheckbox" /> </th>
                                         <th>Farmer Name</th>                                        
-                                        <th>Total Quantity</th>
-                                        <th>Total Amount</th>
+                                        <th>Total Milk Quantity</th>
+                                        <th>Total Payment Amount</th>
                                         <th class="hide-column">Feed Total Amount</th>
                                         <th class="hide-column">Advance Total Amount</th>
                                         <th>View Details </th>   
@@ -63,7 +63,7 @@
                                 <!-- <button class="btn btn-primary dairy-form-btn" type="submit" id="generateInvoice">Generate Invoice</button> -->
                             </form>  
                             
-                            <button class="btn btn-primary dairy-form-btn" data-bs-toggle="modal" data-bs-target="#makePayment" type="submit" id="payment">Make Payment</button>
+                            <button class="btn btn-primary dairy-form-btn" data-bs-toggle="modal" data-bs-target="#makePayment" type="submit" id="GeneratePayment">Generate Payment</button>
                             
                             <!-- Display PDF in iframe -->
                             <iframe id="pdfIframe" name="pdfIframe" width="100%" height="500"></iframe>
@@ -237,60 +237,72 @@
 
 
       <!--Payment Modal Start-->
-      <div class="modal fade modal-xl" id="makePayment" data-bs-keyboard="false" tabindex="-1" aria-labelledby="makePayment" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h6 class="modal-title" id="staticBackdropLabel">Payment</h6>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              <form class="row g-3 needs-validation" action="/paymentToFarmer"
-              method="post" novalidate>
-              <div class="col-12">
-              
-                <div class="row">
-                
-                    <b><span id="displayDates"> </span></b>
-                  <table id="paymentGenerateList" class="table table-bordered dataTable no-footer dairy-table-border">
-                    <thead>
-                        <tr class="dairy-table-head">
-                            <th> <input type="checkbox" id="selectAllCheckbox" /> </th>
-                            <th>Farmer </th>                                        
-                            <th>Total Milk Quantity(Ltr)</th>
-                            <th>Total Milk Amount</th>
-                            <th class="hide">Total Remaining Feed Amount</th>
-                            <th class="hide">Advance Total Amount</th>
-                            <th>Advance Amt After <span id="Percentage"></span>% Deduction</th>   
-                            <th>Total Payment</th>   
-                        </tr>
-                    </thead>
-                    <tbody >
-                    </tbody>
-                </table>
-
-
-
-
-                </div>  
-              
+      <div class="modal fade modal-xl" id="makePayment" data-bs-keyboard="false" data-bs-backdrop="static" tabindex="-1" aria-labelledby="makePayment" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable"> <!-- Add modal-dialog-scrollable class -->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h6 class="modal-title" id="staticBackdropLabel">Payment</h6>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="col-md-3 mt-4">
-                <button class="btn btn-primary dairy-form-btn mt-4" type="submit" id="pay">Make Payment</button>
-                </div> 
-                <span id="feedAmount"></span>
-                <span id="advanceAmount"></span>
-              
-            </form>
+                <div class="modal-body">
+                    <form class="row g-3 needs-validation" action="" method="post" novalidate>
+                        <div class="col-12">
+                            <div class="row">
+                                <b><span id="displayDates"> </span></b>
+                                <div class="col-md-2">
+                                    <label class="form-label dairy-input-label">Date</label>
+                                    <input type="date" class="form-control dairy-form-input" id="paymentDate" name="invoice_date">
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="form-label dairy-input-label">Payment Method</label>
+                                    <select class="form-select dairy-form-input" id="paymentMethod" name="payment_method">
+                                        <option value="" selected disabled>Select Payment Method</option>
+                                        <option value="Cash" selected>Cash</option>
+                                        <option value="Bank Transfer">Bank Transfer</option>
+                                        <option value="check">Check</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label dairy-input-label">Payment Note</label>
+                                    <textarea class="col-md-12 dairy-textarea" id="paymentNote" placeholder="Enter Payment Note"></textarea>
+                                </div>
+                                <div class="col-md-12 mt-3"> <!-- Add full-width column for the table -->
+                                    <table id="paymentGenerateList" class="table table-bordered dataTable no-footer dairy-table-border">
+                                        <thead>
+                                            <tr class="dairy-table-head">
+                                                <th> <input type="checkbox" id="selectAllCheckbox" /> </th>
+                                                <th class="hide-column">Farmer Id </th>
+                                                <th>Farmer </th>
+                                                <th>Total Milk Quantity(Ltr)</th>
+                                                <th>Total Milk Amount</th>
+                                                <th>Total Remaining Feed Amount</th>
+                                                <th>Advance Total Amount</th>
+                                                <th>Advance Amt After <span id="Percentage"></span>% Deduction</th>
+                                                <th>Total Payment</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <!-- Your table body content -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 mt-4">
+                            <button class="btn btn-primary dairy-form-btn mt-4" type="button" id="pay">Make Payment</button>
+                        </div>
+                        <span id="feedAmount"></span>
+                        <span id="advanceAmount"></span>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
             </div>
-            <div class="modal-footer">
-            
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              
-            </div>
-          </div>
         </div>
     </div>
+    
   
       <!--Payment Modal End-->
 
