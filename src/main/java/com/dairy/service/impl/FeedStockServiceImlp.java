@@ -43,9 +43,9 @@ public class FeedStockServiceImlp implements FeedStockService {
 	}
 
 	@Override
-	public List<FeedStockResponseDto> getAllFeedStock() {
+	public List<FeedStockResponseDto> getAllFeedStock(int branchId) {
 		RestTemplate template = new RestTemplate();
-		String url = "http://localhost:6262/feedStock";
+		String url = "http://localhost:6262/feedStock/all/"+branchId;
 		HttpHeaders headers = new HttpHeaders();
 		HttpEntity<String> entity = new HttpEntity<>("body", headers);
 		try {
@@ -63,9 +63,9 @@ public class FeedStockServiceImlp implements FeedStockService {
 	}
 
 	@Override
-	public FeedStockResponseDto findById(int id) {
+	public FeedStockResponseDto findById(int id ,int branchId) {
 		RestTemplate template = new RestTemplate();
-		String url = "http://localhost:6262/feedStock/" + id;
+		String url = "http://localhost:6262/feedStock/" + id+"/"+branchId;
 		HttpHeaders headers = new HttpHeaders();
 		HttpEntity<String> entity = new HttpEntity<>("body", headers);
 		try {

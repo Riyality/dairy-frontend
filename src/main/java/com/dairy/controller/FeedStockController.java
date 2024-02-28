@@ -85,10 +85,15 @@ public class FeedStockController {
 	}
 
 	@GetMapping
-	public String getAllFeedStock(Model model) {
-		List<FeedStockResponseDto> list = feedStockService.getAllFeedStock();
-		model.addAttribute("FeedStocks", list);
-		return "feedStock/all";
+	public String getAllFeedStock(Model model ,HttpSession session) {
+		String user = (String) session.getAttribute("username");
+		if(user != null) {
+			int branchId = (int) session.getAttribute("branchId");
+			List<FeedStockResponseDto> list = feedStockService.getAllFeedStock(branchId);
+			model.addAttribute("FeedStocks", list);
+			return "feedStock/all";
+		}
+		return "login";
 	}
 	
 
@@ -108,7 +113,7 @@ public class FeedStockController {
 		if(user != null) {
 			int branchId = (int) session.getAttribute("branchId");
 			
-			FeedStockResponseDto response = feedStockService.findById( id );
+			FeedStockResponseDto response = feedStockService.findById( id ,branchId );
 			model.addAttribute( "feedstock", response );
 			
 			List<FeedCompanyResponseDto> list = feedCompanyService.getAllFeedCompany(branchId);
