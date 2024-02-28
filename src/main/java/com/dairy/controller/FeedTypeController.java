@@ -65,11 +65,17 @@ public class FeedTypeController {
 	}
 
 	@GetMapping
-	public String getAllFeedTypes(Model model) {
-		List<FeedTypeResponseDto> list = feedTypeService.getAllFeedTypes();
-
-		model.addAttribute("feedType",list);
-		return "/feedTypes/all";																																			
+	public String getAllFeedTypes(Model model ,HttpSession session) {
+		String user = (String) session.getAttribute("username");
+		
+		if(user != null) {
+			int branchId = (int) session.getAttribute("branchId");
+			
+			List<FeedTypeResponseDto> list = feedTypeService.getAllFeedTypes(branchId);
+			model.addAttribute("feedType",list);
+			return "/feedTypes/all";
+		}
+		return "login";																																		
     }
 
 
@@ -81,7 +87,7 @@ public class FeedTypeController {
 		if(user != null) {
 			int branchId = (int) session.getAttribute("branchId");
 			
-			FeedTypeResponseDto response = feedTypeService.findById(id);
+			FeedTypeResponseDto response = feedTypeService.findById(id ,branchId);
 			model.addAttribute("feedType", response);
 
 			List<FeedCompanyResponseDto> list = feedCompanyService.getAllFeedCompany(branchId);

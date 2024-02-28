@@ -531,7 +531,7 @@ $("#GeneratePayment").prop("disabled", true);
 		        }
 
 		        
-		    }
+		    
 
 		
 		    updateMilkRateAndAmount();
