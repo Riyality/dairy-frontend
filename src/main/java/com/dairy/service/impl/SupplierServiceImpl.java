@@ -44,9 +44,9 @@ public class SupplierServiceImpl  implements SupplierService{
 	}
 
 	@Override
-	public List<SupplierResponseDto> getAllSupplier() {
+	public List<SupplierResponseDto> getAllSupplier(int branchId) {
 		RestTemplate template = new RestTemplate();
-		String url = "http://localhost:6262/suppliers";
+		String url = "http://localhost:6262/suppliers/all/"+branchId;
 		HttpHeaders headers = new HttpHeaders();
 		HttpEntity<String> entity = new HttpEntity<>("body", headers);
 		try {
@@ -63,9 +63,9 @@ public class SupplierServiceImpl  implements SupplierService{
 	}
 
 	@Override
-	public SupplierResponseDto findById(long id) {
+	public SupplierResponseDto findById(long id ,int branchId) {
 		RestTemplate template = new RestTemplate();
-		String url = "http://localhost:6262/suppliers/" + id;
+		String url = "http://localhost:6262/suppliers/" + id+"/"+branchId;
 		HttpHeaders headers = new HttpHeaders();
 		HttpEntity<String> entity = new HttpEntity<>("body", headers);
 		try {

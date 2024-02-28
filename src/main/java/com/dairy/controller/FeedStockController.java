@@ -58,7 +58,7 @@ public class FeedStockController {
 			List<FeedTypeResponseDto> list1 = feedTypeService.getAllFeedTypes();
 			model.addAttribute("feedType", list1);
 
-			List<SupplierResponseDto> list2 = supplierService.getAllSupplier();
+			List<SupplierResponseDto> list2 = supplierService.getAllSupplier(branchId);
 			model.addAttribute("suppliers", list2);
 
 			return "feedStock/add";
@@ -117,7 +117,7 @@ public class FeedStockController {
 			List<FeedTypeResponseDto> list1 = feedTypeService.getAllFeedTypes();
 			model.addAttribute("feedType", list1);
 
-			List<SupplierResponseDto> list2 = supplierService.getAllSupplier();
+			List<SupplierResponseDto> list2 = supplierService.getAllSupplier(branchId);
 			model.addAttribute("suppliers", list2);
 			
 			return "feedStock/update";
