@@ -83,21 +83,30 @@ public class MilkCollectionController {
 
 	@GetMapping
 	public String allFarmers(HttpSession session, Model model) {
-		int branchId = (int) session.getAttribute("branchId");
-		List<FarmerResponseDto> list = farmerService.findAllActiveFarmers(branchId);
-		model.addAttribute("list", list);
-		System.out.println(list);
-		return "farmers/all";
+		String user = ( String ) session.getAttribute( "username" );
+		
+		if(user != null) {
+			int branchId = (int) session.getAttribute("branchId");
+			List<FarmerResponseDto> list = farmerService.findAllActiveFarmers(branchId);
+			model.addAttribute("list", list);
+			System.out.println(list);
+			return "farmers/all";
+		}
+		return"login";
 	}
 
 	@GetMapping("/byTodaysDate")
 	public String getMilkCollectionDataByDate(HttpSession session, Model model) {
-		int branchId = (int) session.getAttribute("branchId");
-		LocalDate today = LocalDate.now();
-
-		 List<MilkCollectionResponseDto> list = milkCollectionService.getMilkCollectionDataByDate( branchId, today );
-		 model.addAttribute( "list", list );
-		return "milkCollection/datewiseList";
+		String user = ( String ) session.getAttribute( "username" );
+		
+		if(user != null){
+			int branchId = (int) session.getAttribute("branchId");
+			LocalDate today = LocalDate.now();
+			List<MilkCollectionResponseDto> list = milkCollectionService.getMilkCollectionDataByDate( branchId, today );
+			model.addAttribute( "list", list );
+			return "milkCollection/datewiseList";
+		}
+		return "login";
 	}
 	
 
