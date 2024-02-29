@@ -9,9 +9,9 @@ public interface AdvanceToFarmerService {
 
 	String addAdvance(AdvanceToFarmerRequestDto advanceRequestDto);
 
-	List<AdvanceToFarmerResponseDto> getAllAdvance();
+	List<AdvanceToFarmerResponseDto> getAllAdvance(int branchId);
 
-	AdvanceToFarmerResponseDto findByIdAdvance(Long id);
+	AdvanceToFarmerResponseDto findByIdAdvance(Long id, int branchId);
 
 	String updateAdvance(AdvanceToFarmerRequestDto advanceRequestDto);
 

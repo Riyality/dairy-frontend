@@ -43,9 +43,9 @@ public class AdvanceToFarmerServiceImpl implements AdvanceToFarmerService {
 	}
 
 	@Override
-	public List<AdvanceToFarmerResponseDto> getAllAdvance() {
+	public List<AdvanceToFarmerResponseDto> getAllAdvance(int branchId) {
 		RestTemplate template = new RestTemplate();
-		String url = "http://localhost:6262/advanceToFarmer";
+		String url = "http://localhost:6262/advanceToFarmer/all/"+branchId;
 		HttpHeaders headers = new HttpHeaders();
 		HttpEntity<String> entity = new HttpEntity<>( "body", headers );
 		try {
@@ -62,9 +62,9 @@ public class AdvanceToFarmerServiceImpl implements AdvanceToFarmerService {
 	}
 
 	@Override
-	public AdvanceToFarmerResponseDto findByIdAdvance(Long id) {
+	public AdvanceToFarmerResponseDto findByIdAdvance(Long id ,int branchId) {
 		RestTemplate template = new RestTemplate();
-		String url = "http://localhost:6262/advanceToFarmer/" + id;
+		String url = "http://localhost:6262/advanceToFarmer/" + id+"/branchId/"+branchId;
 		HttpHeaders headers = new HttpHeaders();
 		HttpEntity<String> entity = new HttpEntity<>("body", headers);
 		try {

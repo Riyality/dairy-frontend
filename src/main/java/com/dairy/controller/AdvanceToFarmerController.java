@@ -57,33 +57,45 @@ public class AdvanceToFarmerController {
 	}
 
 	@GetMapping
-	public String getAllAdvance(Model model) {
-		List<AdvanceToFarmerResponseDto> list = advanceToFarmerService.getAllAdvance();
-		model.addAttribute("advances", list);
-		return "advanceToFarmers/all";
+	public String getAllAdvance(Model model , HttpSession session) {
+		String user = ( String ) session.getAttribute( "username" );
+		
+		if(user != null) {
+			int branchId = (int) session.getAttribute("branchId");
+			List<AdvanceToFarmerResponseDto> list = advanceToFarmerService.getAllAdvance(branchId);
+			model.addAttribute("advances", list);
+			return "advanceToFarmers/all";
+		}
+		return"login";
 	}
 
 	@GetMapping("/{id}")
 	public String findById(@PathVariable Long id, Model model, HttpSession session) {
-		AdvanceToFarmerResponseDto response = advanceToFarmerService.findByIdAdvance(id);
-		model.addAttribute("advance", response);
+		String user = ( String ) session.getAttribute( "username" );
+		
+		if(user != null) {
+			int branchId = (int) session.getAttribute("branchId");
+			AdvanceToFarmerResponseDto response = advanceToFarmerService.findByIdAdvance(id ,branchId);
+			model.addAttribute("advance", response);
 
-		int branchId = (int) session.getAttribute("branchId");
-		List<FarmerResponseDto> list = farmerService.findAllActiveFarmers(branchId);
-		model.addAttribute("list", list);
-
-		return "advanceToFarmers/update";
-
+			List<FarmerResponseDto> list = farmerService.findAllActiveFarmers(branchId);
+			model.addAttribute("list", list);
+			return "advanceToFarmers/update";
+		}
+		return "login";
 	}
 	
 
 	 @GetMapping("farmerId/{farmerId}")
-		public ResponseEntity<Double> findTotalOfRemainingAmountByFarmerIdAndBranchId(
-		        @PathVariable("farmerId") Long farmerId,HttpSession session) {
-		 	int branchId = (int) session.getAttribute("branchId");
-		    Double result = advanceToFarmerService.findTotalOfRemainingAmountByFarmerIdAndBranchId(farmerId, branchId);
-
-		    return ResponseEntity.status(HttpStatus.OK).body(result);
+		public ResponseEntity<Double> findTotalOfRemainingAmountByFarmerIdAndBranchId(@PathVariable("farmerId") Long farmerId,HttpSession session) {
+		 int branchId = (int) session.getAttribute("branchId");
+			
+			if(branchId != 0) {
+			    Double result = advanceToFarmerService.findTotalOfRemainingAmountByFarmerIdAndBranchId(farmerId, branchId);
+			    return ResponseEntity.status(HttpStatus.OK).body(result);
+			}
+		 return null;
+		 	
 		}
 	
 
