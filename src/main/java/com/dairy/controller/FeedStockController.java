@@ -55,10 +55,10 @@ public class FeedStockController {
 			List<FeedCompanyResponseDto> list = feedCompanyService.getAllFeedCompany(branchId);
 			model.addAttribute("feedCompany", list);
 			
-			List<FeedTypeResponseDto> list1 = feedTypeService.getAllFeedTypes();
+			List<FeedTypeResponseDto> list1 = feedTypeService.getAllFeedTypes(branchId);
 			model.addAttribute("feedType", list1);
 
-			List<SupplierResponseDto> list2 = supplierService.getAllSupplier();
+			List<SupplierResponseDto> list2 = supplierService.getAllSupplier(branchId);
 			model.addAttribute("suppliers", list2);
 
 			return "feedStock/add";
@@ -85,10 +85,15 @@ public class FeedStockController {
 	}
 
 	@GetMapping
-	public String getAllFeedStock(Model model) {
-		List<FeedStockResponseDto> list = feedStockService.getAllFeedStock();
-		model.addAttribute("FeedStocks", list);
-		return "feedStock/all";
+	public String getAllFeedStock(Model model ,HttpSession session) {
+		String user = (String) session.getAttribute("username");
+		if(user != null) {
+			int branchId = (int) session.getAttribute("branchId");
+			List<FeedStockResponseDto> list = feedStockService.getAllFeedStock(branchId);
+			model.addAttribute("FeedStocks", list);
+			return "feedStock/all";
+		}
+		return "login";
 	}
 	
 
@@ -108,16 +113,16 @@ public class FeedStockController {
 		if(user != null) {
 			int branchId = (int) session.getAttribute("branchId");
 			
-			FeedStockResponseDto response = feedStockService.findById( id );
+			FeedStockResponseDto response = feedStockService.findById( id ,branchId );
 			model.addAttribute( "feedstock", response );
 			
 			List<FeedCompanyResponseDto> list = feedCompanyService.getAllFeedCompany(branchId);
 			model.addAttribute("feedCompany", list);
 
-			List<FeedTypeResponseDto> list1 = feedTypeService.getAllFeedTypes();
+			List<FeedTypeResponseDto> list1 = feedTypeService.getAllFeedTypes(branchId);
 			model.addAttribute("feedType", list1);
 
-			List<SupplierResponseDto> list2 = supplierService.getAllSupplier();
+			List<SupplierResponseDto> list2 = supplierService.getAllSupplier(branchId);
 			model.addAttribute("suppliers", list2);
 			
 			return "feedStock/update";

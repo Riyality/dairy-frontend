@@ -11,8 +11,10 @@ public interface MilkCollectionService {
 
 	public String addMilkCollection(MilkCollectionRequestDto dto, int branchId) ;
 
-	public List<MilkCollectionResponseDto> findByFromDateAndToDateAndAnimalType(Date string,
-			Date string2, String animalType);
+	
+	
+	public List<MilkCollectionResponseDto> findByFromDateAndToDateAndAnimalType(Date parsedFromDate, Date parsedToDate,
+			String animalType, String flag);
 
 	public List<MilkCollectionResponseDto> getMilkCollectionDataByDate(int branchId, LocalDate dateOfCollection);
 
@@ -21,9 +23,10 @@ public interface MilkCollectionService {
 	public List<MilkCollectionResponseDto> getRecordsByFarmerIdFromDateAndToDateAndAnimalType(long farmerId,
 			String fromDate, String toDate, String animalType);
 
+
 	public float getMilkCollectionDataByDate(String animalType, String shift, Integer branchId);
 
-	public float getMilkCollectionDataByDate(Integer branchId);
+
 
 
 }

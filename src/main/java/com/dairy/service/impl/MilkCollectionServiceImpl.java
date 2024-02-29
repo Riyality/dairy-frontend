@@ -46,31 +46,30 @@ public class MilkCollectionServiceImpl implements MilkCollectionService {
 	}
 
 	@Override
-	public List<MilkCollectionResponseDto> findByFromDateAndToDateAndAnimalType(Date fromDate,
-			Date toDate, String animalType) {
-    
-	    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-	    String formattedFromDate = dateFormat.format(fromDate);
-	    String formattedToDate = dateFormat.format(toDate);
+	public List<MilkCollectionResponseDto> findByFromDateAndToDateAndAnimalType(Date fromDate, Date toDate,
+			String animalType, String flag) {
+		 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		    String formattedFromDate = dateFormat.format(fromDate);
+		    String formattedToDate = dateFormat.format(toDate);
+		    	
+		    RestTemplate template = new RestTemplate();
+		  
+		    String url = "http://localhost:6262/milkCollection/" + formattedFromDate + "/" + formattedToDate + "/" + animalType+"/"+flag;
+		    HttpHeaders headers = new HttpHeaders();
+		    headers.setContentType(MediaType.APPLICATION_JSON);
+		    HttpEntity<String> entity = new HttpEntity<>("body", headers);
 
-	    RestTemplate template = new RestTemplate();
-	  
-	    String url = "http://localhost:6262/milkCollection/" + formattedFromDate + "/" + formattedToDate + "/" + animalType;
-	    HttpHeaders headers = new HttpHeaders();
-	    headers.setContentType(MediaType.APPLICATION_JSON);
-	    HttpEntity<String> entity = new HttpEntity<>("body", headers);
+		    try {
+		        ResponseEntity<List<MilkCollectionResponseDto>> res = template.exchange(
+		                url, HttpMethod.GET, entity, new ParameterizedTypeReference<List<MilkCollectionResponseDto>>() {});
+		        
+		        return res.getBody();
 
-	    try {
-	        ResponseEntity<List<MilkCollectionResponseDto>> res = template.exchange(
-	                url, HttpMethod.GET, entity, new ParameterizedTypeReference<List<MilkCollectionResponseDto>>() {});
-	        
-	        return res.getBody();
+		    } catch (Exception e) {
+		        log.error(e.getMessage(), e);
+		    }
 
-	    } catch (Exception e) {
-	        log.error(e.getMessage(), e);
-	    }
-
-	    return Collections.emptyList();
+		    return Collections.emptyList();
 	}
 	
 	
@@ -131,6 +130,7 @@ public class MilkCollectionServiceImpl implements MilkCollectionService {
 		return null;
 	}
 
+
 	@Override
 	public float getMilkCollectionDataByDate(String animalType, String shift, Integer branchId) {
 		RestTemplate template = new RestTemplate();
@@ -149,22 +149,8 @@ public class MilkCollectionServiceImpl implements MilkCollectionService {
 		return 0;
 	}
 
-	@Override
-	public float getMilkCollectionDataByDate(Integer branchId) {
-		RestTemplate template = new RestTemplate();
-		String url = "http://localhost:6262/milkCollection/todayTodaysMilk/"+ branchId;
-		HttpHeaders headers = new HttpHeaders();
-		HttpEntity<String> entity = new HttpEntity<>("body", headers);
-		try {
+	
 
-			ResponseEntity<Float> res = template.exchange(url, HttpMethod.GET, entity,
-					float.class);
-			return res.getBody();
 
-		} catch (Exception e) {
-			log.error(e.getMessage(), e);
-		}
-		return 0;
-	}
 
 }

@@ -86,26 +86,14 @@ padding:6px;
 										class="form-control dairy-form-input"
 										placeholder="Total Amount" id="feedStockTotalAmount" name="totalAmount">
 								</div>
+                             
                             
-
-                            <!-- Dynamic Feed Stock Fields -->
-                            <div id="feedStockFieldsContainer">
-                                <!-- Initial fields here -->
-                            </div>
-
-                            <!-- Add more fields button -->
-                            <div class="col-12">
-                                <button type="button" class="btn btn-secondary" onclick="addFeedStockFields()">Add More Feed Stock</button>
-                            </div>
-
-                            <!-- Remark -->
                             <div class="col-12">
                                 <label class="form-label dairy-input-label">Remark</label>
                                 <textarea class="col-12 dairy-textarea" rows="4" name="remark" placeholder="Enter Remark Here"></textarea>
                             </div>
 
-                            <!-- Submit button -->
-                            <div class="col-12">
+                          
                                 <button class="btn btn-primary dairy-form-btn" type="submit">Submit</button>
                             </div>
                         </form>
@@ -117,4 +105,5 @@ padding:6px;
 </div>
 </body>
 <jsp:include page="../modules/footer.jsp" />
+
 
