@@ -12,7 +12,7 @@ import lombok.Setter;
 public class FeedToFarmerResponseDto {
 	private Long id;
 
-	@DateTimeFormat( pattern = "yyyy-MM-dd'T'HH:mm" )
+	@DateTimeFormat( pattern = "yyyy-MM-dd" )
 	private Date dateOfPurchase;
 	private Integer quantity;
 	private Float feedRate;

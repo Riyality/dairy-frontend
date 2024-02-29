@@ -21,5 +21,9 @@ public interface MilkCollectionService {
 	public List<MilkCollectionResponseDto> getRecordsByFarmerIdFromDateAndToDateAndAnimalType(long farmerId,
 			String fromDate, String toDate, String animalType);
 
+	public float getMilkCollectionDataByDate(String animalType, String shift, Integer branchId);
+
+	public float getMilkCollectionDataByDate(Integer branchId);
+
 
 }

@@ -15,4 +15,6 @@ public interface FeedStockService {
 
 	public String updateFeed(FeedStockRequestDto feedStockRequestDto);
 
+	public long TotalfeedStockBybranchId(Integer branchId);
+
 }

@@ -116,5 +116,16 @@ public class FarmerController {
 		return "redirect:/farmers/" + dto.getId();
 	}
 	
+	/* @GetMapping("/activeCount")
+	    public String countActiveFarmersByBranchId(Model model, HttpSession session) {
+	        String user = (String) session.getAttribute("username");
+	        if (user != null) {
+	            int branchId = (int) session.getAttribute("branchId");
+	            long activeFarmersCount = farmerService.countActiveFarmersByBranchId(branchId);
+	            model.addAttribute("activeFarmersCount", activeFarmersCount);
+	            return "dairyCount/activeFarmerCount";
+	        }
+	        return "login";
+	    }*/
 	
 }

@@ -29,7 +29,7 @@ $(document).ready( function() {
 				 if (value.match(regex)) {
 				        $(this).val(value.replace(regex, ''));
 				    }
-				 calculateTotalAmountOfMainBranch();
+				 calculateTotalAmount();
 			});
 
 		 	function calculateTotalAmount() {
@@ -165,5 +165,29 @@ $(document).ready( function() {
 			    }
 		    });
 	/* payment to farmer script end*/	
-	
+			
+	/*feedStock script start*/		
+		 	$("#feedStockCostPerUnit,#feedStockQuantity,#feedStockTotalAmount").on("keyup", function() {
+				var value = $(this).val().trim();
+				var regex = /^0+|[^0-9.]/g;
+				
+				 if (value.match(regex)) {
+				        $(this).val(value.replace(regex, ''));
+				    }
+				 calculateTotalAmount();
+			});
+
+		 	function calculateTotalAmount() {
+		 	    var feedStockQuantity = $("#feedStockQuantity").val();
+		 	    var feedStockCostPerUnit = $("#feedStockCostPerUnit").val();
+
+		 	    if ($.isNumeric(feedStockQuantity) && parseFloat(feedStockQuantity) >= 0 &&
+		 	        $.isNumeric(feedStockCostPerUnit) && parseFloat(feedStockCostPerUnit) >= 0) {
+		 	        var totalAmount = parseFloat(feedStockQuantity) * parseFloat(feedStockCostPerUnit);
+		 	        $("#feedStockTotalAmount").val(totalAmount.toFixed(2));
+		 	    } else {
+		 	        $("#feedStockTotalAmount").val('');
+		 	    }
+		 	}
+  /*feedStock script end*/
 	});

@@ -23,4 +23,5 @@ public class FeedStockResponseDto {
 	private Long feedCompanyId;
 	private String feedCompanyName;
 	private int branchId;
+	private String remark;
 }

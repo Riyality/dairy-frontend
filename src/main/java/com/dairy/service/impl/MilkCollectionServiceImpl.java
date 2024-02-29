@@ -15,6 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import com.dairy.dto.feedType.FeedTypeResponseDto;
 import com.dairy.dto.milkCollection.MilkCollectionRequestDto;
 import com.dairy.dto.milkCollection.MilkCollectionResponseDto;
 import com.dairy.service.MilkCollectionService;
@@ -128,6 +129,42 @@ public class MilkCollectionServiceImpl implements MilkCollectionService {
 			log.error(e.getMessage(), e);
 		}
 		return null;
+	}
+
+	@Override
+	public float getMilkCollectionDataByDate(String animalType, String shift, Integer branchId) {
+		RestTemplate template = new RestTemplate();
+		String url = "http://localhost:6262/milkCollection/todayTodaysMilk/"+animalType+"/"+ shift+"/"+ branchId;
+		HttpHeaders headers = new HttpHeaders();
+		HttpEntity<String> entity = new HttpEntity<>("body", headers);
+		try {
+
+			ResponseEntity<Float> res = template.exchange(url, HttpMethod.GET, entity,
+					float.class);
+			return res.getBody();
+
+		} catch (Exception e) {
+			log.error(e.getMessage(), e);
+		}
+		return 0;
+	}
+
+	@Override
+	public float getMilkCollectionDataByDate(Integer branchId) {
+		RestTemplate template = new RestTemplate();
+		String url = "http://localhost:6262/milkCollection/todayTodaysMilk/"+ branchId;
+		HttpHeaders headers = new HttpHeaders();
+		HttpEntity<String> entity = new HttpEntity<>("body", headers);
+		try {
+
+			ResponseEntity<Float> res = template.exchange(url, HttpMethod.GET, entity,
+					float.class);
+			return res.getBody();
+
+		} catch (Exception e) {
+			log.error(e.getMessage(), e);
+		}
+		return 0;
 	}
 
 }
