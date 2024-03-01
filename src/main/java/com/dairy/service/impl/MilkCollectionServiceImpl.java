@@ -46,15 +46,15 @@ public class MilkCollectionServiceImpl implements MilkCollectionService {
 	}
 
 	@Override
-	public List<MilkCollectionResponseDto> findByFromDateAndToDateAndAnimalType(Date fromDate, Date toDate,
+	public List<MilkCollectionResponseDto> findByFromDateAndToDateAndAnimalType(LocalDate fromDate, LocalDate toDate,
 			String animalType, String flag) {
-		 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-		    String formattedFromDate = dateFormat.format(fromDate);
-		    String formattedToDate = dateFormat.format(toDate);
+//		 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+//		    String formattedFromDate = dateFormat.format(fromDate);
+//		    String formattedToDate = dateFormat.format(toDate);
 		    	
 		    RestTemplate template = new RestTemplate();
 		  
-		    String url = "http://localhost:6262/milkCollection/" + formattedFromDate + "/" + formattedToDate + "/" + animalType+"/"+flag;
+		    String url = "http://localhost:6262/milkCollection/" + fromDate + "/" + toDate + "/" + animalType+"/"+flag;
 		    HttpHeaders headers = new HttpHeaders();
 		    headers.setContentType(MediaType.APPLICATION_JSON);
 		    HttpEntity<String> entity = new HttpEntity<>("body", headers);

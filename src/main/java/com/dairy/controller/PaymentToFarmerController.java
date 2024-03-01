@@ -1,12 +1,15 @@
 package com.dairy.controller;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -21,8 +24,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.dairy.constants.MessageConstants;
+import com.dairy.dto.employee.EmployeeResponseDto;
 import com.dairy.dto.milkCollection.MilkCollectionResponseDto;
 import com.dairy.dto.paymentToFarmer.PaymentToFarmerRequestDto;
+import com.dairy.dto.paymentToFarmer.PaymentToFarmerResponseDto;
 import com.dairy.service.MilkCollectionService;
 import com.dairy.service.PaymentToFarmerService;
 @CrossOrigin(origins = "*")
@@ -43,20 +48,18 @@ public class PaymentToFarmerController {
 
 	}
 	
+
 	@GetMapping("/{fromDate}/{toDate}/{animalType}")
 	@ResponseBody
 	public ResponseEntity<List<MilkCollectionResponseDto>> findByFromDateAndToDateAndAnimalType(
-	        @PathVariable String fromDate,
-	        @PathVariable String toDate,
+			 @PathVariable("fromDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fromDate,
+			 @PathVariable("toDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate  toDate,
 	        @PathVariable("animalType") String animalType, Model model, HttpSession session) {
 	    
 	    try {
-	        SimpleDateFormat inputDateFormat = new SimpleDateFormat("yyyy-MM-dd");
 	        
-	        Date parsedFromDate = inputDateFormat.parse(fromDate);
-	        Date parsedToDate = inputDateFormat.parse(toDate);
 	        String Flag="Payment";
-	        List<MilkCollectionResponseDto> list = milkCollectionService.findByFromDateAndToDateAndAnimalType(parsedFromDate, parsedToDate, animalType,Flag);
+	        List<MilkCollectionResponseDto> list = milkCollectionService.findByFromDateAndToDateAndAnimalType(fromDate, toDate, animalType,Flag);
 	        return new ResponseEntity<>(list, HttpStatus.OK);
 	        
 	    } catch (Exception e) {
@@ -70,7 +73,7 @@ public class PaymentToFarmerController {
 
 	        List<MilkCollectionResponseDto> list = milkCollectionService.getRecordsByFarmerId(farmerId);
 	        return new ResponseEntity<>(list, HttpStatus.OK);
-  
+ 
 	    }
 	 
 	 
@@ -100,5 +103,37 @@ public class PaymentToFarmerController {
 	     return ResponseEntity.status(HttpStatus.OK).body("Payment records added successfully");
 	 }
 
+	 
+	 @GetMapping
+		public String getAllPaymentList(Model model,HttpSession session) {
+		 
+		 String user = ( String ) session.getAttribute( "username" );
+			
+			if ( user != null ) {
+				Integer branchId = ( Integer ) session.getAttribute( "branchId" );
+				List<PaymentToFarmerResponseDto> list = paymentToFarmerService.getAllPaymentList(branchId);
+					 model.addAttribute("payment", list);
+					 return "paymentToFarmer/all";
+			}
+			return "login";
+			
+		}
+	 
+	 @GetMapping("datewise/{fromDate}/{toDate}/{milkType}")
+		public ResponseEntity<List<PaymentToFarmerResponseDto>> getPaymentListBetweenFromDateAndToDate(
+				@PathVariable("fromDate") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate fromDate,
+	    		@PathVariable("toDate") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate toDate,
+	    		@PathVariable String milkType,HttpSession session) {
+		 String user = ( String ) session.getAttribute( "username" );
+			
+			if ( user != null ) {
+				Integer branchId = ( Integer ) session.getAttribute( "branchId" );
+				
+			return new ResponseEntity<>(paymentToFarmerService.getPaymentListBetweenFromDateAndToDate(fromDate,toDate,milkType,branchId), HttpStatus.OK);
+		}
+			return null;
+	 
+	 
+	 } 
 
 }

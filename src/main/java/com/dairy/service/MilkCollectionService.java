@@ -13,7 +13,7 @@ public interface MilkCollectionService {
 
 	
 	
-	public List<MilkCollectionResponseDto> findByFromDateAndToDateAndAnimalType(Date parsedFromDate, Date parsedToDate,
+	public List<MilkCollectionResponseDto> findByFromDateAndToDateAndAnimalType(LocalDate fromDate, LocalDate toDate,
 			String animalType, String flag);
 
 	public List<MilkCollectionResponseDto> getMilkCollectionDataByDate(int branchId, LocalDate dateOfCollection);

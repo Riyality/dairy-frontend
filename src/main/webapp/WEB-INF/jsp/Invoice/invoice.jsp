@@ -6,24 +6,67 @@
     /* Add any additional styles if needed */
 </style>
 
-<body>
 
     <div class="main-content app-content p-4">
 
         <div class="container-fluid">
             <div class="row">
+            
+                <div class="col-12 m-auto">
+                    <div class="card custom-card">
+                        <div class="card-header justify-content-between dairy-card-header">
+                            <div class="card-title">Milk Collection Invoice</div>
+                        </div>
+                        <div class="card-body dairy-card-body">
+                            <form id="filterForm" class="row g-3 needs-validation" >
+                                <div class="col-md-3">
+                                    <label class="form-label dairy-input-label required-field">Select From Date</label>
+                                    <input type="date" class="form-control dairy-form-input" id="fromDate" name="fromDate" required >
+                                </div>
 
-                <!-- Your existing table with data -->
-                
+                                <div class="col-md-3">
 
-                <!-- Form to generate PDF -->
-                <form id="pdfForm" action="/generatePdf" method="get" target="pdfIframe">
-                    <input type="hidden"  name="tableData" value="<c:out value='${yourTableDataInSomeFormat}'/>">
-                    <button type="submit">Generate PDF</button>
-                </form>
-                
-                
-                
+                                    <label class="form-label dairy-input-label required-field">Select To Date</label>
+                                    <input type="date" class="form-control dairy-form-input" id="toDate" name="toDate" required>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="form-label dairy-input-label required-field">Milk Type</label><br>
+                                    <input type="radio" name="milkType" value="cow" />Cow
+                                    <input type="radio" name="milkType" value="buffalo" />Buffalo
+                                </div>
+
+                                <div class="col-12">
+                                    <button class="btn btn-primary dairy-form-btn" type="button" id="getInvoiceRecords">Get Records </button>
+                                </div>
+                            </form>
+
+                            <table id="file-export" class="table table-bordered dataTable no-footer dairy-table-border">
+                                <thead>
+                                    <tr class="dairy-table-head">
+                                        <th> <input type="checkbox" id="selectAllCheckbox" /> </th>
+                                        <th>Farmer Name</th>   
+                                        <th>Payment Date</th>                                     
+                                        <th>Total Milk Quantity</th>
+                                        <th>Total Payment Amount</th>
+                                        <th >Feed Deducted Amount</th>
+                                        <th >Advance Deducted Amount</th>
+                                         
+                                    </tr>
+                                </thead>
+                                <tbody >
+                                </tbody>
+                            </table>
+                            <form id="pdfForm" action="/generatePdf" method="get" target="pdfIframe">
+                                
+                             <button class="btn btn-primary dairy-form-btn" type="submit" id="generateInvoice">Generate Invoice</button> 
+                            </form>  
+      
+                            <!-- Display PDF in iframe -->
+                            <iframe id="pdfIframe" name="pdfIframe" width="100%" height="500"></iframe>
+
+                        </div>
+                    </div>
+                </div>
 
                 <!-- Display PDF in iframe -->
                 <iframe id="pdfIframe" name="pdfIframe" width="100%" height="500"></iframe>
@@ -34,24 +77,5 @@
 
     <jsp:include page="../modules/footer.jsp" />
 
-    <!-- Add JavaScript to set iframe source after form submission -->
-    <script>
-        // Attach the submit event listener to the form
-        document.getElementById("pdfForm").addEventListener("submit", function (event) {
-            // Encode the table data and set it as a parameter in the URL
-            var tableData = encodeURIComponent(document.getElementById("tableData").value);
-            document.getElementById("pdfForm").action = "/generatePdf?tableData=" + tableData;
 
-          
-            // event.preventDefault();
-
-            // Call the function to set the iframe source
-            generatePdf();
-        });
-
-        function generatePdf() {
-            document.getElementById("pdfIframe").src = "/generatePdf";
-        }
-    </script>
-
-</body>
+<

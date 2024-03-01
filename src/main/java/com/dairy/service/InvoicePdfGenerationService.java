@@ -19,13 +19,14 @@ import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Phrase;
 import com.itextpdf.text.Rectangle;
 import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPRow;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 
 @Service
 public class InvoicePdfGenerationService {
 
-	public void generatePdf(ServletOutputStream outputStream, List<MilkCollectionResponseDto> list, String fromDate, String toDate, List<String> farmerId) {
+	public void generatePdf(ServletOutputStream outputStream, List<MilkCollectionResponseDto> list, String fromDate, String toDate, List<String> farmerId,List<String>  amount, List<String> feedDeduction, List<String> advanceDeduction) {
 		try {
 			
 			Document document = new Document();
@@ -33,11 +34,14 @@ public class InvoicePdfGenerationService {
 			document.open();
 			Font titleFont = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 16);
 			Font cellFont = FontFactory.getFont(FontFactory.HELVETICA, 10);
-			Font boldFont = FontFactory.getFont(FontFactory.HELVETICA_BOLD);
+			Font boldFont = FontFactory.getFont(FontFactory.HELVETICA_BOLD,12);
 
 			for (String encodedFarmerId : farmerId) {
                 int customerId = Integer.parseInt(encodedFarmerId);
-
+                int index = farmerId.indexOf(encodedFarmerId);
+                double currentAmount = Double.parseDouble(amount.get(index));
+                double FeedDeductionAmount = Double.parseDouble(feedDeduction.get(index));
+                double TotaladvanceDeduction = Double.parseDouble(advanceDeduction.get(index));
                 String BranchName = null;
                 String farmerName = null;
                 String MilkType = null;
@@ -61,12 +65,18 @@ public class InvoicePdfGenerationService {
                 int fatCountEvening = 0;
                 int rateCountMorning = 0;
                 int rateCountEvening = 0;
-              
+            
                 for (MilkCollectionResponseDto dto : list) {
+                	
                     if (dto.getFarmerId() == customerId) {
+                    	
                         farmerName = dto.getFarmerName();
                         MilkType = dto.getAnimalType();
                         BranchName = dto.getBranchName();
+                        currentAmount = Double.parseDouble(amount.get(index));
+                        FeedDeductionAmount=Double.parseDouble(feedDeduction.get(index));
+                        TotaladvanceDeduction=Double.parseDouble(advanceDeduction.get(index));
+                        break; 
                     }
                    
                 }
@@ -80,7 +90,7 @@ public class InvoicePdfGenerationService {
 			 String displayFromDate = from.format(DateTimeFormatter.ofPattern("dd/MM/yy"));
 			 String displayToDate = to.format(DateTimeFormatter.ofPattern("dd/MM/yy"));
 
-
+			 
 			Paragraph khata = new Paragraph("Khata No:"+customerId, cellFont);
 			khata.setAlignment(Element.ALIGN_LEFT);
 			Paragraph spacer1 = new Paragraph("                                                       ");
@@ -288,7 +298,7 @@ public class InvoicePdfGenerationService {
 		        		 
 		        PdfPCell lineCell = new PdfPCell();
 		        lineCell.setColspan(13);
-		        lineCell.setBorder(Rectangle.NO_BORDER);
+		      //  lineCell.setBorder(Rectangle.NO_BORDER);
 		        lineCell.setPaddingBottom(90f);
 		        table.addCell(lineCell);
 		        
@@ -327,40 +337,45 @@ public class InvoicePdfGenerationService {
 		    document.add(table);
 		    
 	   
-			PdfPTable table2 = new PdfPTable(4);
-			table2.setWidthPercentage(100);
-			table2.setWidths(new float[] { 2.5f, 3.5f, 2.5f, 2.5f });
+		    PdfPTable table2 = new PdfPTable(4);
+		    table2.setWidthPercentage(100);
+		    table2.setWidths(new float[] { 2.5f, 3.5f, 2.5f, 2.5f });
 
-			
-			table2.addCell(createCellWithFont("Previous Deposit:0.0", cellFont));
-			table2.addCell(createCellWithFont("Previous Outstanding:0.0", cellFont));
-			table2.addCell(createCellWithFont("Total Outstanding:0.0", cellFont));
-			table2.addCell(createCellWithFont("Total Bill: "+(totalAmountMorinigShift+totalAmountEveningShift), cellFont));
+		    table2.addCell(createCellWithFont("Previous Deposit:0.0", cellFont));
+		    table2.addCell(createCellWithFont("Previous Outstanding:0.0", cellFont));
+		    table2.addCell(createCellWithFont("Total Outstanding:0.0", cellFont));
+		    table2.addCell(createCellWithFont("Total Bill: "+(totalAmountMorinigShift+totalAmountEveningShift), cellFont));
 
-			document.add(new Paragraph("\n"));
-			document.add(new Paragraph("\n"));
+		    document.add(new Paragraph("\n"));
+		    document.add(new Paragraph("\n"));
 
-			table2.addCell(createCellWithFont("Current Deposit:0.0", cellFont));
-			table2.addCell(createCellWithFont("Feed Rs:0.0", cellFont));
-			table2.addCell(createCellWithFont("Actual Deduction:0.0", cellFont));
-			table2.addCell(createCellWithFont("Total Deduction:0.0", cellFont));
-			
-			document.add(new Paragraph("\n"));
-			document.add(new Paragraph("\n"));
-			table2.addCell(createCellWithFont("Total Deposit:0.0", cellFont));
-			table2.addCell(createCellWithFont("Current Borrow:0.0", cellFont));
-			table2.addCell(createCellWithFont("Current Outstanding:0.0", cellFont));
-			table2.addCell(createCellWithFont("Total Pay:0.0", cellFont));
-			
-			document.add(table2);
-	
+		    table2.addCell(createCellWithFont("Current Deposit:0.0", cellFont));
+		    table2.addCell(createCellWithFont("Feed Dedcution:"+FeedDeductionAmount, cellFont));
+		    table2.addCell(createCellWithFont("Advace Deduction:"+TotaladvanceDeduction, cellFont));
+		    table2.addCell(createCellWithFont("Total Deduction:"+(TotaladvanceDeduction+FeedDeductionAmount), cellFont));
+
+		    document.add(new Paragraph("\n"));
+		    document.add(new Paragraph("\n"));
+		    table2.addCell(createCellWithFont("Total Deposit:0.0", cellFont));
+		    table2.addCell(createCellWithFont("Current Borrow:0.0", cellFont));
+		    table2.addCell(createCellWithFont("Current Outstanding:0.0", cellFont));
+		    table2.addCell(createCellWithFont("Total Pay:"+currentAmount, boldFont));
+
+		 // Iterate over rows and columns to set border for each cell
+		    for (PdfPRow row : table2.getRows()) {
+		        for (PdfPCell cell : row.getCells()) {
+		            cell.setBorder(Rectangle.BOX);
+		        }
+		    }
+
+		    document.add(table2);
 			 if (!encodedFarmerId.equals(farmerId.get(farmerId.size() - 1))) {
                  document.newPage();
              }
          }
 	   document.close();
      } catch (Exception e) {
-         e.printStackTrace();
+         e.printStackTrace();	
      } finally {
          try {
              outputStream.flush();
@@ -372,15 +387,17 @@ public class InvoicePdfGenerationService {
  }
 	private PdfPCell createCellWithFont(String content, Font font) {
 	    PdfPCell cell = new PdfPCell(new Phrase(content, font));
-	    cell.setBorderWidth(0);
+	    cell.setBorderWidth(0.5f);
 	    cell.setPaddingBottom(6f);
 	    cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-	   // cell.setBorder(Rectangle.BOTTOM); // Set the bottom border for the cell
+	    cell.setBorder(Rectangle.BOTTOM); // Set the bottom border for the cell
 	    return cell;
 	}
 	private PdfPCell createCellWithFont(LocalDate localDate, Font font) {
 	    String formattedDate = formatDateToDayMonth(localDate);
 	    PdfPCell cell = createCellWithFont(formattedDate, font);
+	    cell.setBorder(Rectangle.BOTTOM); // Set the bottom border for the cell
+	   cell.setBorderWidth(0.5f); 
 	    return cell;
 	}
 	

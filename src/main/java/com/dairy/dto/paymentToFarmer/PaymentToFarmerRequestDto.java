@@ -1,5 +1,6 @@
 package com.dairy.dto.paymentToFarmer;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -12,12 +13,13 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class PaymentToFarmerRequestDto {
+	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	private Date invoice_date;
+	private LocalDate invoice_date;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	private Date from_date;
+	private LocalDate from_date;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	private Date to_date;
+	private LocalDate to_date;
 	private Float amount;
 	private Long farmer;
 	private int branch;
