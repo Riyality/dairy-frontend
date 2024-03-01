@@ -1,12 +1,14 @@
 package com.dairy.controller;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -42,17 +44,18 @@ public class BonusController {
 	@GetMapping("/{fromDate}/{toDate}/{animalType}")
 	@ResponseBody
 	public ResponseEntity<List<MilkCollectionResponseDto>> findByFromDateAndToDateAndAnimalType(
-			@PathVariable String fromDate, @PathVariable String toDate, @PathVariable("animalType") String animalType,
+			 @PathVariable("fromDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fromDate,
+			 @PathVariable("fromDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate  toDate, @PathVariable("animalType") String animalType,
 			Model model, HttpSession session) {
 
 		try {
 			SimpleDateFormat inputDateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
-			Date parsedFromDate = inputDateFormat.parse(fromDate);
-			Date parsedToDate = inputDateFormat.parse(toDate);
+			//Date parsedFromDate = inputDateFormat.parse(fromDate);
+			//Date parsedToDate = inputDateFormat.parse(toDate);
 			String Flag="Bonus";
 			List<MilkCollectionResponseDto> list = milkCollectionService
-					.findByFromDateAndToDateAndAnimalType(parsedFromDate, parsedToDate, animalType,Flag);
+					.findByFromDateAndToDateAndAnimalType(fromDate, toDate, animalType,Flag);
 
 			return new ResponseEntity<>(list, HttpStatus.OK);
 

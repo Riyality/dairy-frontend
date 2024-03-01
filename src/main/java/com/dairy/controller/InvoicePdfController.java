@@ -31,19 +31,26 @@ public class InvoicePdfController {
     
     @GetMapping("/generatePdf")
     @ResponseBody
-    public void generatePdf(HttpServletResponse response,  @RequestParam List<String>  farmerId,@RequestParam String fromDate,@RequestParam String toDate,@RequestParam String animalType) {
+    public void generatePdf(HttpServletResponse response, 
+    		@RequestParam List<String>  farmerId,@RequestParam String fromDate,
+    		@RequestParam String toDate,@RequestParam String animalType,@RequestParam List<String> amount,
+    		@RequestParam List<String> feedDeduction,@RequestParam List<String> advanceDeduction){
     	
+    	 if (farmerId.size() != amount.size()) {
+    	        throw new IllegalArgumentException("The size of farmerId and amount lists must be the same.");
+    	    }
     	List<MilkCollectionResponseDto> list = new ArrayList<>();
 
 		for (String encodedFarmerId : farmerId) {
 			long farmerId1 = Long.parseLong(encodedFarmerId);
+			System.out.println(farmerId1+fromDate+toDate+animalType+amount+feedDeduction+advanceDeduction);
 			list.addAll(milkCollectionService.getRecordsByFarmerIdFromDateAndToDateAndAnimalType(farmerId1,fromDate,toDate,animalType));
 		}
 	
         try {          
            response.setContentType("application/pdf"); // Set the response content type
            response.setHeader("Content-Disposition", "inline; filename=invoice_" + fromDate + "_to_" + toDate + ".pdf");
-            pdfGenerationService.generatePdf(response.getOutputStream(), list,fromDate,toDate,farmerId);  // Generate the PDF directly to the response output stream
+            pdfGenerationService.generatePdf(response.getOutputStream(), list,fromDate,toDate,farmerId,amount,feedDeduction,advanceDeduction);  // Generate the PDF directly to the response output stream
         } catch (IOException e) {
             e.printStackTrace();
         }

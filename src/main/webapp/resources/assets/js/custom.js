@@ -229,7 +229,7 @@
 
  /*Milk Collection Script End*/
 
-
+	 
 
  /*Payment To Farmer Script Start*/
  var fDate
@@ -507,6 +507,110 @@ $("#GeneratePayment").prop("disabled", true);
 
 
 
+/*Milkcollection Invoice Script Start*/ 
+		var milkType,fromDate,toDate;
+		 
+	$(document).ready(function() {
+    var selectedFarmersData = [];
+
+    $("#getInvoiceRecords").on("click", function() {
+        fromDate = $("#fromDate").val();
+        toDate  = $("#toDate").val();
+         milkType = document.querySelector('input[name="milkType"]:checked').value;
+
+        $.ajax({
+            url: 'http://localhost:6161/paymentToFarmer/datewise/' + fromDate + '/' + toDate + '/' + milkType,
+            type: 'GET',
+            dataType: 'json',
+            success: function(result) {
+                $("#file-export tbody").empty(); // Clear existing table rows
+                for (var i = 0; i < result.length; i++) {
+                    var farmer = result[i];
+                    var newRow = '<tr class="gridjs-tr">' +
+                        '<td>' + '<input type="checkbox" data-farmer-id="' + farmer.farmer + '"> ' + '</td>' +
+                        '<td>' + farmer.farmerName + '</td>' +
+                        '<td>' + farmer.invoice_date + '</td>' +
+                        '<td>' + farmer.total_collected_milk + '</td>' +
+                        '<td>' + farmer.amount + '</td>' +
+                        '<td>' + farmer.feed_deduction + '</td>' +
+                        '<td>' + farmer.advance_deduction + '</td>' +
+                        '</tr>';
+                    $("#file-export tbody").append(newRow);
+                }
+            },
+            error: function(error) {
+                console.error('Error fetching data:', error);
+            }
+        });
+    });
+
+    function generatePdf(selectedFarmersData) {
+		console.log(selectedFarmersData)
+       var encodedId = selectedFarmersData.map(function(farmerData) {
+        return encodeURIComponent(farmerData.farmerId);
+    }).join(',');
+    
+    
+    
+    var amounts = selectedFarmersData.map(function(farmerData) {
+        return farmerData.amount;
+    });
+
+    var feedDeductions = selectedFarmersData.map(function(farmerData) {
+        return farmerData.feedDeduction;
+    });
+
+    var advanceDeductions = selectedFarmersData.map(function(farmerData) {
+        return farmerData.advanceDeduction;
+    });
+     //var encodedIds = farmerIds.join(',');
+    var encodedAmount = amounts.join(',');
+    var encodedFeedDeduction = feedDeductions.join(',');
+    var encodedAdvanceDeduction = advanceDeductions.join(',');
+    
+       console.log(encodedId)
+ 		$("#pdfIframe").attr("src", "/generatePdf?farmerId=" + encodedId + "&fromDate=" + fromDate + "&toDate=" + toDate + "&animalType=" + milkType+"&amount="+encodedAmount+"&feedDeduction="+encodedFeedDeduction+"&advanceDeduction="+encodedAdvanceDeduction);
+    }
+
+    $("#pdfForm").submit(function(event) {
+        generatePdf(selectedFarmersData);
+        event.preventDefault();
+    });
+
+    $("#GeneratePayment").prop("disabled", true);
+
+    $("#file-export").on("change", ":checkbox", function() {
+        updateSelectedFarmersData();
+        updateGeneratePaymentButton();
+    });
+
+    $("#selectAllCheckbox").change(function() {
+        $("#file-export :checkbox").prop("checked", this.checked);
+        updateSelectedFarmersData();
+        updateGeneratePaymentButton();
+    });
+
+    function updateSelectedFarmersData() {
+        selectedFarmersData = $("#file-export :checkbox:checked").map(function() {
+			console.log(selectedFarmersData)
+            var $row = $(this).closest("tr");
+            return {
+                farmerId: $(this).data("farmer-id"),
+                amount: $row.find("td:eq(4)").text(),
+                feedDeduction: $row.find("td:eq(5)").text(),
+                advanceDeduction: $row.find("td:eq(6)").text()
+            };
+        }).get();
+    }
+
+    function updateGeneratePaymentButton() {
+        var anyCheckboxChecked = selectedFarmersData.length > 0;
+        $("#GeneratePayment").prop("disabled", !anyCheckboxChecked);
+    }
+});
+
+ /*Milkcollection Invoice Script End*/
+
  /*Milk Collection Script Start*/
 
 		        var milkQuantity = $("#milkQuantity").val();
@@ -531,7 +635,7 @@ $("#GeneratePayment").prop("disabled", true);
 		        }
 
 		        
-		    }
+		    
 
 		
 		    updateMilkRateAndAmount();
@@ -737,5 +841,11 @@ $("#GeneratePayment").prop("disabled", true);
         }  
     
         /* End Farmer Records Active and InActive*/
-		
+        
+        
+        
+        
+        
+        
+	
 

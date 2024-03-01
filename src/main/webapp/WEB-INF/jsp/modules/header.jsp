@@ -516,8 +516,8 @@
                                     <i class ="fa fa-plus-square-o listIcons" aria-hidden="true"></i>Payment to Farmer </a>
                                 </li>
                                  <li class="slide">
-                                    <a href="/farmers" class="side-menu__item">
-                                    <i class="fa fa-table listIcons" aria-hidden="true"></i>All Farmers</a>
+                                    <a href="/paymentToFarmer" class="side-menu__item">
+                                    <i class="fa fa-table listIcons" aria-hidden="true"></i>All Payments</a>
                                 </li>
                                 
                             </ul>
@@ -672,6 +672,37 @@
                             </ul>
                         </li>
                         <!-- End DairyManger Transactions slide -->
+                        
+                        
+                        
+                        
+                         <!-- Start Reports slide -->
+                        
+                        <li class="slide has-sub">
+                            <a href="javascript:void(0);" class="side-menu__item">
+                                <i class="fa fa-tachometer listIcons" aria-hidden="true"></i>
+                                <span class="side-menu__label">Reports</span>
+                                <i class="fe fe-chevron-right side-menu__angle"></i>
+                            </a>
+                            <ul class="slide-menu child1">
+                                <li class="slide">
+                                    <a href="/reports/add-milkcollectionreport-page" class="side-menu__item">
+                                    <i class="fa-solid fa-jar listIcons" aria-hidden="true"></i>Milk Collection Reports</a>
+                                    
+                                     <ul class="slide-menu child1">
+                                      <li class="slide">
+                                    <a href="/dairyManger/add-dairyManger-Page" class="side-menu__item">
+                                    <i class="fa-solid fa-jar listIcons" aria-hidden="true"></i>Datewise Collection Reports</a>
+                                    </li>
+                                    </ul>
+                                </li>
+                                 
+                                
+                            </ul>
+                        </li>
+                        <!-- End Reports slide -->
+                        
+                        
                          
                     </ul>
                     
