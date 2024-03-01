@@ -9,9 +9,9 @@ public interface SupplierService {
 
 	public String addSupplier(SupplierRequestDto supplierRequestDto);
 
-	public List<SupplierResponseDto> getAllSupplier();
+	public List<SupplierResponseDto> getAllSupplier(int branchId);
 
-	public SupplierResponseDto findById(long id);
+	public SupplierResponseDto findById(long id, int branchId);
 
 	public String updateSupplier(SupplierRequestDto supplierRequestDto);
 

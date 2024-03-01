@@ -47,17 +47,30 @@ public class SupplierController {
 	}
 
 	@GetMapping
-	public String getAllSuppliers(Model model) {
-		List<SupplierResponseDto> list = supplierService.getAllSupplier();
-		model.addAttribute("suppliers", list);
-		return "suppliers/all";
+	public String getAllSuppliers(Model model ,HttpSession session) {
+		
+		String user = (String) session.getAttribute("username");
+		
+		if(user != null) {
+			int branchId = (int) session.getAttribute("branchId");
+			List<SupplierResponseDto> list = supplierService.getAllSupplier(branchId);
+			model.addAttribute("suppliers", list);
+			return "suppliers/all";
+		}
+		return "login";
 	}
 
 	@GetMapping("/{id}")
-	public String getById(@PathVariable long id, Model model) {
-		SupplierResponseDto response = supplierService.findById(id);
-		model.addAttribute("suppliers", response);
-		return "suppliers/update";
+	public String getById(@PathVariable long id, Model model,HttpSession session) {
+		String user = (String) session.getAttribute("username");
+		
+		if(user != null) {
+			int branchId = (int) session.getAttribute("branchId");
+			SupplierResponseDto response = supplierService.findById(id ,branchId);
+			model.addAttribute("suppliers", response);
+			return "suppliers/update";
+		}
+		return "login";
 	}
 
 	@PostMapping("/update")

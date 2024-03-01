@@ -9,10 +9,12 @@ public interface FeedStockService {
 
 	public String addFeedStock(FeedStockRequestDto feedStockRequestDto);
 
-	public List<FeedStockResponseDto> getAllFeedStock();
+	public List<FeedStockResponseDto> getAllFeedStock(int branchId);
 
-	public FeedStockResponseDto findById(int id);
+	public FeedStockResponseDto findById(int id, int branchId);
 
 	public String updateFeed(FeedStockRequestDto feedStockRequestDto);
+
+	public long TotalfeedStockBybranchId(Integer branchId);
 
 }

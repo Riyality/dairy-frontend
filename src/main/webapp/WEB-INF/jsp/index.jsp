@@ -30,8 +30,9 @@
                     <div class="card custom-card">
                         <div class="card-header  justify-content-between">
                             <div class="card-title">
-                                Top Deals
+                               Dairy Details
                             </div>
+   
                             <div class="dropdown">
                                 <a aria-label="anchor" href="javascript:void(0);" class="btn btn-icon btn-sm btn-light" data-bs-toggle="dropdown" aria-expanded="false">
                                     <i class="fe fe-more-vertical"></i>
@@ -48,58 +49,102 @@
                                 <li>
                                     <div class="d-flex align-items-top flex-wrap">
                                         <div class="me-2">
-                                            <span class="avatar avatar-sm avatar-rounded">
-<img src="<c:url value="/resources/assets/images/faces/10.jpg"/>" alt="">
-</span>
+                                           <span class="avatar avatar-sm avatar-rounded">
+                                             <img src="<c:url value="/resources/assets/images/faces/12.jpg"/>" alt="">
+                                           </span>
                                         </div>
                                         <div class="flex-fill">
-                                            <p class="fw-semibold mb-0">Michael Jordan</p>
-                                            <span class="text-muted fs-12">michael.jordan@example.com</span>
+                                            <p class="fw-semibold mb-0">Active Farmers</p>
+                                            <!-- <span class="text-muted fs-12">michael.jordan@example.com</span> -->
                                         </div>
-                                        <div class="fw-semibold fs-15">$2,893</div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="d-flex align-items-top flex-wrap">
-                                        <div class="me-2">
-                                            <span class="avatar avatar-sm avatar-rounded bg-warning-transparent fw-semibold">
-EK
-</span>
-                                        </div>
-                                        <div class="flex-fill">
-                                            <p class="fw-semibold mb-0">Emigo Kiaren</p>
-                                            <span class="text-muted fs-12">emigo.kiaren@gmail.com</span>
-                                        </div>
-                                        <div class="fw-semibold fs-15">$4,289</div>
+                                        <div class="fw-semibold fs-15">${activeFarmersCount}</div>
                                     </div>
                                 </li>
                                 <li>
                                     <div class="d-flex align-items-top flex-wrap">
                                         <div class="me-2">
                                             <span class="avatar avatar-sm avatar-rounded">
-<img src="<c:url value="/resources/assets/images/faces/12.jpg"/>" alt="">
-</span>
+                                             <img src="<c:url value="/resources/assets/images/faces/12.jpg"/>" alt="">
+                                           </span>
                                         </div>
                                         <div class="flex-fill">
-                                            <p class="fw-semibold mb-0">Randy Origoan</p>
-                                            <span class="text-muted fs-12">randy.origoan@gmail.com</span>
+                                            <p class="fw-semibold mb-0">InActive Farmers</p>
+                                           <!--  <span class="text-muted fs-12">emigo.kiaren@gmail.com</span> -->
                                         </div>
-                                        <div class="fw-semibold fs-15">$6,347</div>
+                                        <div class="fw-semibold fs-15">${inActiveFarmersCount}</div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="d-flex align-items-top flex-wrap">
+                                        <div class="me-2">
+                                            <span class="avatar avatar-sm avatar-rounded bg-primary-transparent fw-semibold">FS
+                                            </span>
+                                        </div>
+                                        <div class="flex-fill">
+                                            <p class="fw-semibold mb-0">Total Feed Stock</p>
+                                            <!-- <span class="text-muted fs-12">randy.origoan@gmail.com</span> -->
+                                        </div>
+                                        <div class="fw-semibold fs-15">${totalFeedStock}</div>
                                     </div>
                                 </li>
                                 
                                 <li>
                                     <div class="d-flex align-items-top flex-wrap">
                                         <div class="me-2">
-                                            <span class="avatar avatar-sm avatar-rounded bg-primary-transparent fw-semibold">
-KA
-</span>
+                                            <span class="avatar avatar-sm avatar-rounded bg-primary-transparent fw-semibold">MC
+                                            </span>
                                         </div>
                                         <div class="flex-fill">
-                                            <p class="fw-semibold mb-0">Kiara Advain</p>
-                                            <span class="text-muted fs-12">kiaraadvain214@gmail.com</span>
+                                            <h6 class="fw-semibold mb-0"> MilkCollection</h6>
                                         </div>
-                                        <div class="fw-semibold fs-15">$2,679</div>
+                                        <!-- <div class="fw-semibold fs-15">$2,679</div> -->
+                                    </div>
+                                </li>
+                                
+                                   <li>
+                                    <div class="d-flex align-items-top flex-wrap">
+                                        <div class="me-2">
+                                           <span class="avatar avatar-sm avatar-rounded bg-primary-transparent fw-semibold"></span>
+                                        </div> 
+                                        <div class="flex-fill">
+                                            <p class="fw-semibold mb-0">Morning:Cow</p>
+                                           <!--  <span class="text-muted fs-12">Cow</span> -->
+                                            <!--  <span class="text-muted fs-12">Morning:Bufflo</span> -->
+                                        </div>
+                                        <div class="fw-semibold fs-15">${cowMorningMilkCollection}</div>
+                                    </div>
+                                </li>
+                                 <li>
+                                    <div class="d-flex align-items-top flex-wrap">
+                                        <div class="me-2">
+                                           <span class="avatar avatar-sm avatar-rounded bg-primary-transparent fw-semibold"></span>
+                                        </div> 
+                                        <div class="flex-fill">
+                                            <p class="fw-semibold mb-0">Morning:Buffalo</p>
+                                        </div>
+                                        <div class="fw-semibold fs-15">${buffaloMorningMilkCollection}</div>
+                                    </div>
+                                </li>
+                                 <li>
+                                    <div class="d-flex align-items-top flex-wrap">
+                                        <div class="me-2">
+                                           <span class="avatar avatar-sm avatar-rounded bg-primary-transparent fw-semibold"></span>
+                                        </div> 
+                                        <div class="flex-fill">
+                                            <p class="fw-semibold mb-0">Evening:Cow</p>
+                                        </div>
+                                        <div class="fw-semibold fs-15">${cowEveningMilkCollection}</div>
+                                    </div>
+                                </li>
+                                 <li>
+                                    <div class="d-flex align-items-top flex-wrap">
+                                        <div class="me-2">
+                                           <span class="avatar avatar-sm avatar-rounded bg-primary-transparent fw-semibold"></span>
+                                        </div> 
+                                        <div class="flex-fill">
+                                            <p class="fw-semibold mb-0">Evening:Buffalo</p>
+                                        </div>
+                                        <div class="fw-semibold fs-15">${buffaloEveningMilkCollection}</div>
                                     </div>
                                 </li>
                             </ul>

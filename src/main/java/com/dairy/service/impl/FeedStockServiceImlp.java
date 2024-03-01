@@ -12,8 +12,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import com.dairy.dto.Supplier.SupplierRequestDto;
-import com.dairy.dto.Supplier.SupplierResponseDto;
 import com.dairy.dto.feedStock.FeedStockRequestDto;
 import com.dairy.dto.feedStock.FeedStockResponseDto;
 import com.dairy.service.FeedStockService;
@@ -43,9 +41,9 @@ public class FeedStockServiceImlp implements FeedStockService {
 	}
 
 	@Override
-	public List<FeedStockResponseDto> getAllFeedStock() {
+	public List<FeedStockResponseDto> getAllFeedStock(int branchId) {
 		RestTemplate template = new RestTemplate();
-		String url = "http://localhost:6262/feedStock";
+		String url = "http://localhost:6262/feedStock/all/"+branchId;
 		HttpHeaders headers = new HttpHeaders();
 		HttpEntity<String> entity = new HttpEntity<>("body", headers);
 		try {
@@ -63,9 +61,9 @@ public class FeedStockServiceImlp implements FeedStockService {
 	}
 
 	@Override
-	public FeedStockResponseDto findById(int id) {
+	public FeedStockResponseDto findById(int id ,int branchId) {
 		RestTemplate template = new RestTemplate();
-		String url = "http://localhost:6262/feedStock/" + id;
+		String url = "http://localhost:6262/feedStock/" + id+"/"+branchId;
 		HttpHeaders headers = new HttpHeaders();
 		HttpEntity<String> entity = new HttpEntity<>("body", headers);
 		try {
@@ -98,6 +96,25 @@ public class FeedStockServiceImlp implements FeedStockService {
 			log.error(e.getMessage(), e);
 		}
 		return null;
+	}
+
+
+	@Override
+	public long TotalfeedStockBybranchId(Integer branchId) {
+		RestTemplate template = new RestTemplate();
+	    String url = "http://localhost:6262/feedStock/totalQuantity/branch/" + branchId;
+	    HttpHeaders headers = new HttpHeaders();
+	    HttpEntity<String> entity = new HttpEntity<>("body", headers);
+	    
+	    try {
+	        ResponseEntity<Long> res = template.exchange(url, HttpMethod.GET, entity, Long.class);
+	            return res.getBody();
+	         
+	    } catch (Exception e) {
+	        log.error("Error occurred while fetching count of Inactive farmers", e);
+	    }
+	    
+	    return 0; 
 	}
 
 }

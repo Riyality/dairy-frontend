@@ -134,4 +134,58 @@ public class FarmerServiceImpl implements FarmerService {
 		return null;
 	}
 
+	/*@Override
+	public long countActiveFarmersByBranchId(int branchId) {
+	    RestTemplate template = new RestTemplate();
+	    String url = "http://localhost:6262/farmers/countActiveFarmers/branch/" + branchId;
+	    HttpHeaders headers = new HttpHeaders();
+	    HttpEntity<String> entity = new HttpEntity<>("body", headers);
+	    try {
+	        ResponseEntity<Long> res = template.exchange(url, HttpMethod.GET, entity, Long.class);
+	        return res.getBody();
+	    } catch (Exception e) {
+	        log.error(e.getMessage(), e);
+	    }
+	    return 0; 
+	}
+
+*/
+	
+	
+	@Override
+	public long countActiveFarmersByBranchId(int branchId) {
+	    RestTemplate template = new RestTemplate();
+	    String url = "http://localhost:6262/farmers/countActiveFarmers/branch/" + branchId;
+	    HttpHeaders headers = new HttpHeaders();
+	    HttpEntity<String> entity = new HttpEntity<>("body", headers);
+	    
+	    try {
+	        ResponseEntity<Long> res = template.exchange(url, HttpMethod.GET, entity, Long.class);
+	            return res.getBody();
+	         
+	    } catch (Exception e) {
+	        log.error("Error occurred while fetching count of active farmers", e);
+	    }
+	    
+	    return 0; 
+	}
+	
+	@Override
+	public long countInActiveFarmersByBranchId(int branchId) {
+		 RestTemplate template = new RestTemplate();
+		    String url = "http://localhost:6262/farmers/countInActiveFarmers/branch/" + branchId;
+		    HttpHeaders headers = new HttpHeaders();
+		    HttpEntity<String> entity = new HttpEntity<>("body", headers);
+		    
+		    try {
+		        ResponseEntity<Long> res = template.exchange(url, HttpMethod.GET, entity, Long.class);
+		            return res.getBody();
+		         
+		    } catch (Exception e) {
+		        log.error("Error occurred while fetching count of Inactive farmers", e);
+		    }
+		    
+		    return 0; 
+	}
+
 }

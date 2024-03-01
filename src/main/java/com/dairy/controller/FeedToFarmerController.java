@@ -66,7 +66,7 @@ public class FeedToFarmerController {
 			List<FeedCompanyResponseDto> list1 = feedCompanyService.getAllFeedCompany(branchId);
 			model.addAttribute("feedCompany", list1);
 
-			List<FeedTypeResponseDto> list2 = feedTypeService.getAllFeedTypes();
+			List<FeedTypeResponseDto> list2 = feedTypeService.getAllFeedTypes(branchId);
 			model.addAttribute("feedType", list2);
 			
 	     	return "feedToFarmer/add";
@@ -120,7 +120,7 @@ public class FeedToFarmerController {
 			List<FeedCompanyResponseDto> list1 = feedCompanyService.getAllFeedCompany(branchId);
 			model.addAttribute("feedCompany", list1);
 
-			List<FeedTypeResponseDto> list2 = feedTypeService.getAllFeedTypes();
+			List<FeedTypeResponseDto> list2 = feedTypeService.getAllFeedTypes(branchId);
 			model.addAttribute("feedType", list2);
 			return "feedToFarmer/add";
 		}
@@ -149,7 +149,7 @@ public class FeedToFarmerController {
 				List<FeedCompanyResponseDto> list1 = feedCompanyService.getAllFeedCompany(branchId);
 				model.addAttribute("feedCompany", list1);
 
-				List<FeedTypeResponseDto> list2 = feedTypeService.getAllFeedTypes();
+				List<FeedTypeResponseDto> list2 = feedTypeService.getAllFeedTypes(branchId);
 				model.addAttribute("feedType", list2);
 				
 				List<FarmerResponseDto> list = farmerService.findAllActiveFarmers(branchId);

@@ -65,7 +65,7 @@
 									<label class="form-label dairy-input-label required-field">Feed Cost
 										(1 unit)</label> <input type="text"
 										class="form-control dairy-form-input"
-										placeholder="Enter Feed Cost pre Unit" id="equipmentPrice"
+										placeholder="Enter Feed Cost pre Unit" id="feedStockCostPerUnit"
 										name="feedCostPerUnit" value="${feedstock.feedCostPerUnit}" required>
 								</div>
 
@@ -73,19 +73,19 @@
 									<label class="form-label dairy-input-label required-field">Total
 										Quantity</label> <input type="text"
 										class="form-control dairy-form-input"
-										placeholder="Enter Total Quantity" id="equipmentQuantity" name="quantity" value="${feedstock.quantity}"required>
+										placeholder="Enter Total Quantity" id="feedStockQuantity" name="quantity" value="${feedstock.quantity}"required>
 								</div>
 
 								<div class="col-md-6">
 									<label class="form-label dairy-input-label required-field">Total
 										Amount</label> <input type="text"
 										class="form-control dairy-form-input"
-										placeholder="Total Amount" id="equipmentTotalAmount" name="totalAmount"  value="${feedstock.totalAmount}" required>
+										placeholder="Total Amount" id="feedStockTotalAmount" name="totalAmount"  value="${feedstock.totalAmount}" required>
 								</div>
 
 								<div class="col-12">
 									<label class="form-label dairy-input-label">Remark</label>
-									<textarea class="col-12 dairy-textarea" rows="4" name="address"
+									<textarea class="col-12 dairy-textarea" rows="4" name="remark"
 										placeholder="Enter Remark Here"></textarea>
 								</div>
 
