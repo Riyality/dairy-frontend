@@ -31,8 +31,7 @@
                                     <input type="radio" name="milkType" value="buffalo" />Buffalo
                                     
                                 </div>
-
-									<div class="col-md-4">
+								<div class="col-md-4">
 									<label class="form-label dairy-input-label required-field">Select
 										Shift </label> 
 								 <select  class="form-select dairy-form-input"
