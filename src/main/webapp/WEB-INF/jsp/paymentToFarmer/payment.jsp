@@ -23,10 +23,8 @@
                                 </div>
 
                                 <div class="col-md-3">
-
-                                  
-
-                                    <label class="form-label dairy-input-label required-field">Select To Date</label>
+								
+								<label class="form-label dairy-input-label required-field">Select To Date</label>
                                     <input type="date" class="form-control dairy-form-input" id="toDate" name="toDate" required>
                                 </div>
                                 <div class="col-md-4">
@@ -64,7 +62,7 @@
                             </table>
                             <form id="pdfForm" action="/generatePdf" method="get" target="pdfIframe">
                                 
-                             <button class="btn btn-primary dairy-form-btn" type="submit" id="generateInvoice">Generate Invoice</button> 
+                             <!-- <button class="btn btn-primary dairy-form-btn" type="submit" id="generateInvoice">Generate Invoice</button>  -->
                             </form>  
                             
                             <button class="btn btn-primary dairy-form-btn" data-bs-toggle="modal" data-bs-target="#makePayment" type="submit" id="GeneratePayment">Generate Payment</button>
