@@ -579,7 +579,7 @@
                             </a>
                             <ul class="slide-menu child1">
                                 <li class="slide">
-                                    <a href="/add-invoice-page" class="side-menu__item">Milk Collection Invoice</a>
+                                    <a href="/add-invoice-page" class="side-menu__item">Payment Invoice</a>
                                 </li>
                                  
                                 
@@ -686,22 +686,20 @@
                             </a>
                             <ul class="slide-menu child1">
                                 <li class="slide">
-                                    <a href="/reports/add-milkcollectionreport-page" class="side-menu__item">
-                                    <i class="fa-solid fa-jar listIcons" aria-hidden="true"></i>Milk Collection Reports</a>
-                                    
-                                     <ul class="slide-menu child1">
-                                      <li class="slide">
-                                    <a href="/dairyManger/add-dairyManger-Page" class="side-menu__item">
-                                    <i class="fa-solid fa-jar listIcons" aria-hidden="true"></i>Datewise Collection Reports</a>
-                                    </li>
-                                    </ul>
+                                    <a href="/reports//add-milkcollectionDatewise-page" class="side-menu__item">
+                                    <i class="fa-solid fa-jar listIcons" aria-hidden="true"></i>Milk Collection Datewise</a>
+                              </li>
+                                <li class="slide">
+                                    <a href="/reports/add-milkcollectionFarmerwise-page" class="side-menu__item">
+                                    <i class="fa-solid fa-jar listIcons" aria-hidden="true"></i>Milk Collection Farmerwise</a>
                                 </li>
-                                 
-                                
+                                <li class="slide">
+                                    <a href="/reports/add-paymetReport-page" class="side-menu__item">
+                                    <i class="fa-regular fa-money-bill-1 listIcons" aria-hidden="true"></i>Payment Report</a>
+                                </li>
                             </ul>
                         </li>
                         <!-- End Reports slide -->
-                        
                         
                          
                     </ul>

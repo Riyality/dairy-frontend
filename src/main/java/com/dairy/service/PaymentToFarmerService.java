@@ -13,7 +13,7 @@ public interface PaymentToFarmerService {
 	List<PaymentToFarmerResponseDto> getAllPaymentList(int branchId);
 
 	List<PaymentToFarmerResponseDto> getPaymentListBetweenFromDateAndToDate(LocalDate fromDate, LocalDate toDate, String milkType,
-			Integer branchId);
+			Integer branchId, String flag);
 
 	
 

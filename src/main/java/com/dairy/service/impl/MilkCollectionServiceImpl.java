@@ -1,9 +1,7 @@
 package com.dairy.service.impl;
 
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Collections;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.core.ParameterizedTypeReference;
@@ -15,7 +13,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import com.dairy.dto.feedType.FeedTypeResponseDto;
 import com.dairy.dto.milkCollection.MilkCollectionRequestDto;
 import com.dairy.dto.milkCollection.MilkCollectionResponseDto;
 import com.dairy.service.MilkCollectionService;
@@ -147,6 +144,26 @@ public class MilkCollectionServiceImpl implements MilkCollectionService {
 			log.error(e.getMessage(), e);
 		}
 		return 0;
+	}
+
+	@Override
+	public List<MilkCollectionResponseDto> getMilkCollectionDataByFromDateTodateMilktypeShiftAndBranchId(
+			LocalDate fromDate, LocalDate toDate, String milkType, String shift, int branchId,String flagValue) {
+		RestTemplate template = new RestTemplate();
+		String url ="http://localhost:6262/milkCollection/getMilkCollectionDataBy/"+fromDate+"/"+toDate+"/"+milkType+"/"+shift+"/"+branchId+"/"+flagValue;
+		HttpHeaders headers = new HttpHeaders();
+		HttpEntity<String> entity = new HttpEntity<>("body", headers);
+		try {
+			ParameterizedTypeReference<List<MilkCollectionResponseDto>> responseType = new ParameterizedTypeReference<List<MilkCollectionResponseDto>>() {
+			};
+			ResponseEntity<List<MilkCollectionResponseDto>> res = template.exchange(url, HttpMethod.GET, entity,
+					responseType);
+			return res.getBody();
+
+		} catch (Exception e) {
+			log.error(e.getMessage(), e);
+		}
+		return null;
 	}
 
 	
