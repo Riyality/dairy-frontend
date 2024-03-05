@@ -18,8 +18,7 @@
                                     <label class="form-label dairy-input-label required-field">Select From Date</label>
                                     <input type="date" class="form-control dairy-form-input" id="fromDate" name="fromDate" required >
                                 </div>
-
-                                <div class="col-md-3">
+									<div class="col-md-3">
 
                                     <label class="form-label dairy-input-label required-field">Select To Date</label>
                                     <input type="date" class="form-control dairy-form-input" id="toDate" name="toDate" required>
