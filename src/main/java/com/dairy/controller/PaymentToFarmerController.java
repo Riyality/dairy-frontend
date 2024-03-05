@@ -119,17 +119,18 @@ public class PaymentToFarmerController {
 			
 		}
 	 
-	 @GetMapping("datewise/{fromDate}/{toDate}/{milkType}")
+	 @GetMapping("datewise/{fromDate}/{toDate}/{milkType}/{flag}")
 		public ResponseEntity<List<PaymentToFarmerResponseDto>> getPaymentListBetweenFromDateAndToDate(
 				@PathVariable("fromDate") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate fromDate,
 	    		@PathVariable("toDate") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate toDate,
-	    		@PathVariable String milkType,HttpSession session) {
+	    		@PathVariable String milkType,@PathVariable String flag,HttpSession session) {
+		 
 		 String user = ( String ) session.getAttribute( "username" );
 			
 			if ( user != null ) {
 				Integer branchId = ( Integer ) session.getAttribute( "branchId" );
 				
-			return new ResponseEntity<>(paymentToFarmerService.getPaymentListBetweenFromDateAndToDate(fromDate,toDate,milkType,branchId), HttpStatus.OK);
+			return new ResponseEntity<>(paymentToFarmerService.getPaymentListBetweenFromDateAndToDate(fromDate,toDate,milkType,branchId,flag), HttpStatus.OK);
 		}
 			return null;
 	 

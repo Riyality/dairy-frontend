@@ -8,6 +8,7 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -139,5 +140,25 @@ public class MilkCollectionController {
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-
-}
+	
+	
+	@GetMapping("getMilkCollectionDataBy/{fromDate}/{toDate}/{milkType}/{shift}/{FlagValue}")
+    public ResponseEntity<List<MilkCollectionResponseDto>> getMilkCollectionDataByFromDateTodateMilktypeShiftAndBranchId(
+    		@PathVariable("fromDate") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate fromDate,
+    		@PathVariable("toDate") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate toDate,
+    		@PathVariable String milkType,
+            @PathVariable String shift,@PathVariable String FlagValue,HttpSession session) {
+			String user = ( String ) session.getAttribute( "username" );
+		
+		if(user != null){
+			int branchId = (int) session.getAttribute("branchId");
+			
+			
+	  List<MilkCollectionResponseDto> dtos = milkCollectionService.getMilkCollectionDataByFromDateTodateMilktypeShiftAndBranchId(
+	            fromDate, toDate, milkType, shift, branchId,FlagValue);
+		  return new ResponseEntity<>(dtos, HttpStatus.OK);
+	    
+    }
+		return null;
+	}
+	}

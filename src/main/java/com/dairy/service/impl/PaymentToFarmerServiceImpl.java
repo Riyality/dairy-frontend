@@ -12,7 +12,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import com.dairy.dto.employee.EmployeeResponseDto;
 import com.dairy.dto.paymentToFarmer.PaymentToFarmerRequestDto;
 import com.dairy.dto.paymentToFarmer.PaymentToFarmerResponseDto;
 import com.dairy.service.PaymentToFarmerService;
@@ -59,8 +58,7 @@ public class PaymentToFarmerServiceImpl implements PaymentToFarmerService {
 
 			}
 		} catch (Exception e) {
-
-			e.printStackTrace();
+				e.printStackTrace();
 
 		}
 		return null;
@@ -68,13 +66,12 @@ public class PaymentToFarmerServiceImpl implements PaymentToFarmerService {
 
 	@Override
 	public List<PaymentToFarmerResponseDto> getPaymentListBetweenFromDateAndToDate(LocalDate fromDate, LocalDate toDate,
-			String milkType, Integer branchId) {
-		
+			String milkType, Integer branchId,String flag) {
 		
 		
 		try {
 			RestTemplate template = new RestTemplate();
-			String url = "http://localhost:6262/paymentTofarmer/datewise/"+fromDate +"/"+ toDate+"/"+milkType+"/"+branchId;
+			String url = "http://localhost:6262/paymentTofarmer/datewise/"+fromDate +"/"+ toDate+"/"+milkType+"/"+branchId+"/"+flag;
 
 			HttpHeaders headers = new HttpHeaders();
 			HttpEntity<String> entity = new HttpEntity<>("body", headers);
