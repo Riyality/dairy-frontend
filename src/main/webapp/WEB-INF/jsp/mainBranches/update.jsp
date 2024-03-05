@@ -91,17 +91,17 @@
 								
 								<div class="col-md-6">
 									<label class="form-label dairy-input-label required-field">Average Fat </label> 
-									<input type="text" class="form-control dairy-form-input" placeholder="Enter Fat" id="" name="avgFat" required  value="${mainBranch.fat }">
+									<input type="text" class="form-control dairy-form-input" placeholder="Enter Fat" id="avgFat" name="avgFat" required  value="${mainBranch.fat }">
 								</div>
 								
 								<div class="col-md-6">
 									<label class="form-label dairy-input-label required-field">Average SNF </label> 
-									<input type="text" class="form-control dairy-form-input" placeholder="Enter SNF" id="" name="avgSnf" required value="${mainBranch.snf }" >
+									<input type="text" class="form-control dairy-form-input" placeholder="Enter SNF" id="avgSnf" name="avgSnf" required value="${mainBranch.snf }" >
 								</div>
 								
 								<div class="col-md-6">
 									<label class="form-label dairy-input-label required-field">Protein</label>
-									<input type="text" class="form-control dairy-form-input" placeholder="Enter protein" id=""   name="protein"  value="${mainBranch.protein }">
+									<input type="text" class="form-control dairy-form-input" placeholder="Enter protein" id="protein"   name="protein"  value="${mainBranch.protein }">
 								</div>
 								
 								<div class="col-md-6">
@@ -128,3 +128,5 @@
 			</div>
 		</div>
 	</div>
+	<jsp:include page="../modules/footer.jsp" />
+	

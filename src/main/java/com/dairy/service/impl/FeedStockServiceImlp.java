@@ -39,6 +39,8 @@ public class FeedStockServiceImlp implements FeedStockService {
 		}
 		return null;
 	}
+	
+	
 
 	@Override
 	public List<FeedStockResponseDto> getAllFeedStock(int branchId) {
@@ -115,6 +117,26 @@ public class FeedStockServiceImlp implements FeedStockService {
 	    }
 	    
 	    return 0; 
+	}
+
+
+
+	@Override
+	public String addFeedStocks(List<FeedStockRequestDto> feedStockRequestDtoList) {
+		  RestTemplate template = new RestTemplate();
+		    String url = "http://localhost:6262/feedStock";
+
+		    HttpHeaders headers = new HttpHeaders();
+		    headers.setContentType(MediaType.APPLICATION_JSON);
+
+		    HttpEntity<List<FeedStockRequestDto>> request = new HttpEntity<>(feedStockRequestDtoList, headers);
+		    try {
+		        ResponseEntity<String> result = template.exchange(url, HttpMethod.POST, request, String.class);
+		        return result.getBody();
+		    } catch (Exception e) {
+		        log.error(e.getMessage(), e);
+		    }
+		    return null;
 	}
 
 }
