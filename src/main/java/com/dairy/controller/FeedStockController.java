@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -29,7 +30,7 @@ import com.dairy.service.FeedTypeService;
 import com.dairy.service.SupplierService;
 
 @Controller
-@RequestMapping("feedStock")
+@RequestMapping("/feedStock")
 public class FeedStockController {
 
 	@Autowired
@@ -67,21 +68,20 @@ public class FeedStockController {
 		return "login";		
 	}
 
-
+	
 	@PostMapping
-	public String feedStockAdd(@ModelAttribute FeedStockRequestDto feedStockRequestDto, Model model,
-			RedirectAttributes ra ,HttpSession session) {
-		
-		int branchId=(int) session.getAttribute("branchId");
-		feedStockRequestDto.setBranchId(branchId);
-		String response = feedStockService.addFeedStock(feedStockRequestDto);
-		if (response != null && response.equals(MessageConstants.ADD_FEEDSTOCK_SUCCESS_MESSAGE)) {
-			ra.addFlashAttribute("successMessage", response);
-			return "redirect:/feedStock";
-		}
-		ra.addFlashAttribute("errorMessage", MessageConstants.ADD_FEEDSTOCK_ERROR_MSG);
-		return "feedStock/add";
-
+	public String feedStockAddMultiple(@RequestBody List<FeedStockRequestDto> feedStockRequestDtoList, Model model,
+	        RedirectAttributes ra, HttpSession session) {
+		System.out.println("Feed Stock:"+feedStockRequestDtoList);
+	    int branchId = (int) session.getAttribute("branchId");
+	    feedStockRequestDtoList.forEach(dto -> dto.setBranchId(branchId));
+	    String response = feedStockService.addFeedStocks(feedStockRequestDtoList);
+	    if (response != null && response.equals(MessageConstants.ADD_FEEDSTOCK_SUCCESS_MESSAGE)) {
+	        ra.addFlashAttribute("successMessage", response);
+	        return "redirect:/feedStock";
+	    }
+	    ra.addFlashAttribute("errorMessage", MessageConstants.ADD_FEEDSTOCK_ERROR_MSG);
+	    return "feedStock/add";
 	}
 
 	@GetMapping

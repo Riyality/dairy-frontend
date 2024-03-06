@@ -138,13 +138,19 @@ public class MilkCollectionServiceImpl implements MilkCollectionService {
 
 			ResponseEntity<Float> res = template.exchange(url, HttpMethod.GET, entity,
 					float.class);
-			return res.getBody();
+			Float milkCollectionData = res.getBody();
+	        
+	        if (milkCollectionData == null) {
+	            System.out.println("No record present for today's milk collection.");
+	            return 0;
+	        }
 
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);
 		}
 		return 0;
 	}
+
 
 	@Override
 	public List<MilkCollectionResponseDto> getMilkCollectionDataByFromDateTodateMilktypeShiftAndBranchId(
@@ -167,6 +173,7 @@ public class MilkCollectionServiceImpl implements MilkCollectionService {
 	}
 
 	
+
 
 
 

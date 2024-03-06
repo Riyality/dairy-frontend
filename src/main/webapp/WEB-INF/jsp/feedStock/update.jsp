@@ -86,7 +86,7 @@
 								<div class="col-12">
 									<label class="form-label dairy-input-label">Remark</label>
 									<textarea class="col-12 dairy-textarea" rows="4" name="remark"
-										placeholder="Enter Remark Here"></textarea>
+										placeholder="Enter Remark Here">${feedstock.remark}</textarea>
 								</div>
 
 								<div class="col-12">

@@ -97,7 +97,7 @@
 								
 								<div class="col-md-6">
 									<label class="form-label dairy-input-label required-field">Protein</label>
-									<input type="text" class="form-control dairy-form-input" placeholder="Enter protein" id="" name="protein" required>
+									<input type="text" class="form-control dairy-form-input" placeholder="Enter protein" id="protein" name="protein" required>
 								</div>
 								
 								<div class="col-md-6">

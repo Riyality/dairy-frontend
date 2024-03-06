@@ -39,36 +39,36 @@
 								method="post" novalidate>
 								
 								<div class="col-md-6">
-									<label class="form-label dairy-input-label">Milk Type</label><br>
+									<label class="form-label dairy-input-label required-field">Milk Type</label><br>
 									<input type="radio"  name="milkType" value="cow" />Cow
 									<input type="radio"  name="milkType" value="buffalo"/>Buffalo
 								</div>
 								
 								<div class="col-md-6">
-									<label class="form-label dairy-input-label">Date Of Rate</label> 
-									<input type="datetime-local" class="form-control dairy-form-input" id="dateOfRate" name="dateOfRate">
+									<label class="form-label dairy-input-label required-field">Date Of Rate</label> 
+									<input type="datetime-local" class="form-control dairy-form-input" id="dateOfRate" name="dateOfRate" required>
 								</div>
 								
 								<div class="col-md-6">
-									<label class="form-label dairy-input-label">Fat From</label>
+									<label class="form-label dairy-input-label required-field">Fat From</label>
 									<div class="input-group has-validation">
 									<input type="text" class="form-control dairy-form-input" placeholder="Enter Fat From." id="fatFrom"  name="fatFrom" required>
 									</div>
 								</div>
 								
 								<div class="col-md-6">
-									<label class="form-label dairy-input-label">Fat To</label>
+									<label class="form-label dairy-input-label required-field">Fat To</label>
 									<div class="input-group has-validation">
-									<input type="text" class="form-control dairy-form-input" placeholder="Enter Fat To." name="fatTo" id="fatTo" >
+									<input type="text" class="form-control dairy-form-input" placeholder="Enter Fat To." name="fatTo" id="fatTo" required>
 									</div>
 								</div>
 								<div class="col-md-6">
-									<label class="form-label dairy-input-label">SNF From</label>
-									<input type="text" class="form-control dairy-form-input" placeholder="Enter SNF From." id="snfFrom"  name="fatTo" > 
+									<label class="form-label dairy-input-label required-field">SNF From</label>
+									<input type="text" class="form-control dairy-form-input" placeholder="Enter SNF From." id="snfFrom"  name="fatTo" required> 
 								</div>
 								<div class="col-md-6">
-									<label class="form-label dairy-input-label">SNF To</label>
-									<input type="text" class="form-control dairy-form-input" placeholder="Enter SNF To." id="snfTo"  name="fatTo" >  
+									<label class="form-label dairy-input-label required-field">SNF To</label>
+									<input type="text" class="form-control dairy-form-input" placeholder="Enter SNF To." id="snfTo"  name="fatTo" required>  
 								</div>
                                 <div class="col-md-6">
 									<label class="form-label dairy-input-label">Remark</label>
