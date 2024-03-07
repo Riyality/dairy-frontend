@@ -41,6 +41,10 @@
 		              
 		              </tbody>
 		            </table>
+		            
+		             <div class="col-6">
+                          <a href="http://localhost:6161/feedCompanies/add-feed-company"><button class="btn btn-primary dairy-form-btn" >Back</button></a>
+                      </div>
 		        </div>
 		      </div>
 		    </div>

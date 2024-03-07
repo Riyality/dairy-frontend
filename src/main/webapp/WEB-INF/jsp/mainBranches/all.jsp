@@ -60,6 +60,9 @@
 		              
 		              </tbody>
 		            </table>
+		              <div class="col-6">
+                          <a href="http://localhost:6161/mainBranchs/add-mainBranch-page"><button class="btn btn-primary dairy-form-btn" >Back</button></a>
+                      </div>
 		        </div>
 		      </div>
 		    </div>

@@ -185,13 +185,8 @@ public class FeedToFarmerController {
 				return "redirect:/feedTofarmers";
 			}
 			ra.addFlashAttribute("errorMessage", MessageConstants.UPDATE_FEEDTOFARMER_ERROR_MSG);
-			return "redirect:/feedTofarmers/" + feedToFarmerDto.getId();
+			return "redirect:/feedToFarmers/" + feedToFarmerDto.getId();
 		}
-	 
-	 
-	
-	
-	
-	
+		
 
 }

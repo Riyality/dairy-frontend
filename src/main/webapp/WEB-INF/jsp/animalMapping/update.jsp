@@ -13,6 +13,7 @@
 					<div class="card custom-card">
 						<div class="card-header justify-content-between dairy-card-header">
 							<div class="card-title">Update Animal Mapping</div>
+							<a href="http://localhost:6161/farmerAnimalMapping"><button class="btn btn-primary dairy-form-btn" >Back</button></a>
 						</div>
 						<div class="card-body dairy-card-body">
 							<form class="row g-3 needs-validation" action="/farmerAnimalMapping/update"
@@ -69,6 +70,7 @@
 								
 								<div class="col-12">
 									<button class="btn btn-primary dairy-form-btn" type="submit">Submit </button>
+									 
 								</div>
 							</form>
 						</div>

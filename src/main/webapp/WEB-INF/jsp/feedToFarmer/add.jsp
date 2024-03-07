@@ -14,6 +14,7 @@
 					<div class="card custom-card">
 						<div class="card-header justify-content-between dairy-card-header">
 							<div class="card-title">Add Feed Distribution</div>
+							 <a href="http://localhost:6161/milkCollection/get-farmer-list-page"><button class="btn btn-primary dairy-form-btn" >Back</button></a>
 						</div>
 						<div class="card-body dairy-card-body">
 							<form class="row g-3 needs-validation" action="/feedToFarmers"
