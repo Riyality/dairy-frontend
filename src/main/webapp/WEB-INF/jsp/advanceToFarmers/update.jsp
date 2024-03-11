@@ -14,10 +14,11 @@
 					<div class="card custom-card">
 						<div class="card-header justify-content-between dairy-card-header">
 							<div class="card-title">Update Advance Amount to Farmers</div>
+							 <a href="http://localhost:6161/advanceToFarmer/advanceToFarmer-add-page"><button class="btn btn-primary dairy-form-btn" >Back</button></a>
 						</div>
 						<div class="card-body dairy-card-body">
 							<form class="row g-3 needs-validation" action="/advanceToFarmer/update"
-								method="post" novalidate>
+								method="post" >
 								
 								<input type="hidden" class="form-control dairy-form-input"  id="id" name="id" value="${advance.id }">
 								
@@ -53,8 +54,11 @@
 								</div>
 								<div class="col-12">
 									<button class="btn btn-primary dairy-form-btn" type="submit">Submit </button>
-								</div>
+									
+								</div>	                           
 							</form>
+							
+                           
 						</div>   
 					</div>
 				</div>

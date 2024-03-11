@@ -215,7 +215,7 @@
 
                         <!-- Start::slide -->
                         <li class="slide has-sub">
-                            <a href="index.html" class="side-menu__item">
+                            <a href="/logins" class="side-menu__item">
                                 <i class="fa-solid fa-gauge listIcons"></i>
                                 <span class="side-menu__label">Dashboards</span>
                             </a>

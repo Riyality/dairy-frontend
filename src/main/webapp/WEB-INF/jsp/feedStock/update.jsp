@@ -13,6 +13,7 @@
 					<div class="card custom-card">
 						<div class="card-header justify-content-between dairy-card-header">
 							<div class="card-title">Update Feed Stock</div>
+							<a href="http://localhost:6161/feedStock"><button class="btn btn-primary dairy-form-btn" >Back</button></a>
 						</div>
 						<div class="card-body dairy-card-body">
 							<form class="row g-3 needs-validation" action="/feedStock/update"
@@ -33,7 +34,7 @@
 
 								<div class="col-md-6">
 									<label class="form-label dairy-input-label required-field">Purchase
-										Date</label> <input type="datetime-local" class="form-control dairy-form-input"
+										Date</label> <input type="date" class="form-control dairy-form-input"
 										id="" name="dateOfPurchase" value="${feedstock.dateOfPurchase}" required>
 								</div>
 
@@ -54,7 +55,7 @@
 									<label class="form-label dairy-input-label required-field">Feed
 										Company Type</label> <select class="form-select dairy-form-input"
 										id="" name="feedTypeId">
-										<option value="${feedstock.feedTypeId}" disabled="disabled">${feedstock.feedTypeName}</option>
+										<option value="${feedstock.feedTypeId}"  selected="selected" disabled="disabled">${feedstock.feedTypeName}</option>
 										<c:forEach items="${feedType}" var="feed">
 											<option selected="selected" value="${feed.id}">${feed.type}</option>
 										</c:forEach>
@@ -90,8 +91,8 @@
 								</div>
 
 								<div class="col-12">
-									<button class="btn btn-primary dairy-form-btn" type="submit">Submit
-									</button>
+									<button class="btn btn-primary dairy-form-btn" type="submit">Submit</button>
+									  
 								</div>
 							</form>
 						</div>

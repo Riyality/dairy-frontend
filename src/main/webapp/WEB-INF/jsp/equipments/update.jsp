@@ -12,6 +12,7 @@
 					<div class="card custom-card">
 						<div class="card-header justify-content-between">
 							<div class="card-title">Update Equipment</div>
+							<a href="http://localhost:6161/equipments"><button class="btn btn-primary dairy-form-btn" >Back</button></a>
 						</div>
 						<div class="card-body">
 							<form class="row g-3 needs-validation" action="/equipments/update"
