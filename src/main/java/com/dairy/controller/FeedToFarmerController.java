@@ -1,13 +1,13 @@
 
 package com.dairy.controller;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
-
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.List;
 
@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.dairy.constants.MessageConstants;
@@ -188,7 +189,18 @@ public class FeedToFarmerController {
 			return "redirect:/feedTofarmers/" + feedToFarmerDto.getId();
 		}
 	 
-	 
+	 @GetMapping("datewiseFeed/{fromDate}/{toDate}/{flag}")
+	 public ResponseEntity<List<FeedToFarmerResponseDto>> getFeedDatewiseRecords(@PathVariable("fromDate") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate fromDate,
+	    		@PathVariable("toDate") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate toDate,@PathVariable String flag, HttpSession session) {
+			int branchId = (int) session.getAttribute("branchId");
+			
+			try {
+			return new ResponseEntity<>(feedToFarmerService.getDatewiseRecords(fromDate,toDate,branchId,flag), HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		}
 	
 	
 	

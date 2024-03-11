@@ -77,7 +77,7 @@ padding:6px;
 									<label class="form-label dairy-input-label required-field">Total
 										Quantity</label> <input type="text"
 										class="form-control dairy-form-input"
-										placeholder="Enter Total Quantity" id="feedStockQuantity" name="quantity"required>
+										placeholder="Enter Total Quantity" id="feedStockQuantity" name="quantity" required>
 								</div>
 
 								<div class="col-md-6">

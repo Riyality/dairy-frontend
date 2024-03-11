@@ -215,7 +215,7 @@
 
                         <!-- Start::slide -->
                         <li class="slide has-sub">
-                            <a href="index.html" class="side-menu__item">
+                            <a href="/" class="side-menu__item">
                                 <i class="fa-solid fa-gauge listIcons"></i>
                                 <span class="side-menu__label">Dashboards</span>
                             </a>
@@ -686,16 +686,21 @@
                             </a>
                             <ul class="slide-menu child1">
                                 <li class="slide">
-                                    <a href="/reports//add-milkcollectionDatewise-page" class="side-menu__item">
-                                    <i class="fa-solid fa-jar listIcons" aria-hidden="true"></i>Milk Collection Datewise</a>
+                                    <a href="/reports/add-milkcollectionReport-page" class="side-menu__item">
+                                    <i class="fa-solid fa-jar listIcons" aria-hidden="true"></i>Milk Collection </a>
                               </li>
-                                <li class="slide">
-                                    <a href="/reports/add-milkcollectionFarmerwise-page" class="side-menu__item">
-                                    <i class="fa-solid fa-jar listIcons" aria-hidden="true"></i>Milk Collection Farmerwise</a>
-                                </li>
+                                
                                 <li class="slide">
                                     <a href="/reports/add-paymetReport-page" class="side-menu__item">
-                                    <i class="fa-regular fa-money-bill-1 listIcons" aria-hidden="true"></i>Payment Report</a>
+                                    <i class="fa-regular fa-money-bill-1 listIcons" aria-hidden="true"></i>Payment </a>
+                                </li>
+                                 <li class="slide">
+                                    <a href="/reports/add-feedReport-page" class="side-menu__item">
+                                    <i class="fa-solid fa-truck-fast listIcons" aria-hidden="true"></i>Feed </a>
+                                </li>
+                                <li class="slide">
+                                    <a href="/reports/add-advanceReport-page" class="side-menu__item">
+                                    <i class="fa-solid fa-money-bill-trend-up listIcons"  aria-hidden="true"></i>Advance </a>
                                 </li>
                             </ul>
                         </li>

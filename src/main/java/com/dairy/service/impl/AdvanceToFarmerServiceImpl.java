@@ -1,5 +1,6 @@
 package com.dairy.service.impl;
 
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 
@@ -14,6 +15,7 @@ import org.springframework.web.client.RestTemplate;
 
 import com.dairy.dto.advanceToFarmer.AdvanceToFarmerRequestDto;
 import com.dairy.dto.advanceToFarmer.AdvanceToFarmerResponseDto;
+import com.dairy.dto.feedToFarmer.FeedToFarmerResponseDto;
 import com.dairy.service.AdvanceToFarmerService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -115,6 +117,28 @@ public class AdvanceToFarmerServiceImpl implements AdvanceToFarmerService {
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);
 		}
+		return null;
+	}
+
+	@Override
+	public List<AdvanceToFarmerResponseDto> getAdvanceRecordsDatewise(LocalDate fromDate, LocalDate toDate,
+			int branchId,String flag) {
+		
+		RestTemplate template = new RestTemplate();
+		String url = "http://localhost:6262/advanceToFarmer/datewise/"+fromDate+"/"+toDate+"/"+branchId+"/"+flag;
+		HttpHeaders headers = new HttpHeaders();
+		HttpEntity<String> entity = new HttpEntity<>("body", headers);
+		try {
+			ParameterizedTypeReference<List<AdvanceToFarmerResponseDto>> responseType = new ParameterizedTypeReference<List<AdvanceToFarmerResponseDto>>() {
+			};
+			ResponseEntity<List<AdvanceToFarmerResponseDto>> res = template.exchange(url, HttpMethod.GET, entity,
+					responseType);
+			return res.getBody();
+
+		} catch (Exception e) {
+			log.error(e.getMessage(), e);
+		}
+		
 		return null;
 	}
 

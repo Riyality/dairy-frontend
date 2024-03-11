@@ -1,5 +1,6 @@
 package com.dairy.service.impl;
 
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 
@@ -122,7 +123,33 @@ public class FeedToFarmerServiceImpl implements FeedToFarmerService {
 		}
 		return null;
 	}
+
+
+
+	@Override
+	public List<FeedToFarmerResponseDto> getDatewiseRecords(LocalDate fromDate, LocalDate toDate, int branchId,String flag) {
+	
+		
+		RestTemplate template = new RestTemplate();
+		String url = "http://localhost:6262/feedTofarmers/datewiseFeed/"+fromDate+"/"+toDate+"/"+branchId+"/"+flag;
+		HttpHeaders headers = new HttpHeaders();
+		HttpEntity<String> entity = new HttpEntity<>("body", headers);
+		try {
+			ParameterizedTypeReference<List<FeedToFarmerResponseDto>> responseType = new ParameterizedTypeReference<List<FeedToFarmerResponseDto>>() {
+			};
+			ResponseEntity<List<FeedToFarmerResponseDto>> res = template.exchange(url, HttpMethod.GET, entity,
+					responseType);
+			return res.getBody();
+
+		} catch (Exception e) {
+			log.error(e.getMessage(), e);
+		}
+		return null;
+		
 	}
+	
+
+}
 
 
 
