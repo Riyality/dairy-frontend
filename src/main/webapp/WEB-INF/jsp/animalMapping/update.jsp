@@ -13,10 +13,11 @@
 					<div class="card custom-card">
 						<div class="card-header justify-content-between dairy-card-header">
 							<div class="card-title">Update Animal Mapping</div>
+							<a href="http://localhost:6161/farmerAnimalMapping"><button class="btn btn-primary dairy-form-btn" >Back</button></a>
 						</div>
 						<div class="card-body dairy-card-body">
 							<form class="row g-3 needs-validation" action="/farmerAnimalMapping/update"
-								method="Post" novalidate>
+								method="Post" >
 								
 								<div class="col-md-6">
 								<input type="hidden" class="form-control dairy-form-input"  id="" name="id" value="${animal.id}">
@@ -48,7 +49,7 @@
 								               <div class="form-check"> 
 								                   
 								                   <label class="form-check-label">
-								                    <input class="form-check-input" type="radio" name="type" value="Buffalo"  value="Buffalo" ${animal.type == 'Buffalo' ? 'checked' : ''}
+								                    <input class="form-check-input" type="radio" name="type"  value="Buffalo" ${animal.type == 'Buffalo' ? 'checked' : ''}
                                                      /> Buffalo  
 								                   </label> 
 								                   
@@ -58,7 +59,7 @@
 								    </div>
 								
 								<div class="col-md-6">
-									<label class="form-label dairy-input-label">Count<span class="required-field">*</span></label>
+									<label class="form-label dairy-input-label required-field">Count</label>
 									<input type="text" class="form-control dairy-form-input" placeholder="Enter Count" id="count" name="count"  value="${animal.count}" >
 								</div>
 								
@@ -69,6 +70,7 @@
 								
 								<div class="col-12">
 									<button class="btn btn-primary dairy-form-btn" type="submit">Submit </button>
+									 
 								</div>
 							</form>
 						</div>

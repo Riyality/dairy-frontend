@@ -56,7 +56,7 @@ $(document).ready( function() {
 	/*bank account number  script end*/		
 	/*main branch script start*/
 
-			$("#avgFat,#avgSnf,#RvgRate,#totalMilkQuantity").on("keyup", function() {
+			$("#protein,#avgFat,#avgSnf,#RvgRate,#totalMilkQuantity").on("keyup", function() {
 				var value = $(this).val().trim();
 				var regex = /^0+|[^0-9.]/g;
 				

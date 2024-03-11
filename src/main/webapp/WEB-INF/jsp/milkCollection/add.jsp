@@ -13,7 +13,10 @@
 					<div class="card custom-card">
 						<div class="card-header justify-content-between dairy-card-header">
 							<div class="card-title">Add Milk</div>
+							<div class="ms-auto">
 							<button class="btn btn-primary dairy-form-btn" data-bs-toggle="modal" data-bs-target="#previousMilkList">Check Previous Milk </button>
+							<a href="http://localhost:6161/milkCollection/get-farmer-list-page"><button class="btn btn-primary dairy-form-btn" >Back</button></a>
+						  </div>
 						</div>
 						<div class="card-body dairy-card-body">
 							<form class="row g-3 needs-validation" action="/milkCollection"
@@ -104,12 +107,12 @@
 								
 								<div class="col-md-6">
 									<label class="form-label dairy-input-label required-field">Milk Rate</label>
-									<input type="text" class="form-control dairy-form-input" placeholder="Milk Rate" id="milkRate" name="milkRate">
+									<input type="text" class="form-control dairy-form-input" placeholder="Milk Rate" id="milkRate" name="milkRate" required>
 								</div>
 								
 								<div class="col-md-6">
 									<label class="form-label dairy-input-label required-field">Total Amount</label>
-									<input type="text" class="form-control dairy-form-input" placeholder="Enter Total Amount" id="totalMilkAmount" name="totalMilkAmount">
+									<input type="text" class="form-control dairy-form-input" placeholder="Enter Total Amount" id="totalMilkAmount" name="totalMilkAmount" required>
 								</div>
 								
 								<div class="col-md-12">

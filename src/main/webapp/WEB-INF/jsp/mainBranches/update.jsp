@@ -13,6 +13,7 @@
 					<div class="card custom-card">
 						<div class="card-header justify-content-between dairy-card-header">
 							<div class="card-title">Update Main Branch</div>
+							 <a href="http://localhost:6161/mainBranchs"><button class="btn btn-primary dairy-form-btn" >Back</button></a>
 						</div>
 						<div class="card-body dairy-card-body">
 							<form class="row g-3 needs-validation" action="/mainBranchs/update"
@@ -91,17 +92,17 @@
 								
 								<div class="col-md-6">
 									<label class="form-label dairy-input-label required-field">Average Fat </label> 
-									<input type="text" class="form-control dairy-form-input" placeholder="Enter Fat" id="" name="avgFat" required  value="${mainBranch.fat }">
+									<input type="text" class="form-control dairy-form-input" placeholder="Enter Fat" id="avgFat" name="avgFat" required  value="${mainBranch.fat }">
 								</div>
 								
 								<div class="col-md-6">
 									<label class="form-label dairy-input-label required-field">Average SNF </label> 
-									<input type="text" class="form-control dairy-form-input" placeholder="Enter SNF" id="" name="avgSnf" required value="${mainBranch.snf }" >
+									<input type="text" class="form-control dairy-form-input" placeholder="Enter SNF" id="avgSnf" name="avgSnf" required value="${mainBranch.snf }" >
 								</div>
 								
 								<div class="col-md-6">
 									<label class="form-label dairy-input-label required-field">Protein</label>
-									<input type="text" class="form-control dairy-form-input" placeholder="Enter protein" id=""   name="protein"  value="${mainBranch.protein }">
+									<input type="text" class="form-control dairy-form-input" placeholder="Enter protein" id="protein"   name="protein"  value="${mainBranch.protein }">
 								</div>
 								
 								<div class="col-md-6">
@@ -128,3 +129,5 @@
 			</div>
 		</div>
 	</div>
+	<jsp:include page="../modules/footer.jsp" />
+	

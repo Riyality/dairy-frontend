@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%><%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%><%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <jsp:include page="../modules/header.jsp" />
+
   <div class="main-content app-content">
     <div class="container-fluid">
         <div class="row">
@@ -8,6 +9,9 @@
                 <div class="card custom-card">
                     <div class="card-header dairy-card-header">
                         <div class="card-title">Bonus Records</div>
+                        <div class="ms-auto">
+                        <a href="http://localhost:6161/bonusToFarmer/page"><button class="btn btn-primary dairy-form-btn bonusBtn">Back</button></a>
+                        </div>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">

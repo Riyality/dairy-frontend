@@ -1,6 +1,6 @@
 package com.dairy.dto.feedStock;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -14,8 +14,8 @@ import lombok.NoArgsConstructor;
 public class FeedStockRequestDto {
 
 	private int id;
-	@DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
-	private LocalDateTime dateOfPurchase;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private LocalDate dateOfPurchase;
 	private Float feedCostPerUnit;
 	private int quantity;
 	private Float totalAmount;
@@ -24,4 +24,5 @@ public class FeedStockRequestDto {
 	private long feedCompanyId;
 	private int branchId;
 	private String remark;
+	
 }

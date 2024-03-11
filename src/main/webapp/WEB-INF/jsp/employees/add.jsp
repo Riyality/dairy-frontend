@@ -37,7 +37,7 @@
 								</div>
 								
 								<div class="col-md-6">
-									<label class="form-label dairy-input-label required-field">Employee Contact<span class="required-field">*</span></label>
+									<label class="form-label dairy-input-label required-field">Employee Contact</label>
 									<div class="input-group has-validation">
 										<span class="input-group-text" id="">+91</span>
 										<input type="text" class="form-control dairy-form-input" placeholder="Enter Mobile No." id="contactNumber" aria-describedby="inputGroupPrepend" name="contact" required>

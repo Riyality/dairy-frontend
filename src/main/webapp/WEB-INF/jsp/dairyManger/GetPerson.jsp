@@ -81,6 +81,9 @@
 									<button class="btn btn-primary dairy-form-btn" type="submit">Submit </button>
 								</div>
 							</form>
+							 <div class="col-6">
+                                 <a href="http://localhost:6161/dairyManger"><button  class="btn btn-primary dairy-form-btn">Back</button></a>
+                              </div>
 						</div>
 					</div>
 				</div>

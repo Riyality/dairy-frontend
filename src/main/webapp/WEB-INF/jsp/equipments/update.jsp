@@ -1,4 +1,5 @@
 
+
 <jsp:include page="../modules/header.jsp" />
 
 <body>
@@ -12,6 +13,7 @@
 					<div class="card custom-card">
 						<div class="card-header justify-content-between">
 							<div class="card-title">Update Equipment</div>
+							<a href="http://localhost:6161/equipments"><button class="btn btn-primary dairy-form-btn" >Back</button></a>
 						</div>
 						<div class="card-body">
 							<form class="row g-3 needs-validation" action="/equipments/update"
@@ -43,12 +45,12 @@
 									<input type="text" class="form-control dairy-form-input" placeholder="Total Amount"  id="equipmentTotalAmount" name="totalAmount" value="${equipment.totalAmount }" required>
 								</div>
 								
-								<div class="col-6">
+								<div class="col-12">
 									<label class="form-label dairy-input-label">Remark</label>
-									<textarea class="col-md-12 dairy-textarea" rows="4" name="remark" placeholder="Enter Remark Here">${equipment.reamrk}</textarea> 
+									<textarea class="col-md-12 dairy-textarea" rows="4" name="remark" placeholder="Enter Remark Here">${equipment.remark}</textarea> 
 								</div>
 								<div class="col-12">
-									<button class="btn btn-primary dairy-form-btn" type="submit">Save </button>
+									<button class="btn btn-primary dairy-form-btn" type="submit">Submit </button>
 								</div>
 							</form>
 						</div>
@@ -60,4 +62,5 @@
 	
 
 	<jsp:include page="../modules/footer.jsp" />
+
 

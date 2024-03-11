@@ -12,6 +12,13 @@
  	};
 
  	$('#feedQuantity, #feedCostPerUnit').on('keyup', function() {
+ 		var value = $(this).val().trim();
+        var regex = /^0+|[^0-9.]/g;
+        
+        if (value.match(regex)) {
+            $(this).val(value.replace(regex, ''));
+        }
+ 		
  		calculateTotalFeedAmount();
  	});
 
@@ -139,7 +146,7 @@
 
  	/*Route Name Script Start*/
 
- 	$("#routeName").on("change", function() {
+ 	/*$("#routeName").on("change", function() {
 
  		var id = $("#routeName").val();
 
@@ -171,7 +178,53 @@
  			}
  		});
  	});
+*/
+ 	
+ 	var selectedRoute = sessionStorage.getItem("selectedRoute");
+    if (selectedRoute) {
+        
+        $("#routeName").val(selectedRoute);
+       
+        fetchFarmers(selectedRoute);
+    }
 
+   
+    $("#routeName").on("change", function() {
+        var id = $(this).val();
+        sessionStorage.setItem("selectedRoute", id);
+        fetchFarmers(id);
+    });
+
+   
+    function fetchFarmers(routeId) {
+        $.ajax({
+            url: 'http://localhost:6161/milkCollection/' + routeId,
+            type: 'GET',
+            dataType: 'json',
+            success: function(result) {
+                $("#milkTableBody").empty();
+                $.each(result, function(key, value) {
+                    $("#milkTableBody").append(`
+                        <tr>
+                            <td>${value.name}</td>
+                            <td>
+                                <a id="milkForm" href="http://localhost:6161/milkCollection/add-milkCollection-page/${value.id }/${value.name }">
+                                    <button class="btn btn-sm btn-primary dairy-form-btn">Collect Milk</button>
+                                </a>
+                                <a href="http://localhost:6161/feedToFarmers/add-feedToFarmer-page/${value.id }/${value.name }">
+                                    <button class="btn btn-sm btn-danger dairy-form-btn">Distribute Feed</button>
+                                </a>
+                            </td>
+                        </tr>`);
+                    farmerId = value.id;
+                });
+                console.log(result);
+            },
+            error: function(error) {
+                console.error('Error fetching data:', error);
+            }
+        });
+    }
  	/*Route Name Script End*/
 
 
@@ -508,7 +561,8 @@ $("#GeneratePayment").prop("disabled", true);
 
 
 /*Milkcollection Invoice Script Start*/ 
-	var milkType,fromDate,toDate;
+		var milkType,fromDate,toDate;
+		 
 	$(document).ready(function() {
     var selectedFarmersData = [];
     var flag="invoice";
@@ -546,7 +600,10 @@ $("#GeneratePayment").prop("disabled", true);
 		console.log(selectedFarmersData)
        var encodedId = selectedFarmersData.map(function(farmerData) {
         return encodeURIComponent(farmerData.farmerId);
-    }).join(','); 
+    }).join(',');
+    
+    
+    
     var amounts = selectedFarmersData.map(function(farmerData) {
         return farmerData.amount;
     });
@@ -562,7 +619,8 @@ $("#GeneratePayment").prop("disabled", true);
     var encodedAmount = amounts.join(',');
     var encodedFeedDeduction = feedDeductions.join(',');
     var encodedAdvanceDeduction = advanceDeductions.join(',');
-    	console.log(encodedId)
+    
+       console.log(encodedId)
  		$("#pdfIframe").attr("src", "/generatePdf?farmerId=" + encodedId + "&fromDate=" + fromDate + "&toDate=" + toDate + "&animalType=" + milkType+"&amount="+encodedAmount+"&feedDeduction="+encodedFeedDeduction+"&advanceDeduction="+encodedAdvanceDeduction);
     }
 
@@ -604,7 +662,142 @@ $("#GeneratePayment").prop("disabled", true);
 });
 
  /*Milkcollection Invoice Script End*/
+	
+	
+	
+	
+	
 
+	/*Bonus To Farmer Script Start*/
+			var fDate;
+			var tDate;
+			var selectedFarmerIds = [];
+			var selectedFarmersData = [];
+		
+			$("#getFarmerRecordsBonus").on("click", function () {
+				fDate = $("#fromDate").val();
+				tDate = $("#toDate").val();
+				var bonusFlag = $(this).data("flag");
+				var bonusAmountPerLiter = $("#bonusAmountPerLiter").val();
+				var milkType = $('input[name="milkType"]:checked').val();
+		
+				$.ajax({
+					url: 'http://localhost:6161/bonusToFarmer/' + fDate + '/' + tDate + '/' + milkType,
+					type: 'GET',
+					dataType: 'json',
+					success: function (result) {
+						console.log(result);
+						$("#file-export tbody").empty();
+						for (var i = 0; i < result.length; i++) {
+							var farmer = result[i];
+							var newRow = '<tr class="gridjs-tr">' +
+								'<td>' + '<input type="checkbox" id="checkbox-' + farmer.farmerId + '" data-farmer-id="' + farmer.farmerId + '"> ' + '</td>' +
+								'<td>' + farmer.farmerName + '</td>' +
+								'<td>' + farmer.milkQuantity + '</td>' +
+								'<td>' + farmer.milkQuantity * bonusAmountPerLiter + '</td>' +
+								'<input type="hidden" class="branchId" value="' + farmer.branchId + '">' +
+								'</tr>';
+							$("#file-export tbody").append(newRow);
+						}
+					},
+					error: function (error) {
+						console.error('Error fetching data:', error);
+					}
+				});
+			});
+		
+			$("#submitSelectedRecords").on("click", function (event) {
+				event.preventDefault();
+				saveSelectedFarmersToDatabase();
+			});
+		
+			function saveSelectedFarmersToDatabase() {
+				var totalQuantity = 0;
+				var totalBonusAmount = 0;
+				var selectedBranchId = null;
+				
+				selectedFarmersData = [];
+				var selectedFarmerIds = [];
+		
+				$('input[type="checkbox"]:checked').each(function () {
+					var farmerId = $(this).data('farmer-id');
+					selectedFarmerIds.push(farmerId);
+		
+					var row = $(this).closest('tr');
+					var farmerName = row.find('td:eq(1)').text();
+					var milkQuantity = parseFloat(row.find('td:eq(2)').text());
+					var bonusAmount = milkQuantity * parseFloat($("#bonusAmountPerLiter").val());
+					var branchId = parseInt(row.find('.branchId').val());
+					selectedBranchId = branchId;
+		
+					var farmerData = {
+						farmerId: farmerId,
+						farmerName: farmerName,
+						milkQuantity: milkQuantity,
+						bonusAmount: bonusAmount,
+						branchId: branchId
+					};
+		
+					selectedFarmersData.push(farmerData);
+					 totalQuantity += milkQuantity; 
+				       totalBonusAmount += bonusAmount;
+					
+				});
+		
+				var fromDate=fDate;
+				var toDate=tDate; 
+				var milkType = $('input[name="milkType"]:checked').val();
+		
+				var requestDto = {
+					selectedFarmerIds: selectedFarmerIds,
+					fromDate: fromDate,
+					toDate: toDate,
+					bonusAmountPerLiter: $("#bonusAmountPerLiter").val(),
+					totalQuantity: totalQuantity,
+					totalBonusAmount:totalBonusAmount,
+					branchId: selectedBranchId,
+					milkType: milkType
+				};
+		
+				console.log('Request DTO:', requestDto);
+		
+				$.ajax({
+					url: 'http://localhost:6161/bonusToFarmer/selectedFarmers',
+					type: 'POST',
+					contentType: 'application/json',
+					data: JSON.stringify(requestDto),
+					success: function (response) {
+						console.log('Selected farmers saved successfully:', response);
+					},
+					error: function (error) {
+						console.error('Error saving selected farmers:', error);
+					}
+				});
+			}
+
+			$('#selectAll').change(function () {
+	            $(':checkbox').prop('checked', this.checked);
+	        });
+
+	        $("#file-export-bonus").on("change", ":checkbox", function () {
+	    		 	var farmerId = $(this).data("farmer-id");
+	    		 	if (this.checked) {
+	    				selectedFarmerIds.push(farmerId);
+	    		 	} else {
+	    		 		selectedFarmerIds = selectedFarmerIds.filter(id =>id !== farmerId);
+	    		 	}
+	    		 });
+	    	
+	    		 $("#pdfFormBonus").submit(function (event) {
+	    		 	event.preventDefault();
+	    			var encodedFarmerIds = selectedFarmerIds.map(function (id) {
+	    		 		return encodeURIComponent(id);
+	    		 	}).join(',');
+	    		 	var url = "/generatePdfBonus?" +
+	    		 		"&encodedFarmerIds=" + encodedFarmerIds;
+	    		 	$("#pdfIframeBonus").attr("src", url);
+	    		 });
+	    	
 
 
  /*Milkcollection Report Script Start*/
@@ -756,6 +949,94 @@ $("#GeneratePayment").prop("disabled", true);
 
 });
 /*Payment Report Script end*/
+
+		
+	 /*Bonus To Farmer Script end*/
+	   /* feedStock Script start*/   
+	    		 
+	    		 $("#file-export-feed tbody").empty();
+	    	  		function addRecordToTable() {
+	    	  		    var newRow = $('<tr>');
+	    	  		    newRow.append('<td>' + $('#supplierId option:selected').text() + '</td>');
+	    	  		    newRow.append('<input type="hidden" name="supplierId" value="' + $('#supplierId').val() + '">');
+	    	  		    newRow.append('<td>' + $('#dateOfPurchase').val() + '</td>');
+	    	  		    newRow.append('<td>' + $('#feedCompanyId option:selected').text() + '</td>');
+	    	  		    newRow.append('<input type="hidden" name="feedCompanyId" value="' + $('#feedCompanyId').val() + '">');
+	    	  		    newRow.append('<td>' + $('#feedTypeId option:selected').text() + '</td>');
+	    	  		    newRow.append('<input type="hidden" name="feedTypeId" value="' + $('#feedTypeId').val() + '">');
+	    	  		    newRow.append('<td>' + $('#feedStockCostPerUnit').val() + '</td>');
+	    	  		    newRow.append('<td>' + $('#feedStockQuantity').val() + '</td>');
+	    	  		    newRow.append('<td>' + $('#feedStockTotalAmount').val() + '</td>');
+	    	  		    newRow.append('<td>' + $('textarea[name="remark"]').val() + '</td>');
+	    	  		  newRow.append('<td><button class="btn btn-danger btn-sm deleteBtn">Delete</button></td>');
+
+	    	  		   // newRow.append('<td><button class="btn btn-danger deleteBtn">Delete</button></td>');
+	    	  		    
+	    	  		    $('#file-export-feed tbody').append(newRow);
+	    	  		    
+	    	  		    $('#feedStockForm')[0].reset();
+	    	  		}
+
+
+	    	  	    
+	    	  	    $('#addRecordBtn').click(function(event) {
+	    	  	        event.preventDefault(); 
+	    	  	        addRecordToTable(); 
+	    	  	    });
+
+	    	  	    
+	    	  	    $('#file-export-feed').on('click', '.deleteBtn', function() {
+	    	  	        $(this).closest('tr').remove(); 
+	    	  	        
+	    	  	        if ($('#file-export-feed tbody tr').length === 0) {
+	    	  	            $('#submitButton').hide();
+	    	  	        }
+	    	  	    });
+
+	    	  	   
+	    	  	    function saveRecordsToServer() {
+	    	  	        var records = [];
+
+	    	  	       
+	    	  	        $('#file-export-feed tbody tr').each(function() {
+	    	  	        	var record = {
+	    	  	                    supplierId: $(this).find('input[name="supplierId"]').val(),
+	    	  	                    dateOfPurchase: $(this).find('td:eq(1)').text(),
+	    	  	                    feedCompanyId: $(this).find('input[name="feedCompanyId"]').val(),
+	    	  	                    feedTypeId: $(this).find('input[name="feedTypeId"]').val(),
+	    	  	                    feedCostPerUnit: $(this).find('td:eq(4)').text(),
+	    	  	                    quantity: $(this).find('td:eq(5)').text(),
+	    	  	                    totalAmount: $(this).find('td:eq(6)').text(),
+	    	  	                    remark: $(this).find('td:eq(7)').text()
+	    	  	                };
+	    	  	            records.push(record);
+	    	  	        });
+	    	              console.log(records)
+
+	    	  	        $.ajax({
+	    	  	            type: 'POST',
+	    	  	            url: '/feedStock',
+	    	  	            contentType: 'application/json',
+	    	  	            data: JSON.stringify(records),
+	    	  	            
+	    	  	            success: function(response) {
+	    	  	                console.log(response);
+	    	  	                window.location.href = '/feedStock';
+	    	  	            },
+	    	  	            error: function(xhr, status, error) {
+	    	  	                console.error(xhr.responseText); 
+	    	  	            }
+	    	  	        });
+	    	  	    }
+
+	    	  	   
+	    	  	    $('#submitButton').click(function(event) {
+	    	  	        event.preventDefault(); 
+	    	  	        saveRecordsToServer(); 
+	    	  	    });
+	
+	   /* feedStock Script end*/   
+
 
 
 
@@ -952,152 +1233,12 @@ $("#getAdvanceRecordsDatewise,#getAdvanceRecordsFarmerwise").on("click", functio
 			   
 		       });
 
-
-	     
-	      
-	    
-			
-	
-
 	   
 
  /*Milk Collection Script End*/
 
 
 
-/*Bonus To Farmer Script Start*/
-	$(document).ready(function () {
-		var fDate;
-		var tDate;
-		var selectedFarmerIds = [];
-		var selectedFarmersData = [];
-	
-		$("#getFarmerRecordsBonus").on("click", function () {
-			fDate = $("#fromDate").val();
-			tDate = $("#toDate").val();
-			var bonusFlag = $(this).data("flag");
-			var bonusAmountPerLiter = $("#bonusAmountPerLiter").val();
-			var milkType = $('input[name="milkType"]:checked').val();
-	
-			$.ajax({
-				url: 'http://localhost:6161/bonusToFarmer/' + fDate + '/' + tDate + '/' + milkType,
-				type: 'GET',
-				dataType: 'json',
-				success: function (result) {
-					console.log(result);
-					$("#file-export tbody").empty();
-					for (var i = 0; i < result.length; i++) {
-						var farmer = result[i];
-						var newRow = '<tr class="gridjs-tr">' +
-							'<td>' + '<input type="checkbox" id="checkbox-' + farmer.farmerId + '" data-farmer-id="' + farmer.farmerId + '"> ' + '</td>' +
-							'<td>' + farmer.farmerName + '</td>' +
-							'<td>' + farmer.milkQuantity + '</td>' +
-							'<td>' + farmer.milkQuantity * bonusAmountPerLiter + '</td>' +
-							'<input type="hidden" class="branchId" value="' + farmer.branchId + '">' +
-							'</tr>';
-						$("#file-export tbody").append(newRow);
-					}
-				},
-				error: function (error) {
-					console.error('Error fetching data:', error);
-				}
-			});
-		});
-	
-		$("#submitSelectedRecords").on("click", function (event) {
-			event.preventDefault();
-			saveSelectedFarmersToDatabase();
-		});
-	
-		function saveSelectedFarmersToDatabase() {
-			var totalQuantity = 0;
-			var totalBonusAmount = 0;
-			var selectedBranchId = null;
-	
-			selectedFarmersData = [];
-			var selectedFarmerIds = [];
-	
-			$('input[type="checkbox"]:checked').each(function () {
-				var farmerId = $(this).data('farmer-id');
-				selectedFarmerIds.push(farmerId);
-	
-				var row = $(this).closest('tr');
-				var farmerName = row.find('td:eq(1)').text();
-				var milkQuantity = parseFloat(row.find('td:eq(2)').text());
-				var bonusAmount = milkQuantity * parseFloat($("#bonusAmountPerLiter").val());
-				var branchId = parseInt(row.find('.branchId').val());
-				selectedBranchId = branchId;
-	
-				var farmerData = {
-					farmerId: farmerId,
-					farmerName: farmerName,
-					milkQuantity: milkQuantity,
-					bonusAmount: bonusAmount,
-					branchId: branchId
-				};
-	
-				selectedFarmersData.push(farmerData);
-				totalQuantity += milkQuantity;
-				totalBonusAmount += bonusAmount;
-			});
-	
-			var fromDateObject = new Date(fDate);
-			var toDateObject = new Date(tDate);
-			var milkType = $('input[name="milkType"]:checked').val();
-	
-			var requestDto = {
-				selectedFarmerIds: selectedFarmerIds,
-				fromDate: fromDateObject,
-				toDate: toDateObject,
-				bonusAmountPerLiter: $("#bonusAmountPerLiter").val(),
-				totalQuantity: totalQuantity,
-				totalBonusAmount: totalBonusAmount,
-				branchId: selectedBranchId,
-				milkType: milkType
-			};
-	
-			console.log('Request DTO:', requestDto);
-	
-			$.ajax({
-				url: 'http://localhost:6161/bonusToFarmer/selectedFarmers',
-				type: 'POST',
-				contentType: 'application/json',
-				data: JSON.stringify(requestDto),
-				success: function (response) {
-					console.log('Selected farmers saved successfully:', response);
-				},
-				error: function (error) {
-					console.error('Error saving selected farmers:', error);
-				}
-			});
-		}
-
-		$('#selectAll').change(function () {
-            $(':checkbox').prop('checked', this.checked);
-        });
-
-        $("#file-export-bonus").on("change", ":checkbox", function () {
-    		 	var farmerId = $(this).data("farmer-id");
-    		 	if (this.checked) {
-    				selectedFarmerIds.push(farmerId);
-    		 	} else {
-    		 		selectedFarmerIds = selectedFarmerIds.filter(id =>id !== farmerId);
-    		 	}
-    		 });
-    	
-    		 $("#pdfFormBonus").submit(function (event) {
-    		 	event.preventDefault();
-    			var encodedFarmerIds = selectedFarmerIds.map(function (id) {
-    		 		return encodeURIComponent(id);
-    		 	}).join(',');
-    		 	var url = "/generatePdfBonus?" +
-    		 		"&encodedFarmerIds=" + encodedFarmerIds;
-    		 	$("#pdfIframeBonus").attr("src", url);
-    		 });
-    	
-
-	});
- /*Bonus To Farmer Script end*/
 
 
         /* Start Farmer Records Active and InActive*/
@@ -1134,11 +1275,5 @@ $("#getAdvanceRecordsDatewise,#getAdvanceRecordsFarmerwise").on("click", functio
         }  
     
         /* End Farmer Records Active and InActive*/
-        
-        
-        
-        
-        
-        
-	
+      
 

@@ -12,6 +12,7 @@
 					<div class="card custom-card">
 						<div class="card-header justify-content-between">
 							<div class="card-title">Update Employee</div>
+							<a href="http://localhost:6161/employee"><button class="btn btn-primary dairy-form-btn" >Back</button></a>
 						</div>
 						<div class="card-body">
 							<form class="row g-3 needs-validation" action="/employee/update"
@@ -81,6 +82,7 @@
 								
 								<div class="col-12">
 									<button class="btn btn-primary dairy-form-btn" type="submit">Submit </button>
+									 
 								</div>
 							</form>
 						</div>

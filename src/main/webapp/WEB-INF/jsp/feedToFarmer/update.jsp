@@ -14,9 +14,10 @@
 					<div class="card custom-card">
 						<div class="card-header justify-content-between dairy-card-header">
 							<div class="card-title">Update Feed Distribution</div>
+							<a href="http://localhost:6161/feedToFarmers"><button class="btn btn-primary dairy-form-btn" >Back</button></a>
 						</div>
 						<div class="card-body dairy-card-body">
-							<form class="row g-3 needs-validation" action="/feedToFarmer/update" method="post" >
+							<form class="row g-3 needs-validation" action="/feedToFarmers/update" method="post" >
 								
 								<input type="hidden"  class="form-control dairy-form-input"  name="id" value="${feedToFarmer.id}" >
 								
@@ -32,15 +33,16 @@
 								
 								<div class="col-md-6">
 									<label class="form-label dairy-input-label required-field">Date of distributions</label> 
-									<input type="datetime-local" class="form-control dairy-form-input" id="" name="dateOfPurchase"  value="${feedToFarmer.dateOfPurchase}"required>
+									<input type="date" class="form-control dairy-form-input" id="" name="dateOfPurchase"  value="${feedToFarmer.dateOfPurchase}"required>
 								</div>
 
 								<div class="col-md-6">
 									<label class="form-label dairy-input-label required-field">Feed Company</label> 
 									 <select  class="form-select dairy-form-input"
-										id="" name="feedCompanyId"  value="${feedToFarmer.feedCompanyId}">
+										id="feedTypeList" name="feedCompanyId"  value="${feedToFarmer.feedCompanyId}">
+										<option value="${feedToFarmer.feedCompanyId}" selected="selected" disabled="disabled">${feedToFarmer.feedCompanyName}</option>
 										<c:forEach items="${feedCompany}" var="fc">
-											<option selected="selected"value="${fc.id}">${fc.name}</option>
+											<option value="${fc.id}">${fc.name}</option>
 										</c:forEach>
 									</select>
 								</div>
@@ -48,12 +50,14 @@
 								<div class="col-md-6">
 									<label class="form-label dairy-input-label required-field">Feed Company Type</label> 
 									<select class="form-select dairy-form-input"
-										id="" name="feedTypeId"  value="${feedToFarmer.feedTypeId}">
-										<c:forEach items="${feedType}" var="feed">
-											<option selected="selected" value="${feed.id}">${feed.type}</option>
-										</c:forEach>
+										id="feedTypeList" name="feedTypeId" disabled="disabled" value="${feedToFarmer.feedCompanyId}">
+										<option value="${feedToFarmer.feedTypeId}"  selected="selected" disabled="disabled" >${feedToFarmer.feedTypeName}</option>
+										<%-- <c:forEach items="${feedType}" var="feed">
+											<option  value="${feed.id}">${feed.type}</option>
+										</c:forEach> --%>
 									</select>
 								</div>
+
 								
 								<div class="col-md-6">
 									<label class="form-label dairy-input-label required-field">Feed Cost (1 unit)</label>
@@ -81,6 +85,7 @@
 								
 								<div class="col-12">
 									<button class="btn btn-primary dairy-form-btn" type="submit">Submit </button>
+									
 								</div>
 							</form>
 						</div>
