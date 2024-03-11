@@ -565,14 +565,13 @@ $("#GeneratePayment").prop("disabled", true);
 		 
 	$(document).ready(function() {
     var selectedFarmersData = [];
-
-    $("#getInvoiceRecords").on("click", function() {
+    var flag="invoice";
+  $("#getInvoiceRecords").on("click", function() {
         fromDate = $("#fromDate").val();
         toDate  = $("#toDate").val();
          milkType = document.querySelector('input[name="milkType"]:checked').value;
-
-        $.ajax({
-            url: 'http://localhost:6161/paymentToFarmer/datewise/' + fromDate + '/' + toDate + '/' + milkType,
+		$.ajax({
+             url: 'http://localhost:6161/paymentToFarmer/datewise/' + fromDate + '/' + toDate + '/' + milkType+"/"+flag,
             type: 'GET',
             dataType: 'json',
             success: function(result) {
@@ -800,6 +799,157 @@ $("#GeneratePayment").prop("disabled", true);
 	    		 });
 	    	
 
+
+ /*Milkcollection Report Script Start*/
+	var currentDate = new Date();
+    var formattedDate = currentDate.toISOString().slice(0, 10);
+    var FlagValue="all";
+    $("#fromDate").val(formattedDate);
+    $("#toDate").val(formattedDate);
+    $('input[name="farmer"]').change(function() {
+     if ($(this).val() === 'farmerwise') {
+        $('#farmerSelect').show();
+         $('#farmerSelect').change(function() {
+            var selectedFarmer = $(this).val();
+            console.log('Selected Farmer:', selectedFarmer);
+            FlagValue=selectedFarmer;
+        });    
+      } else {
+        $('#farmerSelect').hide();
+         FlagValue="all";
+      }
+    });
+    
+    var fromDate,toDate,milkType,Shift; 
+   $("#getMilkCollectionRecordsDatewise,#getMilkCollectionRecordsFarmerwise").on("click", function() {
+    var clickedButtonId = $(this).attr("id");
+      console.log(clickedButtonId)
+    if (clickedButtonId === "getMilkCollectionRecordsDatewise") {
+       console.log("Datewise button clicked");
+         fromDate = $("#fromDate").val();
+    	 toDate = $("#toDate").val();
+    	  milkType = document.querySelector('input[name="milkType"]:checked').value;
+    	  Shift= $("#shiftDropdown").val();
+    } else if (clickedButtonId === "getMilkCollectionRecordsFarmerwise") {
+		
+        console.log("Farmerwise button clicked");
+         fromDate = $("#fromDateFarmer").val();
+      	 toDate = $("#toDateFarmer").val();
+      	  milkType = document.querySelector('input[name="milkTypefarmer"]:checked').value;
+      	  Shift= $("#shiftDropdownFarmer").val();
+    }
+   
+    
+    
+	 $.ajax({
+        url: 'http://localhost:6161/milkCollection/getMilkCollectionDataBy/' + fromDate + '/' + toDate + '/' + milkType + "/" + Shift + "/" + FlagValue,
+        type: 'GET',
+        dataType: 'json',
+        success: function(result) {
+            $("#file-export tbody").empty();
+            var totalMilkQuantity = 0;
+            var totalMilkAmount = 0;
+			 for (var i = 0; i < result.length; i++) {
+                var farmer = result[i];
+                var newRow = '<tr class="gridjs-tr">' +
+                    '<td>' + farmer.farmerName + '</td>' +
+                    '<td>' + farmer.dateOfMilkCollection + '</td>' +
+                    '<td>' + farmer.shift + '</td>' +
+                    '<td>' + farmer.animalType + '</td>' +
+                    '<td>' + farmer.milkFat + '</td>' +
+                    '<td>' + farmer.milkSNF + '</td>' +
+                    '<td>' + farmer.milkRate + '</td>' +
+                    '<td>' + farmer.milkQuantity + '</td>' +
+                    '<td>' + farmer.totalMilkAmount + '</td>' +
+                    '</tr>';
+                $("#file-export tbody").append(newRow);
+			    totalMilkQuantity += parseFloat(farmer.milkQuantity);
+                totalMilkAmount += parseFloat(farmer.totalMilkAmount);
+            }
+            var totalRow = '<tr class="gridjs-tr">' +
+                '<td colspan="7">Total:</td>' +
+                '<td>' + totalMilkQuantity.toFixed(2) + '</td>' +
+                '<td>' + totalMilkAmount.toFixed(2) + '</td>' +
+                '</tr>';
+            $("#file-export tbody").append(totalRow);
+        },
+        error: function(error) {
+            console.error('Error fetching data:', error);
+        }
+    });
+});
+
+
+/*Milkcollection Report Script End*/
+
+/*Payment Report Script Start*/
+	var currentDate = new Date();
+    var formattedDate = currentDate.toISOString().slice(0, 10);
+    $("#fromDate").val(formattedDate);
+    $("#toDate").val(formattedDate);
+    var flag="all";
+     $('input[name="farmer"]').change(function() {
+		console.log($(this).val())
+     if ($(this).val() === 'farmerwise') {        
+		$('#farmerSelect').show();
+         $('#farmerSelect').change(function() {
+          var selectedFarmer = $(this).val();
+            console.log('Selected Farmer:', selectedFarmer);
+            flag=selectedFarmer;
+        });    
+      } else {
+        $('#farmerSelect').hide();
+      }
+    });
+	$("#getPaymentInvoiceRecords").on("click", function() {
+    var fromDate = $("#fromDate").val();
+    var toDate = $("#toDate").val();
+    var milkType = document.querySelector('input[name="milkType"]:checked').value;
+	$.ajax({
+            url: 'http://localhost:6161/paymentToFarmer/datewise/' + fromDate + '/' + toDate + '/' + milkType+"/"+flag,
+            type: 'GET',
+            dataType: 'json',
+            success: function(result) {
+                $("#file-export tbody").empty(); // Clear existing table rows
+               var totalCollectedMilk = 0;
+            var totalAmount = 0;
+            var totalFeedDeduction = 0;
+            var totalAdvanceDeduction = 0;
+                for (var i = 0; i < result.length; i++) {
+                    var farmer = result[i];
+                // Calculate totals
+                totalCollectedMilk += parseFloat(farmer.total_collected_milk);
+                totalAmount += parseFloat(farmer.amount);
+                totalFeedDeduction += parseFloat(farmer.feed_deduction);
+                totalAdvanceDeduction += parseFloat(farmer.advance_deduction);
+                    var newRow = '<tr class="gridjs-tr">' +
+                        '<td>' + farmer.farmerName + '</td>' +
+                        '<td>' + farmer.invoice_date + '</td>' +
+                        '<td>' + farmer.total_collected_milk + '</td>' +
+                        '<td>' + farmer.amount + '</td>' +
+                        '<td>' + farmer.feed_deduction + '</td>' +
+                        '<td>' + farmer.advance_deduction + '</td>' +
+                        '</tr>';
+                    $("#file-export tbody").append(newRow);
+                }
+                 // Append total row
+            var totalRow = '<tr class="gridjs-tr total-row">' +
+                 '<td colspan="2">Total:</td>' +
+                '<td>' + totalCollectedMilk.toFixed(2) + '</td>' +
+                '<td>' + totalAmount.toFixed(2) + '</td>' +
+                '<td>' + totalFeedDeduction.toFixed(2) + '</td>' +
+                '<td>' + totalAdvanceDeduction.toFixed(2) + '</td>' +
+                '</tr>';
+            $("#file-export tbody").append(totalRow);
+            },
+            error: function(error) {
+                console.error('Error fetching data:', error);
+            }
+        });
+
+});
+/*Payment Report Script end*/
+
 		
 	 /*Bonus To Farmer Script end*/
 	   /* feedStock Script start*/   
@@ -886,6 +1036,154 @@ $("#GeneratePayment").prop("disabled", true);
 	    	  	    });
 	
 	   /* feedStock Script end*/   
+
+
+
+
+/*Feed Report Script Start*/
+ $('#myTabs a').click(function (e) {
+                 e.preventDefault()
+                $(this).tab('show')   
+                 $("#file-export tbody").empty(); 
+                  var currentDate = new Date();
+				    var formattedDate = currentDate.toISOString().slice(0, 10);
+				    $("#fromDate").val(formattedDate);
+				    $("#toDate").val(formattedDate);
+				     $('#farmerSelect').val(''); 
+     });
+     var flag="all";
+     $('input[name="farmer"]').change(function() {
+		if ($(this).val() === 'farmerwise') {
+		$('#farmerSelect').show();
+         $('#farmerSelect').change(function() {
+          var selectedFarmer = $(this).val();
+            flag=selectedFarmer;
+        });    
+      } else {
+        $('#farmerSelect').hide();
+     	 flag="all";
+      }
+    });
+     $("#feedCompanyList").on("change", function() {
+         var selectedFeedCompanyId = $("#feedCompanyList").val();
+        flag = selectedFeedCompanyId+"fc";
+    });
+      var currentDate = new Date();
+    var formattedDate = currentDate.toISOString().slice(0, 10);
+    $("#fromDate").val(formattedDate);
+    $("#toDate").val(formattedDate);
+    var fromDate,toDate;
+   $("#getFeedRecordsDatewise, #getFeedRecordsFarmerwise,#getFeedRecordsCompanywise").on("click", function () {
+	    var clickedButtonId = $(this).attr("id");
+    if (clickedButtonId === "getFeedRecordsDatewise") {
+         fromDate = $("#fromDate").val();
+    	 toDate = $("#toDate").val();
+    } else if (clickedButtonId === "getFeedRecordsFarmerwise") {
+        fromDate = $("#fromDateFarmer").val();
+      	 toDate = $("#toDateFarmer").val();
+    }
+    else if(clickedButtonId === "getFeedRecordsCompanywise"){
+		 fromDate = $("#fromDateComp").val();
+      	 toDate = $("#toDateComp").val();
+	}
+    $.ajax({
+        url: 'http://localhost:6161/feedToFarmers/datewiseFeed/' + fromDate + '/' + toDate + "/"+flag,
+        type: 'GET',
+        dataType: 'json',
+        success: function (result) {
+            $("#file-export tbody").empty(); // Clear existing table rows
+			 var totalQuantity = 0;
+            var totalAmount = 0;
+			for (var i = 0; i < result.length; i++) {
+                var farmer = result[i];
+                var newRow = '<tr class="gridjs-tr">' +
+                    '<td>' + farmer.dateOfPurchase + '</td>' +
+                    '<td>' + farmer.farmerName + '</td>' +
+                    '<td>' + farmer.feedTypeName + '</td>' +
+                    '<td>' + farmer.feedCompanyName + '</td>' +
+                    '<td>' + farmer.feedRate + '</td>' +
+                    '<td>' + farmer.quantity + '</td>' +
+                    '<td>' + farmer.totalAmount + '</td>' +
+                    '</tr>';
+				 $("#file-export tbody").append(newRow);
+			    totalQuantity += parseFloat(farmer.quantity);
+                totalAmount += parseFloat(farmer.totalAmount);
+            }
+			 var totalRow = '<tr class="gridjs-tr">' +
+                '<td colspan="5">Total</td>' +
+                '<td>' + totalQuantity.toFixed(2) + '</td>' +
+                '<td>' + totalAmount.toFixed(2) + '</td>' +
+                '</tr>';
+		 $("#file-export tbody").append(totalRow);
+        },
+        error: function (error) {
+            console.error('Error fetching data:', error);
+        }
+    });
+});
+
+/*Feed Report Script End*/
+
+
+
+/*Advance Report Script Start*/
+
+ var flag="all";
+     $('input[name="farmer"]').change(function() {
+		if ($(this).val() === 'farmerwise') {
+		$('#farmerSelect').show();
+         $('#farmerSelect').change(function() {
+          var selectedFarmer = $(this).val();
+            flag=selectedFarmer;
+        });    
+      } else {
+        $('#farmerSelect').hide();
+     	 
+      }
+    });
+     var fromDate,toDate;
+       
+$("#getAdvanceRecordsDatewise,#getAdvanceRecordsFarmerwise").on("click", function () {
+	   fromDate = $("#fromDate").val();
+       toDate = $("#toDate").val();
+      var clickedButtonId = $(this).attr("id");
+      console.log(clickedButtonId)
+    if (clickedButtonId === "getAdvanceRecordsDatewise") {
+       console.log("Datewise button clicked");
+         fromDate = $("#fromDate").val();
+    	 toDate = $("#toDate").val();
+    } else if (clickedButtonId === "getAdvanceRecordsFarmerwise") {
+        console.log("Farmerwise button clicked");
+         fromDate = $("#fromDateFarmer").val();
+      	 toDate = $("#toDateFarmer").val();
+      	 console.log("From:"+fromDate+ "To:"+toDate)
+    }
+   $.ajax({
+        url: 'http://localhost:6161/advanceToFarmer/datewise/' + fromDate + '/' + toDate + "/"+flag,
+        type: 'GET',
+        dataType: 'json',
+        success: function (result) {
+            $("#file-export tbody").empty(); // Clear existing table rows
+			for (var i = 0; i < result.length; i++) {
+                var farmer = result[i];
+                var newRow = '<tr class="gridjs-tr">' +
+                    '<td>' + farmer.dateOfAdvance + '</td>' +
+                    '<td>' + farmer.farmerName + '</td>' +
+                    '<td>' + farmer.amount + '</td>' +
+                    '<td>' + farmer.remainingAmount + '</td>' +
+                    '<td>' + farmer.remark + '</td>' +
+                    '</tr>';
+					 $("#file-export tbody").append(newRow);
+			 }
+		},
+        error: function (error) {
+            console.error('Error fetching data:', error);
+        }
+    });
+    
+});
+/*Advance Report Script End*/
+
 
  /*Milk Collection Script Start*/
 

@@ -1,12 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <jsp:include page="../modules/header.jsp" />
-
-<style>
-    /* Add any additional styles if needed */
-</style>
-
-
     <div class="main-content app-content p-4">
 
         <div class="container-fluid">
@@ -19,16 +13,16 @@
                         </div>
                         <div class="card-body dairy-card-body">
                             <form id="filterForm" class="row g-3 needs-validation" >
-                                <div class="col-md-3">
+                                <div class="col-md-2">
                                     <label class="form-label dairy-input-label required-field">Select From Date</label>
                                     <input type="date" class="form-control dairy-form-input" id="fromDate" name="fromDate" required >
                                 </div>
 
-                                <div class="col-md-3">
+                                <div class="col-md-2">
 									<label class="form-label dairy-input-label required-field">Select To Date</label>
                                     <input type="date" class="form-control dairy-form-input" id="toDate" name="toDate" required>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-5">
                                     <label class="form-label dairy-input-label required-field">Milk Type</label><br>
                                     <input type="radio" name="milkType" value="both" checked/>Both
                                     <input type="radio" name="milkType" value="cow" />Cow
@@ -76,4 +70,4 @@
     <jsp:include page="../modules/footer.jsp" />
 
 
-<
+

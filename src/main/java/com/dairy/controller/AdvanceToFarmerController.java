@@ -1,10 +1,12 @@
 package com.dairy.controller;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -113,5 +115,13 @@ public class AdvanceToFarmerController {
 		ra.addFlashAttribute("errorMessage", MessageConstants.UPDATE_ADVANCETOFARMER_ERROR_MSG);
 		return "redirect:/advanceToFarmer/"+advanceRequestDto.getId();
 
+	}
+	
+	@GetMapping("datewise/{fromDate}/{toDate}/{flag}")
+	public ResponseEntity<List<AdvanceToFarmerResponseDto>> getAdvanceRecordsDatewise(@PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate fromDate,
+	        @PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate toDate,@PathVariable String flag,HttpSession session) {
+		
+		int branchId=(int) session.getAttribute("branchId");
+		return new ResponseEntity<>(advanceToFarmerService.getAdvanceRecordsDatewise(fromDate,toDate,branchId,flag), HttpStatus.OK);
 	}
 }
