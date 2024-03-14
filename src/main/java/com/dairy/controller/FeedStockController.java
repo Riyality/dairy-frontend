@@ -79,7 +79,7 @@ public class FeedStockController {
 	    String response = feedStockService.addFeedStocks(feedStockRequestDtoList);
 	    if (response != null && response.equals(MessageConstants.ADD_FEEDSTOCK_SUCCESS_MESSAGE)) {
 	        ra.addFlashAttribute("successMessage", response);
-	        return "redirect:/feedStock";
+	        return "redirect:/feedStock/add-purchaseDetails-page";
 	    }
 	    ra.addFlashAttribute("errorMessage", MessageConstants.ADD_FEEDSTOCK_ERROR_MSG);
 	    return "feedStock/add";
