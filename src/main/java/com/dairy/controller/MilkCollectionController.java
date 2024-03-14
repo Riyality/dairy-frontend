@@ -161,4 +161,27 @@ public class MilkCollectionController {
     }
 		return null;
 	}
+	
+	
+	
+	@GetMapping("getMilkCollectionDataBy/{selectedDate}/{milkType}/{shift}")
+	public ResponseEntity<List<MilkCollectionResponseDto>> getMilkCollectionDataByDateTypeShift(HttpSession session,
+			@PathVariable("selectedDate") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate selectedDate,
+			@PathVariable String milkType, @PathVariable String shift
+			) {
+		String user = ( String ) session.getAttribute( "username" );
+		
+		if(user != null){
+			int branchId = (int) session.getAttribute("branchId");
+			
+			
+			List<MilkCollectionResponseDto> dtos = milkCollectionService.getMilkCollectionDataByDateShiftTypeAndBranchId( branchId, selectedDate, milkType,shift);
+			  return new ResponseEntity<>(dtos, HttpStatus.OK);
+		    
+	    }
+			return null;
+
 	}
+	
+	
+}

@@ -828,8 +828,21 @@ $("#GeneratePayment").prop("disabled", true);
 			}
 
 			$('#selectAll').change(function () {
-	            $(':checkbox').prop('checked', this.checked);
-	        });
+			    $(':checkbox').prop('checked', this.checked);
+			    if (this.checked) {
+			        // If "Select All" checkbox is checked, collect IDs of all checkboxes
+			        selectedFarmerIds = []; // Reset selected IDs array
+			        $(':checkbox').not(this).each(function () {
+			            var farmerId = $(this).data("farmer-id");
+			            if (farmerId !== undefined) {
+			                selectedFarmerIds.push(farmerId);
+			            }
+			        });
+			    } else {
+			        // If "Select All" checkbox is unchecked, clear selected IDs array
+			        selectedFarmerIds = [];
+			    }
+			});
 
 	        $("#file-export-bonus").on("change", ":checkbox", function () {
 	    		 	var farmerId = $(this).data("farmer-id");
@@ -850,6 +863,7 @@ $("#GeneratePayment").prop("disabled", true);
 	    		 	$("#pdfIframeBonus").attr("src", url);
 	    		 });
 	    	
+	    		 
 
 
  /*Milkcollection Report Script Start*/
@@ -1235,6 +1249,59 @@ $("#getAdvanceRecordsDatewise,#getAdvanceRecordsFarmerwise").on("click", functio
     
 });
 /*Advance Report Script End*/
+/*display Milk Collection  Script start*/
+var currentDate = new Date();
+var formattedDate = currentDate.toISOString().slice(0, 10);
+$("#selectedDate").val(formattedDate);
+
+$("#myTabs a").click(function (e) {
+    e.preventDefault();
+    $(this).tab('show');
+});
+
+$("#getMilkCollectionDatewise").click(function () {
+    var selectedDate = $("#selectedDate").val();
+    var milkType = $("input[name='milkType']:checked").val();
+    var shift = $("#shiftDropdown").val(); 
+    $.ajax({
+        type: "GET",
+        url: "/milkCollection/getMilkCollectionDataBy/" + selectedDate + "/" + milkType + "/" + shift,
+        success: function (data) {
+            
+            var totalMilkQuantity = 0;
+            var totalMilkAmount = 0;
+
+            $.each(data, function(index, milkCollection) {
+                var row = "<tr>" +
+                    "<td>" + milkCollection.farmerName + "</td>" +
+                    "<td>" + milkCollection.dateOfMilkCollection + "</td>" +
+                    "<td>" + milkCollection.shift+ "</td>" +
+                    "<td>" + milkCollection.animalType + "</td>" +
+                    "<td>" + milkCollection.milkFat + "</td>" +
+                    "<td>" + milkCollection.milkSNF + "</td>" +
+                    "<td>" + milkCollection.milkRate + "</td>" +
+                    "<td>" + milkCollection.milkQuantity + "</td>" +
+                    "<td>" + milkCollection.totalMilkAmount + "</td>" +
+                    "</tr>";
+                $("#file-export-datewise tbody").append(row);
+                totalMilkQuantity += parseFloat(milkCollection.milkQuantity);
+                totalMilkAmount += parseFloat(milkCollection.totalMilkAmount);
+            });
+            var totalRow = '<tr class="gridjs-tr">' +
+            '<td colspan="7">Total:</td>' +
+            '<td>' + totalMilkQuantity.toFixed(2) + '</td>' +
+            '<td>' + totalMilkAmount.toFixed(2) + '</td>' +
+            '</tr>';
+        $("#file-export-datewise tbody").append(totalRow);
+        
+        },
+        error: function (xhr, status, error) {
+            console.error("Error:", status, error);
+        }
+    });
+});
+
+/*display Milk Collection  Script end*/
 
 
  /*Milk Collection Script Start*/
@@ -1288,6 +1355,7 @@ $("#getAdvanceRecordsDatewise,#getAdvanceRecordsFarmerwise").on("click", functio
 	   
 
  /*Milk Collection Script End*/
+		 
 
 
 
