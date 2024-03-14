@@ -1,7 +1,6 @@
 package com.dairy.service;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 import com.dairy.dto.milkCollection.MilkCollectionRequestDto;
@@ -9,10 +8,8 @@ import com.dairy.dto.milkCollection.MilkCollectionResponseDto;
 
 public interface MilkCollectionService {
 
-	public String addMilkCollection(MilkCollectionRequestDto dto, int branchId) ;
+	public String addMilkCollection(MilkCollectionRequestDto dto, int branchId);
 
-	
-	
 	public List<MilkCollectionResponseDto> findByFromDateAndToDateAndAnimalType(LocalDate fromDate, LocalDate toDate,
 			String animalType, String flag);
 
@@ -23,15 +20,9 @@ public interface MilkCollectionService {
 	public List<MilkCollectionResponseDto> getRecordsByFarmerIdFromDateAndToDateAndAnimalType(long farmerId,
 			String fromDate, String toDate, String animalType);
 
-
 	public float getMilkCollectionDataByDate(String animalType, String shift, Integer branchId);
-
-
 
 	public List<MilkCollectionResponseDto> getMilkCollectionDataByFromDateTodateMilktypeShiftAndBranchId(
 			LocalDate fromDate, LocalDate toDate, String milkType, String shift, int branchId, String flagValue);
-
-
-
 
 }

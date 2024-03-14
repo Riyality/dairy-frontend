@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import com.dairy.dto.feedDetails.FeedDetailsResponseDto;
 import com.dairy.dto.feedStock.FeedStockRequestDto;
 import com.dairy.dto.feedStock.FeedStockResponseDto;
 import com.dairy.service.FeedStockService;
@@ -137,6 +138,51 @@ public class FeedStockServiceImlp implements FeedStockService {
 		        log.error(e.getMessage(), e);
 		    }
 		    return null;
+	}
+
+
+
+	@Override
+	public long getFeedQuantityByFeedTypeFeedCompanyAndBranch(long feedTypeId, long feedCompanyId, int branchId) {
+		
+		RestTemplate template = new RestTemplate();
+		String url = "http://localhost:6262/feedStock/feedTypeId/"+feedTypeId+"/feedCompanyId/"+ feedCompanyId+"/Branch/"+ branchId;
+		HttpHeaders headers = new HttpHeaders();
+		HttpEntity<String> entity = new HttpEntity<>("body", headers);
+		try {
+
+			ResponseEntity<Long> res = template.exchange(url, HttpMethod.GET, entity,
+					long.class);
+			Long feedQuantity = res.getBody();
+	        
+	       return feedQuantity;
+
+		} catch (Exception e) {
+			log.error(e.getMessage(), e);
+		}
+		return 0;
+	}
+
+
+
+	@Override
+	public List<FeedDetailsResponseDto> getAllFeedDetails(int branchId) {
+		RestTemplate template = new RestTemplate();
+		String url = "http://localhost:6262/feedStock/allFeedDetails/"+branchId;
+		HttpHeaders headers = new HttpHeaders();
+		HttpEntity<String> entity = new HttpEntity<>("body", headers);
+		try {
+			ParameterizedTypeReference<List<FeedDetailsResponseDto>> responseType = new ParameterizedTypeReference<List<FeedDetailsResponseDto>>() {
+			};
+			ResponseEntity<List<FeedDetailsResponseDto>> res = template.exchange(url, HttpMethod.GET, entity,
+					responseType);
+			return res.getBody();
+
+		} catch (Exception e) {
+			log.error(e.getMessage(), e);
+		}
+
+		return null;
 	}
 
 }
