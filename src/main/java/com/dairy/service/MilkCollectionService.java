@@ -25,7 +25,10 @@ public interface MilkCollectionService {
 	public List<MilkCollectionResponseDto> getMilkCollectionDataByFromDateTodateMilktypeShiftAndBranchId(
 			LocalDate fromDate, LocalDate toDate, String milkType, String shift, int branchId, String flagValue);
 
+
+
 	public List<MilkCollectionResponseDto> getMilkCollectionDataByDateShiftTypeAndBranchId(int branchId, LocalDate selectedDate,
 			String milkType, String shift);
+
 
 }

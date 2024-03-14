@@ -1,10 +1,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <jsp:include page="../modules/header.jsp" />
-
 <style>
-    /* Add any additional styles if needed */
-</style>
+    .hide-column {
+        display: none;
+    }
+  </style>
 
 
     <div class="main-content app-content p-4">
@@ -20,13 +21,13 @@
                         <div class="card-body dairy-card-body">
                             <form id="filterForm" class="row g-3 needs-validation" >
                                 <div class="col-md-3">
-                                    <label class="form-label dairy-input-label required-field">Select From Date</label>
+                                    <label class="form-label dairy-input-label required-field">Select Payment From Date</label>
                                     <input type="date" class="form-control dairy-form-input" id="fromDate" name="fromDate" required >
                                 </div>
 
                                 <div class="col-md-3">
 
-                                    <label class="form-label dairy-input-label required-field">Select To Date</label>
+                                    <label class="form-label dairy-input-label required-field">Select Payment To Date</label>
                                     <input type="date" class="form-control dairy-form-input" id="toDate" name="toDate" required>
                                 </div>
                                 <div class="col-md-4">
@@ -78,4 +79,4 @@
     <jsp:include page="../modules/footer.jsp" />
 
 
-<
+

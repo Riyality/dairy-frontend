@@ -21,6 +21,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.dairy.constants.MessageConstants;
 import com.dairy.dto.Supplier.SupplierResponseDto;
 import com.dairy.dto.feedCompany.FeedCompanyResponseDto;
+import com.dairy.dto.feedDetails.FeedDetailsResponseDto;
 import com.dairy.dto.feedStock.FeedStockRequestDto;
 import com.dairy.dto.feedStock.FeedStockResponseDto;
 import com.dairy.dto.feedType.FeedTypeResponseDto;
@@ -84,14 +85,26 @@ public class FeedStockController {
 	    return "feedStock/add";
 	}
 
-	@GetMapping
+	@GetMapping("/add-purchaseDetails-page")
 	public String getAllFeedStock(Model model ,HttpSession session) {
 		String user = (String) session.getAttribute("username");
 		if(user != null) {
 			int branchId = (int) session.getAttribute("branchId");
 			List<FeedStockResponseDto> list = feedStockService.getAllFeedStock(branchId);
 			model.addAttribute("FeedStocks", list);
-			return "feedStock/all";
+			return "feedStock/purchaseDetails";
+		}
+		return "login";
+	}
+	
+	@GetMapping("/add-feedDetails-page")
+	public String getAllFeedDetails(Model model ,HttpSession session) {
+		String user = (String) session.getAttribute("username");
+		if(user != null) {
+			int branchId = (int) session.getAttribute("branchId");
+			List<FeedDetailsResponseDto> list = feedStockService.getAllFeedDetails(branchId);
+			model.addAttribute("FeedDetails", list);
+			return "feedStock/allStock";
 		}
 		return "login";
 	}
@@ -145,8 +158,13 @@ public class FeedStockController {
 		ra.addFlashAttribute("errorMessage", MessageConstants.UPDATE_FEEDSTOCK_ERROR_MSG);
 		return "redirect:/feedStock/" + feedStockRequestDto.getId();
 	}
-	
-	
+	@ResponseBody
+	@GetMapping("/feedTypeId/{feedTypeId}/feedCompanyId/{feedCompanyId}")
+	public long getFeedQuantityByFeedTypeFeedCompanyAndBranch(@PathVariable long feedTypeId,
+			@PathVariable long feedCompanyId,HttpSession session) {
+		int branchId = (int) session.getAttribute("branchId");
+		return feedStockService.getFeedQuantityByFeedTypeFeedCompanyAndBranch(feedTypeId,feedCompanyId,branchId);
+	}
 	
 	
 }

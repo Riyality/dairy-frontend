@@ -36,7 +36,7 @@
 						</div>
 						<div class="card-body dairy-card-body">
 							<form class="row g-3 needs-validation" action="/milkRate"
-								method="post" novalidate>
+								method="post" id="milkRatesForm">
 								
 								<div class="col-md-6">
 									<label class="form-label dairy-input-label required-field">Milk Type</label><br>
@@ -197,6 +197,8 @@ function calculateMilkRate() {
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4 && xhr.status === 200) {
             console.log("Response:");
+            alert("Milk Rates Saved")
+            $("#milkRatesForm")[0].reset();
         }
     };
 

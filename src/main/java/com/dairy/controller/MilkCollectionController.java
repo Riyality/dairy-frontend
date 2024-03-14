@@ -79,7 +79,7 @@ public class MilkCollectionController {
 			return "redirect:/milkCollection";
 		}
 		ra.addFlashAttribute("errorMessage", MessageConstants.ADD_MILK_COLLECTION_ERROR_MSG);
-		return "milkCollection/add";
+		return "milkCollection/getRoutewiseFarmers";
 	}
 
 	@GetMapping

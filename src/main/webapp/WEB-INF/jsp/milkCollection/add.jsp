@@ -35,7 +35,7 @@
 								
 								<div class="col-md-4">
 									<label class="form-label dairy-input-label required-field">Date</label> 
-									<input type="date" class="form-control dairy-form-input" name="dateOfMilkCollection" id="dateOfMilkCollection">
+									<input type="date" class="form-control dairy-form-input" name="dateOfMilkCollection" id="dateOfMilkCollection" required>
 								</div>
 								
 								<div class="col-md-3 offset-md-1 mt-4" > 

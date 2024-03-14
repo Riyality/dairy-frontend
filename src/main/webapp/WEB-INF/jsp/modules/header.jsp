@@ -445,8 +445,12 @@
                                     <i class="fa fa-plus-square-o listIcons" aria-hidden="true"></i>Add Feed Stock </a>
                                 </li>
                                  <li class="slide">
-                                    <a href="/feedStock" class="side-menu__item">
-                                    <i class="fa fa-table listIcons" aria-hidden="true"></i>All Feed Stock</a>
+                                    <a href="/feedStock/add-purchaseDetails-page" class="side-menu__item">
+                                    <i class="fa fa-table listIcons" aria-hidden="true"></i> Purchase Details</a>
+                                </li>
+                                <li class="slide">
+                                    <a href="/feedStock/add-feedDetails-page" class="side-menu__item">
+                                    <i class="fa fa-table listIcons" aria-hidden="true"></i>All Stock</a>
                                 </li>
                                 
                             </ul>

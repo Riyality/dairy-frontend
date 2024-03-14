@@ -37,6 +37,40 @@
  	$('#FeedAmountPaid').on('keyup', function() {
  		calculateRemainingAmount();
  	});
+ 	 $('#feedTypeList').change(function() {
+          	var feedCompanyId = $("#feedCompanyList").val();
+          	var feedTypeId = $("#feedTypeList").val();
+          	console.log(feedCompanyId)
+          	console.log(feedTypeId)
+          $.ajax({
+ 			url: 'http://localhost:6161/feedStock/feedTypeId/'+feedTypeId+'/feedCompanyId/'+feedCompanyId,
+ 			type: 'GET',
+ 			dataType: 'json',
+ 			success: function(result) {
+ 				console.log(result)
+ 				if(result==0){
+					 alert("Feed Stock is not Available. Please Select Another One")
+					  $("#feedCompanyList").prop('selectedIndex', 0);
+   					 $("#feedTypeList").prop('selectedIndex', 0);
+				 }
+				 if(result > 0){
+					 $("#feedQuantity").on("keyup", function() {
+						 var feedQuantity = $("#feedQuantity").val();
+						 if(feedQuantity > result){
+							 alert('Available Quantity is  '+result + ' Please Enter Quantity '+result+' Or Below')
+							 $("#feedQuantity").val(result);
+						 }
+						 
+					 });
+				 }
+ 			},
+ 			error: function(error) {
+ 				console.error('Error fetching data:', error);
+ 			}
+ 		});
+          
+          
+        }); 
 
  	/*Feed Distribution Script End*/
 
@@ -233,20 +267,30 @@
  	function updateMilkRateAndAmount() {
 
  		var milkQuantity = $("#milkQuantity").val();
- 		var milkFat = $("#milkFat").val();
- 		var milkSNF = $("#milkSNF").val();
+ 		var milkFat = parseFloat($("#milkFat").val()); 
+    	var milkSNF = parseFloat($("#milkSNF").val());  
  		var animalType = document.querySelector('input[name="animalType"]:checked').value;
-
+		console.log(animalType)
  		if (animalType && milkFat && milkSNF) {
  			$.ajax({
- 				url: 'http://localhost:6161/milkRate/type/' + encodeURIComponent(animalType) + '/fat/' + encodeURIComponent(milkFat) + '/snf/' + encodeURIComponent(milkSNF),
+ 				url: 'http://localhost:6161/milkRate/type/' + animalType + '/fat/' + milkFat + '/snf/' + milkSNF,
  				type: 'GET',
  				dataType: 'json',
  				success: function(result) {
- 					$("#milkRate").val(result);
- 					$("#totalMilkAmount").val(milkQuantity * result);
+						if (result !== null) {
+			            console.log(result);
+			            $("#milkRate").val(result);
+			            $("#totalMilkAmount").val(milkQuantity * result);
+			        } else {
+			            alert("No rates available for the given inputs.");
+			           
+			        }
+ 					
  				},
  				error: function(error) {
+					  alert("No rates available for the given inputs.");
+					  $("#milkFat").val('')
+					  $("#milkSNF").val('')
  					console.error('Error fetching data:', error);
  				}
  			});
@@ -268,9 +312,10 @@
  		var milkQuantity = $("#milkQuantity").val();
  		var milkRate = $("#milkRate").val();
 
- 		if (milkRate !== 0 || milkRate !== "" || milkRate !== null) {
- 			$("#totalMilkAmount").val(milkQuantity * milkRate);
- 		}
+ 		if (milkRate !== 0 && milkRate !== "" && milkRate !== null && !isNaN(milkRate)) {
+    	$("#totalMilkAmount").val(milkQuantity * milkRate);
+    	
+		}
 
  	});
 
@@ -586,7 +631,10 @@ $("#GeneratePayment").prop("disabled", true);
                         '<td>' + farmer.amount + '</td>' +
                         '<td>' + farmer.feed_deduction + '</td>' +
                         '<td>' + farmer.advance_deduction + '</td>' +
+                        '<td class="hide-column">' + farmer.from_date + '</td>' +
+                        '<td class="hide-column">' + farmer.to_date + '</td>' +
                         '</tr>';
+                        
                     $("#file-export tbody").append(newRow);
                 }
             },
@@ -601,9 +649,6 @@ $("#GeneratePayment").prop("disabled", true);
        var encodedId = selectedFarmersData.map(function(farmerData) {
         return encodeURIComponent(farmerData.farmerId);
     }).join(',');
-    
-    
-    
     var amounts = selectedFarmersData.map(function(farmerData) {
         return farmerData.amount;
     });
@@ -615,13 +660,18 @@ $("#GeneratePayment").prop("disabled", true);
     var advanceDeductions = selectedFarmersData.map(function(farmerData) {
         return farmerData.advanceDeduction;
     });
-     //var encodedIds = farmerIds.join(',');
+     var milkFromDates = selectedFarmersData.map(function(farmerData) {
+        return farmerData.milkFrom;
+    });
+     var milkToDates = selectedFarmersData.map(function(farmerData) {
+        return farmerData.milkTo;
+    });
     var encodedAmount = amounts.join(',');
     var encodedFeedDeduction = feedDeductions.join(',');
     var encodedAdvanceDeduction = advanceDeductions.join(',');
-    
-       console.log(encodedId)
- 		$("#pdfIframe").attr("src", "/generatePdf?farmerId=" + encodedId + "&fromDate=" + fromDate + "&toDate=" + toDate + "&animalType=" + milkType+"&amount="+encodedAmount+"&feedDeduction="+encodedFeedDeduction+"&advanceDeduction="+encodedAdvanceDeduction);
+     	fromDate=milkFromDates;
+       	toDate=milkToDates;
+       $("#pdfIframe").attr("src", "/generatePdf?farmerId=" + encodedId + "&fromDate=" + fromDate + "&toDate=" + toDate + "&animalType=" + milkType+"&amount="+encodedAmount+"&feedDeduction="+encodedFeedDeduction+"&advanceDeduction="+encodedAdvanceDeduction);
     }
 
     $("#pdfForm").submit(function(event) {
@@ -650,7 +700,9 @@ $("#GeneratePayment").prop("disabled", true);
                 farmerId: $(this).data("farmer-id"),
                 amount: $row.find("td:eq(4)").text(),
                 feedDeduction: $row.find("td:eq(5)").text(),
-                advanceDeduction: $row.find("td:eq(6)").text()
+                advanceDeduction: $row.find("td:eq(6)").text(),
+                 milkFrom: $row.find("td:eq(7)").text(),
+                  milkTo: $row.find("td:eq(8)").text()
             };
         }).get();
     }
