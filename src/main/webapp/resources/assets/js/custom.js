@@ -1087,7 +1087,7 @@ $("#GeneratePayment").prop("disabled", true);
 	    	  	            
 	    	  	            success: function(response) {
 	    	  	                console.log(response);
-	    	  	                window.location.href = '/feedStock';
+	    	  	                window.location.href = '/feedStock/add-purchaseDetails-page';
 	    	  	            },
 	    	  	            error: function(xhr, status, error) {
 	    	  	                console.error(xhr.responseText); 
