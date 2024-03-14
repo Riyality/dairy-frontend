@@ -1,6 +1,6 @@
 package com.dairy.dto.bonusToFarmer;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -12,9 +12,11 @@ import lombok.Setter;
 public class BonusToFarmerResponseDto {
 	private int id;
 	@DateTimeFormat(pattern = "yyyy-MM-dd ")
-	private Date fromDate;
+	private LocalDate fromDate;
 	@DateTimeFormat(pattern = "yyyy-MM-dd ")
-	private Date toDate;
+	private LocalDate toDate;
+	@DateTimeFormat(pattern = "yyyy-MM-dd ")
+	private LocalDate bonusDate;
 	private float totalQuantity;
 	private float bonusAmountPerLiter;
 	private float totalBonusAmount;

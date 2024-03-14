@@ -58,4 +58,13 @@ public class ReportsController {
 		return "reports/advanceReport";
 	}
 	
+	@GetMapping("add-BonusReport-page")
+	public String addBonusReportPage(HttpSession session, Model model){
+		int branchId = (int) session.getAttribute("branchId");
+		List<FarmerResponseDto> list = farmerService.findAllActiveFarmers(branchId);
+		model.addAttribute("list", list);
+		return "reports/bonusReport";
+		
+	}
+	
 }

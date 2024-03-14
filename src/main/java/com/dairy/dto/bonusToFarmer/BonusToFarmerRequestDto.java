@@ -1,11 +1,9 @@
 package com.dairy.dto.bonusToFarmer;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -14,8 +12,12 @@ import lombok.Setter;
 @Getter
 public class BonusToFarmerRequestDto {
 	private int id;
-	private Date toDate;
-	private Date fromDate;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private LocalDate toDate;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private LocalDate fromDate;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private LocalDate bonusDate;
 	private float totalQuantity;
 	private float bonusAmountPerLiter;
 	private float totalBonusAmount;

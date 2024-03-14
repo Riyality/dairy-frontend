@@ -1,6 +1,6 @@
 package com.dairy.service.impl;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -62,8 +62,8 @@ public class BonusPdfServiceImpl implements BonusPdfService {
 				String branchName = null;
 				String MilkType = null;
 				float bonusPerLiter = 0;
-				Date FormDate = null;
-				Date ToDate = null;
+				LocalDate FormDate = null;
+				LocalDate ToDate = null;
 
 				for (BonusToFarmerResponseDto dto : list) {
 					if (dto.getFarmerId() == farmerId) {
@@ -100,7 +100,7 @@ public class BonusPdfServiceImpl implements BonusPdfService {
 				Paragraph CustomeraName = new Paragraph("Customer Name." + farmerName);
 				CustomeraName.setAlignment(Element.ALIGN_LEFT);
 
-				Paragraph spacer2 = new Paragraph("                                       ");
+				Paragraph spacer2 = new Paragraph("                          ");
 				Paragraph date = new Paragraph("Date. " + FormDate + " To " + ToDate);
 				date.setAlignment(Element.ALIGN_RIGHT);
 
@@ -142,23 +142,6 @@ public class BonusPdfServiceImpl implements BonusPdfService {
 
 	}
 
-	@Override
-	public String storeBonusRecords(BonusToFarmerRequestDto requestDto) {
-		RestTemplate template = new RestTemplate();
-		String url = "http://localhost:6262/bonusToFarmers";
-
-		HttpHeaders headers = new HttpHeaders();
-		headers.setContentType(MediaType.APPLICATION_JSON);
-
-		HttpEntity<BonusToFarmerRequestDto> request = new HttpEntity<>(requestDto, headers);
-		try {
-			ResponseEntity<String> result = template.postForEntity(url, request, String.class);
-			return result.getBody();
-		} catch (Exception e) {
-			log.error(e.getMessage(), e);
-		}
-		return null;
-	}
 
 	@Override
 	public List<BonusToFarmerResponseDto> findAllBonusRecords(int branchId) {
@@ -196,5 +179,31 @@ public class BonusPdfServiceImpl implements BonusPdfService {
 		}
 		return null;
 	}
+
+	
+
+	@Override
+	public List<BonusToFarmerResponseDto> getBonusRecordsDatewise(LocalDate fromDate, LocalDate toDate, int branchId,
+			String flag) {
+		RestTemplate template = new RestTemplate();
+		String url = "http://localhost:6262/bonusToFarmers/datewise/"+fromDate+"/"+toDate+"/"+branchId+"/"+flag;
+		HttpHeaders headers = new HttpHeaders();
+		HttpEntity<String> entity = new HttpEntity<>("body", headers);
+		try {
+			ParameterizedTypeReference<List<BonusToFarmerResponseDto>> responseType = new ParameterizedTypeReference<List<BonusToFarmerResponseDto>>() {
+			};
+			ResponseEntity<List<BonusToFarmerResponseDto>> res = template.exchange(url, HttpMethod.GET, entity,
+					responseType);
+			return res.getBody();
+
+		} catch (Exception e) {
+			log.error(e.getMessage(), e);
+		}
+		
+		return null;
+	}
+
+
+	
 
 }

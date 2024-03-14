@@ -1,5 +1,6 @@
 package com.dairy.service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.servlet.ServletOutputStream;
@@ -11,9 +12,13 @@ public interface BonusPdfService {
 
 	void generatePdf(ServletOutputStream outputStream, List<BonusToFarmerResponseDto> list, List<String> encodedFarmerIds);
 
-	public	String storeBonusRecords(BonusToFarmerRequestDto requestDto);
 
 	List<BonusToFarmerResponseDto> findAllBonusRecords(int branchId);
 
 	public String storeBonusRecord(BonusToFarmerRequestDto dtoCopy);
+
+
+	List<BonusToFarmerResponseDto> getBonusRecordsDatewise(LocalDate fromDate, LocalDate toDate, int branchId, String flag);
+
+	
 }

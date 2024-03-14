@@ -705,6 +705,10 @@
                                     <a href="/reports/add-advanceReport-page" class="side-menu__item">
                                     <i class="fa-solid fa-money-bill-trend-up listIcons"  aria-hidden="true"></i>Advance </a>
                                 </li>
+                                <li class="slide">
+                                    <a href="/reports/add-BonusReport-page" class="side-menu__item">
+                                     <i class="fa-solid fa-money-bill-1-wave listIcons" aria-hidden="true"></i>Bonus</a>
+                                </li>
                             </ul>
                         </li>
                         <!-- End Reports slide -->
