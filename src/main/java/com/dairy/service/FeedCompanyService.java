@@ -19,6 +19,8 @@ public interface FeedCompanyService {
 
 	public String updateFeedCompany(FeedCompanyRequestDto dto);
 
+	public FeedCompanyRequestDto saveAll(List<FeedCompanyRequestDto> feedCompany);
+
 	
 
 	
