@@ -172,8 +172,25 @@ public class MilkCollectionServiceImpl implements MilkCollectionService {
 		return null;
 	}
 
-	
+	@Override
+	public List<MilkCollectionResponseDto> getMilkCollectionDataByDateShiftTypeAndBranchId(int branchId,
+			LocalDate selectedDate, String milkType, String shift) {
+		RestTemplate template = new RestTemplate();
+		String url ="http://localhost:6262/milkCollection/getMilkCollectionDataByDate/"+selectedDate+"/"+milkType+"/"+shift+"/"+branchId;
+		HttpHeaders headers = new HttpHeaders();
+		HttpEntity<String> entity = new HttpEntity<>("body", headers);
+		try {
+			ParameterizedTypeReference<List<MilkCollectionResponseDto>> responseType = new ParameterizedTypeReference<List<MilkCollectionResponseDto>>() {
+			};
+			ResponseEntity<List<MilkCollectionResponseDto>> res = template.exchange(url, HttpMethod.GET, entity,
+					responseType);
+			return res.getBody();
 
+		} catch (Exception e) {
+			log.error(e.getMessage(), e);
+		}
+		return null;
+	}
 
 
 

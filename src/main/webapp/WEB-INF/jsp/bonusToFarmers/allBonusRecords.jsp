@@ -19,24 +19,26 @@
                                 <thead>
                                     <tr class="dairy-table-head">
                                         <th><input type="checkbox" id="selectAll"></th>
-                                        <th>FormDate</th>
-                                        <th>ToDate</th>
+                                        <th>Bonus Date</th>
                                         <th>Farmer Name</th>
                                         <th>TotalMilkQuntity</th>
                                         <th>Bonus Per Liter</th>
                                         <th>Total Bonus Amount</th>
+                                         <th>FormDate</th>
+                                        <th>ToDate</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <c:forEach items="${list}" var="bonusList">
                                         <tr class="gridjs-tr">
                                             <td><input type="checkbox" value="${bonusList.farmerId}"data-farmer-id="${bonusList.farmerId}"></td>
-                                            <td>${bonusList.fromDate}</td>
-                                            <td>${bonusList.toDate}</td>
+                                            <td>${bonusList.bonusDate}</td>
                                             <td>${bonusList.farmerName}</td>
                                             <td>${bonusList.totalQuantity}</td>
                                             <td>${bonusList.bonusAmountPerLiter}</td>
                                             <td>${bonusList.totalBonusAmount}</td>
+                                            <td>${bonusList.fromDate}</td>
+                                            <td>${bonusList.toDate}</td>
                                         </tr>
                                     </c:forEach>
                                 </tbody>

@@ -729,7 +729,6 @@ $("#GeneratePayment").prop("disabled", true);
 			$("#getFarmerRecordsBonus").on("click", function () {
 				fDate = $("#fromDate").val();
 				tDate = $("#toDate").val();
-				var bonusFlag = $(this).data("flag");
 				var bonusAmountPerLiter = $("#bonusAmountPerLiter").val();
 				var milkType = $('input[name="milkType"]:checked').val();
 		
@@ -777,40 +776,45 @@ $("#GeneratePayment").prop("disabled", true);
 		
 					var row = $(this).closest('tr');
 					var farmerName = row.find('td:eq(1)').text();
-					var milkQuantity = parseFloat(row.find('td:eq(2)').text());
-					var bonusAmount = milkQuantity * parseFloat($("#bonusAmountPerLiter").val());
+					var quantity = parseFloat(row.find('td:eq(2)').text());
+					var bonusAmount = quantity * parseFloat($("#bonusAmountPerLiter").val());
 					var branchId = parseInt(row.find('.branchId').val());
 					selectedBranchId = branchId;
+				    totalQuantity+ = quantity;
+					 totalBonusAmount+ = bonusAmount;
 		
 					var farmerData = {
 						farmerId: farmerId,
 						farmerName: farmerName,
-						milkQuantity: milkQuantity,
-						bonusAmount: bonusAmount,
+						totalQuantity: quantity,
+						totalBonusAmount: bonusAmount,
 						branchId: branchId
 					};
-		
+					 					
 					selectedFarmersData.push(farmerData);
-					 totalQuantity += milkQuantity; 
-				       totalBonusAmount += bonusAmount;
 					
+
+							
 				});
 		
 				var fromDate=fDate;
 				var toDate=tDate; 
 				var milkType = $('input[name="milkType"]:checked').val();
+			    var bonusDate = new Date();
+			    var formattedBonusDate = bonusDate.toISOString().split('T')[0];
 		
 				var requestDto = {
 					selectedFarmerIds: selectedFarmerIds,
 					fromDate: fromDate,
 					toDate: toDate,
+					bonusDate:formattedBonusDate,
 					bonusAmountPerLiter: $("#bonusAmountPerLiter").val(),
-					totalQuantity: totalQuantity,
+			    	totalQuantity: totalQuantity,
 					totalBonusAmount:totalBonusAmount,
 					branchId: selectedBranchId,
 					milkType: milkType
 				};
-		
+
 				console.log('Request DTO:', requestDto);
 		
 				$.ajax({
@@ -863,9 +867,8 @@ $("#GeneratePayment").prop("disabled", true);
 	    		 	$("#pdfIframeBonus").attr("src", url);
 	    		 });
 	    	
+/*Bonus To Farmer Script end*/
 	    		 
-
-
  /*Milkcollection Report Script Start*/
 	var currentDate = new Date();
     var formattedDate = currentDate.toISOString().slice(0, 10);
@@ -1017,8 +1020,8 @@ $("#GeneratePayment").prop("disabled", true);
 /*Payment Report Script end*/
 
 		
-	 /*Bonus To Farmer Script end*/
-	   /* feedStock Script start*/   
+	
+ /* feedStock Script start*/   
 	    		 
 	    		 $("#file-export-feed tbody").empty();
 	    	  		function addRecordToTable() {
@@ -1101,7 +1104,7 @@ $("#GeneratePayment").prop("disabled", true);
 	    	  	        saveRecordsToServer(); 
 	    	  	    });
 	
-	   /* feedStock Script end*/   
+  /* feedStock Script end*/   
 
 
 
@@ -1249,6 +1252,69 @@ $("#getAdvanceRecordsDatewise,#getAdvanceRecordsFarmerwise").on("click", functio
     
 });
 /*Advance Report Script End*/
+
+
+/*Bonus Report Script Start*/
+
+var flag="all";
+    $('input[name="farmer"]').change(function() {
+		if ($(this).val() === 'farmerwise') {
+		$('#farmerSelect').show();
+        $('#farmerSelect').change(function() {
+         var selectedFarmer = $(this).val();
+           flag=selectedFarmer;
+       });    
+     } else {
+       $('#farmerSelect').hide();
+    	 
+     }
+   });
+    var fromDate,toDate;
+      
+$("#getBonusRecordsDatewise,#getBonusRecordsFarmerwise").on("click", function () {
+	   fromDate = $("#fromDate").val();
+      toDate = $("#toDate").val();
+     var clickedButtonId = $(this).attr("id");
+     console.log(clickedButtonId)
+   if (clickedButtonId === "getBonusRecordsDatewise") {
+      console.log("Datewise button clicked");
+        fromDate = $("#fromDate").val();
+   	 toDate = $("#toDate").val();
+   } else if (clickedButtonId === "getBonusRecordsFarmerwise") {
+       console.log("Farmerwise button clicked");
+        fromDate = $("#fromDateFarmer").val();
+     	 toDate = $("#toDateFarmer").val();
+     	 console.log("From:"+fromDate+ "To:"+toDate)
+   }
+  $.ajax({
+       url: 'http://localhost:6161/bonusToFarmer/datewise/' + fromDate + '/' + toDate + "/"+flag,
+       type: 'GET',
+       dataType: 'json',
+       success: function (result) {
+           $("#file-export tbody").empty(); // Clear existing table rows
+			for (var i = 0; i < result.length; i++) {
+               var farmer = result[i];
+               var newRow = '<tr class="gridjs-tr">' +
+                   '<td>' + farmer.bonusDate + '</td>' +
+                   '<td>' + farmer.farmerName + '</td>' +
+                   '<td>' + farmer.milkType + '</td>' +
+                   '<td>' + farmer.bonusAmountPerLiter + '</td>' +
+                   '<td>' + farmer.totalQuantity + '</td>' +
+                   '<td>' + farmer.totalBonusAmount + '</td>' +
+                   '</tr>';
+					 $("#file-export tbody").append(newRow);
+			 }
+		},
+       error: function (error) {
+           console.error('Error fetching data:', error);
+       }
+   });
+   
+});
+/*Bonus Report Script End*/
+
+
+
 /*display Milk Collection  Script start*/
 var currentDate = new Date();
 var formattedDate = currentDate.toISOString().slice(0, 10);
