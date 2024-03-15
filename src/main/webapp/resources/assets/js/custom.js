@@ -280,7 +280,8 @@
 						if (result !== null) {
 			            console.log(result);
 			            $("#milkRate").val(result);
-			            $("#totalMilkAmount").val(milkQuantity * result);
+			            var amount=milkQuantity * result;
+			            $("#totalMilkAmount").val(amount);
 			        } else {
 			            alert("No rates available for the given inputs.");
 			           
@@ -288,9 +289,9 @@
  					
  				},
  				error: function(error) {
-					  alert("No rates available for the given inputs.");
-					  $("#milkFat").val('')
-					  $("#milkSNF").val('')
+					  //alert("No rates available for the given inputs.");
+					 // $("#milkFat").val('')
+					//  $("#milkSNF").val('')
  					console.error('Error fetching data:', error);
  				}
  			});
@@ -763,9 +764,6 @@ $("#GeneratePayment").prop("disabled", true);
 			});
 		
 			function saveSelectedFarmersToDatabase() {
-				var totalQuantity = 0;
-				var totalBonusAmount = 0;
-				var selectedBranchId = null;
 				
 				selectedFarmersData = [];
 				var selectedFarmerIds = [];
@@ -779,10 +777,7 @@ $("#GeneratePayment").prop("disabled", true);
 					var quantity = parseFloat(row.find('td:eq(2)').text());
 					var bonusAmount = quantity * parseFloat($("#bonusAmountPerLiter").val());
 					var branchId = parseInt(row.find('.branchId').val());
-					selectedBranchId = branchId;
-				    totalQuantity+ = quantity;
-					 totalBonusAmount+ = bonusAmount;
-		
+					
 					var farmerData = {
 						farmerId: farmerId,
 						farmerName: farmerName,
@@ -802,16 +797,17 @@ $("#GeneratePayment").prop("disabled", true);
 				var milkType = $('input[name="milkType"]:checked').val();
 			    var bonusDate = new Date();
 			    var formattedBonusDate = bonusDate.toISOString().split('T')[0];
-		
+			    
+		        selectedFarmersData.forEach(function (farmerData) {
 				var requestDto = {
 					selectedFarmerIds: selectedFarmerIds,
 					fromDate: fromDate,
 					toDate: toDate,
 					bonusDate:formattedBonusDate,
 					bonusAmountPerLiter: $("#bonusAmountPerLiter").val(),
-			    	totalQuantity: totalQuantity,
-					totalBonusAmount:totalBonusAmount,
-					branchId: selectedBranchId,
+			    	totalQuantity:farmerData.totalQuantity,
+					totalBonusAmount:farmerData.totalBonusAmount,
+					branchId: farmerData.branchId,
 					milkType: milkType
 				};
 
@@ -829,6 +825,7 @@ $("#GeneratePayment").prop("disabled", true);
 						console.error('Error saving selected farmers:', error);
 					}
 				});
+			 });
 			}
 
 			$('#selectAll').change(function () {
