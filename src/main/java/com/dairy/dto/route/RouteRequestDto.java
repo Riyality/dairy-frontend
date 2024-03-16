@@ -9,8 +9,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class RouteRequestDto {
 	private int id;
-	private String name;
+	/*private String name;
 	private String remark;
-	private int branchId;
+*/	private int branchId;
 
 }

@@ -35,6 +35,7 @@
 							<div class="card-title">Milk Rate</div>
 						</div>
 						<div class="card-body dairy-card-body">
+						 <jsp:include page="../successMessage/message.jsp" />
 							<form class="row g-3 needs-validation" action="/milkRate"
 								method="post" id="milkRatesForm">
 								

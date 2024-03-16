@@ -15,9 +15,11 @@
 						<div class="card-header justify-content-between dairy-card-header">
 							<div class="card-title">Add Advance Amount to Farmers</div>
 						</div>
-						<div class="card-body dairy-card-body">
+						<div class="card-body dairy-card-body">		
+						  
+						   <jsp:include page="../successMessage/message.jsp" />
 							<form class="row g-3 needs-validation" action="/advanceToFarmer"
-								method="post" novalidate>
+								method="post" >
 								
 								<div class="col-md-6">
 									<label class="form-label dairy-input-label required-field">Farmer Name</label> 

@@ -14,8 +14,9 @@
 							<div class="card-title">Add Branch</div>
 						</div>
 						<div class="card-body dairy-card-body">
+						  <jsp:include page="../successMessage/message.jsp" />
 							<form class="row g-3 needs-validation" action="/branches"
-								method="post" >
+								method="post" id="branchForm">
 								
 								<div class="col-md-6">
 									<label class="form-label dairy-input-label required-field">Name</label>
@@ -47,6 +48,7 @@
 									<label class="form-label dairy-input-label">Remark</label>
 									<textarea class="col-md-12 dairy-textarea" rows="4" name="remark" placeholder="Enter Remark Here"></textarea> 
 								</div>
+								
 								<div class="col-12">
 									<button class="btn btn-primary dairy-form-btn" type="submit">Submit </button>
 								</div>
@@ -57,4 +59,48 @@
 			</div>
 		</div>
 	</div>
-	<jsp:include page="../modules/footer.jsp" />
+	  
+    <!-- Display alert messages -->
+    <input type="hidden" id="successMessage" value="${successMessage}" />
+      <input type="hidden" id="errorMessage" value="${errorMessage}" />
+								
+   <script>
+       
+        let successMessage = document.getElementById('successMessage').value.trim();
+        let errorMessage = document.getElementById('errorMessage').value.trim();
+
+        
+        function showAlert(message, type) {
+            let alertDiv = document.createElement('div');
+            alertDiv.classList.add('alert', 'fade', 'show');
+            alertDiv.setAttribute('role', 'alert');
+            if (type === 'success') {
+                alertDiv.classList.add('alert-success');
+            } else if (type === 'error') {
+                alertDiv.classList.add('alert-danger');
+            }
+            alertDiv.innerHTML = message;
+
+            // Append alert to the document body
+            document.body.appendChild(alertDiv);
+
+            // Automatically close the alert after 4 seconds
+            setTimeout(function () {
+                alertDiv.classList.remove('show');
+                alertDiv.classList.add('hide');
+                alertDiv.remove();
+            }, 4000);
+        }
+
+        // Check if success message is not empty
+        if (successMessage !== "") {
+            showAlert(successMessage, 'success');
+        }
+
+        // Check if error message is not empty
+        if (errorMessage !== "") {
+            showAlert(errorMessage, 'error');
+        }
+    </script>
+
+    <jsp:include page="../modules/footer.jsp" />

@@ -14,6 +14,7 @@
 							<div class="card-title">All dairyManger</div>
 						</div>
 						<div class="card-body">
+						 <jsp:include page="../successMessage/message.jsp" />
 							<div class="table-responsive">
 
 								<table id="file-export"

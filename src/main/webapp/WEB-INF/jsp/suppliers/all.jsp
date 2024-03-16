@@ -12,10 +12,10 @@
 		        <div class="card-title">All Suppliers</div>
 		      </div>
 		      <div class="card-body">
+		      <jsp:include page="../successMessage/message.jsp" />
+		      
 		        <div class="table-responsive">
-		     
-      				<%-- <jsp:include page="../modules/dataTableHeader.jsp" /> --%>
-		           
+
 		            <table id="file-export" class="table table-bordered dataTable no-footer dairy-table-border">
 		              <thead>
 		                <tr class="dairy-table-head">

@@ -50,7 +50,7 @@ public class FarmerAnimalMappingController {
 			return "redirect:/farmerAnimalMapping";
 		}
 		ra.addFlashAttribute("errorMessage", MessageConstants.ADD_ANIMAL_MAPPING_ERROR_MSG);
-		return "animalMapping/add";
+		return "redirect:/farmerAnimalMapping/add-animal-page";
 	}
 
 	@GetMapping

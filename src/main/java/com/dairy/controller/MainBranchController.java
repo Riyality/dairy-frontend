@@ -45,7 +45,7 @@ public class MainBranchController {
 			return "redirect:/mainBranchs";
 		}
 		ra.addFlashAttribute( "errorMessage", MessageConstants.ADD_MAIN_BRANCH_ERROR_MESSAGE );
-		return "mainBranches/add";
+		return "redirect:/mainBranchs/add-mainBranch-page";
 	}
 	
 	

@@ -42,7 +42,7 @@ public class EquipmentController {
 			return "redirect:/equipments";
 		}
 		ra.addFlashAttribute("errorMessage", MessageConstants.ADD_EQIPMENT_ERROR_MSG);
-		return "equipments/add";
+		return "redirect:/equipments/add-equipment-page";
 	}
 
 	@GetMapping

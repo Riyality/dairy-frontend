@@ -15,6 +15,7 @@
 							<div class="card-title">Add Farmer</div>
 						</div>
 						<div class="card-body">
+						  <jsp:include page="../successMessage/message.jsp" />
 							<form class="row g-3 needs-validation" action="/farmers"
 								method="post" >
 								

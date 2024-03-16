@@ -13,6 +13,7 @@
 							<div class="card-title">Get Dairy Manger</div>
 						</div>
 						<div class="card-body dairy-card-body">
+						  <jsp:include page="../successMessage/message.jsp" />
 							<form class="row g-3 needs-validation" action="/dairyManger/dairyUpdates"
 								method="post" >
 								
