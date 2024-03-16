@@ -14,6 +14,7 @@ import org.springframework.web.client.RestTemplate;
 
 import com.dairy.dto.branch.BranchRequestDto;
 import com.dairy.dto.branch.BranchResponseDto;
+import com.dairy.dto.farmer.FarmerRequestDto;
 import com.dairy.dto.route.RouteRequestDto;
 import com.dairy.dto.route.RouteResponseDto;
 import com.dairy.service.RouteService;
@@ -99,6 +100,23 @@ public class RouteServiceImpl implements RouteService {
 			return result.getBody();
 		} catch ( Exception e ) {
 			log.error( e.getMessage(), e );
+		}
+		return null;
+	}
+
+	@Override
+	public RouteRequestDto saveAll(List<RouteRequestDto> route) {
+		RestTemplate template = new RestTemplate();
+		String url = "http://localhost:6262/routes/saveAllRoutes";
+		HttpHeaders headers = new HttpHeaders();
+		headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+		headers.setContentType(MediaType.APPLICATION_JSON);
+		HttpEntity<List<RouteRequestDto>> request = new HttpEntity<>(route, headers);
+		try {
+			ResponseEntity<RouteRequestDto> result = template.exchange(url, HttpMethod.POST, request, RouteRequestDto.class);
+			return result.getBody();
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		return null;
 	}

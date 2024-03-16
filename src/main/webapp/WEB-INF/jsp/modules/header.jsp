@@ -717,6 +717,19 @@
                         </li>
                         <!-- End Reports slide -->
                         
+                        
+                         <!-- Start TakeBackupDB slide -->
+                         
+                         	<!-- <li><a href="/patients/add-form" class="nav_link"> <i
+								class="fa-solid fa-hospital-user"></i><span class="nav_name">Take BackupDB</span></a>
+							</li> -->
+							 <li class="slide">
+                                    <a href="/DBBackup/page" class="side-menu__item">
+                                    <i class="fa-solid fa-jar listIcons" aria-hidden="true"></i>Take BackupDB</a>
+                                </li>
+                        
+                        <!-- Start TakeBackupDB slide -->
+                        
                          
                     </ul>
                     

@@ -84,4 +84,10 @@ public class MessageConstants {
 	
 	public static final String ADD_PAYMENT_SUCCESS_MESSAGE = "Payment added successfully";
 	public static final String ADD_PAYMENT_ERROR_MSG = "Failed To Payment";
+	
+	public static final String DATA_RESTORE = "Data Restore";
+	public static final String PLEASE_UPLOAD_EXCEL_FILE = "Please upload excel file";
+	
+	
+	
 }

@@ -14,5 +14,7 @@ public interface RouteService {
 	public RouteResponseDto findById( int id );
 
 	public String update( RouteRequestDto dto );
+
+	public RouteRequestDto saveAll(List<RouteRequestDto> route);
 	
 }

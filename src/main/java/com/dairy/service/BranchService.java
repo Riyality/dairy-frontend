@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.dairy.dto.branch.BranchRequestDto;
 import com.dairy.dto.branch.BranchResponseDto;
+import com.dairy.dto.route.RouteRequestDto;
 
 public interface BranchService {
 
@@ -14,4 +15,7 @@ public interface BranchService {
 	public BranchResponseDto findById( int id );
 
 	public String update( BranchRequestDto dto );
+
+	public BranchRequestDto saveAll(List<BranchRequestDto> branch);
+
 }
