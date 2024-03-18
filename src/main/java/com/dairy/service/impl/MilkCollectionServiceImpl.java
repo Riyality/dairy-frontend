@@ -140,10 +140,7 @@ public class MilkCollectionServiceImpl implements MilkCollectionService {
 					float.class);
 			Float milkCollectionData = res.getBody();
 	        
-	        if (milkCollectionData == null) {
-	            System.out.println("No record present for today's milk collection.");
-	            return 0;
-	        }
+			 return milkCollectionData != null ? milkCollectionData : 0;
 
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);

@@ -46,6 +46,7 @@ public class MessageConstants {
 	public static final String UPDATE_MILK_COLLECTION_ERROR_MSG = "Unable to update";
 
 	public static final String ADD_MILK_RATE_SUCCESS_MESSAGE = "Milk rates saved successfully";
+	public static final String ADD_MILK_RATE_ERROR_MESSAGE = "Unable to add milk rates ";
 	
 	public static final String ADD_FARMER_SUCCESS_MESSAGE = "Farmer added successfully";
 	public static final String ADD_FARMER_ERROR_MSG = "Failed To add farmer";
@@ -87,6 +88,7 @@ public class MessageConstants {
 	
 	public static final String DATA_RESTORE = "Data Restore";
 	public static final String PLEASE_UPLOAD_EXCEL_FILE = "Please upload excel file";
+	
 	
 	
 	
