@@ -82,7 +82,7 @@ public class FeedStockController {
 	        return "redirect:/feedStock/add-purchaseDetails-page";
 	    }
 	    ra.addFlashAttribute("errorMessage", MessageConstants.ADD_FEEDSTOCK_ERROR_MSG);
-	    return "feedStock/add";
+	    return "redirect:/feedStock/add-feedStock-page";
 	}
 
 	@GetMapping("/add-purchaseDetails-page")

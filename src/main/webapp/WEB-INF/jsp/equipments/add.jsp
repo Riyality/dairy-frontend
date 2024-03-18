@@ -14,6 +14,7 @@
 							<div class="card-title">Add Equipment</div>
 						</div>
 						<div class="card-body">
+						  <jsp:include page="../successMessage/message.jsp" />
 							<form class="row g-3 needs-validation" action="/equipments"
 								method="post" >
 								

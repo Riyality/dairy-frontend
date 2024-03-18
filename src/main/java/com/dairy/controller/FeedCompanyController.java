@@ -45,7 +45,7 @@ public class FeedCompanyController {
 			return "redirect:/feedCompanies";
 		}
 		ra.addFlashAttribute( "errorMessage", MessageConstants.ADD_FEEDCOMPANY_ERROR_MESSAGE );
-		return "feedCompanies/add";
+		return "redirect:/feedCompanies/add-feed-company";
 	}
 
 	@GetMapping

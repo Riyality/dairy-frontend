@@ -61,7 +61,7 @@ public class FeedTypeController {
 			return "redirect:/feedTypes";
 		}
 		ra.addFlashAttribute("errorMessage", MessageConstants.ADD_FEEDTYPE_ERROR_MSG);
-		return "feedTypes/add";
+		return "redirect:/feedTypes/add-feed-type";
 	}
 
 	@GetMapping

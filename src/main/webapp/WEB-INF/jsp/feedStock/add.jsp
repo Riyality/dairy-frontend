@@ -13,6 +13,7 @@
 							<div class="card-title">Add Feed Stock</div>
 						</div>
 						<div class="card-body dairy-card-body">
+						  <jsp:include page="../successMessage/message.jsp" />
 						
 						 <table id="file-export-feed" class="table table-bordered dataTable no-footer dairy-table-border">
                                 <thead>

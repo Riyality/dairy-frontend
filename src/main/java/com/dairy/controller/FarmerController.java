@@ -54,7 +54,7 @@ public class FarmerController {
 		if (result.equals(MessageConstants.ADD_FARMER_SUCCESS_MESSAGE))
 			return "redirect:/farmers";
 		else
-			return "farmers/add";
+			return "redirect:/farmers/addFarmerPage";
 	}
 
 	@GetMapping

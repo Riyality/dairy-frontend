@@ -12,6 +12,9 @@
 		        <div class="card-title">All Farmers Animal</div>
 		      </div>
 		      <div class="card-body">
+		      
+		       <jsp:include page="../successMessage/message.jsp" />
+		       
 		        <div class="table-responsive">
 		           
 		            <table id="file-export" class="table table-bordered dataTable no-footer dairy-table-border">

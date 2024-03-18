@@ -105,7 +105,7 @@ public class FeedToFarmerController {
 		}
 			ra.addFlashAttribute("errorMessage", MessageConstants.ADD_FEEDTOFARMER_ERROR_MSG);
 
-		return "feedToFarmer/add";				
+		return "redirect:/feedToFarmers/feedToFarmer-add-page";				
 		
 	}
 	

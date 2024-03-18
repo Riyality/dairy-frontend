@@ -15,8 +15,9 @@
 							<div class="card-title">Add Main Branch</div>
 						</div>
 						<div class="card-body dairy-card-body">
+						  <jsp:include page="../successMessage/message.jsp" />
 							<form class="row g-3 needs-validation" action="/mainBranchs"
-								method="post" novalidate>
+								method="post" >
 								
 								<div class="col-md-6">
 									<label class="form-label dairy-input-label required-field"> Branch Name</label>

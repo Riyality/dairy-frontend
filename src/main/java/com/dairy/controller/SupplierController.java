@@ -43,7 +43,7 @@ public class SupplierController {
 			return "redirect:/suppliers";
 		}
 		ra.addFlashAttribute("errorMessage", MessageConstants.ADD_SUPPLIER_ERROR_MSG);
-		return "suppliers/add";
+		return "redirect:/suppliers/add-supplier-page";
 	}
 
 	@GetMapping

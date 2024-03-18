@@ -12,6 +12,7 @@
 		        <div class="card-title">All Employees</div>
 		      </div>
 		      <div class="card-body">
+		       <jsp:include page="../successMessage/message.jsp" />
 		        <div class="table-responsive">
 		     
       				<%-- <jsp:include page="../modules/dataTableHeader.jsp" /> --%>
