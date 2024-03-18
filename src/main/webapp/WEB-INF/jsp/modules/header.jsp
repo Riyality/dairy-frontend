@@ -217,7 +217,7 @@
                         <li class="slide has-sub">
 
                       
-                            <a href="/logins" class="side-menu__item">
+                            <a href="/logins/index" class="side-menu__item">
 
                                 <i class="fa-solid fa-gauge listIcons"></i>
                                 <span class="side-menu__label">Dashboards</span>

@@ -14,7 +14,7 @@
                             <div class="float-end">
                                <div class="dropdown">
                                     <button class=" btn btn-sm btn-primary dairy-form-btn" type="button" id="statusDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                                      
+                                      Active
                                     </button>
                                     <ul class="dropdown-menu" aria-labelledby="statusDropdown">
                                         <li><a class="dropdown-item" href="/farmers?filter=active" onclick="getFarmers('active')">Active</a></li>
