@@ -145,42 +145,30 @@
 		          <div class="row mb-3">
 					  <div class="col-md-4">
 						<label class="form-label dairy-input-label">View Milk From</label> 
-						<input type="date" class="form-control dairy-form-input" id="" name="startDate">
+						<input type="date" class="form-control dairy-form-input" id="startDate" name="startDate">
 					  </div>
 					</div>
-					
+						
 		        <div class="table-responsive">
 		           
 		            <table id="file-export" class="table table-bordered dataTable no-footer dairy-table-border">
 		              <thead>
 		                <tr class="dairy-table-head">
-		                  <th>Date</th>
-		                  <th>Morning Shift</th>
-		                  <th>Evening Shift</th>
-		                  <th>Total Milk</th>
-		                  <th>FAT</th>
-		                  <th>SNF</th>
-		                  <th>Amount</th>
-		                  </tr>
-		              </thead>
-		              <tbody>
-		              
-		                <c:forEach items="${branches}" var="branch">
-                          <tr class="gridjs-tr">
-                            <td>22/12/2023</td>
-                            <td>22.5</td>
-                            <td>18.9</td>
-                            <td>41.4</td>
-                            <td>3.5</td>
-                            <td>8.5</td>
-                            <td>1567.88</td>
-                          </tr>
-                        </c:forEach>
-		              
-		              </tbody>
-		            </table>
-		        </div>
-        
+                                        <th>Date Of Collection</th>   
+                                        <th>Shift</th>
+                                         <th>Type</th>                                 
+                                      	<th>Fat</th>
+                                        <th>SNF</th>
+                                        <th>Rate</th>
+                                        <th> Milk Quantity</th>
+                                       	<th> Amount</th>		             
+                                </tr>
+		                 </thead>
+		                <tbody>
+		             
+		                </tbody>
+		          </table>
+		   </div>  
       </div>
       </div>
       <div class="modal-footer">
@@ -189,5 +177,10 @@
     </div>
   </div>
 </div>
+
+<jsp:include page="../modules/footer.jsp" />
+
+
 	
-	<jsp:include page="../modules/footer.jsp" />
+	
+	

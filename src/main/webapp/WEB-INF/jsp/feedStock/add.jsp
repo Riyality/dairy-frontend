@@ -42,39 +42,72 @@
                                      
                             <div class="col-md-6">
                                 <label class="form-label dairy-input-label required-field">Supplier Name</label>
-                                <select class="form-select dairy-form-input" id="supplierId" name="supplierId">
+                                <select class="form-select dairy-form-input" id="supplierId" name="supplierId" required>
                                     <option value="" selected="selected" disabled="disabled">Select Supplier</option>
                                     <c:forEach items="${suppliers}" var="supplier">
                                         <option value="${supplier.id}">${supplier.name}</option>
                                     </c:forEach>
                                 </select>
+                                 
                             </div>
                             
                             <div class="col-md-6">
                                 <label class="form-label dairy-input-label required-field">Purchase Date</label>
                                 <input type="date" class="form-control dairy-form-input" id="dateOfPurchase" name="dateOfPurchase" required>
+                              
                             </div>
                             
-                             <div class="col-md-6">
+                           <%--   <div class="col-md-6">
                                 <label class="form-label dairy-input-label required-field">Feed Company</label>
-                                 <select class="form-select dairy-form-input" id="feedCompanyId" name="feedCompanyId">
+                                 <select class="form-select dairy-form-input" id="feedCompanyId" name="feedCompanyId" required>
                                    <option value="" selected="selected" disabled="disabled">Select Feed Company</option>
                                      <c:forEach items="${feedCompany}" var="fc">
                                           <option value="${fc.id}">${fc.name}</option>
                                      </c:forEach>
                                 </select>
+                                
                           </div>
 
                
                        <div class="col-md-6">
                          <label class="form-label dairy-input-label required-field">Feed Company Type</label>
-                         <select class="form-select dairy-form-input" id="feedTypeId" name="feedTypeId">
+                         <select class="form-select dairy-form-input" id="feedTypeId" name="feedTypeId" required>
                           <option value="" selected="selected" disabled="disabled">Select Feed Type</option>
                            <c:forEach items="${feedType}" var="feed">
                               <option value="${feed.id}">${feed.type}</option>
                            </c:forEach>
                         </select>
+                         
                       </div>
+ --%>      
+ 
+                            <div class="col-md-6">
+									<label class="form-label dairy-input-label required-field">Feed Company</label> 
+									 <select  class="form-select dairy-form-input"
+										id="feedCompanyId" name="feedCompanyId" required>
+										<option value="" selected="selected" disabled="disabled">Select
+											Feed Company</option>
+										<c:forEach items="${feedCompany}" var="fc">
+											<option value="${fc.id}">${fc.name}</option>
+										</c:forEach>
+									</select>
+								</div>
+
+								<div class="col-md-6">
+									<label class="form-label dairy-input-label required-field">Feed Company Type</label> 
+									<select class="form-select dairy-form-input"
+										id="feedTypeId" name="feedTypeId" disabled="disabled" required>
+										<!-- <option value="" selected="selected" disabled="disabled">Select
+											Feed Type</option> -->
+										<%-- <c:forEach items="${feedType}" var="feed">
+											<option value="${feed.id}">${feed.type}</option>
+										</c:forEach> --%>
+									</select>
+								</div>
+								
+ 
+ 
+                 
 								<div class="col-md-6">
 									<label class="form-label dairy-input-label required-field">Feed Cost
 										(1 unit)</label> <input type="text"
@@ -88,6 +121,7 @@
 										Quantity</label> <input type="text"
 										class="form-control dairy-form-input"
 										placeholder="Enter Total Quantity" id="feedStockQuantity" name="quantity" required>
+										
 								</div>
 
 								<div class="col-md-6">
@@ -95,6 +129,7 @@
 										Amount</label> <input type="text"
 										class="form-control dairy-form-input"
 										placeholder="Total Amount" id="feedStockTotalAmount" name="totalAmount"   required>
+										
 								</div>
 
 								<div class="col-12">
@@ -114,8 +149,10 @@
 		</div>
 	</div>
 	<jsp:include page="../modules/footer.jsp" />
-
+	
 </body>
+
+
 
 
 	
