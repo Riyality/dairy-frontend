@@ -32,7 +32,7 @@
 								<div class="col-md-6">
 									<label class="form-label dairy-input-label required-field">Route</label>
 									 <select class="form-select dairy-form-input" id=""
-										name="route">
+										name="route" required>
 										<option value="" selected="selected" disabled="disabled">Select Route</option>
 										<c:forEach items="${routes}" var="route">
 											<option value="${route.id}">${route.name}</option>

@@ -77,7 +77,7 @@
 
  	/*Equipment Script Start*/
 
- 	$("#equipmentQuantity").on("blur", function() {
+ 	$("#equipmentQuantity").on("change", function() {
 
  		var equipmentQuantity = $("#equipmentQuantity").val();
  		var equipmentPrice = $("#equipmentPrice").val();
@@ -89,7 +89,7 @@
 
  	/*Equipment Script Start*/
 
- 	$("#equipmentPrice").on("blur", function() {
+ 	$("#equipmentPrice").on("change", function() {
 
  		var equipmentQuantity = $("#equipmentQuantity").val();
  		var equipmentPrice = $("#equipmentPrice").val();
@@ -726,15 +726,15 @@ $("#GeneratePayment").prop("disabled", true);
 			var tDate;
 			var selectedFarmerIds = [];
 			var selectedFarmersData = [];
-		
+			
 			$("#getFarmerRecordsBonus").on("click", function () {
 				fDate = $("#fromDate").val();
 				tDate = $("#toDate").val();
 				var bonusAmountPerLiter = $("#bonusAmountPerLiter").val();
-				var milkType = $('input[name="milkType"]:checked').val();
+				var animalType = $('input[name="milkType"]:checked').val();
 		
 				$.ajax({
-					url: 'http://localhost:6161/bonusToFarmer/' + fDate + '/' + tDate + '/' + milkType,
+					url: 'http://localhost:6161/bonusToFarmer/' + fDate + '/' + tDate + '/' + animalType,
 					type: 'GET',
 					dataType: 'json',
 					success: function (result) {
@@ -757,7 +757,7 @@ $("#GeneratePayment").prop("disabled", true);
 					}
 				});
 			});
-		
+			 
 			$("#submitSelectedRecords").on("click", function (event) {
 				event.preventDefault();
 				saveSelectedFarmersToDatabase();
@@ -976,7 +976,7 @@ $("#GeneratePayment").prop("disabled", true);
             type: 'GET',
             dataType: 'json',
             success: function(result) {
-                $("#file-export tbody").empty(); // Clear existing table rows
+                $("#file-export tbody").empty(); 
                var totalCollectedMilk = 0;
             var totalAmount = 0;
             var totalFeedDeduction = 0;
@@ -1015,13 +1015,82 @@ $("#GeneratePayment").prop("disabled", true);
 
 });
 /*Payment Report Script end*/
-
+	
+/*feed type for feed Stock Script start*/
+	
+	$("#feedCompanyId").on("change",function(){
 		
+		var id = $("#feedCompanyId").val();
+		
+		$.ajax({
+	    url: 'http://localhost:6161/feedStock/getFeedTypeByFeedCompanyId/'+id,
+	    type: 'GET',
+	    dataType: 'json',
+	    success: function(result) {
+			console.log(result)
+			$("#feedTypeId").empty();
+			 $("#feedTypeId").prop("disabled", false);
+			  $("#feedTypeId").append(
+				   `<option value="" selected="selected" disabled="disabled">Select
+							Feed Type</option>`
+			   );
+			$.each(result, function(key, value) {
+		       $("#feedTypeId").append(
+				   `<option value="${value.id}">${value.type}</option>`
+			   );
+		   });
+	    },
+	    error: function(error) {
+	        console.error('Error fetching data:', error);
+	    }
+	});
+});
+
+	/*feed type for feed Stock Script end*/		
 	
  /* feedStock Script start*/   
 	    		 
 	    		 $("#file-export-feed tbody").empty();
+	    		 $('#supplierId,#dateOfPurchase, #feedCompanyId, #feedTypeId, #feedStockCostPerUnit, #feedStockQuantity, #feedStockTotalAmount').on('input', function() {
+	    			    $(this).next('.error-message').remove(); 	    			});
 	    	  		function addRecordToTable() {
+	    	  			
+	    	  			 $('.error-message').remove();
+	    	  		    var isValid = true;
+	    	  		    var requiredFields = [
+	    	  		        { id: 'supplierId', name: 'Supplier Name' },
+	    	  		        { id: 'dateOfPurchase', name: 'Purchase Date' },
+	    	  		        { id: 'feedCompanyId', name: 'Feed Company' },
+	    	  		        { id: 'feedTypeId', name: 'Feed Type' },
+	    	  		        { id: 'feedStockCostPerUnit', name: 'Feed Cost (1 unit)' },
+	    	  		        { id: 'feedStockQuantity', name: 'Total Quantity' },
+	    	  		        { id: 'feedStockTotalAmount', name: 'Total Amount' }
+	    	  		    ];
+
+	    	  		  requiredFields.forEach(function(field) {
+	    	  		    var fieldValue = $('#' + field.id).val().trim();
+	    	  		    if (field.id === "supplierId" || field.id === "feedCompanyId" || field.id === "feedTypeId") {
+	    	  		        if (!fieldValue) {
+	    	  		            $('#' + field.id).after('<span class="error-message">Please select an option.</span>');
+	    	  		            isValid = false;
+	    	  		        } else {
+	    	  		            $('#' + field.id).next('.error-message').remove();
+	    	  		        }
+	    	  		    } else {
+	    	  		        if (fieldValue === "") {
+	    	  		            $('#' + field.id).after('<span class="error-message">Please fill in this field.</span>');
+	    	  		            isValid = false;
+	    	  		        } else {
+	    	  		            $('#' + field.id).next('.error-message').remove();
+	    	  		        }
+	    	  		    }
+	    	  		});
+	    	  		  
+	    	  		  
+	    	  		    if (!isValid) {
+	    	  		        return;
+	    	  		    }
+	    	  		    
 	    	  		    var newRow = $('<tr>');
 	    	  		    newRow.append('<td>' + $('#supplierId option:selected').text() + '</td>');
 	    	  		    newRow.append('<input type="hidden" name="supplierId" value="' + $('#supplierId').val() + '">');
@@ -1036,7 +1105,6 @@ $("#GeneratePayment").prop("disabled", true);
 	    	  		    newRow.append('<td>' + $('textarea[name="remark"]').val() + '</td>');
 	    	  		  newRow.append('<td><button class="btn btn-danger btn-sm deleteBtn">Delete</button></td>');
 
-	    	  		   // newRow.append('<td><button class="btn btn-danger deleteBtn">Delete</button></td>');
 	    	  		    
 	    	  		    $('#file-export-feed tbody').append(newRow);
 	    	  		    
@@ -1087,7 +1155,12 @@ $("#GeneratePayment").prop("disabled", true);
 	    	  	            
 	    	  	            success: function(response) {
 	    	  	                console.log(response);
+	    	  	               window.location.href = '/feedStock/add-purchaseDetails-page';
+	    	  	             /* if (response === 'success') {
 	    	  	                window.location.href = '/feedStock/add-purchaseDetails-page';
+	    	  	            } else {
+	    	  	                window.location.href = '/feedStock/add-feedStock-page';
+	    	  	            }*/
 	    	  	            },
 	    	  	            error: function(xhr, status, error) {
 	    	  	                console.error(xhr.responseText); 
@@ -1326,14 +1399,40 @@ $("#getMilkCollectionDatewise").click(function () {
     var selectedDate = $("#selectedDate").val();
     var milkType = $("input[name='milkType']:checked").val();
     var shift = $("#shiftDropdown").val(); 
+    
+    $(".error-message").remove();
+
+    
+    var isValid = true;
+
+    if (!selectedDate) {
+        $("#selectedDate").after('<div class="error-message">Please select a date.</div>');
+        isValid = false;
+    }
+    if (!milkType) {
+        $("#milkType").after('<div class="error-message">Please select a milk type.</div>');
+        isValid = false;
+    }
+    if (!shift) {
+        $("#shiftDropdown").after('<div class="error-message">Please select a shift.</div>');
+        isValid = false;
+    }
+
+    if (!isValid) {
+        return; 
+    }
+
+    
     $.ajax({
         type: "GET",
         url: "/milkCollection/getMilkCollectionDataBy/" + selectedDate + "/" + milkType + "/" + shift,
         success: function (data) {
+        	$("#file-export-datewise tbody").empty();
             
             var totalMilkQuantity = 0;
             var totalMilkAmount = 0;
 
+            if (data.length > 0) {
             $.each(data, function(index, milkCollection) {
                 var row = "<tr>" +
                     "<td>" + milkCollection.farmerName + "</td>" +
@@ -1357,6 +1456,7 @@ $("#getMilkCollectionDatewise").click(function () {
             '</tr>';
         $("#file-export-datewise tbody").append(totalRow);
         
+         }
         },
         error: function (xhr, status, error) {
             console.error("Error:", status, error);
@@ -1366,6 +1466,67 @@ $("#getMilkCollectionDatewise").click(function () {
 
 /*display Milk Collection  Script end*/
 
+
+/*display previousDay Milk Collection  Script Start*/
+
+
+
+    function setYesterdayDate() {
+        var yesterday = new Date();
+        yesterday.setDate(yesterday.getDate() - 1);
+        var formattedDate = yesterday.toISOString().slice(0, 10);
+        $("#startDate").val(formattedDate);
+    }
+
+    setYesterdayDate();
+
+    $('#previousMilkList').on('shown.bs.modal', function (e) {
+        fetchPreviousMilkData();
+    });
+
+    function fetchPreviousMilkData() {
+        var fromDate = $("#startDate").val(); 
+        var toDate = new Date().toISOString().slice(0, 10); 
+        var farmerId = $("#farmerId").val();
+
+        $.ajax({
+            url: 'http://localhost:6161/milkCollection/getMilkCollectionDataBy/' + fromDate + '/' + toDate + "/both/morningEvening/" + farmerId,
+            type: 'GET',
+            dataType: 'json',
+            success: function(result) {
+                $("#file-export tbody").empty();
+                $("#noRecordsMessage").remove(); 
+                if (result.length === 0) {
+                    $("#file-export").prepend('<p id="noRecordsMessage" style="color: red; font-size: 16px; inline:block;">No records Present.</p>');
+                } else {
+                    for (var i = 0; i < result.length; i++) {
+                        var farmer = result[i];
+                        var newRow = '<tr class="gridjs-tr">' +
+                            '<td>' + farmer.dateOfMilkCollection + '</td>' +
+                            '<td>' + farmer.shift + '</td>' +
+                            '<td>' + farmer.animalType + '</td>' +
+                            '<td>' + farmer.milkFat + '</td>' +
+                            '<td>' + farmer.milkSNF + '</td>' +
+                            '<td>' + farmer.milkRate + '</td>' +
+                            '<td>' + farmer.milkQuantity + '</td>' +
+                            '<td>' + farmer.totalMilkAmount + '</td>' +
+                            '</tr>';
+                        $("#file-export tbody").append(newRow);
+                    }
+                }
+            },
+            error: function(error) {
+                console.error('Error fetching data:', error);
+            }
+        });
+    }
+
+    $("#startDate").change(function() {
+        fetchPreviousMilkData();
+    });
+
+
+/*display previousDay Milk Collection  Script end*/
 
  /*Milk Collection Script Start*/
 

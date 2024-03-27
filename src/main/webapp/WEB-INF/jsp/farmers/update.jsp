@@ -33,7 +33,7 @@
 								<div class="col-md-6">
 									<label class="form-label dairy-input-label required-field">Route</label>
 									 <select class="form-select dairy-form-input" id=""
-										name="route" value="${farmer.route}">
+										name="route" value="${farmer.route}" required>
 										<option  selected="selected" value="${farmer.route.id}">${farmer.route.name}</option>
 										<c:forEach items="${routes}" var="route">
 											<option  value="${route.id}">${route.name}</option>
@@ -51,7 +51,7 @@
 								
 								<div class="col-md-6">
 									<label class="form-label dairy-input-label">Farmer Status</label> 
-									<select class="form-select dairy-form-input" name="status" id="">
+									<select class="form-select dairy-form-input" name="status" id="" >
 										<option value="active">Active</option>
 										<option value="inactive">In-Active</option>  
 									</select>
