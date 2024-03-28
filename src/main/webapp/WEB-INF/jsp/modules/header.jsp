@@ -20,10 +20,14 @@
 <!-- FAVICON -->
 <link rel="icon" href="<c:url value="/resources/assets/images/brand-logos/favicon.ico"/>" type="image/x-icon">
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
 <!-- BOOTSTRAP CSS -->
 <link id="style" href="<c:url value="/resources/assets/libs/bootstrap/css/bootstrap.min.css"/>" rel="stylesheet">
-   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-  
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
 <!-- ICONS CSS -->
 <link href="<c:url value="/resources/assets/icon-fonts/icons.css"/>" rel="stylesheet">
 
@@ -32,7 +36,7 @@
 <link rel="stylesheet" href="<c:url value="/resources/assets/app-fce3f544.css"/>" />
 
 <!-- NODE WAVES CSS -->
-<link href"<c:url value="/resources/assets/ts/libs/node-waves/waves.min.css"/>" rel="stylesheet">
+<link href = "<c:url value="/resources/assets/libs/node-waves/waves.min.css"/>" rel="stylesheet">
 
 <!-- SIMPLEBAR CSS -->
 <link rel="stylesheet" href="<c:url value="/resources/assets/libs/simplebar/simplebar.min.css"/>">
@@ -44,9 +48,10 @@
 <!-- CHOICES CSS -->
 <link rel="stylesheet" href="<c:url value="/resources/assets/libs/choices.js/public/assets/styles/choices.min.css"/>">
 
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
 <!-- CHOICES JS -->
 <script src="<c:url value="/resources/assets/libs/choices.js/public/assets/scripts/choices.min.js"/>"></script>
-
 <!-- MAIN JS -->
 <script src="<c:url value="/resources/assets/main.js"/>"></script>
 <link rel="stylesheet" href="<c:url value="/resources/assets/css/custom.css"/>" />

@@ -43,7 +43,7 @@ public class MessageInterceptor implements HandlerInterceptor {
 	        }
 	       // session.setAttribute("lang", lang);
 
-	        int numOfMessages = 259; // Assuming you have 259 messages
+	        int numOfMessages = 260; // Assuming you have 260 messages
 	        List<String> messages = new ArrayList<>();
 	        for (int i = 1; i <= numOfMessages; i++) {
 	            String messageKey = "message" + i;

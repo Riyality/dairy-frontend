@@ -11,10 +11,10 @@
                         <div class="card-header justify-content-between dairy-card-header">
                             <ul class="nav nav-tabs" id="myTabs">
                                 <li class="nav-item">
-                                    <a class="nav-link active tabColor-tab" id="datewise-tab" data-toggle="tab" href="#datewise">Datewise</a>
+                                    <a class="nav-link active tabColor-tab" id="datewise-tab" data-toggle="tab" href="#datewise">${empty messages[259] ? 'Datewise' : messages[259]}</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link tabColor-tab" id="farmerwise-tab" data-toggle="tab" href="#farmerwise">Farmerwise</a>
+                                    <a class="nav-link tabColor-tab" id="farmerwise-tab" data-toggle="tab" href="#farmerwise">${empty messages[254] ? 'Farmerswise' : messages[254]}</a>
                                 </li>
                                
                             </ul>
@@ -25,28 +25,28 @@
                                  	
                                     <form id="filterForm" class="row g-3 needs-validation" >
                                 <div class="col-md-2">
-                                    <label class="form-label dairy-input-label required-field">Select From Date</label>
+                                    <label class="form-label dairy-input-label required-field">${empty messages[187] ? 'Select Date From' : messages[187]}</label>
                                     <input type="date" class="form-control dairy-form-input" id="fromDate" name="fromDate" required >
                                 </div>
                                <div class="col-md-2">
-                                 <label class="form-label dairy-input-label required-field">Select To Date</label>
+                                 <label class="form-label dairy-input-label required-field">${empty messages[189] ? 'Select To Date' : messages[189]}</label>
                                     <input type="date" class="form-control dairy-form-input" id="toDate" name="toDate" required>
                                 </div>
                               
 							   <div class="col-12">
-                                     <button class="btn btn-primary dairy-form-btn" type="button" id="getBonusRecordsDatewise" >View Report </button>
+                                     <button class="btn btn-primary dairy-form-btn" type="button" id="getBonusRecordsDatewise" >${empty messages[177] ? 'View Report' : messages[177]} </button>
                                 </div>
                                 </form>
 
                                 <table id="file-export" class="table table-bordered dataTable no-footer dairy-table-border">
                                 <thead>
                                     <tr class="dairy-table-head">
-                                        <th>Date Of Bonus</th>   
-                                        <th>Farmer Name</th> 
-                                        <th>Milk Type</th>
-                                        <th>BonusAmount</th>
-                                        <th>Total MilkQuantity</th>
-                                        <th>Total Bonus Amount</th> 
+                                        <th>${empty messages[231] ? 'Bonus Date' : messages[231]}</th>   
+                                        <th>${empty messages[116] ? '  Farmer Name' : messages[116]}</th> 
+                                        <th>${empty messages[86] ? 'Milk Type' : messages[86]}</th>
+                                        <th>${empty messages[228] ? 'Bonus Amount Per Litre' : messages[228]}</th>
+                                        <th>${empty messages[92] ? 'Total Milk Quantity' : messages[92]}</th>
+                                        <th>${empty messages[229] ? 'Total Bonus Amount' : messages[229]}</th> 
                                     </tr>
                                 </thead>
                                 <tbody >
@@ -58,20 +58,20 @@
                                 
                                    <form id="filterForm" class="row g-3 needs-validation" >
                                 <div class="col-md-2">
-                                    <label class="form-label dairy-input-label required-field">Select From Date</label>
+                                    <label class="form-label dairy-input-label required-field">${empty messages[187] ? 'Select Date From' : messages[187]}</label>
                                     <input type="date" class="form-control dairy-form-input" id="fromDateFarmer" name="fromDate" required >
                                 </div>
 									<div class="col-md-2">
 
-                                    <label class="form-label dairy-input-label required-field">Select To Date</label>
+                                    <label class="form-label dairy-input-label required-field">${empty messages[189] ? 'Select To Date' : messages[189]}</label>
                                     <input type="date" class="form-control dairy-form-input" id="toDateFarmer" name="toDate" required>
                                 </div>
                                 <div class="col-md-4">
-									  <label class="form-label dairy-input-label required-field"> Select</label><br>
-									  <input type="radio" name="farmer" value="all" checked />All Farmers
-									  <input type="radio" name="farmer" value="farmerwise" />Farmerwise									
+									  <label class="form-label dairy-input-label required-field">  ${empty messages[252] ? 'Select' : messages[252]}</label><br>
+									  <input type="radio" name="farmer" value="all" checked />${empty messages[253] ? 'All   Farmers' : messages[253]}
+									  <input type="radio" name="farmer" value="farmerwise" />${empty messages[254] ? 'Farmerswise' : messages[254]}											
 									  <select class="form-select dairy-form-input" id="farmerSelect" style="display: none;">
-									    <option value="" selected="selected" disabled="disabled">Select Farmer</option>
+									    <option value="" selected="selected" disabled="disabled">${empty messages[207] ? ' Select Farmer' : messages[207]}</option>
 										<c:forEach items="${list}" var="farmer">
 											<option value="${farmer.id}">${farmer.name}</option>
 										</c:forEach>
@@ -79,18 +79,18 @@
 									</div>
                                
                                 <div class="col-12">
-                                    <button class="btn btn-primary dairy-form-btn" type="button" id="getBonusRecordsFarmerwise" >Get Records </button>
+                                    <button class="btn btn-primary dairy-form-btn" type="button" id="getBonusRecordsFarmerwise" >${empty messages[177] ? 'View Report' : messages[177]} </button>
                                 </div>
                             </form>
                          <table id="file-export" class="table table-bordered dataTable no-footer dairy-table-border">
                                 <thead>
                                     <tr class="dairy-table-head">
-                                        <th>Date Of Bonus</th>   
-                                        <th>Farmer Name</th> 
-                                        <th>Milk Type</th>
-                                        <th>BonusAmount</th>
-                                        <th>Total MilkQuantity</th>
-                                        <th>Total Bonus Amount</th> 
+                                        <th>${empty messages[231] ? 'Bonus Date' : messages[231]}</th>   
+                                        <th>${empty messages[116] ? '  Farmer Name' : messages[116]}</th> 
+                                        <th>${empty messages[86] ? 'Milk Type' : messages[86]}</th>
+                                        <th>${empty messages[228] ? 'Bonus Amount Per Litre' : messages[228]}</th>
+                                        <th>${empty messages[92] ? 'Total Milk Quantity' : messages[92]}</th>
+                                        <th>${empty messages[229] ? 'Total Bonus Amount' : messages[229]}</th> 
                                     </tr>
                                     
                                 </thead>
