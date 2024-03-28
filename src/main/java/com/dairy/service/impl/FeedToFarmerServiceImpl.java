@@ -23,10 +23,10 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class FeedToFarmerServiceImpl implements FeedToFarmerService {
 	@Override
-	public List<FeedToFarmerResponseDto> getAllFeedToFarmer() {
+	public List<FeedToFarmerResponseDto> getAllFeedToFarmer(int branchId) {
 
 		RestTemplate template = new RestTemplate();
-		String url = "http://localhost:6262/feedTofarmers";
+		String url = "http://localhost:6262/feedTofarmers/branch/"+ branchId;
 		HttpHeaders headers = new HttpHeaders();
 		HttpEntity<String> entity = new HttpEntity<>("body", headers);
 		try {
@@ -147,7 +147,9 @@ public class FeedToFarmerServiceImpl implements FeedToFarmerService {
 		return null;
 		
 	}
-	
+
+
+
 
 }
 

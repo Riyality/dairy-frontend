@@ -40,7 +40,7 @@
                                 </div>
                                  <div class="col-md-6">
                                     <label class="form-label dairy-input-label required-field">Milk Type</label><br>
-                                    <input  class="form-check-input" type="radio"   name="milkType" value="cow" />Cow
+                                    <input  class="form-check-input" type="radio"   name="milkType" value="cow"  checked/>Cow
                                     <input  class="form-check-input" type="radio"  name="milkType" value="baffalo" />Buffalo
                                 </div>
                                 <div class="col-12">
@@ -52,7 +52,7 @@
                             <table id="file-export" class="table table-bordered dataTable no-footer dairy-table-border mt-2">
                                 <thead>
                                     <tr class="dairy-table-head">
-                                      <th><input type="checkbox" id="toggleAll"></th>
+                                      <th><input type="checkbox" id="selectAllCheckbox"></th>
                                         <th>Farmer Name</th>
                                          <th>Total Milk</th>
                                         <th> TotalBonus Amount</th>
