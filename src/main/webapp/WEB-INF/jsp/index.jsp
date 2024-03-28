@@ -1,8 +1,7 @@
-
- <jsp:include page="modules/header.jsp" />
+<jsp:include page="modules/header.jsp" />
  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
- 
+
         <!-- MAIN-CONTENT -->
 
         <div class="main-content app-content">
@@ -14,9 +13,7 @@
 
         <div class="d-md-flex d-block align-items-center justify-content-between my-4 page-header-breadcrumb">
             <div>
-              
-                
-                
+                <p class="fw-semibold fs-18 mb-0">Welcome back, ${sessionScope.name}</p>
             </div>         
          </div>
 
@@ -26,160 +23,20 @@
 <div class="row">
     <div class="col-xxl-9 col-xl-12">
         <div class="row">
-            <div class="col-xl-4">
-                <div class="col-xl-12">
-                    <div class="card custom-card">
-                        <div class="card-header  justify-content-between">
-                            <div class="card-title">
-                               Dairy Details
-                            </div>
-   
-                            <div class="dropdown">
-                                <a aria-label="anchor" href="javascript:void(0);" class="btn btn-icon btn-sm btn-light" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <i class="fe fe-more-vertical"></i>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="javascript:void(0);">Week</a></li>
-                                    <li><a class="dropdown-item" href="javascript:void(0);">Month</a></li>
-                                    <li><a class="dropdown-item" href="javascript:void(0);">Year</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <ul class="list-unstyled crm-top-deals mb-0">
-                                <li>
-                                    <div class="d-flex align-items-top flex-wrap">
-                                        <div class="me-2">
-                                           <span class="avatar avatar-sm avatar-rounded">
-                                             <img src="<c:url value="/resources/assets/images/faces/12.jpg"/>" alt="">
-                                           </span>
-                                        </div>
-                                        <div class="flex-fill">
-                                            <p class="fw-semibold mb-0">Active Farmers</p>
-                                            <!-- <span class="text-muted fs-12">michael.jordan@example.com</span> -->
-                                        </div>
-                                        <div class="fw-semibold fs-15">${activeFarmersCount}</div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="d-flex align-items-top flex-wrap">
-                                        <div class="me-2">
-                                            <span class="avatar avatar-sm avatar-rounded">
-                                             <img src="<c:url value="/resources/assets/images/faces/12.jpg"/>" alt="">
-                                           </span>
-                                        </div>
-                                        <div class="flex-fill">
-                                            <p class="fw-semibold mb-0">InActive Farmers</p>
-                                           <!--  <span class="text-muted fs-12">emigo.kiaren@gmail.com</span> -->
-                                        </div>
-                                        <div class="fw-semibold fs-15">${inActiveFarmersCount}</div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="d-flex align-items-top flex-wrap">
-                                        <div class="me-2">
-                                            <span class="avatar avatar-sm avatar-rounded bg-primary-transparent fw-semibold">FS
-                                            </span>
-                                        </div>
-                                        <div class="flex-fill">
-                                            <p class="fw-semibold mb-0">Total Feed Stock</p>
-                                            <!-- <span class="text-muted fs-12">randy.origoan@gmail.com</span> -->
-                                        </div>
-                                        <div class="fw-semibold fs-15">${totalFeedStock}</div>
-                                    </div>
-                                </li>
-                                
-                                <li>
-                                    <div class="d-flex align-items-top flex-wrap">
-                                        <div class="me-2">
-                                            <span class="avatar avatar-sm avatar-rounded bg-primary-transparent fw-semibold">MC
-                                            </span>
-                                        </div>
-                                        <div class="flex-fill">
-                                            <h6 class="fw-semibold mb-0"> MilkCollection</h6>
-                                        </div>
-                                        <!-- <div class="fw-semibold fs-15">$2,679</div> -->
-                                    </div>
-                                </li>
-                                
-                                   <li>
-                                    <div class="d-flex align-items-top flex-wrap">
-                                        <div class="me-2">
-                                           <span class="avatar avatar-sm avatar-rounded bg-primary-transparent fw-semibold"></span>
-                                        </div> 
-                                        <div class="flex-fill">
-                                            <p class="fw-semibold mb-0">Morning:Cow</p>
-                                           <!--  <span class="text-muted fs-12">Cow</span> -->
-                                            <!--  <span class="text-muted fs-12">Morning:Bufflo</span> -->
-                                        </div>
-                                        <div class="fw-semibold fs-15">${cowMorningMilkCollection}</div>
-                                    </div>
-                                </li>
-                                 <li>
-                                    <div class="d-flex align-items-top flex-wrap">
-                                        <div class="me-2">
-                                           <span class="avatar avatar-sm avatar-rounded bg-primary-transparent fw-semibold"></span>
-                                        </div> 
-                                        <div class="flex-fill">
-                                            <p class="fw-semibold mb-0">Morning:Buffalo</p>
-                                        </div>
-                                        <div class="fw-semibold fs-15">${buffaloMorningMilkCollection}</div>
-                                    </div>
-                                </li>
-                                 <li>
-                                    <div class="d-flex align-items-top flex-wrap">
-                                        <div class="me-2">
-                                           <span class="avatar avatar-sm avatar-rounded bg-primary-transparent fw-semibold"></span>
-                                        </div> 
-                                        <div class="flex-fill">
-                                            <p class="fw-semibold mb-0">Evening:Cow</p>
-                                        </div>
-                                        <div class="fw-semibold fs-15">${cowEveningMilkCollection}</div>
-                                    </div>
-                                </li>
-                                 <li>
-                                    <div class="d-flex align-items-top flex-wrap">
-                                        <div class="me-2">
-                                           <span class="avatar avatar-sm avatar-rounded bg-primary-transparent fw-semibold"></span>
-                                        </div> 
-                                        <div class="flex-fill">
-                                            <p class="fw-semibold mb-0">Evening:Buffalo</p>
-                                        </div>
-                                        <div class="fw-semibold fs-15">${buffaloEveningMilkCollection}</div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                
-            </div>
-            <div class="col-xl-8">
+        
+        <div class="col-xl-12">
                 <div class="row">
-                    <div class="col-xxl-6 col-lg-6 col-md-6">
+                
+                    <div class="col-xxl-4 col-lg-4 col-md-4">
                         <div class="card custom-card overflow-hidden">
                             <div class="card-body">
                                 <div class="d-flex align-items-top justify-content-between">
-                                    <div>
-                                        <span class="avatar avatar-md avatar-rounded bg-primary">
-<i class="ti ti-users fs-16"></i>
-</span>
-                                    </div>
+                                   
                                     <div class="flex-fill ms-3">
                                         <div class="d-flex align-items-center justify-content-between flex-wrap">
                                             <div>
-                                                <p class="text-muted mb-0">Total Customers</p>
-                                                <h4 class="fw-semibold mt-1">1,02,890</h4>
-                                            </div>
-                                            <div id="crm-total-customers"></div>
-                                        </div>
-                                        <div class="d-flex align-items-center justify-content-between mt-1">
-                                            <div>
-                                                <a class="text-primary" href="javascript:void(0);">View All<i class="ti ti-arrow-narrow-right ms-2 fw-semibold d-inline-block"></i></a>
-                                            </div>
-                                            <div class="text-end">
-                                                <p class="mb-0 text-success fw-semibold">+40%</p>
-                                                <span class="text-muted op-7 fs-11">this month</span>
+                                                <p class="text-darkRed text-size-15 mb-0"><b>Total Active Farmers</b></p>
+                                                <h4 class="fw-semibold mt-1">${activeFarmersCount}</h4>
                                             </div>
                                         </div>
                                     </div>
@@ -187,30 +44,17 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-xxl-6 col-lg-6 col-md-6">
+                
+                    <div class="col-xxl-4 col-lg-4 col-md-4">
                         <div class="card custom-card overflow-hidden">
                             <div class="card-body">
                                 <div class="d-flex align-items-top justify-content-between">
-                                    <div>
-                                        <span class="avatar avatar-md avatar-rounded bg-secondary">
-<i class="ti ti-wallet fs-16"></i>
-</span>
-                                    </div>
+                                   
                                     <div class="flex-fill ms-3">
                                         <div class="d-flex align-items-center justify-content-between flex-wrap">
                                             <div>
-                                                <p class="text-muted mb-0">Total Revenue</p>
-                                                <h4 class="fw-semibold mt-1">$56,562</h4>
-                                            </div>
-                                            <div id="crm-total-revenue"></div>
-                                        </div>
-                                        <div class="d-flex align-items-center justify-content-between mt-1">
-                                            <div>
-                                                <a class="text-secondary" href="javascript:void(0);">View All<i class="ti ti-arrow-narrow-right ms-2 fw-semibold d-inline-block"></i></a>
-                                            </div>
-                                            <div class="text-end">
-                                                <p class="mb-0 text-success fw-semibold">+25%</p>
-                                                <span class="text-muted op-7 fs-11">this month</span>
+                                                <p class="text-darkRed text-size-15 mb-0"><b>Total InActive Farmers</b></p>
+                                                <h4 class="fw-semibold mt-1">${inActiveFarmersCount}</h4>
                                             </div>
                                         </div>
                                     </div>
@@ -218,72 +62,134 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-xxl-6 col-lg-6 col-md-6">
+                
+                    <div class="col-xxl-4 col-lg-4 col-md-4">
                         <div class="card custom-card overflow-hidden">
                             <div class="card-body">
                                 <div class="d-flex align-items-top justify-content-between">
-                                    <div>
-                                        <span class="avatar avatar-md avatar-rounded bg-success">
-<i class="ti ti-wave-square fs-16"></i>
-</span>
-                                    </div>
+                                   
                                     <div class="flex-fill ms-3">
                                         <div class="d-flex align-items-center justify-content-between flex-wrap">
                                             <div>
-                                                <p class="text-muted mb-0">Conversion Ratio</p>
-                                                <h4 class="fw-semibold mt-1">12.08%</h4>
-                                            </div>
-                                            <div id="crm-conversion-ratio"></div>
-                                        </div>
-                                        <div class="d-flex align-items-center justify-content-between mt-1">
-                                            <div>
-                                                <a class="text-success" href="javascript:void(0);">View All<i class="ti ti-arrow-narrow-right ms-2 fw-semibold d-inline-block"></i></a>
-                                            </div>
-                                            <div class="text-end">
-                                                <p class="mb-0 text-danger fw-semibold">-12%</p>
-                                                <span class="text-muted op-7 fs-11">this month</span>
+                                                <p class="text-darkRed text-size-15 mb-0"><b>Total Feed Stock</b></p>
+                                                <h4 class="fw-semibold mt-1">${totalFeedStock}</h4>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-xxl-6 col-lg-6 col-md-6">
-                        <div class="card custom-card overflow-hidden">
-                            <div class="card-body">
-                                <div class="d-flex align-items-top justify-content-between">
-                                    <div>
-                                        <span class="avatar avatar-md avatar-rounded bg-warning">
-<i class="ti ti-briefcase fs-16"></i>
-</span>
-                                    </div>
-                                    <div class="flex-fill ms-3">
-                                        <div class="d-flex align-items-center justify-content-between flex-wrap">
-                                            <div>
-                                                <p class="text-muted mb-0">Total Deals</p>
-                                                <h4 class="fw-semibold mt-1">2,543</h4>
-                                            </div>
-                                            <div id="crm-total-deals"></div>
-                                        </div>
-                                        <div class="d-flex align-items-center justify-content-between mt-1">
-                                            <div>
-                                                <a class="text-warning" href="javascript:void(0);">View All<i class="ti ti-arrow-narrow-right ms-2 fw-semibold d-inline-block"></i></a>
-                                            </div>
-                                            <div class="text-end">
-                                                <p class="mb-0 text-success fw-semibold">+19%</p>
-                                                <span class="text-muted op-7 fs-11">this month</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                      </div>
+               
                     </div>
                     
-                </div>
-            </div>
-            
+                     <div class="d-md-flex d-block align-items-center justify-content-between my-4 page-header-breadcrumb">
+			            <div>
+			               <p class="fw-semibold fs-18 mb-0">Today's Milk Collection</p>
+			            </div>         
+			         </div>
+                    
+                    <div class="row">
+                       <div class="col-xxl-4 col-xl-4">
+                           <div class="row">
+                               <div class="col-xl-12 col-xl-6">
+                                   <div class="card custom-card">
+                                       <div class="card-header justify-content-between">
+                                           <div class="card-title">
+                                              Cow
+                                           </div>
+                                       </div>
+                                       <div class="card-body p-0 overflow-hidden">
+                                           <div class="row row-cols-12 border-top border-block-start-dashed">
+                                               <div class="col p-0">
+                                                   <div class="ps-4 py-3 pe-3 text-center border-end border-inline-end-dashed">
+                                                       <span class="text-muted fs-12 mb-1 crm-lead-legend mobile d-inline-block">Morning
+                                                       </span>
+                                                       <div><span class="fs-16 fw-semibold">${buffaloMorningMilkCollection}</span>
+                                                       </div>
+                                                   </div>
+                                               </div>
+                                               <div class="col p-0">
+                                                   <div class="p-3 text-center">
+                                                       <span class="text-muted fs-12 mb-1 crm-lead-legend tablet d-inline-block">Evening
+                                                       </span>
+                                                       <div><span class="fs-16 fw-semibold">${cowEveningMilkCollection}</span></div>
+                                                   </div>
+                                               </div>
+                                           </div>
+                                       </div>
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
+                       
+                       <div class="col-xxl- 4 col-xl-4">
+                           <div class="row">
+                               <div class="col-xl-12 col-xl-6">
+                                   <div class="card custom-card">
+                                       <div class="card-header justify-content-between">
+                                           <div class="card-title">
+                                              Buffalo
+                                           </div>
+                                       </div>
+                                       <div class="card-body p-0 overflow-hidden">
+                                           <div class="row row-cols-12 border-top border-block-start-dashed">
+                                               <div class="col p-0">
+                                                   <div class="ps-4 py-3 pe-3 text-center border-end border-inline-end-dashed">
+                                                       <span class="text-muted fs-12 mb-1 crm-lead-legend mobile d-inline-block">Morning
+                                                       </span>
+                                                       <div><span class="fs-16 fw-semibold">${buffaloMorningMilkCollection}</span>
+                                                       </div>
+                                                   </div>
+                                               </div>
+                                               <div class="col p-0">
+                                                   <div class="p-3 text-center">
+                                                       <span class="text-muted fs-12 mb-1 crm-lead-legend tablet d-inline-block">Evening
+                                                       </span>
+                                                       <div><span class="fs-16 fw-semibold">${buffaloEveningMilkCollection}</span></div>
+                                                   </div>
+                                               </div>
+                                           </div>
+                                       </div>
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
+                       
+                       <div class="col-xxl-4 col-xl-4">
+                           <div class="row">
+                               <div class="col-xl-12 col-xl-6">
+                                   <div class="card custom-card">
+                                       <div class="card-header justify-content-between">
+                                           <div class="card-title">
+                                              Others
+                                           </div>
+                                       </div>
+                                       <div class="card-body p-0 overflow-hidden">
+                                           <div class="row row-cols-12 border-top border-block-start-dashed">
+                                               <div class="col p-0">
+                                                   <div class="ps-4 py-3 pe-3 text-center border-end border-inline-end-dashed">
+                                                       <span class="text-muted fs-12 mb-1 crm-lead-legend mobile d-inline-block">Morning
+                                                       </span>
+                                                       <div><span class="fs-16 fw-semibold">624</span>
+                                                       </div>
+                                                   </div>
+                                               </div>
+                                               <div class="col p-0">
+                                                   <div class="p-3 text-center">
+                                                       <span class="text-muted fs-12 mb-1 crm-lead-legend tablet d-inline-block">Evening
+                                                       </span>
+                                                       <div><span class="fs-16 fw-semibold">679</span></div>
+                                                   </div>
+                                               </div>
+                                           </div>
+                                       </div>
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+                
         </div>
     </div>
 
@@ -292,8 +198,6 @@
 
 </div>
 
-
-        </div>
         <!-- END MAIN-CONTENT -->
 
  <jsp:include page="modules/footer.jsp" />
