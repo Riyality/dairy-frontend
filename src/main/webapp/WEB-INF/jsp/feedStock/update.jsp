@@ -12,8 +12,8 @@
 				<div class="col-10 m-auto">
 					<div class="card custom-card">
 						<div class="card-header justify-content-between dairy-card-header">
-							<div class="card-title">Update Feed Stock</div>
-							<a href="http://localhost:6161/feedStock"><button class="btn btn-primary dairy-form-btn" >Back</button></a>
+							<div class="card-title">${empty messages[163] ? ' Update Feed Stock' : messages[163]}</div>
+							<a href="http://localhost:6161/feedStock"><button class="btn btn-primary dairy-form-btn" >${empty messages[79] ? ' Back' : messages[79]}</button></a>
 						</div>
 						<div class="card-body dairy-card-body">
 							<form class="row g-3 needs-validation" action="/feedStock/update"
@@ -21,8 +21,7 @@
 								
                           <input type="hidden" class="form-control dairy-form-input" id="" name="id" value="${feedstock.id }"> 
 								<div class="col-md-6">
-									<label class="form-label dairy-input-label required-field">Supplier
-										Name</label> <select class="form-select dairy-form-input" id=""
+									<label class="form-label dairy-input-label required-field">${empty messages[154] ? 'Supplier Name' : messages[154]}</label> <select class="form-select dairy-form-input" id=""
 										name="supplierId">
 										<option value="${feedstock.supplierId}" selected="selected" >${feedstock.supplierName}</option>
 										<c:forEach items="${suppliers}" var="supplier">
@@ -33,14 +32,12 @@
 								</div>
 
 								<div class="col-md-6">
-									<label class="form-label dairy-input-label required-field">Purchase
-										Date</label> <input type="date" class="form-control dairy-form-input"
+									<label class="form-label dairy-input-label required-field">${empty messages[108] ? 'Date Of Purchase' : messages[108]}</label> <input type="date" class="form-control dairy-form-input"
 										id="" name="dateOfPurchase" value="${feedstock.dateOfPurchase}" required>
 								</div>
 
 								<div class="col-md-6">
-									<label class="form-label dairy-input-label required-field">Feed
-										Company</label> <select class="form-select dairy-form-input" id=""
+									<label class="form-label dairy-input-label required-field">${empty messages[127] ? 'Feed Company Name' : messages[127]}</label> <select class="form-select dairy-form-input" id=""
 										name="feedCompanyId">
 										<option value="${feedstock.feedCompanyId}" selected="selected" disabled="disabled">${feedstock.feedCompanyName}</option>
 										<c:forEach items="${feedCompany}" var="fc">
@@ -52,8 +49,7 @@
 								</div>
 
 								<div class="col-md-6">
-									<label class="form-label dairy-input-label required-field">Feed
-										Company Type</label> <select class="form-select dairy-form-input"
+									<label class="form-label dairy-input-label required-field">${empty messages[120] ? 'Feed Tye' : messages[120]}</label> <select class="form-select dairy-form-input"
 										id="" name="feedTypeId">
 										<option value="${feedstock.feedTypeId}"  selected="selected" disabled="disabled">${feedstock.feedTypeName}</option>
 										<c:forEach items="${feedType}" var="feed">
@@ -63,35 +59,32 @@
 								</div>
 
 								<div class="col-md-6">
-									<label class="form-label dairy-input-label required-field">Feed Cost
-										(1 unit)</label> <input type="text"
+									<label class="form-label dairy-input-label required-field">${empty messages[110] ? 'Price Per Unit' : messages[110]}</label> <input type="text"
 										class="form-control dairy-form-input"
-										placeholder="Enter Feed Cost pre Unit" id="feedStockCostPerUnit"
+										placeholder="${empty messages[113] ? 'Enter  Price Per Unit' : messages[113]}" id="feedStockCostPerUnit"
 										name="feedCostPerUnit" value="${feedstock.feedCostPerUnit}" required>
 								</div>
 
 								<div class="col-md-6">
-									<label class="form-label dairy-input-label required-field">Total
-										Quantity</label> <input type="text"
+									<label class="form-label dairy-input-label required-field">${empty messages[112] ? 'Enter Total Quantity' : messages[112]}</label> <input type="text"
 										class="form-control dairy-form-input"
-										placeholder="Enter Total Quantity" id="feedStockQuantity" name="quantity" value="${feedstock.quantity}"required>
+										placeholder="${empty messages[112] ? 'Enter Total Quantity' : messages[112]}" id="feedStockQuantity" name="quantity" value="${feedstock.quantity}"required>
 								</div>
 
 								<div class="col-md-6">
-									<label class="form-label dairy-input-label required-field">Total
-										Amount</label> <input type="text"
+									<label class="form-label dairy-input-label required-field">${empty messages[97] ? 'Total  Amount' : messages[97]}</label> <input type="text"
 										class="form-control dairy-form-input"
-										placeholder="Total Amount" id="feedStockTotalAmount" name="totalAmount"  value="${feedstock.totalAmount}" required>
+										placeholder="${empty messages[103] ? 'Enter  Total  Amount' : messages[103]}" id="feedStockTotalAmount" name="totalAmount"  value="${feedstock.totalAmount}" required>
 								</div>
 
 								<div class="col-12">
-									<label class="form-label dairy-input-label">Remark</label>
+									<label class="form-label dairy-input-label">${empty messages[69] ? ' Remark' : messages[69]}</label>
 									<textarea class="col-12 dairy-textarea" rows="4" name="remark"
-										placeholder="Enter Remark Here">${feedstock.remark}</textarea>
+										placeholder="${empty messages[74] ? 'Enter Remark Here' : messages[74]}">${feedstock.remark}</textarea>
 								</div>
 
 								<div class="col-12">
-									<button class="btn btn-primary dairy-form-btn" type="submit">Submit</button>
+									<button class="btn btn-primary dairy-form-btn" type="submit">${empty messages[78] ? ' submit' : messages[78]}</button>
 									  
 								</div>
 							</form>

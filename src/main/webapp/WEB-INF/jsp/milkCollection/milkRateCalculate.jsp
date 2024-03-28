@@ -32,47 +32,47 @@
 				<div class="col-10 m-auto">
 					<div class="card custom-card">
 						<div class="card-header justify-content-between dairy-card-header">
-							<div class="card-title">Milk Rate</div>
+							<div class="card-title">${empty messages[217] ? 'Milk Rate' : messages[217]}</div>
 						</div>
 						<div class="card-body dairy-card-body">
 							<form class="row g-3 needs-validation" action="/milkRate"
 								method="post" id="milkRatesForm">
 								
 								<div class="col-md-6">
-									<label class="form-label dairy-input-label required-field">Milk Type</label><br>
-									<input type="radio"  name="milkType" value="cow" />Cow
-									<input type="radio"  name="milkType" value="buffalo"/>Buffalo
+									<label class="form-label dairy-input-label required-field">${empty messages[86] ? 'Milk Type' : messages[86]}</label><br>
+									<input type="radio"  name="milkType" value="cow" />${empty messages[87] ? 'Cow' : messages[87]}
+									<input type="radio"  name="milkType" value="buffalo"/>${empty messages[88] ? 'Buffalo' : messages[88]} 
 								</div>
 								
 								<div class="col-md-6">
-									<label class="form-label dairy-input-label required-field">Date Of Rate</label> 
+									<label class="form-label dairy-input-label required-field">${empty messages[218] ? 'Date Of Rate' : messages[218]}</label> 
 									<input type="datetime-local" class="form-control dairy-form-input" id="dateOfRate" name="dateOfRate" required>
 								</div>
 								
 								<div class="col-md-6">
-									<label class="form-label dairy-input-label required-field">Fat From</label>
+									<label class="form-label dairy-input-label required-field">${empty messages[219] ? 'Fat From' : messages[219]}</label>
 									<div class="input-group has-validation">
-									<input type="text" class="form-control dairy-form-input" placeholder="Enter Fat From." id="fatFrom"  name="fatFrom" required>
+									<input type="text" class="form-control dairy-form-input" placeholder="${empty messages[224] ? 'Enter Fat From' : messages[224]} " id="fatFrom"  name="fatFrom" required>
 									</div>
 								</div>
 								
 								<div class="col-md-6">
-									<label class="form-label dairy-input-label required-field">Fat To</label>
+									<label class="form-label dairy-input-label required-field">${empty messages[220] ? 'Fat To' : messages[220]}</label>
 									<div class="input-group has-validation">
-									<input type="text" class="form-control dairy-form-input" placeholder="Enter Fat To." name="fatTo" id="fatTo" required>
+									<input type="text" class="form-control dairy-form-input" placeholder="${empty messages[225] ? 'Enter Fat To' : messages[225]}." name="fatTo" id="fatTo" required>
 									</div>
 								</div>
 								<div class="col-md-6">
-									<label class="form-label dairy-input-label required-field">SNF From</label>
-									<input type="text" class="form-control dairy-form-input" placeholder="Enter SNF From." id="snfFrom"  name="fatTo" required> 
+									<label class="form-label dairy-input-label required-field">${empty messages[221] ? 'SNF From' : messages[221]}</label>
+									<input type="text" class="form-control dairy-form-input" placeholder="${empty messages[226] ? 'Enter SNF From' : messages[226]}." id="snfFrom"  name="fatTo" required> 
 								</div>
 								<div class="col-md-6">
-									<label class="form-label dairy-input-label required-field">SNF To</label>
-									<input type="text" class="form-control dairy-form-input" placeholder="Enter SNF To." id="snfTo"  name="fatTo" required>  
+									<label class="form-label dairy-input-label required-field">${empty messages[222] ? 'SNF To' : messages[222]}</label>
+									<input type="text" class="form-control dairy-form-input" placeholder="${empty messages[227] ? 'Enter SNF To' : messages[227]}." id="snfTo"  name="fatTo" required>  
 								</div>
                                 <div class="col-md-6">
-									<label class="form-label dairy-input-label">Remark</label>
-									<input type="text" class="form-control dairy-form-input" placeholder="remark" id="remark"  name="remark" >  
+									<label class="form-label dairy-input-label">${empty messages[69] ? ' Remark' : messages[69]}</label>
+									<input type="text" class="form-control dairy-form-input" placeholder="${empty messages[74] ? 'Enter Remark Here' : messages[74]}" id="remark"  name="remark" >  
 								</div>
                                 <div class="col-md-6 mt-5">
                                     <form id="tableForm" enctype="multipart/form-data">
@@ -82,7 +82,7 @@
                                     
 								</div>
 								<div class="col-12">
-									<button class="btn btn-primary dairy-form-btn"  type="button" onclick="generateTableFronSNFAndRate()">Submit </button>
+									<button class="btn btn-primary dairy-form-btn"  type="button" onclick="generateTableFronSNFAndRate()">${empty messages[78] ? ' submit' : messages[78]} </button>
 									
 								</div>
 							</form>

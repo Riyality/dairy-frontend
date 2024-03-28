@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%><%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%><%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%><%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <jsp:include page="../modules/header.jsp" />
 
 <body>
@@ -17,10 +17,10 @@
 		            <table id="file-export" class="table table-bordered dataTable no-footer dairy-table-border">
 		              <thead>
 		                <tr class="dairy-table-head">
-		                  <th>Farmer Name</th>
-		                  <th>Animal Type</th>
-		                  <th>Animal Count</th>
-		                   <th>Remark</th>
+		                  <th>${empty messages[116] ? '  Farmer Name' : messages[116]}</th>
+		                  <th>${empty messages[86] ? 'Milk Type' : messages[86]}</th>
+		                  <th>${empty messages[235] ? 'Conut' : messages[235]} </th>
+		                   <th>${empty messages[69] ? ' Remark' : messages[69]}</th>
 		                  <th>Action</th>
 		                  </tr>
 		              </thead>
@@ -44,7 +44,7 @@
 		              </tbody>
 		            </table>
 		            <div class="col-6">
-                      <a href="http://localhost:6161/farmerAnimalMapping/add-animal-page"><button class="btn btn-primary dairy-form-btn" >Back</button></a>
+                      <a href="http://localhost:6161/farmerAnimalMapping/add-animal-page"><button class="btn btn-primary dairy-form-btn" >${empty messages[79] ? ' Back' : messages[79]}</button></a>
                    </div>
 		        </div>
 		      </div>

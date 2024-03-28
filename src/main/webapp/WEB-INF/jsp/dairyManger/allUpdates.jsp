@@ -20,13 +20,13 @@
 									class="table table-bordered dataTable no-footer dairy-table-border">
 									<thead>
 										<tr class="dairy-table-head">
-											<th>Name</th>
-											<th>Contact</th>
-											<th>Date of Transaction</th>
-											<th>Transaction Type</th>
-											<th>Amount</th>
-											<th>Balance</th>
-											<th>Remark</th>
+											<th>${empty messages[239] ? 'Name' : messages[239]}</th>
+											<th>${empty messages[66] ? 'Contact' : messages[66]}</th>
+											<th>${empty messages[240] ? 'Date Of Transaction' : messages[240]}</th>
+											<th>${empty messages[248] ? 'Type Of Transaction' : messages[248]}</th>
+											<th>${empty messages[244] ? 'Amount' : messages[244]}</th>
+											<th>${empty messages[249] ? 'Balance' : messages[249]}</th>
+											<th>${empty messages[69] ? ' Remark' : messages[69]}</th>
 
 										</tr>
 									</thead>

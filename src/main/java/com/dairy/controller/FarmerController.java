@@ -64,6 +64,8 @@ public class FarmerController {
 		
 		if(user != null) {
 			int branchId = (int) session.getAttribute("branchId");
+			String lang=(String) session.getAttribute("lang");
+			System.out.println("Selected Language"+lang);
 			List<FarmerResponseDto> list = farmerService.findAllActiveFarmers(branchId);
 			model.addAttribute("list", list);
 			return "farmers/all";

@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <jsp:include page="../modules/header.jsp" />
@@ -14,15 +13,15 @@
         <div class="col-11 mx-auto mt-4">
           <div class="card custom-card">
             <div class="card-header dairy-card-header">
-              <div class="card-title">Routes</div>
+              <div class="card-title">${empty messages[82] ? ' Routes' : messages[82]} </div>
             </div>
             <div class="card-body">
               <div class="table-responsive">
                 <table id="file-export" class="table table-bordered dataTable no-footer dairy-table-border">
                   <thead>
                     <tr class="dairy-table-head">
-                      <th>Route Name</th>
-                      <th>Remark</th>
+                      <th>${empty messages[81] ? 'Name' : messages[81]} </th>
+                      <th>${empty messages[69] ? ' Remark' : messages[69]}</th>
                       <th>Action</th>
                     </tr>
                   </thead>
@@ -41,7 +40,7 @@
                   </tbody>
                 </table>
                 <div class="col-6">
-                       <a href="http://localhost:6161/routes/add-route-page"><button class="btn btn-primary dairy-form-btn" >Back</button></a>
+                       <a href="http://localhost:6161/routes/add-route-page"><button class="btn btn-primary dairy-form-btn" >${empty messages[79] ? ' Back' : messages[79]}</button></a>
                  </div>
               </div>
             </div>

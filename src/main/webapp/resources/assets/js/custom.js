@@ -1,5 +1,26 @@
  $(document).ready(function() {
 
+
+/*Language Change Script Start*/
+						var lang;
+                                $("#changeLanguage").on("change", function () {
+                                     lang = $("#changeLanguage").val();
+                                    console.log(lang)
+                                    $.ajax({
+                                        url: 'http://localhost:6161/changeLanguage?lang=' + lang,
+                                        type: 'GET',
+                                        dataType: 'json',
+                                        success: function(result) {
+                                            console.log(result)
+                                            window.location.reload();
+                                        },
+                                        error: function(error) {
+                                            window.location.reload();
+                                            console.error('Error fetching data:', error);
+                                        }
+                                    });
+                                })
+     /*Language Change Script end*/
  	/*Feed Distribution Script Start*/
 
  	function calculateTotalFeedAmount() {
