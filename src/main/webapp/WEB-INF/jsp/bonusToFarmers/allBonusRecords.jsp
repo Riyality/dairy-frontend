@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%><%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%><%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%><%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <jsp:include page="../modules/header.jsp" />
 
   <div class="main-content app-content">
@@ -8,9 +8,9 @@
             <div class="col-11 mx-auto mt-4">
                 <div class="card custom-card">
                     <div class="card-header dairy-card-header">
-                        <div class="card-title">Bonus Records</div>
+                        <div class="card-title">${empty messages[232] ? ' Bonus Records' : messages[232]}</div>
                         <div class="ms-auto">
-                        <a href="http://localhost:6161/bonusToFarmer/page"><button class="btn btn-primary dairy-form-btn bonusBtn">Back</button></a>
+                        <a href="http://localhost:6161/bonusToFarmer/page"><button class="btn btn-primary dairy-form-btn bonusBtn">${empty messages[79] ? ' Back' : messages[79]}</button></a>
                         </div>
                     </div>
                     <div class="card-body">
@@ -19,13 +19,13 @@
                                 <thead>
                                     <tr class="dairy-table-head">
                                         <th><input type="checkbox" id="selectAll"></th>
-                                        <th>Bonus Date</th>
-                                        <th>Farmer Name</th>
-                                        <th>TotalMilkQuntity</th>
-                                        <th>Bonus Per Liter</th>
-                                        <th>Total Bonus Amount</th>
-                                         <th>FormDate</th>
-                                        <th>ToDate</th>
+                                        <th>${empty messages[231] ? 'Bonus Date' : messages[231]}</th>
+                                        <th>${empty messages[116] ? '  Farmer Name' : messages[116]}</th>
+                                        <th>${empty messages[92] ? 'Total Milk Quantity' : messages[92]}</th>
+                                        <th>${empty messages[228] ? 'Bonus Amount Per Litre' : messages[228]}</th>
+                                        <th>${empty messages[229] ? 'Total Bonus Amount' : messages[229]}</th>
+                                         <th>${empty messages[187] ? 'Date From' : messages[187]}</th>
+                                        <th>${empty messages[189] ? 'Date To' : messages[189]}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -46,7 +46,7 @@
 
                            <div class="col-md-12 text-right">
                                 <form class="mt-2 col-4" id="pdfFormBonus" action="generatePdfBonus" method="get" target="pdfIframeBonus">
-                                    <button type="submit">Generate PDF</button>
+                                    <button type="submit">${empty messages[233] ? 'Generate Pdf' : messages[233]}</button>
                                 </form>
                             </div> 
                             <!-- Display PDF in iframe -->

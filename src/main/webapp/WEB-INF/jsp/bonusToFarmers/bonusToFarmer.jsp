@@ -21,30 +21,31 @@
                 <div class="col-10 m-auto">
                     <div class="card custom-card">
                         <div class="card-header justify-content-between dairy-card-header">
-                            <div class="card-title">Bonus To Farmer</div>
+                            <div class="card-title">${empty messages[223] ? 'Bonus To Farmer' : messages[223]}</div>
                         </div>
                         <div class="card-body dairy-card-body">
                             <form id="filterForm" class="row g-3 needs-validation" >
                                 <div class="col-md-6">
-                                    <label class="form-label dairy-input-label required-field">Select From Date</label>
+                                    <label class="form-label dairy-input-label required-field">${empty messages[187] ? 'Select Date From' : messages[187]}</label>
                                     <input type="date" class="form-control dairy-form-input" id="fromDate" name="fromDate"  required>
                                 </div>
 
                                 <div class="col-md-6">
-                                    <label class="form-label dairy-input-label required-field">Select To of Date</label>
+                                    <label class="form-label dairy-input-label required-field">${empty messages[189] ? 'Select To Date' : messages[189]}</label>
                                     <input type="date" class="form-control dairy-form-input" id="toDate" name="toDate" required >
                                 </div>
                                  <div class="col-md-6">
-                                    <label class="form-label dairy-input-label required-field">Bonus Amount Per Liter</label>
-                                    <input type="text" class="form-control dairy-form-input" name="bonusAmountPerLiter" id="bonusAmountPerLiter" placeholder="Enter Bonus amont per liter" name="toDate" required>
+                                    <label class="form-label dairy-input-label required-field">${empty messages[228] ? 'Bonus Amount Per Litre' : messages[228]}</label>
+                                    <input type="text" class="form-control dairy-form-input" name="bonusAmountPerLiter" id="bonusAmountPerLiter" placeholder="${empty messages[230] ? 'Enter Bonus Amount Per liter' : messages[230]}" name="toDate" required>
                                 </div>
                                  <div class="col-md-6">
-                                    <label class="form-label dairy-input-label required-field">Milk Type</label><br>
-                                    <input  class="form-check-input" type="radio"   name="milkType" value="cow"  checked/>Cow
-                                    <input  class="form-check-input" type="radio"  name="milkType" value="baffalo" />Buffalo
+
+                                    <label class="form-label dairy-input-label required-field">${empty messages[86] ? 'Milk Type' : messages[86]}</label><br>
+                                    <input  class="form-check-input" type="radio"   name="milkType" value="cow" />${empty messages[87] ? 'Cow' : messages[87]}
+                                    <input  class="form-check-input" type="radio"  name="milkType" value="baffalo" />${empty messages[88] ? 'Buffalo' : messages[88]} 
                                 </div>
                                 <div class="col-12">
-                                   <button class="btn btn-primary dairy-form-btn" type="button" id="getFarmerRecordsBonus"  data-flag="bonusFlag">Get Records </button>
+                                   <button class="btn btn-primary dairy-form-btn" type="button" id="getFarmerRecordsBonus"  data-flag="bonusFlag">${empty messages[177] ? 'Get List' : messages[177]}  </button>
 
                                 </div>
                             </form>
@@ -52,10 +53,13 @@
                             <table id="file-export" class="table table-bordered dataTable no-footer dairy-table-border mt-2">
                                 <thead>
                                     <tr class="dairy-table-head">
+                          
+
                                       <th><input type="checkbox" id="selectAllCheckbox"></th>
-                                        <th>Farmer Name</th>
-                                         <th>Total Milk</th>
-                                        <th> TotalBonus Amount</th>
+                                       <th>${empty messages[116] ? '  Farmer Name' : messages[116]}</th>
+                                         <th>${empty messages[92] ? 'Total Milk Quantity' : messages[92]}</th>
+                                        <th>${empty messages[229] ? 'Total Bonus Amont' : messages[229]}</th>
+
                                     </tr>
                                 </thead>
                                 <tbody >
@@ -64,7 +68,7 @@
                                        <div class="row">
                                          <div class="col-4">
                                         <div class="mt-2">
-                                       <button type="submit" id="submitSelectedRecords" class="btn btn-primary">Submit</button>
+                                       <button type="submit" id="submitSelectedRecords" class="btn btn-primary">${empty messages[78] ? ' submit' : messages[78]}</button>
                                      </div>
                                    </div>
                             </div>

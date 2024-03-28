@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%><%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <jsp:include page="../modules/header.jsp" />
@@ -11,7 +10,7 @@
 				<div class="col-11 mx-auto mt-4">
 					<div class="card custom-card">
 						<div class="card-header dairy-card-header">
-							<div class="card-title">All dairyManger</div>
+							<div class="card-title">${empty messages[247] ? 'All Dairy Manager' : messages[247]}</div>
 						</div>
 						<div class="card-body">
 						 <jsp:include page="../successMessage/message.jsp" />
@@ -21,12 +20,12 @@
 									class="table table-bordered dataTable no-footer dairy-table-border">
 									<thead>
 										<tr class="dairy-table-head">
-											<th>Name</th>
-											<th>Date of Transaction</th>
-											<th>Transaction Type</th>
-											<th>Contact</th>
-											<th>Amount</th>
-											<th>Remark</th>
+											<th>${empty messages[239] ? 'Name' : messages[239]}</th>
+											<th>${empty messages[240] ? 'Date' : messages[240]}</th>
+											<th>${empty messages[248] ? 'Type Of Transaction' : messages[248]}</th>
+											<th>${empty messages[66] ? 'Contact' : messages[66]}</th>
+											<th>${empty messages[244] ? 'Amount' : messages[244]} </th>
+											<th>${empty messages[69] ? ' Remark' : messages[69]}</th>
 											<th>Action</th>
 										</tr>
 									</thead>

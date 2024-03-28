@@ -2,7 +2,7 @@
  <jsp:include page="modules/header.jsp" />
  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-
+ 
         <!-- MAIN-CONTENT -->
 
         <div class="main-content app-content">
@@ -14,8 +14,9 @@
 
         <div class="d-md-flex d-block align-items-center justify-content-between my-4 page-header-breadcrumb">
             <div>
-                <p class="fw-semibold fs-18 mb-0">Welcome back, Json Taylor !</p>
-                <span class="fs-semibold text-muted">Track your sales activity, leads and deals here.</span>
+              
+                
+                
             </div>         
          </div>
 

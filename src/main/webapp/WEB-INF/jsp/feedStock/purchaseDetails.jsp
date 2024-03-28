@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%><%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%><%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%><%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <jsp:include page="../modules/header.jsp" />
 
 <body>
@@ -9,7 +9,7 @@
 		  <div class="col-11 mx-auto mt-4">
 		    <div class="card custom-card">
 		      <div class="card-header dairy-card-header">
-		        <div class="card-title">Feed Stock Purchase Details</div>
+		        <div class="card-title">${empty messages[161] ? 'Feed Stock Purchase Details' : messages[161]}</div>
 		      </div>
 		      <div class="card-body">
 		      <jsp:include page="../successMessage/message.jsp" />
@@ -19,14 +19,14 @@
 		           	 <table id="file-export" class="table table-bordered dataTable no-footer dairy-table-border">
 		              <thead>
 		                <tr class="dairy-table-head">
-		                  <th>Suppliers Name</th>
-		                  <th>Purchase Date</th>
-		                  <th>Feed Company</th>
-		                  <th>Feed Type</th>
-		                  <th>Feed Cost</th>
-		                  <th>Total Quantity</th>
-		                  <th>Total Amount</th>
-		                  <th>Remark</th>
+		                  <th>${empty messages[154] ? 'Supplier Name' : messages[154]}</th>
+		                  <th>${empty messages[108] ? 'Purchase Date' : messages[108]}</th>
+		                  <th>${empty messages[15] ? ' Feed Company' : messages[15]}</th>
+		                  <th>${empty messages[131] ? 'Feed Tye ' : messages[131]}</th>
+		                  <th>${empty messages[110] ? 'Price Per Unit' : messages[110]}</th>
+		                  <th>${empty messages[109] ? 'Total Quantity' : messages[109]} </th>
+		                  <th>${empty messages[97] ? 'Total  Amount' : messages[97]}</th>
+		                  <th>${empty messages[69] ? ' Remark' : messages[69]}</th>
 		                  <th>Action</th>
 		                  </tr>
 		              </thead>
@@ -53,7 +53,7 @@
 		              </tbody>
 		            </table>
 		            <div class="col-6">
-                          <a href="http://localhost:6161/feedStock/add-feedStock-page"><button class="btn btn-primary dairy-form-btn" >Back</button></a>
+                          <a href="http://localhost:6161/feedStock/add-feedStock-page"><button class="btn btn-primary dairy-form-btn">${empty messages[79] ? ' Back' : messages[79]}</button></a>
                       </div>
 		        </div>
 		      </div>

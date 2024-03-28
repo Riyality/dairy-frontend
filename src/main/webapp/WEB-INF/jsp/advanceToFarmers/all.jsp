@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%><%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%><%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%><%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <jsp:include page="../modules/header.jsp" />
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 	
@@ -10,7 +10,7 @@
 		  <div class="col-11 mx-auto mt-4">
 		    <div class="card custom-card">
 		      <div class="card-header dairy-card-header">
-		        <div class="card-title">All AdvanceDetails</div>
+		        <div class="card-title">${empty messages[210] ? 'All Advance Details' : messages[210]}</div>
 		      </div>
 		      <div class="card-body">
 		      
@@ -23,11 +23,11 @@
 		            <table id="file-export" class="table table-bordered dataTable no-footer dairy-table-border">
 		              <thead>
 		                <tr class="dairy-table-head">
-		                  <th>Farmer Name</th>
-		                  <th>Advance Amount</th>
-		                  <th>Remaining Amount</th>
-		                  <th>Date</th>
-		                  <th>Remark</th>
+		                  <th>${empty messages[116] ? '  Farmer Name' : messages[116]}</th>
+		                  <th>${empty messages[209] ? 'Advance Amount' : messages[209]}</th>
+		                  <th>${empty messages[211] ? 'Remaining Amount' : messages[211]}</th>
+		                  <th>${empty messages[208] ? ' Date Of Advance' : messages[208]}</th>
+		                  <th>${empty messages[69] ? ' Remark' : messages[69]}</th>
 		                  <th>Action</th>
 		                  </tr>
 		              </thead>
@@ -52,7 +52,7 @@
 		            </table>
 
                   <div class="col-6">
-                      <a href="http://localhost:6161/advanceToFarmer/advanceToFarmer-add-page"><button class="btn btn-primary dairy-form-btn" >Back</button></a>
+                      <a href="http://localhost:6161/advanceToFarmer/advanceToFarmer-add-page"><button class="btn btn-primary dairy-form-btn" >${empty messages[79] ? ' Back' : messages[79]}</button></a>
                    </div>
 		            
 		        </div>

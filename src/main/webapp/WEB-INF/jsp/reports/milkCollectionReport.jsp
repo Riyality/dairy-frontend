@@ -11,10 +11,10 @@
                         <div class="card-header justify-content-between dairy-card-header">
                             <ul class="nav nav-tabs" id="myTabs">
                                 <li class="nav-item">
-                                    <a class="nav-link active tabColor-tab" id="datewise-tab" data-toggle="tab" href="#datewise">Datewise</a>
+                                    <a class="nav-link active tabColor-tab" id="datewise-tab" data-toggle="tab" href="#datewise">${empty messages[33] ? 'Datewise Collection' : messages[33]}</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link tabColor-tab" id="farmerwise-tab" data-toggle="tab" href="#farmerwise">Farmerwise</a>
+                                    <a class="nav-link tabColor-tab" id="farmerwise-tab" data-toggle="tab" href="#farmerwise">${empty messages[250] ? 'Farmerwise Collection' : messages[250]}</a>
                                 </li>
                                 
                             </ul>
@@ -25,48 +25,47 @@
                                  	
                                     <form id="filterForm" class="row g-3 needs-validation" >
                                         <div class="col-md-2">
-                                            <label class="form-label dairy-input-label required-field">Select From Date</label>
+                                            <label class="form-label dairy-input-label required-field">${empty messages[187] ? 'Select Date From' : messages[187]}</label>
                                             <input type="date" class="form-control dairy-form-input" id="fromDate" name="fromDate" required >
                                         </div>
                                        <div class="col-md-2">
-                                         <label class="form-label dairy-input-label required-field">Select To Date</label>
+                                         <label class="form-label dairy-input-label required-field">${empty messages[189] ? 'Select To Date' : messages[189]}</label>
                                             <input type="date" class="form-control dairy-form-input" id="toDate" name="toDate" required>
                                         </div>
                                         <div class="col-md-7">
-                                            <label class="form-label dairy-input-label required-field">Milk Type</label><br>
-                                            <input type="radio" name="milkType" value="cow" checked/>Cow
-                                            <input type="radio" name="milkType" value="buffalo" />Buffalo
+                                            <label class="form-label dairy-input-label required-field">${empty messages[86] ? 'Milk Type' : messages[86]}</label><br>
+                                            <input type="radio" name="milkType" value="cow" checked/>${empty messages[87] ? 'Cow' : messages[87]}
+                                            <input type="radio" name="milkType" value="buffalo" />${empty messages[88] ? 'Buffalo' : messages[88]} 
                                         </div>
         
                                             <div class="col-md-2">
-                                            <label class="form-label dairy-input-label required-field">Select
-                                                Shift </label> 
+                                            <label class="form-label dairy-input-label required-field">${empty messages[174] ? 'Select Shift' : messages[174]}  </label> 
                                          <select  class="form-select dairy-form-input"
-                                                id="shiftDropdown" name="shift"  required>
-                                                <option value="" selected="selected" disabled="disabled">Select
-                                                    Shift</option>
-                                                    <option value="morning">Morning</option>
-                                                    <option value="Evening">Evening</option>
-                                            </select>
+
+                                                id="shiftDropdown" name="shift" >
+                                                <option value="" selected="selected" disabled="disabled">${empty messages[174] ? 'Select Shift' : messages[174]}</option>
+                                                    <option value="morning">${empty messages[90] ? 'Morning' : messages[90]} </option>
+                                                    <option value="Evening"> ${empty messages[91] ? 'Evening' : messages[91]}</option>
+                                </select>
                                             </div>
         
                                         <div class="col-12">
-                                            <button class="btn btn-primary dairy-form-btn" type="button" id="getMilkCollectionRecordsDatewise" >View Report </button>
+                                            <button class="btn btn-primary dairy-form-btn" type="button" id="getMilkCollectionRecordsDatewise" >${empty messages[251] ? 'View Report' : messages[251]} </button>
                                         </div>
                                     </form>
         
                                     <table id="file-export" class="table table-bordered dataTable no-footer dairy-table-border">
                                         <thead>
                                             <tr class="dairy-table-head">
-                                               <th>Farmer Name</th> 
-                                                <th>Date Of Collection</th>   
-                                                <th>Shift</th>  
-                                                <th>Type</th>                                 
+                                               <th>${empty messages[116] ? '  Farmer Name' : messages[116]}</th> 
+                                                <th>${empty messages[168] ? 'Date OF Milk Collection' : messages[168]}</th>   
+                                                <th>${empty messages[89] ? 'Shift' : messages[89]}</th>  
+                                                <th>${empty messages[86] ? 'Milk Type' : messages[86]}</th>                                 
                                                 <th>Fat</th>
                                                 <th>SNF</th>
-                                                <th>Rate</th>
-                                                <th>Milk Quantity</th>
-                                                <th>Amount</th>
+                                                <th>${empty messages[96] ? 'Milk Rate' : messages[96]}</th>
+                                                <th>${empty messages[92] ? 'Milk Quantity' : messages[92]}</th>
+                                                <th>${empty messages[97] ? 'Total  Amount' : messages[97]}</th>
                                             </tr>
                                         </thead>
                                         <tbody >
@@ -78,39 +77,39 @@
                                 
                                     <form id="filterForm" class="row g-3 needs-validation" >
                                         <div class="col-md-2">
-                                            <label class="form-label dairy-input-label required-field">Select From Date</label>
+                                            <label class="form-label dairy-input-label required-field">${empty messages[187] ? 'Select Date From' : messages[187]}</label>
                                             <input type="date" class="form-control dairy-form-input" id="fromDateFarmer" name="fromDate" required >
                                         </div>
                                             <div class="col-md-2">
         
-                                            <label class="form-label dairy-input-label required-field">Select To Date</label>
+                                            <label class="form-label dairy-input-label required-field">${empty messages[189] ? 'Select To Date' : messages[189]}</label>
                                             <input type="date" class="form-control dairy-form-input" id="toDateFarmer" name="toDate" required>
                                         </div>
                                         <div class="col-md-7">
-                                            <label class="form-label dairy-input-label required-field">Milk Type</label><br>
-                                            <input type="radio" name="milkTypefarmer" value="both" checked/>Both
-                                            <input type="radio" name="milkTypefarmer" value="cow" />Cow
-                                            <input type="radio" name="milkTypefarmer" value="buffalo" />Buffalo
+                                            <label class="form-label dairy-input-label required-field">${empty messages[86] ? 'Milk Type' : messages[86]}</label><br>
+                                            <input type="radio" name="milkTypefarmer" value="both" checked/>${empty messages[176] ? 'Both' : messages[176]}
+                                            <input type="radio" name="milkTypefarmer" value="cow" />${empty messages[87] ? 'Cow' : messages[87]}
+                                            <input type="radio" name="milkTypefarmer" value="buffalo" />${empty messages[88] ? 'Buffalo' : messages[88]} 
                                             
                                         </div>
                                         <div class="col-md-2">
-                                            <label class="form-label dairy-input-label required-field">Select
-                                                Shift </label> 
+                                            <label class="form-label dairy-input-label required-field">${empty messages[174] ? 'Select Shift' : messages[174]} </label> 
                                          <select  class="form-select dairy-form-input"
-                                                id="shiftDropdownFarmer" name="shift" required>
-                                                <option value="" selected="selected" disabled="disabled">Select
-                                                    Shift</option>
-                                                    <option value="morning">Morning</option>
-                                                    <option value="Evening">Evening</option>
-                                                    <option value="morningEvening">Morning & Evening</option>
+
+                                                id="shiftDropdownFarmer" name="shift">
+                                                <option value="" selected="selected" disabled="disabled">${empty messages[174] ? 'Select Shift' : messages[174]} </option>
+                                                    <option value="morning"> ${empty messages[90] ? 'Morning' : messages[90]} </option>
+                                                    <option value="Evening">${empty messages[91] ? 'Evening' : messages[91]}  </option>
+                                                    <option value="morningEvening">${empty messages[175] ? 'Morning And Evening' : messages[175]}</option>
+
                                             </select>
                                             </div>
                                             <div class="col-md-2">
-                                              <label class="form-label dairy-input-label required-field"> Select</label><br>
-                                              <input type="radio" name="farmer" value="all" checked />All Farmers
-                                              <input type="radio" name="farmer" value="farmerwise" />Farmerwise									
+                                              <label class="form-label dairy-input-label required-field"> ${empty messages[252] ? 'Select' : messages[252]}</label><br>
+                                              <input type="radio" name="farmer" value="all" checked />${empty messages[253] ? 'All   Farmers' : messages[253]}
+                                              <input type="radio" name="farmer" value="farmerwise" />${empty messages[254] ? 'Farmerswise' : messages[254]}									
                                               <select class="form-select dairy-form-input" id="farmerSelect" style="display: none;">
-                                                <option value="" selected="selected" disabled="disabled">Select Farmer</option>
+                                                <option value="" selected="selected" disabled="disabled">${empty messages[207] ? ' Select Farmer' : messages[207]}</option>
                                                 <c:forEach items="${list}" var="farmer">
                                                     <option value="${farmer.id}">${farmer.name}</option>
                                                 </c:forEach>
@@ -118,21 +117,21 @@
                                             </div>
         
                                         <div class="col-12">
-                                            <button class="btn btn-primary dairy-form-btn" type="button" id="getMilkCollectionRecordsFarmerwise" >Get Records </button>
+                                            <button class="btn btn-primary dairy-form-btn" type="button" id="getMilkCollectionRecordsFarmerwise" >${empty messages[177] ? 'Get List' : messages[177]} </button>
                                         </div>
                                     </form>
                                  <table id="file-export" class="table table-bordered dataTable no-footer dairy-table-border">
                                         <thead>
                                             <tr class="dairy-table-head">
-                                                <th>Farmer Name</th> 
-                                                <th>Date Of Collection</th>   
-                                                <th>Shift</th>
-                                                 <th>Type</th>                                 
+                                                <th>${empty messages[116] ? 'Farmer Name' : messages[116]}</th> 
+                                                <th>${empty messages[168] ? 'Date OF Milk Collection' : messages[168]}</th>   
+                                                <th>${empty messages[89] ? 'Shift' : messages[89]}</th>
+                                                 <th>${empty messages[86] ? 'Milk Type' : messages[86]}</th>                                 
                                                   <th>Fat</th>
                                                 <th>SNF</th>
-                                                <th>Rate</th>
-                                                <th> Milk Quantity</th>
-                                                   <th> Amount</th>
+                                                <th>${empty messages[96] ? 'Milk Rate' : messages[96]}</th>
+                                                <th> ${empty messages[92] ? 'Milk Quantity' : messages[92]}</th>
+                                                   <th> ${empty messages[97] ? 'Total  Amount' : messages[97]}</th>
                                              </tr>
                                         </thead>
                                         <tbody >

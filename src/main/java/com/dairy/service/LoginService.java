@@ -5,4 +5,7 @@ import com.dairy.dto.login.LoginResponseDto;
 
 public interface LoginService {
 	public LoginResponseDto login( LoginRequestDto dto );
+
+	
+	
 }

@@ -12,8 +12,8 @@
 				<div class="col-10 m-auto">
 					<div class="card custom-card">
 						<div class="card-header justify-content-between dairy-card-header">
-							<div class="card-title">Update Animal Mapping</div>
-							<a href="http://localhost:6161/farmerAnimalMapping"><button class="btn btn-primary dairy-form-btn" >Back</button></a>
+							<div class="card-title">${empty messages[237] ? 'Update Animal Mapping' : messages[237]}</div>
+							<a href="http://localhost:6161/farmerAnimalMapping"><button class="btn btn-primary dairy-form-btn" >${empty messages[79] ? ' Back' : messages[79]}</button></a>
 						</div>
 						<div class="card-body dairy-card-body">
 						 <jsp:include page="../successMessage/message.jsp" />
@@ -22,7 +22,7 @@
 								
 								<div class="col-md-6">
 								<input type="hidden" class="form-control dairy-form-input"  id="" name="id" value="${animal.id}">
-									<label class="form-label dairy-input-label required-field">Farmer Name</label> 
+									<label class="form-label dairy-input-label required-field">${empty messages[116] ? '  Farmer Name' : messages[116]}</label> 
 					
 									<select class="form-select dairy-form-input" id=""
 										name="farmerId"  value="${animal.farmerId}">
@@ -35,13 +35,13 @@
 								
 								<div class="col-md-6 offset-md-1 mt-4" > 
 								   <div class="row"> 
-								     <label class="form-label mb-1 required-field">Animal Type</label> 
+								     <label class="form-label mb-1 required-field">${empty messages[86] ? 'Milk Type' : messages[86]}</label> 
 								          <div class="col-md-4"> 
 								             <div class="form-check"> 
 								                   
 								                   <label class="form-check-label">
 								                    <input class="form-check-input" type="radio" name="type" id="type"  value="Cow" value="Cow" ${animal.type == 'Cow' ? 'checked' : ''}
-                                                     /> Cow
+                                                     /> ${empty messages[87] ? 'Cow' : messages[87]} 
 								                   </label> 
 								                   
 								              </div> 
@@ -51,7 +51,7 @@
 								                   
 								                   <label class="form-check-label">
 								                    <input class="form-check-input" type="radio" name="type"  value="Buffalo" ${animal.type == 'Buffalo' ? 'checked' : ''}
-                                                     /> Buffalo  
+                                                     />  ${empty messages[88] ? 'Buffalo' : messages[88]}    
 								                   </label> 
 								                   
 								                 </div> 
@@ -60,17 +60,17 @@
 								    </div>
 								
 								<div class="col-md-6">
-									<label class="form-label dairy-input-label required-field">Count</label>
-									<input type="text" class="form-control dairy-form-input" placeholder="Enter Count" id="count" name="count"  value="${animal.count}" >
+									<label class="form-label dairy-input-label required-field">${empty messages[235] ? 'Conut' : messages[235]}</label>
+									<input type="text" class="form-control dairy-form-input" placeholder="${empty messages[236] ? 'Enter Count' : messages[236]}" id="count" name="count"  value="${animal.count}" >
 								</div>
 								
 								<div class="col-12">
-									<label class="form-label dairy-input-label">Remark</label>
-									<textarea class="col-12 dairy-textarea" rows="4" name="remark" placeholder="Enter Remark Here">${animal.remark}</textarea> 
+									<label class="form-label dairy-input-label">${empty messages[69] ? ' Remark' : messages[69]}</label>
+									<textarea class="col-12 dairy-textarea" rows="4" name="remark" placeholder="${empty messages[74] ? 'Enter Remark Here' : messages[74]}">${animal.remark}</textarea> 
 								</div>
 								
 								<div class="col-12">
-									<button class="btn btn-primary dairy-form-btn" type="submit">Submit </button>
+									<button class="btn btn-primary dairy-form-btn" type="submit">${empty messages[78] ? ' submit' : messages[78]}   </button>
 									 
 								</div>
 							</form>

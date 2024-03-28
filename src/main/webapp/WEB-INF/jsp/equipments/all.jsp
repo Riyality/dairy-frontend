@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%><%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%><%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%><%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <jsp:include page="../modules/header.jsp" />
 
 <body>
@@ -9,7 +9,7 @@
 		  <div class="col-11 mx-auto mt-4">
 		    <div class="card custom-card">
 		      <div class="card-header dairy-card-header">
-		        <div class="card-title">All Equipments</div>
+		        <div class="card-title">${empty messages[11] ? ' All Equipments' : messages[11]}</div>
 		      </div>
 		      <div class="card-body">
 		        <jsp:include page="../successMessage/message.jsp" />
@@ -21,12 +21,12 @@
 		            <table id="file-export" class="table table-bordered dataTable no-footer dairy-table-border">
 		              <thead>
 		                <tr class="dairy-table-head">
-		                  <th>Equipment Name</th>
-		                  <th>Date of Purchase</th>
-		                  <th>Quantity</th>
-		                  <th>Price</th>
-		                  <th>Total Amount</th>
-		                   <th>Remark</th>
+		                  <th>${empty messages[107] ? 'Equipment Name' : messages[107]}</th>
+		                  <th>${empty messages[108] ? 'Date Of Purchase' : messages[108]}</th>
+		                  <th>${empty messages[109] ? 'Quantity' : messages[109]}</th>
+		                  <th>${empty messages[110] ? 'Price Per Unit' : messages[110]}</th>
+		                  <th>${empty messages[97] ? 'Total  Amount' : messages[97]}</th>
+		                   <th>${empty messages[69] ? ' Remark' : messages[69]}</th>
 		                  <th>Action</th>
 		                  </tr>
 		              </thead>
@@ -51,7 +51,7 @@
 		              </tbody>
 		            </table>
                      <div class="col-6">
-                       <a href="http://localhost:6161/equipments/add-equipment-page"><button class="btn btn-primary dairy-form-btn" >Back</button></a>
+                       <a href="http://localhost:6161/equipments/add-equipment-page"><button class="btn btn-primary dairy-form-btn" >${empty messages[79] ? ' Back' : messages[79]}</button></a>
                     </div>
 		        </div>
 		      </div>
