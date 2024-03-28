@@ -39,6 +39,7 @@
                                     <input type="text" class="form-control dairy-form-input" name="bonusAmountPerLiter" id="bonusAmountPerLiter" placeholder="${empty messages[230] ? 'Enter Bonus Amount Per liter' : messages[230]}" name="toDate" required>
                                 </div>
                                  <div class="col-md-6">
+
                                     <label class="form-label dairy-input-label required-field">${empty messages[86] ? 'Milk Type' : messages[86]}</label><br>
                                     <input  class="form-check-input" type="radio"   name="milkType" value="cow" />${empty messages[87] ? 'Cow' : messages[87]}
                                     <input  class="form-check-input" type="radio"  name="milkType" value="baffalo" />${empty messages[88] ? 'Buffalo' : messages[88]} 
@@ -52,10 +53,13 @@
                             <table id="file-export" class="table table-bordered dataTable no-footer dairy-table-border mt-2">
                                 <thead>
                                     <tr class="dairy-table-head">
-                                      <th><input type="checkbox" id="toggleAll"></th>
-                                        <th>${empty messages[116] ? '  Farmer Name' : messages[116]}</th>
+                          
+
+                                      <th><input type="checkbox" id="selectAllCheckbox"></th>
+                                       <th>${empty messages[116] ? '  Farmer Name' : messages[116]}</th>
                                          <th>${empty messages[92] ? 'Total Milk Quantity' : messages[92]}</th>
                                         <th>${empty messages[229] ? 'Total Bonus Amont' : messages[229]}</th>
+
                                     </tr>
                                 </thead>
                                 <tbody >

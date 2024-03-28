@@ -188,4 +188,21 @@ public class FarmerServiceImpl implements FarmerService {
 		    return 0; 
 	}
 
+	@Override
+	public FarmerRequestDto saveAll(List<FarmerRequestDto> farmer) {
+		RestTemplate template = new RestTemplate();
+		String url = "http://localhost:6262/farmers/saveAllFarmer";
+		HttpHeaders headers = new HttpHeaders();
+		headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+		headers.setContentType(MediaType.APPLICATION_JSON);
+		HttpEntity<List<FarmerRequestDto>> request = new HttpEntity<>(farmer, headers);
+		try {
+			ResponseEntity<FarmerRequestDto> result = template.exchange(url, HttpMethod.POST, request, FarmerRequestDto.class);
+			return result.getBody();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
 }

@@ -41,11 +41,12 @@
                                             <div class="col-md-2">
                                             <label class="form-label dairy-input-label required-field">${empty messages[174] ? 'Select Shift' : messages[174]}  </label> 
                                          <select  class="form-select dairy-form-input"
+
                                                 id="shiftDropdown" name="shift" >
                                                 <option value="" selected="selected" disabled="disabled">${empty messages[174] ? 'Select Shift' : messages[174]}</option>
                                                     <option value="morning">${empty messages[90] ? 'Morning' : messages[90]} </option>
                                                     <option value="Evening"> ${empty messages[91] ? 'Evening' : messages[91]}</option>
-                                            </select>
+                                </select>
                                             </div>
         
                                         <div class="col-12">
@@ -94,11 +95,13 @@
                                         <div class="col-md-2">
                                             <label class="form-label dairy-input-label required-field">${empty messages[174] ? 'Select Shift' : messages[174]} </label> 
                                          <select  class="form-select dairy-form-input"
+
                                                 id="shiftDropdownFarmer" name="shift">
                                                 <option value="" selected="selected" disabled="disabled">${empty messages[174] ? 'Select Shift' : messages[174]} </option>
                                                     <option value="morning"> ${empty messages[90] ? 'Morning' : messages[90]} </option>
                                                     <option value="Evening">${empty messages[91] ? 'Evening' : messages[91]}  </option>
                                                     <option value="morningEvening">${empty messages[175] ? 'Morning And Evening' : messages[175]}</option>
+
                                             </select>
                                             </div>
                                             <div class="col-md-2">

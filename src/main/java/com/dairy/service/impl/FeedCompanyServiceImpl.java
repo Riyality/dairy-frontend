@@ -17,6 +17,7 @@ import com.dairy.dto.feedCompany.FeedCompanyRequestDto;
 import com.dairy.dto.feedCompany.FeedCompanyResponseDto;
 import com.dairy.dto.feedStock.FeedStockRequestDto;
 import com.dairy.dto.feedStock.FeedStockResponseDto;
+import com.dairy.dto.route.RouteRequestDto;
 import com.dairy.service.FeedCompanyService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -97,6 +98,23 @@ public class FeedCompanyServiceImpl implements FeedCompanyService {
 			return result.getBody();
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);
+		}
+		return null;
+	}
+
+	@Override
+	public FeedCompanyRequestDto saveAll(List<FeedCompanyRequestDto> feedCompany) {
+		RestTemplate template = new RestTemplate();
+		String url = "http://localhost:6262/feedcompany/saveAll";
+		HttpHeaders headers = new HttpHeaders();
+		headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+		headers.setContentType(MediaType.APPLICATION_JSON);
+		HttpEntity<List<FeedCompanyRequestDto>> request = new HttpEntity<>(feedCompany, headers);
+		try {
+			ResponseEntity<FeedCompanyRequestDto> result = template.exchange(url, HttpMethod.POST, request, FeedCompanyRequestDto.class);
+			return result.getBody();
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		return null;
 	}

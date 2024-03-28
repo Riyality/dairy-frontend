@@ -124,8 +124,10 @@
                                 <div class="col-md-2">
 									<label class="form-label dairy-input-label required-field">${empty messages[118] ? 'Feed Company' : messages[118]}</label> 
 									 <select  class="form-select dairy-form-input"
+
 										id="feedCompanyList" name="feedCompanyId">
 										<option value="" selected="selected" disabled="disabled">${empty messages[119] ? 'Select Feed Company' : messages[119]}</option>
+
 										<c:forEach items="${feedCompanyList}" var="fc">
 											<option value="${fc.id}">${fc.name}</option>
 										</c:forEach>

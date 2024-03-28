@@ -50,12 +50,13 @@ public class FarmerAnimalMappingController {
 			return "redirect:/farmerAnimalMapping";
 		}
 		ra.addFlashAttribute("errorMessage", MessageConstants.ADD_ANIMAL_MAPPING_ERROR_MSG);
-		return "animalMapping/add";
+		return "redirect:/farmerAnimalMapping/add-animal-page";
 	}
 
 	@GetMapping
-	public String getAllAnimal(Model model) {
-		List<FarmerAnimalMappingResponseDto> list = farmerAnimalMappingService.getAllAnimal();
+	public String getAllAnimal(Model model, HttpSession session) {
+		int branchId = (int) session.getAttribute("branchId");
+		List<FarmerAnimalMappingResponseDto> list = farmerAnimalMappingService.getAllAnimal(branchId);
 		model.addAttribute("farmerAnimal", list);
 		return "animalMapping/all";
 	}

@@ -38,7 +38,7 @@ public class DairyMangerController {
 			return "redirect:/dairyManger";
 		}
 		ra.addFlashAttribute("errorMessage", MessageConstants.ADD_DAIRTY_MANGER_ERROR_MSG);
-		return "dairyManger/add";
+		return "redirect:/dairyManger/add-dairyManger-Page";
 	}
 
 	@GetMapping

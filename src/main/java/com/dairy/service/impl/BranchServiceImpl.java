@@ -14,6 +14,7 @@ import org.springframework.web.client.RestTemplate;
 
 import com.dairy.dto.branch.BranchRequestDto;
 import com.dairy.dto.branch.BranchResponseDto;
+import com.dairy.dto.farmer.FarmerRequestDto;
 import com.dairy.service.BranchService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -92,6 +93,23 @@ public class BranchServiceImpl implements BranchService {
 			return result.getBody();
 		} catch ( Exception e ) {
 			log.error( e.getMessage(), e );
+		}
+		return null;
+	}
+
+	@Override
+	public BranchRequestDto saveAll(List<BranchRequestDto> branch) {
+		RestTemplate template = new RestTemplate();
+		String url = "http://localhost:6262/branches/saveAllbranch";
+		HttpHeaders headers = new HttpHeaders();
+		headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+		headers.setContentType(MediaType.APPLICATION_JSON);
+		HttpEntity<List<BranchRequestDto>> request = new HttpEntity<>(branch, headers);
+		try {
+			ResponseEntity<BranchRequestDto> result = template.exchange(url, HttpMethod.POST, request, BranchRequestDto.class);
+			return result.getBody();
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		return null;
 	}

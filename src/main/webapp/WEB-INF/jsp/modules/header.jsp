@@ -182,7 +182,7 @@
                         <li class="slide has-sub">
 
                       
-                            <a href="/logins" class="side-menu__item">
+                            <a href="/logins/index" class="side-menu__item">
 
                                 <i class="fa-solid fa-gauge listIcons"></i>
                                 <span class="side-menu__label">Dashboard </span>
@@ -360,6 +360,7 @@
                             <ul class="slide-menu child1">
                                 <li class="slide">
                                     <a href="/employee/add-employee-page" class="side-menu__item">
+
                                		 
                                     <i class="fa fa-plus-square-o listIcons" aria-hidden="true"></i>${empty messages[22] ? 'Add Employee' : messages[22]}</a>
                                 </li>
@@ -367,6 +368,7 @@
                                     <a href="/employee" class="side-menu__item">
                                		 <i class="fa fa-user-table listIcons" aria-hidden="true"></i>
                                 <i class="fa fa-table listIcons" aria-hidden="true"></i>${empty messages[23] ? 'All Employee' : messages[23]}</a>
+
                                 </li>
                                 
                             </ul>
@@ -660,6 +662,19 @@
                             </ul>
                         </li>
                         <!-- End Reports slide -->
+                        
+                        
+                         <!-- Start TakeBackupDB slide -->
+                         
+                         	<!-- <li><a href="/patients/add-form" class="nav_link"> <i
+								class="fa-solid fa-hospital-user"></i><span class="nav_name">Take BackupDB</span></a>
+							</li> -->
+							 <li class="slide">
+                                    <a href="/DBBackup/page" class="side-menu__item">
+                                    <i class="fa-solid fa-jar listIcons" aria-hidden="true"></i>Take BackupDB</a>
+                                </li>
+                        
+                        <!-- Start TakeBackupDB slide -->
                         
                          
                     </ul>

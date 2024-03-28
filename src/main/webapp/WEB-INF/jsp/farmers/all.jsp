@@ -14,7 +14,7 @@
                             <div class="float-end">
                                <div class="dropdown">
                                     <button class=" btn btn-sm btn-primary dairy-form-btn" type="button" id="statusDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                                      
+                                      Active
                                     </button>
                                     <ul class="dropdown-menu" aria-labelledby="statusDropdown">
                                         <li><a class="dropdown-item" href="/farmers?filter=active" onclick="getFarmers('active')">Active</a></li>
@@ -24,6 +24,8 @@
                             </div>
                         </div>
                         <div class="card-body">
+                        
+                         <jsp:include page="../successMessage/message.jsp" />
                             <div class="table-responsive">
                                 <table id="file-export" class="table table-bordered dataTable no-footer dairy-table-border">
                                     <thead>

@@ -15,8 +15,9 @@
 							<div class="card-title">${empty messages[7] ? 'Add Main Branch' : messages[7]}</div>
 						</div>
 						<div class="card-body dairy-card-body">
+						  <jsp:include page="../successMessage/message.jsp" />
 							<form class="row g-3 needs-validation" action="/mainBranchs"
-								method="post" novalidate>
+								method="post" >
 								
 								<div class="col-md-6">
 									<label class="form-label dairy-input-label required-field"> ${empty messages[85] ? 'Branch Name' : messages[85]}</label>

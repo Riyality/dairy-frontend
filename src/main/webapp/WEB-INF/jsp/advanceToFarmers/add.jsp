@@ -15,9 +15,11 @@
 						<div class="card-header justify-content-between dairy-card-header">
 							<div class="card-title">${empty messages[42] ? 'Add Advance To Farmer' : messages[42]}  </div>
 						</div>
-						<div class="card-body dairy-card-body">
+						<div class="card-body dairy-card-body">		
+						  
+						   <jsp:include page="../successMessage/message.jsp" />
 							<form class="row g-3 needs-validation" action="/advanceToFarmer"
-								method="post" novalidate>
+								method="post" >
 								
 								<div class="col-md-6">
 									<label class="form-label dairy-input-label required-field">${empty messages[116] ? '  Farmer Name' : messages[116]}</label> 

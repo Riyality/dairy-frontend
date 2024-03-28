@@ -13,6 +13,7 @@
 							<div class="card-title">${empty messages[159] ? 'Add Feed Stock' : messages[159]}</div>
 						</div>
 						<div class="card-body dairy-card-body">
+						  <jsp:include page="../successMessage/message.jsp" />
 						
 						 <table id="file-export-feed" class="table table-bordered dataTable no-footer dairy-table-border">
                                 <thead>
@@ -40,40 +41,79 @@
 								
                                      
                             <div class="col-md-6">
+
                                 <label class="form-label dairy-input-label required-field">${empty messages[154] ? 'Supplier Name' : messages[154]}</label>
                                 <select class="form-select dairy-form-input" id="supplierId" name="supplierId">
+
                                     <option value="" selected="selected" disabled="disabled">Select Supplier</option>
                                     <c:forEach items="${suppliers}" var="supplier">
                                         <option value="${supplier.id}">${supplier.name}</option>
                                     </c:forEach>
                                 </select>
+                                 
                             </div>
                             
                             <div class="col-md-6">
                                 <label class="form-label dairy-input-label required-field">${empty messages[108] ? 'Date Of Purchase' : messages[108]}</label>
                                 <input type="date" class="form-control dairy-form-input" id="dateOfPurchase" name="dateOfPurchase" required>
+                              
                             </div>
                             
+
                              <div class="col-md-6">
                                 <label class="form-label dairy-input-label required-field">${empty messages[127] ? 'Feed Company Name' : messages[127]}</label>
                                  <select class="form-select dairy-form-input" id="feedCompanyId" name="feedCompanyId">
                                    <option value="" selected="selected" disabled="disabled">${empty messages[119] ? 'Select Feed Company' : messages[119]}</option>
+
                                      <c:forEach items="${feedCompany}" var="fc">
                                           <option value="${fc.id}">${fc.name}</option>
                                      </c:forEach>
                                 </select>
+                                
                           </div>
 
                
                        <div class="col-md-6">
+
                          <label class="form-label dairy-input-label required-field">${empty messages[120] ? 'Feed Tye' : messages[120]}</label>
                          <select class="form-select dairy-form-input" id="feedTypeId" name="feedTypeId">
+
                           <option value="" selected="selected" disabled="disabled">Select Feed Type</option>
                            <c:forEach items="${feedType}" var="feed">
                               <option value="${feed.id}">${feed.type}</option>
                            </c:forEach>
                         </select>
+                         
                       </div>
+ --%>      
+ 
+                            <div class="col-md-6">
+									<label class="form-label dairy-input-label required-field">Feed Company</label> 
+									 <select  class="form-select dairy-form-input"
+										id="feedCompanyId" name="feedCompanyId" required>
+										<option value="" selected="selected" disabled="disabled">Select
+											Feed Company</option>
+										<c:forEach items="${feedCompany}" var="fc">
+											<option value="${fc.id}">${fc.name}</option>
+										</c:forEach>
+									</select>
+								</div>
+
+								<div class="col-md-6">
+									<label class="form-label dairy-input-label required-field">Feed Company Type</label> 
+									<select class="form-select dairy-form-input"
+										id="feedTypeId" name="feedTypeId" disabled="disabled" required>
+										<!-- <option value="" selected="selected" disabled="disabled">Select
+											Feed Type</option> -->
+										<%-- <c:forEach items="${feedType}" var="feed">
+											<option value="${feed.id}">${feed.type}</option>
+										</c:forEach> --%>
+									</select>
+								</div>
+								
+ 
+ 
+                 
 								<div class="col-md-6">
 									<label class="form-label dairy-input-label required-field">${empty messages[110] ? 'Price Per Unit' : messages[110]}</label> <input type="text"
 										class="form-control dairy-form-input"
@@ -84,13 +124,16 @@
 								<div class="col-md-6">
 									<label class="form-label dairy-input-label required-field">${empty messages[109] ? 'Quantity' : messages[109]}</label> <input type="text"
 										class="form-control dairy-form-input"
+
 										placeholder="${empty messages[112] ? 'Enter Total Quantity' : messages[112]}" id="feedStockQuantity" name="quantity" required>
+
+		
 								</div>
 
 								<div class="col-md-6">
 									<label class="form-label dairy-input-label required-field">${empty messages[97] ? 'Total  Amount' : messages[97]}</label> <input type="text"
-										class="form-control dairy-form-input"
-										placeholder="${empty messages[103] ? 'Enter  Total  Amount' : messages[103]}" id="feedStockTotalAmount" name="totalAmount"   required>
+										class="form-control dairy-form-input"	placeholder="${empty messages[103] ? 'Enter  Total  Amount' : messages[103]}" id="feedStockTotalAmount" name="totalAmount"   required>
+
 								</div>
 
 								<div class="col-12">
@@ -110,8 +153,10 @@
 		</div>
 	</div>
 	<jsp:include page="../modules/footer.jsp" />
-
+	
 </body>
+
+
 
 
 	

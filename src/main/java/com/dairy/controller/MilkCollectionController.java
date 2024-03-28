@@ -76,10 +76,10 @@ public class MilkCollectionController {
 		String response = milkCollectionService.addMilkCollection(dto,branchId);
 		if (response != null && response.equals(MessageConstants.ADD_MILK_COLLECTION_SUCCESS_MESSAGE)) {
 			ra.addFlashAttribute("successMessage", response);
-			return "redirect:/milkCollection";
+			return "redirect:/milkCollection/get-farmer-list-page";
 		}
 		ra.addFlashAttribute("errorMessage", MessageConstants.ADD_MILK_COLLECTION_ERROR_MSG);
-		return "milkCollection/getRoutewiseFarmers";
+		return "redirect:/milkCollection/get-farmer-list-page";
 	}
 
 	@GetMapping

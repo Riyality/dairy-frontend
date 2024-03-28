@@ -15,6 +15,7 @@
 							<div class="card-title"> ${empty messages[36] ? 'Add Farmer' : messages[36]}</div>
 						</div>
 						<div class="card-body">
+						  <jsp:include page="../successMessage/message.jsp" />
 							<form class="row g-3 needs-validation" action="/farmers"
 								method="post" >
 								
@@ -31,8 +32,10 @@
 								<div class="col-md-6">
 									<label class="form-label dairy-input-label required-field">${empty messages[178] ? 'Route' : messages[178]}</label>
 									 <select class="form-select dairy-form-input" id=""
+
 										name="route">
 										<option value="" selected="selected" disabled="disabled">${empty messages[179] ? 'Select Route' : messages[179]}</option>
+
 										<c:forEach items="${routes}" var="route">
 											<option value="${route.id}">${route.name}</option>
 										</c:forEach>

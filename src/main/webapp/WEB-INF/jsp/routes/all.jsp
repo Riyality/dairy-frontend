@@ -16,6 +16,28 @@
               <div class="card-title">${empty messages[82] ? ' Routes' : messages[82]} </div>
             </div>
             <div class="card-body">
+            
+             <div id="MessageBody" class="SuccessErrorMessageBody">
+                <!-- Show success message -->
+                <c:if test="${not empty successMessage}">
+                  <div id="successAlert" class="alert alert-success alert-dismissible fade show SuccessErrorMessages" role="alert" >
+                    ${successMessage}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  
+                </c:if>
+                <c:if test="${not empty errorMessage}">
+                  <div id="errorAlert" class="alert alert-danger alert-dismissible fade show" role="alert" style="height: 10vh; width: 50vh; font-size: 22px;">
+                    ${errorMessage}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                </c:if>
+              </div>
+              
               <div class="table-responsive">
                 <table id="file-export" class="table table-bordered dataTable no-footer dairy-table-border">
                   <thead>

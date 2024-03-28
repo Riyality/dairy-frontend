@@ -37,7 +37,7 @@ public class BranchController {
 			return "redirect:/branches";
 		}
 		ra.addFlashAttribute( "errorMessage", MessageConstants.ADD_BRANCH_ERROR_MSG );
-		return "branches/add";
+		return "redirect:/branches/add-branch-page";
 	}
 
 	@GetMapping

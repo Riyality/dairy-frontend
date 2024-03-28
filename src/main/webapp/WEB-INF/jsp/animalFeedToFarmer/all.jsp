@@ -12,6 +12,8 @@
 		        <div class="card-title">All Equipments</div>
 		      </div>
 		      <div class="card-body">
+		      
+		      
 		        <div class="table-responsive">
 		     
       				<%-- <jsp:include page="../modules/dataTableHeader.jsp" /> --%>

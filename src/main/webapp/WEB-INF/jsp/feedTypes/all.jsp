@@ -12,6 +12,7 @@
 		        <div class="card-title">${empty messages[132] ? 'All Feed Types' : messages[132]}</div>
 		      </div>
 		      <div class="card-body">
+		       <jsp:include page="../successMessage/message.jsp" />
 		        <div class="table-responsive">
 		     
       				<%-- <jsp:include page="../modules/dataTableHeader.jsp" /> --%>

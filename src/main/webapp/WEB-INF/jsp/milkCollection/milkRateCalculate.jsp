@@ -35,6 +35,7 @@
 							<div class="card-title">${empty messages[217] ? 'Milk Rate' : messages[217]}</div>
 						</div>
 						<div class="card-body dairy-card-body">
+						 <jsp:include page="../successMessage/message.jsp" />
 							<form class="row g-3 needs-validation" action="/milkRate"
 								method="post" id="milkRatesForm">
 								

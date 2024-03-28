@@ -15,6 +15,7 @@
 							<div class="card-title">${empty messages[16] ? ' Add Feed Company' : messages[16]}</div>
 						</div>
 						<div class="card-body">
+						  <jsp:include page="../successMessage/message.jsp" />
 							<form class="row g-3 needs-validation" action="/feedCompanies"
 								method="post" >
 								

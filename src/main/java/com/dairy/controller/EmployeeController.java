@@ -41,7 +41,7 @@ public class EmployeeController {
 			return "redirect:/employee";
 		}
 		ra.addFlashAttribute("errorMessage", MessageConstants.ADD_EMPLOYEE_ERROR_MSG);
-		return "employees/add";
+		return "redirect:/employee/add-employee-page";
 	}
 
 	@GetMapping

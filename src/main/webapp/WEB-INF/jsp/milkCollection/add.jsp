@@ -144,16 +144,19 @@
         
 		          <div class="row mb-3">
 					  <div class="col-md-4">
+
 						<label class="form-label dairy-input-label">${empty messages[172] ? 'View  Milk  From' : messages[172]}</label> 
 						<input type="date" class="form-control dairy-form-input" id="" name="startDate">
+
 					  </div>
 					</div>
-					
+						
 		        <div class="table-responsive">
 		           
 		            <table id="file-export" class="table table-bordered dataTable no-footer dairy-table-border">
 		              <thead>
 		                <tr class="dairy-table-head">
+
 		                  <th>${empty messages[168] ? 'Date OF Milk Collection' : messages[168]}</th>
 		                  <th>${empty messages[89] ? 'Shift' : messages[89]}</th>
 		                  <th>FAT</th>
@@ -178,7 +181,7 @@
 		              </tbody>
 		            </table>
 		        </div>
-        
+   
       </div>
       </div>
       <div class="modal-footer">
@@ -187,5 +190,10 @@
     </div>
   </div>
 </div>
+
+<jsp:include page="../modules/footer.jsp" />
+
+
 	
-	<jsp:include page="../modules/footer.jsp" />
+	
+	

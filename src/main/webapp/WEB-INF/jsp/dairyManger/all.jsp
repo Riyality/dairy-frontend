@@ -13,6 +13,7 @@
 							<div class="card-title">${empty messages[247] ? 'All Dairy Manager' : messages[247]}</div>
 						</div>
 						<div class="card-body">
+						 <jsp:include page="../successMessage/message.jsp" />
 							<div class="table-responsive">
 
 								<table id="file-export"

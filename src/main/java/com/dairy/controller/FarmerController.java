@@ -25,6 +25,7 @@ import com.dairy.service.RouteService;
 @RequestMapping("/farmers")
 public class FarmerController {
 
+	private static final Object ADD_FARMER_ERROR_MSG = null;
 	@Autowired
 	private FarmerService farmerService;
 	@Autowired
@@ -45,17 +46,20 @@ public class FarmerController {
 	}
 
 	@PostMapping
-	public String addFarmer(@ModelAttribute FarmerRequestDto dto, HttpSession session) {
+	public String addFarmer(@ModelAttribute FarmerRequestDto dto, HttpSession session, RedirectAttributes ra) {
 		
 		int branchId = (int) session.getAttribute("branchId");
 		dto.setBranchId(branchId);
 
 		String result = farmerService.add(dto);
-		if (result.equals(MessageConstants.ADD_FARMER_SUCCESS_MESSAGE))
+		if (result != null && result.equals(MessageConstants.ADD_FARMER_SUCCESS_MESSAGE)){
+			ra.addFlashAttribute("successMessage",result);
 			return "redirect:/farmers";
-		else
-			return "farmers/add";
+		}
+			ra.addFlashAttribute("errorMessage", ADD_FARMER_ERROR_MSG);
+			return "redirect:/farmers/addFarmerPage";
 	}
+	
 
 	@GetMapping
 	public String allFarmers(HttpSession session, Model model) {
@@ -118,16 +122,6 @@ public class FarmerController {
 		return "redirect:/farmers/" + dto.getId();
 	}
 	
-	/* @GetMapping("/activeCount")
-	    public String countActiveFarmersByBranchId(Model model, HttpSession session) {
-	        String user = (String) session.getAttribute("username");
-	        if (user != null) {
-	            int branchId = (int) session.getAttribute("branchId");
-	            long activeFarmersCount = farmerService.countActiveFarmersByBranchId(branchId);
-	            model.addAttribute("activeFarmersCount", activeFarmersCount);
-	            return "dairyCount/activeFarmerCount";
-	        }
-	        return "login";
-	    }*/
+	
 	
 }

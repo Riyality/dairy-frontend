@@ -54,7 +54,7 @@ public class AdvanceToFarmerController {
 			return "redirect:/advanceToFarmer";
 		}
 		ra.addFlashAttribute("errorMessage", MessageConstants.ADD_ADVANCETOFARMER_ERROR_MSG);
-		return "advanceToFarmers/add";
+		return "redirect:/advanceToFarmer/advanceToFarmer-add-page";
 
 	}
 

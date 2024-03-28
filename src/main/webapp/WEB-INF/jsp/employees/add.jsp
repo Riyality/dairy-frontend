@@ -15,6 +15,7 @@
 							<div class="card-title">${empty messages[135] ? 'Add Employee' : messages[135]}</div>
 						</div>
 						<div class="card-body">
+						   <jsp:include page="../successMessage/message.jsp" />
 							<form class="row g-3 needs-validation" action="/employee"
 								method="post" >
 								

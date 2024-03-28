@@ -40,9 +40,9 @@ public class FarmerAnimalMappingServiceImpl implements FarmerAnimalMappingServic
 	}
 
 	@Override
-	public List<FarmerAnimalMappingResponseDto> getAllAnimal() {
+	public List<FarmerAnimalMappingResponseDto> getAllAnimal(int branchId) {
 		RestTemplate template = new RestTemplate();
-		String url = "http://localhost:6262/farmerAnimalMapping";
+		String url = "http://localhost:6262/farmerAnimalMapping/branch/"+branchId; 
 
 		HttpHeaders headers = new HttpHeaders();
 		HttpEntity<String> entity = new HttpEntity<>("body", headers);

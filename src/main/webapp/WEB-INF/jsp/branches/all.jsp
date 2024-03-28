@@ -12,6 +12,8 @@
 		        <div class="card-title">${empty messages[75] ? 'All Branches' : messages[75]}</div>
 		      </div>
 		      <div class="card-body">
+		       <jsp:include page="../successMessage/message.jsp" />
+		       
 		        <div class="table-responsive">
 		     
       				<%-- <jsp:include page="../modules/dataTableHeader.jsp" /> --%>

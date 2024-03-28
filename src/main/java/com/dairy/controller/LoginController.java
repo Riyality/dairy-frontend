@@ -50,6 +50,7 @@ public class LoginController {
 	public String loginPage() {
 		return "login";
 	}
+	
 
 	@PostMapping
 	public String login(@ModelAttribute LoginRequestDto dto, Model model, HttpSession session,ModelAndView modelAndView) {
@@ -96,8 +97,7 @@ public class LoginController {
 
 			long inActiveFarmersCount = farmerService.countInActiveFarmersByBranchId(branchId);
 			model.addAttribute("inActiveFarmersCount", inActiveFarmersCount);
-			//session.setAttribute("inActiveFarmersCount", inActiveFarmersCount);
-
+			
 			long totalFeedStock = feedStockService.TotalfeedStockBybranchId(branchId);
 			model.addAttribute("totalFeedStock", totalFeedStock);
 			return "index";
@@ -127,4 +127,9 @@ public class LoginController {
 		return null;
 	}
 
+	
+	@GetMapping("/index")
+	public String indexPage() {
+	    return "index";
+	}
 }

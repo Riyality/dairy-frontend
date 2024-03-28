@@ -41,7 +41,7 @@ public class RouteController {
 			return "redirect:/routes";
 		}
 		ra.addFlashAttribute( "errorMessage", MessageConstants.ADD_ROUTE_ERROR_MSG );
-		return "routes/add";
+		return "redirect:/routes/add-route-page";
 	}
 
 	@GetMapping

@@ -8,12 +8,6 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
-
-import java.util.List;
-
-import javax.servlet.http.HttpSession;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -23,7 +17,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.dairy.constants.MessageConstants;
@@ -105,7 +98,7 @@ public class FeedToFarmerController {
 		}
 			ra.addFlashAttribute("errorMessage", MessageConstants.ADD_FEEDTOFARMER_ERROR_MSG);
 
-		return "feedToFarmer/add";				
+		return "redirect:/feedToFarmers/feedToFarmer-add-page";				
 		
 	}
 	
@@ -131,7 +124,7 @@ public class FeedToFarmerController {
 	 @GetMapping
 		public String allFeedToFarmer(Model model, HttpSession session) {
 			int branchId = (int) session.getAttribute("branchId");
-			List<FeedToFarmerResponseDto> list = feedToFarmerService.getAllFeedToFarmer();
+			List<FeedToFarmerResponseDto> list = feedToFarmerService.getAllFeedToFarmer(branchId);
 			model.addAttribute("feedToFarmers", list);
 			return "feedToFarmer/all";
 

@@ -16,6 +16,7 @@
 							 <a href="http://localhost:6161/mainBranchs"><button class="btn btn-primary dairy-form-btn" >${empty messages[79] ? ' Back' : messages[79]}</button></a>
 						</div>
 						<div class="card-body dairy-card-body">
+						  <jsp:include page="../successMessage/message.jsp" />
 							<form class="row g-3 needs-validation" action="/mainBranchs/update"
 								method="post" novalidate>
 								

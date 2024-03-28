@@ -15,6 +15,7 @@
 							 <a href="http://localhost:6161/farmers"><button class="btn btn-primary dairy-form-btn" >${empty messages[79] ? ' Back' : messages[79]}</button></a>
 						</div>
 						<div class="card-body">
+						  <jsp:include page="../successMessage/message.jsp" />
 							<form class="row g-3 needs-validation" action="/farmers/update"
 								method="post" >
 								
@@ -32,7 +33,7 @@
 								<div class="col-md-6">
 									<label class="form-label dairy-input-label required-field">${empty messages[178] ? 'Route' : messages[178]}</label>
 									 <select class="form-select dairy-form-input" id=""
-										name="route" value="${farmer.route}">
+										name="route" value="${farmer.route}" required>
 										<option  selected="selected" value="${farmer.route.id}">${farmer.route.name}</option>
 										<c:forEach items="${routes}" var="route">
 											<option  value="${route.id}">${route.name}</option>
@@ -49,10 +50,12 @@
 								</div>
 								
 								<div class="col-md-6">
+
 									<label class="form-label dairy-input-label">${empty messages[184] ? 'Farmer Status' : messages[184]}</label> 
 									<select class="form-select dairy-form-input" name="status" id="">
 										<option value="active">${empty messages[185] ? 'Active' : messages[185]}</option>
 										<option value="inactive">${empty messages[186] ? 'In-Active' : messages[186]}</option>  
+						
 									</select>
 								</div>
 								

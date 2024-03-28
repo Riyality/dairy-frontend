@@ -1,8 +1,11 @@
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%><%@ taglib
+	uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <jsp:include page="../modules/header.jsp" />
 <style>
 
 </style>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	
 <body>
 
 	<div class="main-content app-content p-4">
@@ -15,7 +18,11 @@
 							<div class="card-title">${empty messages[4] ? ' Add Route' : messages[4]}</div>
 						</div>
 						<div class="card-body dairy-card-body">
-							
+
+						
+                         <jsp:include page="../successMessage/message.jsp" />
+                   
+
 							<form class="row g-3 needs-validation" action="/routes"
 								method="post" >
 								

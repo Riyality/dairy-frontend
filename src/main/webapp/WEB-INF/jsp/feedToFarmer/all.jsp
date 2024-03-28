@@ -13,6 +13,8 @@
 		       
 		      </div>
 		      <div class="card-body">
+		      
+		        <jsp:include page="../successMessage/message.jsp" />
 		        <div class="table-responsive">
 		     
       				<%-- <jsp:include page="../modules/dataTableHeader.jsp" /> --%>
@@ -56,7 +58,9 @@
 		              </tbody>
 		            </table>
 		             <div class="col-6">
+
                           <a href="http://localhost:6161/feedToFarmers/add-feedStock-page"><button class="btn btn-primary dairy-form-btn" >${empty messages[79] ? ' Back' : messages[79]}</button></a>
+
                       </div>
 		        </div>
 		      </div>

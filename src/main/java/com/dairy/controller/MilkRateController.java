@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.dairy.constants.MessageConstants;
 import com.dairy.dto.milkRate.MilkRateRequestDto;
@@ -46,7 +47,7 @@ public class MilkRateController {
 	}
 	
 	@PostMapping("/saveMilkRates")
-	public String saveMilkRates(@RequestBody List<MilkRateRequestDto> milkRateDtoList, HttpSession session) {
+	public String saveMilkRates(@RequestBody List<MilkRateRequestDto> milkRateDtoList, HttpSession session,RedirectAttributes ra) {
 	    try {
 	        int branchId = (int) session.getAttribute("branchId");
 	        if (branchId <= 0) {
@@ -59,8 +60,10 @@ public class MilkRateController {
 	        
 	        String result = milkRateService.saveMilkRates(milkRateDtoList);
 	        if (result.equals(MessageConstants.ADD_MILK_RATE_SUCCESS_MESSAGE)) {
+	        	ra.addFlashAttribute( "successMessage", result );
 	            return "milkCollection/add";
 	        } else {
+	        	ra.addFlashAttribute( "errorMessage", MessageConstants.ADD_MILK_RATE_ERROR_MESSAGE );
 	            return "milkCollection/milkRateCalculate";
 	        }
 	    } catch (Exception e) {

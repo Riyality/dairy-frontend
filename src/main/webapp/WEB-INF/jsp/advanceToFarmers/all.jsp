@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%><%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <jsp:include page="../modules/header.jsp" />
-
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	
 <body>
   <div class="main-content app-content">
     <div class="container-fluid">
@@ -12,6 +13,9 @@
 		        <div class="card-title">${empty messages[210] ? 'All Advance Details' : messages[210]}</div>
 		      </div>
 		      <div class="card-body">
+		      
+		       <jsp:include page="../successMessage/message.jsp" />
+		      
 		        <div class="table-responsive">
 		     
       				<%-- <jsp:include page="../modules/dataTableHeader.jsp" /> --%>
