@@ -395,13 +395,11 @@
                             <ul class="slide-menu child1">
                                 <li class="slide">
                                     <a href="/employee/add-employee-page" class="side-menu__item">
-                               		 <i class="fa fa-user-plus listIcons" aria-hidden="true"></i>
-                                    <i class="fa fa-plus-square-o listIcons" aria-hidden="true"></i>Add Employee </a>
+                               		 <i class="fa fa-user-plus listIcons" aria-hidden="true"></i>Add Employee </a>
                                 </li>
                                  <li class="slide">
                                     <a href="/employee" class="side-menu__item">
-                               		 <i class="fa fa-user-table listIcons" aria-hidden="true"></i>
-                                <i class="fa fa    -table listIcons" aria-hidden="true"></i>All Employee</a>
+                                <i class="fa fa-table listIcons" aria-hidden="true"></i>All Employee</a>
                                 </li>
                                 
                             </ul>

@@ -42,7 +42,7 @@
                                             <label class="form-label dairy-input-label required-field">Select
                                                 Shift </label> 
                                          <select  class="form-select dairy-form-input"
-                                                id="shiftDropdown" name="shift" >
+                                                id="shiftDropdown" name="shift"  required>
                                                 <option value="" selected="selected" disabled="disabled">Select
                                                     Shift</option>
                                                     <option value="morning">Morning</option>
@@ -97,7 +97,7 @@
                                             <label class="form-label dairy-input-label required-field">Select
                                                 Shift </label> 
                                          <select  class="form-select dairy-form-input"
-                                                id="shiftDropdownFarmer" name="shift">
+                                                id="shiftDropdownFarmer" name="shift" required>
                                                 <option value="" selected="selected" disabled="disabled">Select
                                                     Shift</option>
                                                     <option value="morning">Morning</option>

@@ -328,7 +328,34 @@
 
  /*Milk Collection Script End*/
 
-	 
+ /*display required message Script start*/	 
+ 
+ function validateForm() {
+     var isValid = true;
+
+     // Check each input field
+     $('form input').each(function() {
+         if ($(this).prop('required') && !$(this).val()) {
+             $(this).addClass('is-invalid');
+             $(this).siblings('.error-message').remove(); // Remove any existing error message
+             $(this).after('<div class="error-message">This field is required.</div>'); // Append error message
+             isValid = false;
+         } else {
+             $(this).removeClass('is-invalid');
+             $(this).siblings('.error-message').remove(); // Remove any existing error message
+         }
+     });
+
+     return isValid;
+ }
+
+	$('form input').on('input', function() {
+	    if ($(this).val()) {
+	        $(this).removeClass('is-invalid');
+	        $(this).siblings('.error-message').remove(); // Remove error message if input is not empty
+	    }
+	});
+ /*display required message Script end*/	 
 
  /*Payment To Farmer Script Start*/
  var fDate
@@ -348,6 +375,7 @@
  	$("#generateInvoice").prop("disabled", true);
  	$("#payment").prop("disabled", true);
  	$("#getFarmerRecords").on("click", function() {
+ 		 if (validateForm()) {
  		fDate = fromDate
  		var fromDate = $("#fromDate").val();
  		var toDate = $("#toDate").val();
@@ -380,6 +408,7 @@
  				console.error('Error fetching data:', error);
  			}
  		});
+ 	}
  	});
  	$("#file-export").on("click", "#eyeButton", function() {
  		var farmerId = $(this).data("farmer-id");
@@ -613,6 +642,7 @@ $("#GeneratePayment").prop("disabled", true);
     var selectedFarmersData = [];
     var flag="invoice";
   $("#getInvoiceRecords").on("click", function() {
+
         fromDate = $("#fromDate").val();
         toDate  = $("#toDate").val();
          milkType = document.querySelector('input[name="milkType"]:checked').value;
@@ -712,6 +742,7 @@ $("#GeneratePayment").prop("disabled", true);
         var anyCheckboxChecked = selectedFarmersData.length > 0;
         $("#GeneratePayment").prop("disabled", !anyCheckboxChecked);
     }
+  
 });
 
  /*Milkcollection Invoice Script End*/
@@ -727,7 +758,17 @@ $("#GeneratePayment").prop("disabled", true);
 			var selectedFarmerIds = [];
 			var selectedFarmersData = [];
 			
+			/*$("#selectAllCheckbox").on("click", function() {
+		        
+		        var isChecked = $(this).prop("checked");
+		        
+		        $("input[type='checkbox']").prop("checked", isChecked);
+		    });*/
+			
+		    
+			
 			$("#getFarmerRecordsBonus").on("click", function () {
+				 if (validateForm()) {
 				fDate = $("#fromDate").val();
 				tDate = $("#toDate").val();
 				var bonusAmountPerLiter = $("#bonusAmountPerLiter").val();
@@ -756,6 +797,8 @@ $("#GeneratePayment").prop("disabled", true);
 						console.error('Error fetching data:', error);
 					}
 				});
+				  
+			 }
 			});
 			 
 			$("#submitSelectedRecords").on("click", function (event) {
@@ -888,6 +931,7 @@ $("#GeneratePayment").prop("disabled", true);
     
     var fromDate,toDate,milkType,Shift; 
    $("#getMilkCollectionRecordsDatewise,#getMilkCollectionRecordsFarmerwise").on("click", function() {
+   if (validateForm()) {
     var clickedButtonId = $(this).attr("id");
       console.log(clickedButtonId)
     if (clickedButtonId === "getMilkCollectionRecordsDatewise") {
@@ -943,6 +987,7 @@ $("#GeneratePayment").prop("disabled", true);
             console.error('Error fetching data:', error);
         }
     });
+ }
 });
 
 
@@ -968,6 +1013,7 @@ $("#GeneratePayment").prop("disabled", true);
       }
     });
 	$("#getPaymentInvoiceRecords").on("click", function() {
+ if (validateForm()) {
     var fromDate = $("#fromDate").val();
     var toDate = $("#toDate").val();
     var milkType = document.querySelector('input[name="milkType"]:checked').value;
@@ -1012,7 +1058,7 @@ $("#GeneratePayment").prop("disabled", true);
                 console.error('Error fetching data:', error);
             }
         });
-
+ }
 });
 /*Payment Report Script end*/
 	
@@ -1051,45 +1097,7 @@ $("#GeneratePayment").prop("disabled", true);
  /* feedStock Script start*/   
 	    		 
 	    		 $("#file-export-feed tbody").empty();
-	    		 $('#supplierId,#dateOfPurchase, #feedCompanyId, #feedTypeId, #feedStockCostPerUnit, #feedStockQuantity, #feedStockTotalAmount').on('input', function() {
-	    			    $(this).next('.error-message').remove(); 	    			});
 	    	  		function addRecordToTable() {
-	    	  			
-	    	  			 $('.error-message').remove();
-	    	  		    var isValid = true;
-	    	  		    var requiredFields = [
-	    	  		        { id: 'supplierId', name: 'Supplier Name' },
-	    	  		        { id: 'dateOfPurchase', name: 'Purchase Date' },
-	    	  		        { id: 'feedCompanyId', name: 'Feed Company' },
-	    	  		        { id: 'feedTypeId', name: 'Feed Type' },
-	    	  		        { id: 'feedStockCostPerUnit', name: 'Feed Cost (1 unit)' },
-	    	  		        { id: 'feedStockQuantity', name: 'Total Quantity' },
-	    	  		        { id: 'feedStockTotalAmount', name: 'Total Amount' }
-	    	  		    ];
-
-	    	  		  requiredFields.forEach(function(field) {
-	    	  		    var fieldValue = $('#' + field.id).val().trim();
-	    	  		    if (field.id === "supplierId" || field.id === "feedCompanyId" || field.id === "feedTypeId") {
-	    	  		        if (!fieldValue) {
-	    	  		            $('#' + field.id).after('<span class="error-message">Please select an option.</span>');
-	    	  		            isValid = false;
-	    	  		        } else {
-	    	  		            $('#' + field.id).next('.error-message').remove();
-	    	  		        }
-	    	  		    } else {
-	    	  		        if (fieldValue === "") {
-	    	  		            $('#' + field.id).after('<span class="error-message">Please fill in this field.</span>');
-	    	  		            isValid = false;
-	    	  		        } else {
-	    	  		            $('#' + field.id).next('.error-message').remove();
-	    	  		        }
-	    	  		    }
-	    	  		});
-	    	  		  
-	    	  		  
-	    	  		    if (!isValid) {
-	    	  		        return;
-	    	  		    }
 	    	  		    
 	    	  		    var newRow = $('<tr>');
 	    	  		    newRow.append('<td>' + $('#supplierId option:selected').text() + '</td>');
@@ -1114,8 +1122,10 @@ $("#GeneratePayment").prop("disabled", true);
 
 	    	  	    
 	    	  	    $('#addRecordBtn').click(function(event) {
+	    	  	    	 if (validateForm()) {
 	    	  	        event.preventDefault(); 
 	    	  	        addRecordToTable(); 
+	    	  	    	 }
 	    	  	    });
 
 	    	  	    
@@ -1174,10 +1184,8 @@ $("#GeneratePayment").prop("disabled", true);
 	    	  	        saveRecordsToServer(); 
 	    	  	    });
 	
-  /* feedStock Script end*/   
-
-
-
+  /* feedStock Script end*/  
+	    	  	    
 
 /*Feed Report Script Start*/
  $('#myTabs a').click(function (e) {
@@ -1213,6 +1221,7 @@ $("#GeneratePayment").prop("disabled", true);
     $("#toDate").val(formattedDate);
     var fromDate,toDate;
    $("#getFeedRecordsDatewise, #getFeedRecordsFarmerwise,#getFeedRecordsCompanywise").on("click", function () {
+	   if (validateForm()) {
 	    var clickedButtonId = $(this).attr("id");
     if (clickedButtonId === "getFeedRecordsDatewise") {
          fromDate = $("#fromDate").val();
@@ -1259,6 +1268,7 @@ $("#GeneratePayment").prop("disabled", true);
             console.error('Error fetching data:', error);
         }
     });
+}
 });
 
 /*Feed Report Script End*/
@@ -1283,6 +1293,8 @@ $("#GeneratePayment").prop("disabled", true);
      var fromDate,toDate;
        
 $("#getAdvanceRecordsDatewise,#getAdvanceRecordsFarmerwise").on("click", function () {
+	
+	if (validateForm()) {
 	   fromDate = $("#fromDate").val();
        toDate = $("#toDate").val();
       var clickedButtonId = $(this).attr("id");
@@ -1319,6 +1331,8 @@ $("#getAdvanceRecordsDatewise,#getAdvanceRecordsFarmerwise").on("click", functio
             console.error('Error fetching data:', error);
         }
     });
+	
+	}
     
 });
 /*Advance Report Script End*/
@@ -1342,6 +1356,7 @@ var flag="all";
     var fromDate,toDate;
       
 $("#getBonusRecordsDatewise,#getBonusRecordsFarmerwise").on("click", function () {
+	 if (validateForm()) {
 	   fromDate = $("#fromDate").val();
       toDate = $("#toDate").val();
      var clickedButtonId = $(this).attr("id");
@@ -1379,6 +1394,7 @@ $("#getBonusRecordsDatewise,#getBonusRecordsFarmerwise").on("click", function ()
            console.error('Error fetching data:', error);
        }
    });
+ }
    
 });
 /*Bonus Report Script End*/
@@ -1462,6 +1478,7 @@ $("#getMilkCollectionDatewise").click(function () {
             console.error("Error:", status, error);
         }
     });
+    
 });
 
 /*display Milk Collection  Script end*/

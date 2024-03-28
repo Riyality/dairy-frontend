@@ -8,7 +8,7 @@ import com.dairy.dto.feedToFarmer.FeedToFarmerResponseDto;
 
 public interface FeedToFarmerService {
 
-	 public List<FeedToFarmerResponseDto> getAllFeedToFarmer();
+	 public List<FeedToFarmerResponseDto> getAllFeedToFarmer(int branchId);
 
 	public String addFeedToFarmers(FeedToFarmerRequestDto feedToFarmerResponseDto);
 

@@ -9,7 +9,7 @@ public interface FarmerAnimalMappingService {
 
 	String addAnimal(FarmerAnimalMappingRequestDto requestDto);
 
-	List<FarmerAnimalMappingResponseDto> getAllAnimal();
+	List<FarmerAnimalMappingResponseDto> getAllAnimal(int branchId);
 
 	FarmerAnimalMappingResponseDto findById(Long id);
 

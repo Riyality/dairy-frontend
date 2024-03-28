@@ -124,7 +124,7 @@
                                 <div class="col-md-2">
 									<label class="form-label dairy-input-label required-field">Feed Company</label> 
 									 <select  class="form-select dairy-form-input"
-										id="feedCompanyList" name="feedCompanyId">
+										id="feedCompanyList" name="feedCompanyId" required>
 										<option value="" selected="selected" disabled="disabled">Select
 											Feed Company</option>
 										<c:forEach items="${feedCompanyList}" var="fc">

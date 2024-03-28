@@ -54,8 +54,9 @@ public class FarmerAnimalMappingController {
 	}
 
 	@GetMapping
-	public String getAllAnimal(Model model) {
-		List<FarmerAnimalMappingResponseDto> list = farmerAnimalMappingService.getAllAnimal();
+	public String getAllAnimal(Model model, HttpSession session) {
+		int branchId = (int) session.getAttribute("branchId");
+		List<FarmerAnimalMappingResponseDto> list = farmerAnimalMappingService.getAllAnimal(branchId);
 		model.addAttribute("farmerAnimal", list);
 		return "animalMapping/all";
 	}
